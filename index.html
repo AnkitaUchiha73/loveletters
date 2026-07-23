@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To, Dr. Aryan Goyal ❤️</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Background Music -->
+    <audio id="bgMusic" loop>
+        <source src="music/oursong.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- ================= INTRO PAGE ================= -->
+
+    <section id="intro">
+
+        <img src="images/image24.jpeg" class="cover" alt="Cover Image">
+
+        <div class="content">
+
+            <h1>"We are mortals, but our love will remain immortal in these letters."</h1>
+
+            <h3>From Ankita ❤️</h3>
+
+            <p>
+                Welcome to our little corner of the internet.
+                <br><br>
+                Every letter here was written with love.
+                Every letter tells a story.
+                Every letter carries emotions I never want to forget.
+                <br><br>
+                Whenever you miss me, smile with me, laugh with me,
+                or simply want to feel close to me,
+                I hope you'll come back here.
+            </p>
+
+            <button id="openButton">
+                Start Our Story ❤️
+            </button>
+
+        </div>
+
+    </section>
+
+    <!-- ================= LETTERS PAGE ================= -->
+
+    <section id="lettersPage">
+
+        <!-- Background Slideshow -->
+        <div id="slideshow"></div>
+
+        <!-- Dark Overlay -->
+        <div class="overlay">
+
+            <h1>To, Dr. Aryan Goyal</h1>
+
+            <p class="subtitle">
+                From, Ankita.
+                Every envelope hides a piece of my heart.
+            </p>
+
+            <div class="gallery">
+
+                <div class="card" onclick="openLetter('letter1')">
+                    ❤️
+                    <h2>The Beginning</h2>
+                    <h6>23-07-2026</h6>
+                </div>
+
+                <div class="card" onclick="openLetter('letter2')">
+                    
+                    <h2>Future Letter</h2>
+                </div>
+
+                <div class="card" onclick="openLetter('letter3')">
+                    
+                    <h2>Future Letter</h2>
+                </div>
+
+                <div class="card" onclick="openLetter('letter4')">
+                    
+                    <h2>Future Letter</h2>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ================= LETTER POPUPS ================= -->
+
+    <!-- Letter 1 -->
+
+    <div id="letter1" class="letterPopup">
+
+        <div class="letterContent">
+
+            <span class="close" onclick="closeLetter('letter1')">&times;</span>
+
+            <h1>The Beginning ❤️</h1>
+
+            <p>
+                My dearest Aryan,
+            </p>
+
+            <p>
+                If you're reading this, you've officially opened the very first
+                letter in a collection that means more to me than words can explain.
+            </p>
+
+            <p>
+                I wanted to create something that would last.
+                Something that you could return to years from now and still feel
+                the same warmth.
+            </p>
+
+            <p>
+                This website isn't just made of HTML, CSS and JavaScript.
+                It's made from memories, dreams, hope, and every little piece
+                of my heart that I wanted to leave with you.
+                I still remember meeting you for the first time in CODM, hearing your voice for the first time , first call , first meet up.
+                There are 7 billion people in this world and still I found you in this lifetime. I have kissed you, held you and call me human but I wanna live it all with you.
+                I don't know what the future gonna be.
+                I don't care what it holds.
+                All I  care about is I have held you, known you, loved you and thats my lifetime.
+            </p>
+
+            <p>
+                Thank you for existing.
+                Thank you for loving me.
+                Thank you for becoming one of the most beautiful chapters of my life.
+            </p>
+
+            <p>
+                This is only the first letter.
+                There are many more waiting for you.
+            </p>
+
+            <p>
+                Love always,
+                <br><br>
+                Ankita ❤️
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- Letter 2 -->
+
+    <div id="letter2" class="letterPopup">
+
+        <div class="letterContent">
+
+            <span class="close" onclick="closeLetter('letter2')">&times;</span>
+
+            <h1>Missing You 🌸</h1>
+
+            <p>
+                Write your second letter here...
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- Letter 3 -->
+
+    <div id="letter3" class="letterPopup">
+
+        <div class="letterContent">
+
+            <span class="close" onclick="closeLetter('letter3')">&times;</span>
+
+            <h1>Birthday 🎂</h1>
+
+            <p>
+                Write your birthday letter here...
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- Letter 4 -->
+
+    <div id="letter4" class="letterPopup">
+
+        <div class="letterContent">
+
+            <span class="close" onclick="closeLetter('letter4')">&times;</span>
+
+            <h1>Anniversary 💖</h1>
+
+            <p>
+                Write your anniversary letter here...
+            </p>
+
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
