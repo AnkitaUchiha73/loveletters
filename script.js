@@ -9,6 +9,36 @@ const music = document.getElementById("bgMusic");
 const slideshow = document.getElementById("slideshow");
 
 // ============================
+// MUSIC PLAYLIST
+// ============================
+
+const songs = [
+    "music/oursong.mp3",
+    "music/oursong2.mp3",
+    "music/oursong3.mp3",
+    "music/oursong4.mp3"
+];
+
+// Choose a random song when the page loads
+let currentSong = songs[Math.floor(Math.random() * songs.length)];
+music.src = currentSong;
+
+// Play another random song when one ends
+music.addEventListener("ended", () => {
+
+    let nextSong;
+
+    do {
+        nextSong = songs[Math.floor(Math.random() * songs.length)];
+    } while (nextSong === currentSong);
+
+    currentSong = nextSong;
+    music.src = currentSong;
+    music.play();
+
+});
+
+// ============================
 // BACKGROUND IMAGES
 // ============================
 
@@ -53,7 +83,7 @@ let currentImage = 0;
 
 button.addEventListener("click", () => {
 
-    // Start music
+    // Play the selected random song
     music.play().catch(error => {
         console.log("Music couldn't start:", error);
     });
@@ -89,6 +119,7 @@ setInterval(() => {
 
         slideshow.style.backgroundImage =
             `url('${images[currentImage]}')`;
+
     }
 
 }, 4000);
