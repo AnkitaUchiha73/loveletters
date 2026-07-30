@@ -9,7 +9,7 @@
 }
 
 body{
-    font-family:'Times New Roman', Times, serif
+    font-family:'Times New Roman', Times, serif;
     overflow-x:hidden;
 }
 
@@ -179,7 +179,6 @@ button:hover{
     background-position: center;
     background-color: black;
 
-    background-position:center;
 
     transition:background-image 1s ease;
 
@@ -392,5 +391,126 @@ button:hover{
         padding:30px;
 
     }
+
+}
+#musicBox{
+    position:fixed;
+    bottom:25px;
+    right:25px;
+    z-index:999;
+}
+
+
+#musicToggle{
+
+    width:65px;
+    height:65px;
+
+    border-radius:50%;
+
+    background:linear-gradient(135deg,#ff7aa8,#d63384);
+
+    border:none;
+
+    color:white;
+
+    font-size:28px;
+
+    cursor:pointer;
+
+    box-shadow:0 0 25px rgba(255,120,170,.8);
+
+    animation:pulse 2s infinite;
+
+}
+
+
+@keyframes pulse{
+
+    0%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.1);
+    }
+
+    100%{
+        transform:scale(1);
+    }
+
+}
+
+
+
+#musicMenu{
+
+    position:absolute;
+
+    bottom:80px;
+    right:0;
+
+    width:230px;
+
+    padding:15px;
+
+    border-radius:20px;
+
+    background:rgba(255,255,255,.15);
+
+    backdrop-filter:blur(15px);
+
+    display:none;
+
+    flex-direction:column;
+
+    gap:10px;
+
+}
+
+
+#musicMenu.show{
+
+    display:flex;
+
+}
+
+
+
+.song-btn,
+#shuffleBtn{
+
+    margin:0;
+
+    padding:12px;
+
+    border-radius:20px;
+
+    background:rgba(255,255,255,.2);
+
+    color:white;
+
+    border:1px solid rgba(255,255,255,.3);
+
+    font-size:14px;
+
+}
+
+
+
+.song-btn:hover,
+#shuffleBtn:hover{
+
+    background:#ff5c8a;
+
+}
+
+
+
+.song-btn.active{
+
+    background:#ff5c8a;
+
+    box-shadow:0 0 15px #ff5c8a;
 
 }

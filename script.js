@@ -7,34 +7,136 @@ const lettersPage = document.getElementById("lettersPage");
 const button = document.getElementById("openButton");
 const music = document.getElementById("bgMusic");
 const slideshow = document.getElementById("slideshow");
+const musicToggle = document.getElementById("musicToggle");
+const musicMenu = document.getElementById("musicMenu");
+
+
+musicToggle.addEventListener("click",()=>{
+
+    musicMenu.classList.toggle("show");
+
+});
+music.addEventListener("play",()=>{
+
+    musicToggle.innerHTML="🎶❤️";
+
+});
+
+
+music.addEventListener("pause",()=>{
+
+    musicToggle.innerHTML="🎵❤️";
+
+});
 
 // ============================
 // MUSIC PLAYLIST
 // ============================
 
 const songs = [
-    "music/oursong.mp3",
-    "music/oursong2.mp3",
-    "music/oursong3.mp3",
-    "music/oursong4.mp3"
+    "music/GehraHua.mp3",
+    "music/BadheAcheLagteHai.mp3",
+    "music/YehRatein.mp3",
+    "music/PalPalDilKePaas.mp3"
 ];
 
-// Choose a random song when the page loads
-let currentSong = songs[Math.floor(Math.random() * songs.length)];
+let currentSong = songs[0];
+
 music.src = currentSong;
 
-// Play another random song when one ends
-music.addEventListener("ended", () => {
+
+// ============================
+// SONG SWITCHER
+// ============================
+
+const songButtons = document.querySelectorAll(".song-btn");
+const shuffleBtn = document.getElementById("shuffleBtn");
+
+
+function updateActiveSongButton() {
+
+    songButtons.forEach(btn => {
+
+        btn.classList.toggle(
+            "active",
+            btn.dataset.song === currentSong
+        );
+
+    });
+
+}
+
+
+songButtons.forEach(btn => {
+
+    btn.addEventListener("click", () => {
+
+        if(btn.id === "shuffleBtn") return;
+
+        currentSong = btn.dataset.song;
+
+        music.src = currentSong;
+
+        music.load();
+
+        music.play()
+        .catch(error => {
+            console.log("Music error:", error);
+        });
+
+        updateActiveSongButton();
+
+    });
+
+});
+
+
+if(shuffleBtn){
+
+    shuffleBtn.addEventListener("click",()=>{
+
+        let nextSong;
+
+        do{
+            nextSong = songs[Math.floor(Math.random()*songs.length)];
+        }
+        while(nextSong === currentSong);
+
+
+        currentSong = nextSong;
+
+        music.src = currentSong;
+
+        music.load();
+
+        music.play();
+
+        updateActiveSongButton();
+
+    });
+
+}
+
+
+// Auto next song
+
+music.addEventListener("ended",()=>{
 
     let nextSong;
 
-    do {
-        nextSong = songs[Math.floor(Math.random() * songs.length)];
-    } while (nextSong === currentSong);
+    do{
+        nextSong = songs[Math.floor(Math.random()*songs.length)];
+    }
+    while(nextSong === currentSong);
+
 
     currentSong = nextSong;
+
     music.src = currentSong;
+
     music.play();
+
+    updateActiveSongButton();
 
 });
 
@@ -83,10 +185,12 @@ let currentImage = 0;
 
 button.addEventListener("click", () => {
 
-    // Play the selected random song
+    // Play the selected song
     music.play().catch(error => {
         console.log("Music couldn't start:", error);
     });
+
+    updateActiveSongButton();
 
     // Fade out intro
     intro.style.opacity = "0";
@@ -163,3 +267,27 @@ window.onclick = function(event){
     });
 
 }
+const letterForm = document.getElementById('letterForm');
+
+letterForm.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    const status = document.getElementById('submitStatus');
+    status.textContent = "Sending...";
+
+    try {
+        const response = await fetch("https://formspree.io/f/mjgnznjg", {
+            method: "POST",
+            headers: { "Accept": "application/json" },
+            body: new FormData(letterForm)
+        });
+
+        if (response.ok) {
+            status.textContent = "Sent! ❤️ It's on its way to her.";
+            letterForm.reset();
+        } else {
+            status.textContent = "Something went wrong. Try again.";
+        }
+    } catch (err) {
+        status.textContent = "Something went wrong. Try again.";
+    }
+});

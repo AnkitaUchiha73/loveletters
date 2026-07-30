@@ -12,7 +12,8 @@
 <body>
 
     <!-- Background Music -->
-    <audio id="bgMusic"></audio>
+    <audio id="bgMusic" preload="auto"></audio>
+
 
     <!-- ================= INTRO PAGE ================= -->
 
@@ -47,8 +48,40 @@
     </section>
 
     <!-- ================= LETTERS PAGE ================= -->
+     <section id="lettersPage">
+        <div id="musicBox">
 
-    <section id="lettersPage">
+    <button id="musicToggle">
+        🎵❤️
+    </button>
+
+    <div id="musicMenu">
+
+        <button class="song-btn" data-song="music/GehraHua.mp3">
+            🌙 Gehra Hua
+        </button>
+
+        <button class="song-btn" data-song="music/BadheAcheLagteHai.mp3">
+            💕 Bade Ache Lagte Hai
+        </button>
+
+        <button class="song-btn" data-song="music/PalPalDilKePaas.mp3">
+            💌 Pal Pal Dil Ke Paas
+        </button>
+
+        <button class="song-btn" data-song="music/YehRatein.mp3">
+            ✨ Yeh Ratein
+        </button>
+
+        <button id="shuffleBtn">
+            🎲 Surprise Song
+        </button>
+
+    </div>
+
+</div>
+    
+        
 
         <!-- Background Slideshow -->
         <div id="slideshow"></div>
@@ -326,6 +359,8 @@
             }
         });
     </script>
+    
+
 
 </body>
 
