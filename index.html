@@ -1,164 +1,254 @@
 <!DOCTYPE html>
 <html lang="en">
-
+ 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To, Dr. Aryan Goyal ❤️</title>
-
+ 
     <link rel="stylesheet" href="style.css">
 </head>
-
+ 
 <body>
-
+ 
     <!-- Background Music -->
     <audio id="bgMusic" preload="auto"></audio>
-
-
+ 
+ 
     <!-- ================= INTRO PAGE ================= -->
-
+ 
     <section id="intro">
-
+ 
         <img src="images/image24.jpeg" class="cover" alt="Cover Image">
-
+ 
         <div class="content">
-
+ 
             <h1>"We are mortals, but our love will remain immortal in these letters."</h1>
-
-            <h3>From Ankita ❤️</h3>
-
+ 
+            <h3>From Ankita & Aryan❤️</h3>
+ 
             <p>
                 Welcome to our little corner of the internet.
-                <br><br>
+                <br>
                 Every letter here was written with love.
+                <br>
                 Every letter tells a story.
-                Every letter carries emotions I never want to forget.
-                <br><br>
-                Whenever you miss me, smile with me, laugh with me,
-                or simply want to feel close to me,
-                I hope you'll come back here.
+                <br>
+                Every letter carries emotions we never want to forget.
+                <br>
+                Whenever we miss each other, whenever we feel light or heavy.
+                <br>
+                I hope we both come here and feel close to each other.
+                <br>
+                This page here would carry all our emotions adn memories.
             </p>
-
+ 
             <button id="openButton">
                 Start Our Story ❤️
             </button>
-
+ 
         </div>
-
+ 
     </section>
-
+ 
     <!-- ================= LETTERS PAGE ================= -->
      <section id="lettersPage">
         <div id="musicBox">
-
+ 
     <button id="musicToggle">
         🎵❤️
     </button>
-
+ 
     <div id="musicMenu">
-
+ 
         <button class="song-btn" data-song="music/GehraHua.mp3">
             🌙 Gehra Hua
         </button>
-
+ 
         <button class="song-btn" data-song="music/BadheAcheLagteHai.mp3">
             💕 Bade Ache Lagte Hai
         </button>
-
+ 
         <button class="song-btn" data-song="music/PalPalDilKePaas.mp3">
             💌 Pal Pal Dil Ke Paas
         </button>
-
+ 
         <button class="song-btn" data-song="music/YehRatein.mp3">
             ✨ Yeh Ratein
+        </button>
+
+        <button class="song-btn" data-song="music/Barbaad.mp3">
+            🫶🏻 Barbaad
+        </button>
+
+        <button class="song-btn" data-song="music/Dhun.mp3">
+            🎶 Dhun
+        </button>
+
+        <button class="song-btn" data-song="music/LikheJoKhatTujhe.mp3">
+            ✍🏻 Likhe Jo Khat Tujhe
         </button>
 
         <button id="shuffleBtn">
             🎲 Surprise Song
         </button>
-
+ 
     </div>
-
+ 
 </div>
     
         
-
+ 
         <!-- Background Slideshow -->
         <div id="slideshow"></div>
-
+ 
         <!-- Dark Overlay -->
         <div class="overlay">
-
+ 
             <h1>To, Dr. Aryan Goyal</h1>
-
+ 
             <p class="subtitle">
                 From, Ankita.
-                Every envelope hides a piece of my heart.
             </p>
-
+            <p class="subtitle">
+                Every envelope here hides a piece of my heart
+            </p>
+ 
             <div class="gallery">
-
+ 
                 <div class="card" onclick="openLetter('letter1')">
                     ❤️
                     <h2>The Beginning</h2>
                     <h6>23-07-2026</h6>
                 </div>
-
+ 
                 <div class="card" onclick="openLetter('letter2')">
                     😊
                     <h2>"These days"</h2>
                     <h6>28-07-2026</h6>
                 </div>
-
+ 
                 <div class="card" onclick="openLetter('letter3')">
-
+ 
                     <h2>Future Letter</h2>
                 </div>
-
+ 
                 <div class="card" onclick="openLetter('letter4')">
-
+ 
                     <h2>Future Letter</h2>
                 </div>
-
+ 
                 <div class="card" onclick="openLetter('writeLetter')">
                     ✍️
                     <h2>Write a Letter</h2>
                     <h6>For Ankita</h6>
                 </div>
-
+ 
+                <div class="card" id="toAryanBtn">
+                    💌
+                    <h2>His Letters</h2>
+                    
+                </div>
+ 
             </div>
-
+ 
         </div>
-
+ 
     </section>
-
+ 
+    <!-- ================= ARYAN'S LETTERS PAGE ================= -->
+     <section id="aryanPage">
+ 
+        <div id="musicBoxAryan">
+ 
+            <button id="musicToggleAryan">
+                🎵❤️
+            </button>
+ 
+            <div id="musicMenuAryan">
+ 
+                <button class="song-btn" data-song="music/TujhMeinRabDikhtaHai.mp3">
+                 ❤️ Tujh Mein Rab Dikhta Hai
+                </button>
+ 
+                <button class="song-btn" data-song="music/FinallyFoundYou.mp3">
+                    😊 Finally Found You
+                </button>
+ 
+                <button id="shuffleBtnAryan">
+                    🎲 Surprise Song
+                </button>
+ 
+            </div>
+ 
+        </div>
+ 
+        <!-- Background Slideshow -->
+        <div id="slideshowAryan"></div>
+ 
+        <!-- Dark Overlay -->
+        <div class="overlay">
+ 
+            <button id="backFromAryanBtn" style="margin-bottom:20px;">
+                ← Back
+            </button>
+ 
+            <h1>To, Pandi</h1>
+            
+            <p class="subtitle">
+                From, Aryan.
+            </p>
+            <p class="subtitle">
+                You are and always will be, the home I belong to my love.
+            </p>
+            <div class="gallery">
+ 
+                <div class="card" onclick="openLetter('aryanLetter1')">
+                    ♥️
+                    <h2>2 Cute souls</h2>
+                    <h6>30-07-2026</h6>
+                    
+                </div>
+ 
+                <div class="card" onclick="openLetter('aryanLetter2')">
+                    💌
+                    <h2>From Aryan</h2>
+                    
+                </div>
+ 
+            </div>
+ 
+        </div>
+ 
+    </section>
+ 
     <!-- ================= LETTER POPUPS ================= -->
-
+ 
     <!-- Letter 1 -->
-
+ 
     <div id="letter1" class="letterPopup">
-
+ 
         <div class="letterContent">
-
+ 
             <span class="close" onclick="closeLetter('letter1')">&times;</span>
-
+ 
             <h1>The Beginning ❤️</h1>
-
+ 
             <p>
                 My dearest Aryan,
             </p>
-
+ 
             <p>
                 If you're reading this, you've officially opened the very first
                 letter in a collection that means more to me than words can explain.
             </p>
-
+ 
             <p>
                 I wanted to create something that would last.
                 Something that you could return to years from now and still feel
                 the same warmth.
             </p>
-
+ 
             <p>
                 This website isn't just made of HTML, CSS and JavaScript.
                 It's made from memories, dreams, hope, and every little piece
@@ -169,41 +259,41 @@
                 I don't care what it holds.
                 All I  care about is I have held you, known you, loved you and thats my lifetime.
             </p>
-
+ 
             <p>
                 Thank you for existing.
                 Thank you for loving me.
                 Thank you for becoming one of the most beautiful chapters of my life.
             </p>
-
+ 
             <p>
                 This is only the first letter.
                 There are many more waiting for you.
             </p>
-
+ 
             <p>
                 Love you always,
                 <br><br>
                 Ankita ❤️
             </p>
-
+ 
         </div>
-
+ 
     </div>
-
+ 
     <!-- Letter 2 -->
-
+ 
     <div id="letter2" class="letterPopup">
-
+ 
         <div class="letterContent">
-
+ 
             <span class="close" onclick="closeLetter('letter2')">&times;</span>
-
+ 
             <h1>These days 😊</h1>
             <p>
                 My dearest Aryan,
             </p>
-
+ 
             <p>
                 Let roll back time a little for this one. My parents are one big joke. Education and career wise
                 okay my life has been good there. Love life has been a roller coaster always. I have always been
@@ -211,7 +301,7 @@
                 realised it's wrong of me to totally depend on my partner to make it all okay for me. I mean come on we all have
                 our stories and struggle so yes me putting all my trauma out in open and asking it to be solved thats too much to ask for.
             </p>
-
+ 
             <p>
                 Back few days I was so low. I mean I wanted answers to questions like why I was given such set of parents
                 who didn't care. Why was I given this scenario where I had to be so much away from you. Who do I complain to
@@ -231,7 +321,7 @@
                 its okay to feel all of this. In this chaos I was so blinded by the worldly things that I forgot that I had held you and kissed you
                 and that peace was right there in front of me.
             </p>
-
+ 
             <p>
                 It became so chaotic then all of sudden I realised that I am pinpointing it all to me. I mean about my parents it's there behaviour
                 that has caused all of this mess not me. My job as well I am not the one to be blamed as it was the other things. About us as well you
@@ -241,7 +331,7 @@
                 that would I want to marry and all of it but its okay life happens and I can't punish myself over my own expectations. I have bleed a lot and I don't want
                 myself to bleed more over the ghost of the past and future.
             </p>
-
+ 
             <p>
                 I wanna be living in this present where I have you. I know it's all so risky, that what if all of this still fails and what not but it would still be okay
                 because in this entire arc I still have held you and felt that its gonna be all okay. I know my life is mess but I also know, nobody but only me has the capacity
@@ -258,96 +348,184 @@
                 gonna be we would still be in it together. I am gonna live my all and not think about who should I talk to make it all okay. Following the Nike motto , 'Just do it!'. So this
                 entire arc has been lately happening with me these days. I hope you are okay and health and all smiling and dreaming about us these days.
             </p>
-
+ 
             <p>
                 Love you always,
                 <br><br>
                 Ankita Pi Pikaaa❤️
             </p>
-
+ 
         </div>
-
+ 
     </div>
-
+ 
     <!-- Letter 3 -->
-
+ 
     <div id="letter3" class="letterPopup">
-
+ 
         <div class="letterContent">
-
+ 
             <span class="close" onclick="closeLetter('letter3')">&times;</span>
-
+ 
             <h1>Future Letter</h1>
-
+ 
             <p>
-                Write your birthday letter here...
+                Fasten your seat belt for the next letter
             </p>
-
+ 
         </div>
-
+ 
     </div>
-
+ 
     <!-- Letter 4 -->
-
+ 
     <div id="letter4" class="letterPopup">
-
+ 
         <div class="letterContent">
-
+ 
             <span class="close" onclick="closeLetter('letter4')">&times;</span>
-
+ 
             <h1>Future Letter</h1>
-
+ 
             <p>
-                Write your anniversary letter here...
+                Coming soon 
             </p>
-
+ 
         </div>
-
+ 
     </div>
-
+ 
     <!-- Write a Letter Popup -->
-
+ 
     <div id="writeLetter" class="letterPopup">
-
+ 
         <div class="letterContent">
-
+ 
             <span class="close" onclick="closeLetter('writeLetter')">&times;</span>
-
+ 
             <h1>Write Ankita a Letter ✍️</h1>
-
+ 
             <form id="letterForm">
                 <input type="text" name="title" placeholder="Give it a title..."
                     style="width:100%; margin-bottom:10px; padding:8px; border-radius:6px; border:1px solid #ccc; box-sizing:border-box;">
-
+ 
                 <textarea name="message" placeholder="Write your heart out..." rows="10" required
                     style="width:100%; padding:8px; border-radius:6px; border:1px solid #ccc; box-sizing:border-box;"></textarea>
-
+ 
                 <button type="submit" style="margin-top:15px;">Send this Letter ❤️</button>
             </form>
             <p id="submitStatus" style="margin-top:10px;"></p>
-
+ 
         </div>
-
+ 
     </div>
-
+ 
+    <!-- Letters from Aryan -->
+ 
+    <div id="aryanLetter1" class="letterPopup">
+ 
+        <div class="letterContent">
+ 
+            <span class="close" onclick="closeLetter('aryanLetter1')">&times;</span>
+ 
+            <h1>2 Cute souls ♥️</h1>
+ 
+            <p>
+              My Cutu ankita,  
+            </p>
+            <p>
+               Hihi….my first time writing feelings…..thoda nervous ho….dont knw …..where to start….. 
+            </p>
+            <p>
+                First of all yess
+                <br>
+                I miss u alot….. and I love that feeling of missing actually. And u know jab aapne first time hold kiya tha arm bus mei….
+                That was the first time I felt peace.
+            </p>
+            <p>
+                I felt something….mere chehre mei automatically smile aagyi …..
+                <br>
+                Hihi u always say ki tu mast smile krta rehta jab dekho jaisi situation hai….
+            </p>
+            <p>
+                I wanna say ….its all bcoz of u…
+                <br>
+                I just feel ki yess this is what life to be
+                <br>
+                Haan yahi hai zindagi….yahi chahiye….all perfect…wow heart beat mast chalti…..
+            </p>
+            <p>
+                Hihi….
+                <br>
+                Yes I know u…..not being overconfident but yes….I know the peace ur heart wants…(bolege kisi din)
+                <br>
+                Yaha pe love ka topic aata hai….
+                <br>
+                Pyaar ….I say love bohat pandu cheez hai….koi logic nahi dekhta…….
+                <br>
+                With u i felt
+                <br>
+                Love can be calm peaceful…..crying is also love….sadness is also love….
+                <br>
+                The all rollercoaster of diff emotions is love….choosing each other is love yess….we both choose each other…i say thats the best thing I literally wanna thank you and all the worldy forces which let this happen what we are today…..
+            </p>
+            <p>
+                Hihi i dont wanna be emotional….
+                <br>
+                Kyuki u will say now
+                <br>
+                Jaake padai krle 😂 hihi…true…
+            </p>
+            <p>
+                “Yes Wanna hug u…. Wanna kiss u…wanna hold u….now now now now….hogya wait this all” - my heart says this every second…..
+            </p>
+            <p>
+                Soo yahi end krte chotu sa letter and mera dil ka very tiny fraction…!!
+            </p>
+            <p>
+                Love u so much meri ankita
+                <br>
+                Muaah..!!
+            </p>
+ 
+        </div>
+ 
+    </div>
+ 
+    <div id="aryanLetter2" class="letterPopup">
+ 
+        <div class="letterContent">
+ 
+            <span class="close" onclick="closeLetter('aryanLetter2')">&times;</span>
+ 
+            <h1>Future Letter 💌</h1>
+ 
+            <p>
+                Pandu write me letters
+            </p>
+ 
+        </div>
+ 
+    </div>
+ 
     <script src="script.js"></script>
-
+ 
     <!-- Write a Letter functionality -->
     <script>
         const letterForm = document.getElementById('letterForm');
-
+ 
         letterForm.addEventListener('submit', async function (e) {
             e.preventDefault();
             const status = document.getElementById('submitStatus');
             status.textContent = "Sending...";
-
+ 
             try {
                 const response = await fetch("https://formspree.io/f/mjgnznjg", {
                     method: "POST",
                     headers: { "Accept": "application/json" },
                     body: new FormData(letterForm)
                 });
-
+ 
                 if (response.ok) {
                     status.textContent = "Sent! ❤️ It's on its way to her.";
                     letterForm.reset();
@@ -359,9 +537,12 @@
             }
         });
     </script>
-    
-
-
+ 
+ 
 </body>
-
+ 
 </html>
+ 
+
+
+
