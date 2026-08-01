@@ -64,7 +64,8 @@ const songs = [
 const aryanSongs = [
     "music/TujhMeinRabDikhtaHai.mp3",
     "music/FinallyFoundyou.mp3",
-    "music/IThinkTheyCallThisLove.mp3"
+    "music/IThinkTheyCallThisLove.mp3",
+    "music/FalakTakTashan.mp3"
 ];
  
 let currentSong = songs[0];
