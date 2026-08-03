@@ -57,7 +57,7 @@ const songs = [
     "music/Dhun.mp3",
     "music/FinallyFoundyou.mp3",
     "music/LikheJoKhatTujhe.mp3",
-    "music/TujheMeinRabDikhtaHai.mp3"
+    "music/TumSeHi.mp3"
 ];
  
 // Replace these with Aryan's own playlist filenames
@@ -65,7 +65,11 @@ const aryanSongs = [
     "music/TujhMeinRabDikhtaHai.mp3",
     "music/FinallyFoundyou.mp3",
     "music/IThinkTheyCallThisLove.mp3",
-    "music/FalakTakTashan.mp3"
+    "music/FalakTakTashan.mp3",
+    "music/Guzarish.mp3",
+    "music/MainYahaanHoon.mp3",
+    "music/TeraHoneLagaHoon.mp3",
+    "music/Teriore.mp3"
 ];
  
 let currentSong = songs[0];
