@@ -217,9 +217,11 @@ const images = [
  
 // Replace these with the photos you want just for Aryan's page
 const aryanImages = [
-    "images/aryan1.jpg",
-    "images/aryan2.jpg",
-    "images/aryan3.jpg",
+    "images/aryan1.jpeg",
+    "images/aryan2.jpeg",
+    "images/aryan3.jpeg",
+    "images/aryan4.jpeg",
+    "images/aryan5.jpeg"
 ];
  
 let currentImage = 0;
