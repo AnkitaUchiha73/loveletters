@@ -69,7 +69,9 @@ const aryanSongs = [
     "music/Guzarish.mp3",
     "music/MainYahaanHoon.mp3",
     "music/TeraHoneLagaHoon.mp3",
-    "music/Teriore.mp3"
+    "music/Teriore.mp3",
+    "music/UffTeriAdaa.mp3",
+    "music/saazni.mp3",
 ];
  
 let currentSong = songs[0];
