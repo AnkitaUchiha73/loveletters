@@ -573,3 +573,93 @@ button:hover{
     box-shadow:0 0 15px #ff5c8a;
  
 }
+/* Hide everything initially */
+
+#mainTitle,
+#mainSubtitle,
+#mainSubtitle2,
+.gallery{
+
+    opacity:0;
+    transition:1.5s ease;
+
+}
+
+/* Journey Screen */
+
+#journeyIntro{
+
+    position:absolute;
+
+    top:50%;
+    left:50%;
+
+    transform:translate(-50%,-50%);
+
+    text-align:center;
+
+    color:white;
+
+    width:90%;
+
+    opacity:0;
+
+    z-index:100;
+
+}
+
+#journeyTitle{
+
+    font-size:2.8rem;
+
+    font-family:'Times New Roman', Times, serif, serif;
+
+    opacity:0;
+
+    transition:1.5s;
+
+}
+
+#loveCounter{
+
+    margin-top:35px;
+
+    opacity:0;
+
+    transition:1.5s;
+
+}
+
+#loveCounter h1{
+
+    font-size:3rem;
+
+    margin-bottom:15px;
+
+}
+
+#loveCounter h3{
+
+    margin-bottom:20px;
+
+    font-weight:300;
+
+}
+
+#counter{
+
+    font-size:2rem;
+
+    line-height:1.8;
+
+}
+
+.journeyQuote{
+
+    margin-top:25px;
+
+    font-style:italic;
+
+    opacity:.85;
+
+}
