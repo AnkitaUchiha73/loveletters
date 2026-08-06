@@ -76,15 +76,15 @@
         <button class="song-btn" data-song="music/YehRatein.mp3">
             ✨ Yeh Ratein
         </button>
-
+ 
         <button class="song-btn" data-song="music/Barbaad.mp3">
             🫶🏻 Barbaad
         </button>
-
+ 
         <button class="song-btn" data-song="music/Dhun.mp3">
             🎶 Dhun
         </button>
-
+ 
         <button class="song-btn" data-song="music/LikheJoKhatTujhe.mp3">
             ✍🏻 Likhe Jo Khat Tujhe
         </button>
@@ -99,24 +99,42 @@
  
 </div>
     
-        
  
         <!-- Background Slideshow -->
         <div id="slideshow"></div>
  
         <!-- Dark Overlay -->
         <div class="overlay">
+            <div id="journeyIntro">
  
-            <h1>To, Dr. Aryan Goyal</h1>
+             <h2 id="journeyTitle">
+             Every story has a beginning...
+             </h2>
  
-            <p class="subtitle">
+         <div id="loveCounter">
+ 
+         <h1>❤️ It's been  ❤️</h1>
+         <p id="counter"></p>
+         <h3>Since we have said "Hiii"</h3>
+ 
+           <p class="quote">
+            "Every second with you has become my favourite memory and we got so many more to make"
+            </p>
+ 
+        </div>
+ 
+</div>
+ 
+            <h1 id="mainTitle">To, Dr. Aryan Goyal</h1>
+ 
+            <p class="subtitle" id="mainSubtitle">
                 From, Ankita.
             </p>
-            <p class="subtitle">
+            <p class="subtitle" id="mainSubtitle2">
                 Every envelope here hides a piece of my heart
             </p>
  
-            <div class="gallery">
+            <div class="gallery" id="gallery">
  
                 <div class="card" onclick="openLetter('letter1')">
                     ❤️
@@ -551,7 +569,7 @@
                 Jaake padai krle 😂 hihi…true…
             </p>
             <p>
-                “Yes Wanna hug u…. Wanna kiss u…wanna hold u….now now now now….hogya wait this all” - my heart says this every second…..
+                "Yes Wanna hug u…. Wanna kiss u…wanna hold u….now now now now….hogya wait this all" - my heart says this every second…..
             </p>
             <p>
                 Soo yahi end krte chotu sa letter and mera dil ka very tiny fraction…!!
@@ -615,7 +633,7 @@
              They just listen and throw it out somewhere……people used my feelings too….world just wanna use the person and they will go when their work is done…
              <br>
              But With u I opened up naturally…..we both have shared the space….we opened up….the best thing ki we didnt asked or like say ki bola
-             “Tell me more abt that or u didnt share abt ur things”
+             "Tell me more abt that or u didnt share abt ur things"
              <br>
              We both naturally put our feelings to each other…
              I really loved that….
@@ -639,7 +657,7 @@
              <br>
              I love u alot ankita….And Im very proud of us what we have built ….. one day closer love…. My sweetest cutest and kind hearted soul…. Love and really reallly proud to say
              <br>
-             “Meri ankita” “we are home”
+             "Meri ankita" "we are home"
              <br>
              Bcoz thats the truth….
              Thats our love …
@@ -650,7 +668,7 @@
             </p>
  
         </div>
-    </div>div>
+    </div>
      <div id="aryanLetter3" class="letterPopup">
  
         <div class="letterContent">
@@ -660,7 +678,7 @@
             <h1>Pandi & Pandu ♥️</h1>
  
             <p>
-             Hi ankita,
+             Hi Ankita,
             <br>
              This is ur Aryan….hihi thoda socha likhu……kabhi kabhi I love you se bohat zyada bolne ka mann krta hai…….
             </p>
@@ -708,35 +726,6 @@
     </div>
  
     <script src="script.js"></script>
- 
-    <!-- Write a Letter functionality -->
-    <script>
-        const letterForm = document.getElementById('letterForm');
- 
-        letterForm.addEventListener('submit', async function (e) {
-            e.preventDefault();
-            const status = document.getElementById('submitStatus');
-            status.textContent = "Sending...";
- 
-            try {
-                const response = await fetch("https://formspree.io/f/mjgnznjg", {
-                    method: "POST",
-                    headers: { "Accept": "application/json" },
-                    body: new FormData(letterForm)
-                });
- 
-                if (response.ok) {
-                    status.textContent = "Sent! ❤️ It's on its way to her.";
-                    letterForm.reset();
-                } else {
-                    status.textContent = "Something went wrong. Try again.";
-                }
-            } catch (err) {
-                status.textContent = "Something went wrong. Try again.";
-            }
-        });
-    </script>
- 
  
 </body>
  
