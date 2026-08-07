@@ -647,11 +647,11 @@ button:hover{
 }
 
 #counter{
-
     font-size:2rem;
-
     line-height:1.8;
-
+    display:block;
+    width:100%;
+    text-align:center;
 }
 
 .journeyQuote{
