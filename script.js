@@ -697,3 +697,447 @@ letterForm.addEventListener('submit', async function (e) {
     }
 
 });
+// =====================================================
+// ONE-TIME SURPRISE QUIZ FOR ARYAN
+// =====================================================
+
+const quizSurprise = document.getElementById("quizSurprise");
+const beginQuizBtn = document.getElementById("beginQuizBtn");
+const enterOurStoryBtn = document.getElementById("enterOurStoryBtn");
+
+const quizWelcome = document.getElementById("quizWelcome");
+const quizQuestions = document.getElementById("quizQuestions");
+const quizResult = document.getElementById("quizResult");
+
+const quizQuestion = document.getElementById("quizQuestion");
+const quizOptions = document.getElementById("quizOptions");
+const quizFeedback = document.getElementById("quizFeedback");
+const quizNumber = document.getElementById("quizNumber");
+
+const nextQuestionBtn = document.getElementById("nextQuestionBtn");
+
+const quizScore = document.getElementById("quizScore");
+const quizResultTitle = document.getElementById("quizResultTitle");
+const quizResultEmoji = document.getElementById("quizResultEmoji");
+
+
+// =====================================================
+// QUIZ QUESTIONS
+// =====================================================
+
+const loveQuiz = [
+
+    {
+        question: "What is Ankita's favourite thing to eat all the time?",
+        options: [
+            "Icecream 🍦",
+            "Pav Bhaji 🥘",
+            "Chicken 🐔",
+            "Aryan 🤤"
+        ],
+        answer: 3
+    },
+
+    {
+        question: "What is Ankita's first thought in the morning?",
+        options: [
+            "Aryan",
+            "Eating Aryan",
+            "Kissing Aryan",
+            "Sleeping more while hugging Aryan"
+        ],
+        answer: 3
+    },
+
+    {
+        question: "Which of the following things makes Ankita blush?",
+        options: [
+            "Thinking about Aryan",
+            "Thought of doing ahmm with Aryan",
+            "Dancing with Aryan",
+            "All of the above"
+        ],
+        answer: 3
+    },
+
+    {
+        question: "What does Ankita call Aryan?",
+        options: [
+            "Pandu ❤️",
+            "Pikaachu ⚡",
+            "Zandu",
+            "All of these 😂"
+        ],
+        answer: 0
+    },
+
+    {
+        question: "What does Aryan call Ankita?",
+        options: [
+            "Pandi ❤️",
+            "Wifuu 🫶🏻",
+            "Ankita",
+            "All of these 😂"
+        ],
+        answer: 3
+    },
+
+    {
+        question: "How many days of togetherness does Ankiuta want with Aryan?",
+        options: [
+            "5 days",
+            "365 days",
+            "Lifetime",
+            "More then a lifetime"
+        ],
+        answer: 3
+    },
+
+    {
+        question: "Which of the following skills of Aryan does Ankita like secretly?",
+        options: [
+            "Being a doctor",
+            "Dancing 💃",
+            "4-finger claw gaming 🎮",
+            "Singing 🎤"
+        ],
+        answer: 2
+    },
+
+    {
+        question: "What are we?",
+        options: [
+            "Just two people",
+            "A cute couple",
+            "A little chaotic",
+            "HOME ❤️"
+        ],
+        answer: 3
+    },
+
+    {
+        question: "Which of the following things matters most to Ankita?",
+        options: [
+            "Geting married to Aryan ",
+            "Having kids with Aryan",
+            "Aryan",
+            "Aryan's Happiness"
+        ],
+        answer: 2
+    },
+    {
+        question: "If Ankita was granted one wish she would ask for?",
+        options: [
+            "Being Ultimate Rich so that she can spend all of the moeny on her loved ones",
+            "Letting Aryan experience all of her love for him",
+            "Existing this whole system of human world",
+            "Becoming one with Aryan in all ways"
+        ],
+        answer: 1
+    }
+
+];
+
+
+// =====================================================
+// QUIZ VARIABLES
+// =====================================================
+
+let currentQuestion = 0;
+let score = 0;
+
+
+// =====================================================
+// SHOW QUIZ AFTER "START OUR STORY"
+// =====================================================
+
+// IMPORTANT:
+// The quiz appears only if Aryan has NOT completed it before.
+
+if (!localStorage.getItem("aryanLoveQuizCompleted")) {
+
+    const originalOpenButton = document.getElementById("openButton");
+
+    if (originalOpenButton) {
+
+        originalOpenButton.addEventListener("click", function () {
+
+            // Give the normal website a moment to appear
+            setTimeout(() => {
+
+                quizSurprise.style.display = "flex";
+
+            }, 1800);
+
+        });
+
+    }
+
+}
+
+
+// =====================================================
+// START QUIZ
+// =====================================================
+
+beginQuizBtn.addEventListener("click", function () {
+
+    quizWelcome.style.display = "none";
+
+    quizQuestions.style.display = "block";
+
+    currentQuestion = 0;
+    score = 0;
+
+    showQuestion();
+
+});
+
+
+// =====================================================
+// SHOW QUESTION
+// =====================================================
+
+function showQuestion() {
+
+    const question = loveQuiz[currentQuestion];
+
+    quizNumber.textContent =
+        `Question ${currentQuestion + 1} of ${loveQuiz.length}`;
+
+    quizQuestion.textContent = question.question;
+
+    quizOptions.innerHTML = "";
+
+    quizFeedback.textContent = "";
+
+    nextQuestionBtn.style.display = "none";
+
+
+    question.options.forEach((option, index) => {
+
+        const button = document.createElement("button");
+
+        button.className = "quiz-option";
+
+        button.textContent = option;
+
+        button.addEventListener("click", function () {
+
+            selectAnswer(index, button);
+
+        });
+
+        quizOptions.appendChild(button);
+
+    });
+
+}
+
+
+// =====================================================
+// ANSWER QUESTION
+// =====================================================
+
+function selectAnswer(selectedIndex, selectedButton) {
+
+    const question = loveQuiz[currentQuestion];
+
+    const allButtons =
+        document.querySelectorAll(".quiz-option");
+
+
+    // Disable all options
+
+    allButtons.forEach(button => {
+
+        button.classList.add("disabled");
+
+    });
+
+
+    // Correct answer
+
+    if (selectedIndex === question.answer) {
+
+        score++;
+
+        selectedButton.classList.add("correct");
+
+        quizFeedback.textContent =
+            getCorrectMessage();
+
+    }
+
+    // Wrong answer
+
+    else {
+
+        selectedButton.classList.add("wrong");
+
+        allButtons[question.answer]
+            .classList.add("correct");
+
+        quizFeedback.textContent =
+            getWrongMessage();
+
+    }
+
+
+    // Show next button
+
+    nextQuestionBtn.style.display = "inline-block";
+
+}
+
+
+// =====================================================
+// NEXT QUESTION
+// =====================================================
+
+nextQuestionBtn.addEventListener("click", function () {
+
+    currentQuestion++;
+
+    if (currentQuestion < loveQuiz.length) {
+
+        showQuestion();
+
+    } else {
+
+        finishQuiz();
+
+    }
+
+});
+
+
+// =====================================================
+// FUN RESPONSES
+// =====================================================
+
+function getCorrectMessage() {
+
+    const messages = [
+
+        "Hihi... you actually remember. ❤️",
+
+        "Pandu gets a point! 🫶🏻",
+
+        "Okayyy, you know us. 🥹",
+
+        "That's right, my love. ❤️",
+
+        "Someone has been paying attention. 👀❤️"
+
+    ];
+
+    return messages[
+        Math.floor(Math.random() * messages.length)
+    ];
+
+}
+
+
+function getWrongMessage() {
+
+    const messages = [
+
+        "PANDU 😭 seriously?",
+
+        "Hihi... someone needs to reread the letters. 😂",
+
+        "Wrongggg! But I still love you. ❤️",
+
+        "How could you forget this?! 😭",
+
+        "I'll pretend I didn't see that answer. 😂❤️"
+
+    ];
+
+    return messages[
+        Math.floor(Math.random() * messages.length)
+    ];
+
+}
+
+
+// =====================================================
+// FINISH QUIZ
+// =====================================================
+
+function finishQuiz() {
+
+    quizQuestions.style.display = "none";
+
+    quizResult.style.display = "block";
+
+
+    const percentage =
+        Math.round((score / loveQuiz.length) * 100);
+
+
+    quizScore.textContent =
+        `You scored ${score}/${loveQuiz.length} ❤️`;
+
+
+    // Different endings depending on score
+
+    if (score === loveQuiz.length) {
+
+        quizResultEmoji.textContent = "🥹❤️";
+
+        quizResultTitle.textContent =
+            "You know us perfectly.";
+
+    }
+
+    else if (percentage >= 75) {
+
+        quizResultEmoji.textContent = "🥰❤️";
+
+        quizResultTitle.textContent =
+            "You know us pretty damn well.";
+
+    }
+
+    else if (percentage >= 50) {
+
+        quizResultEmoji.textContent = "😂❤️";
+
+        quizResultTitle.textContent =
+            "Some... people......";
+
+    }
+
+    else {
+
+        quizResultEmoji.textContent = "😭❤️";
+
+        quizResultTitle.textContent =
+            "Oh Hello do you even know me at alllllll?!";
+
+    }
+
+
+    // =================================================
+    // THIS IS WHAT MAKES THE QUIZ ONE-TIME
+    // =================================================
+
+    localStorage.setItem(
+        "aryanLoveQuizCompleted",
+        "true"
+    );
+
+}
+
+
+// =====================================================
+// ENTER THE WEBSITE
+// =====================================================
+
+enterOurStoryBtn.addEventListener("click", function () {
+
+    quizSurprise.style.display = "none";
+
+});
