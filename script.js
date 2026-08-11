@@ -54,7 +54,7 @@ const songs = [
     "music/FinallyFoundyou.mp3",
     "music/LikheJoKhatTujhe.mp3",
     "music/TumSeHi.mp3",
-    "music/AajkalTereMerePyarKeCharche.mp3",
+    "music/AajkalTereMerePyarKeCharche.mp3"
 ];
 
 
@@ -70,7 +70,7 @@ const aryanSongs = [
     "music/Teriore.mp3",
     "music/UffTeriAdaa.mp3",
     "music/saazni.mp3",
-    "music/Mitwaa.mp3",
+    "music/Mitwaa.mp3"
 ];
 
 
