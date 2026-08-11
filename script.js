@@ -783,7 +783,7 @@ const loveQuiz = [
     },
 
     {
-        question: "How many days of togetherness does Ankiuta want with Aryan?",
+        question: "How many days of togetherness does Ankita want with Aryan?",
         options: [
             "5 days",
             "365 days",
