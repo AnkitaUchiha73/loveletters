@@ -53,13 +53,14 @@ const songs = [
     "music/Dhun.mp3",
     "music/FinallyFoundyou.mp3",
     "music/LikheJoKhatTujhe.mp3",
-    "music/TumSeHi.mp3"
+    "music/TumSeHi.mp3",
+    "music/AajkalTereMerePyarKeCharche.mp3",
 ];
 
 
 // Replace these with Aryan's own playlist filenames
 const aryanSongs = [
-    "music/TujhMeinRabDikhtaHai.mp3",
+    "music/TujhMeinRabDikhta.mp3",
     "music/FinallyFoundyou.mp3",
     "music/IThinkTheyCallThisLove.mp3",
     "music/FalakTakTashan.mp3",
@@ -69,6 +70,7 @@ const aryanSongs = [
     "music/Teriore.mp3",
     "music/UffTeriAdaa.mp3",
     "music/saazni.mp3",
+    "music/Mitwaa.mp3",
 ];
 
 
