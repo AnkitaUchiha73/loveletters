@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To, Dr. Aryan Goyal ❤️</title>
+ 
+    <link rel="stylesheet" href="style.css">
+</head>
+ 
+<body>
+ 
+    <!-- Background Music -->
+    <audio id="bgMusic" preload="auto"></audio>
+ 
+ 
+    <!-- ================= INTRO PAGE ================= -->
+ 
+    <section id="intro">
+ 
+        <img src="images/image24.jpeg" class="cover" alt="Cover Image">
+ 
+        <div class="content">
+ 
+            <h1>"We are mortals, but our love will remain immortal in these letters."</h1>
+ 
+            <h3>From Ankita & Aryan❤️</h3>
+ 
+            <p>
+                Welcome to our little corner of the internet.
+                <br>
+                Every letter here was written with love.
+                <br>
+                Every letter tells a story.
+                <br>
+                Every letter carries emotions we never want to forget.
+                <br>
+                Whenever we miss each other, whenever we feel light or heavy.
+                <br>
+                I hope we both come here and feel close to each other.
+                <br>
+                This page here would carry all our emotions and memories.
+            </p>
+ 
+            <button id="openButton">
+                Start Our Story ❤️
+            </button>
+ 
+        </div>
+ 
+    </section>
+ 
+    <!-- ================= LETTERS PAGE ================= -->
+     <section id="lettersPage">
+        <div id="musicBox">
+ 
+    <button id="musicToggle">
+        🎵❤️
+    </button>
+ 
+    <div id="musicMenu">
+ 
+        <button class="song-btn" data-song="music/GehraHua.mp3">
+            🌙 Gehra Hua
+        </button>
+ 
+        <button class="song-btn" data-song="music/BadheAcheLagteHai.mp3">
+            💕 Bade Ache Lagte Hai
+        </button>
+ 
+        <button class="song-btn" data-song="music/PalPalDilKePaas.mp3">
+            💌 Pal Pal Dil Ke Paas
+        </button>
+ 
+        <button class="song-btn" data-song="music/YehRatein.mp3">
+            ✨ Yeh Ratein
+        </button>
+ 
+        <button class="song-btn" data-song="music/Barbaad.mp3">
+            🫶🏻 Barbaad
+        </button>
+ 
+        <button class="song-btn" data-song="music/Dhun.mp3">
+            🎶 Dhun
+        </button>
+ 
+        <button class="song-btn" data-song="music/LikheJoKhatTujhe.mp3">
+            ✍🏻 Likhe Jo Khat Tujhe
+        </button>
+        <button class="song-btn" data-song="music/TumSeHi.mp3">
+            💜 Tum Se Hi
+        </button>
+        <button class="song-btn" data-song="music/AajkalTereMerePyarKeCharche.mp3">
+            😗 Aaj Kal Tere Mere Pyar Ke Charche
+        </button>
+        <button id="shuffleBtn">
+            🎲 Surprise Song
+        </button>
+ 
+    </div>
+ 
+</div>
+    
+ 
+        <!-- Background Slideshow -->
+        <div id="slideshow"></div>
+ 
+        <!-- Dark Overlay -->
+        <div class="overlay">
+            <div id="journeyIntro">
+ 
+             <h2 id="journeyTitle">
+             Every story has a beginning...
+             </h2>
+ 
+         <div id="loveCounter">
+ 
+         <h1>❤️ It's been  ❤️</h1>
+         <p id="counter"></p>
+         <h3>Since we have said "Hiii"</h3>
+ 
+           <p class="quote">
+            "Every second with you has become my favourite memory and we got so many more to make"
+            </p>
+ 
+        </div>
+ 
+</div>
+ 
+            <h1 id="mainTitle">To, Dr. Aryan Goyal</h1>
+ 
+            <p class="subtitle" id="mainSubtitle">
+                From, Ankita.
+            </p>
+            <p class="subtitle" id="mainSubtitle2">
+                Every envelope here hides a piece of my heart
+            </p>
+ 
+            <div class="gallery" id="gallery">
+ 
+                <div class="card" onclick="openLetterViewer(mainLetters, 0)">
+                    ❤️
+                    <h2>The Beginning</h2>
+                    <h6>23-07-2026</h6>
+                </div>
+ 
+                <div class="card" onclick="openLetterViewer(mainLetters, 1)">
+                    😊
+                    <h2>"These days"</h2>
+                    <h6>28-07-2026</h6>
+                </div>
+ 
+                <div class="card" onclick="openLetterViewer(mainLetters, 2)">
+                     💜
+                    <h2>You</h2>
+                    <h6>31-07-2026</h6>
+                </div>
+ 
+                <div class="card" onclick="openLetterViewer(mainLetters, 3)">
+ 
+                    <h2>Future Letter</h2>
+                </div>
+ 
+                <div class="card" onclick="openLetter('writeLetter')">
+                    ✍️
+                    <h2>Write a Letter</h2>
+                    <h6>For Ankita</h6>
+                </div>
+ 
+                <div class="card" id="toAryanBtn">
+                    💌
+                    <h2>His Letters</h2>
+                    
+                </div>
+ 
+            </div>
+ 
+        </div>
+ 
+    </section>
+ 
+    <!-- ================= ARYAN'S LETTERS PAGE ================= -->
+     <section id="aryanPage">
+ 
+        <div id="musicBoxAryan">
+ 
+            <button id="musicToggleAryan">
+                🎵❤️
+            </button>
+ 
+            <div id="musicMenuAryan">
+ 
+                <button class="song-btn" data-song="music/TujhMeinRabDikhta.mp3">
+                 😇 Tujh Mein Rab Dikhta Hai
+                </button>
+ 
+                <button class="song-btn" data-song="music/FinallyFoundyou.mp3">
+                    😊 Finally Found You
+                </button>
+             
+                <button class="song-btn" data-song="music/IThinkTheyCallThisLove.mp3">
+                   ❤️ I Think They Call This Love 
+                </button>
+             
+                <button class="song-btn" data-song="music/FalakTakTashan.mp3">
+                   🌝 Falak Tak 
+                </button>
+             
+                <button class="song-btn" data-song="music/Guzarish.mp3">
+                   😊 Guzarish
+                </button>
+             
+                <button class="song-btn" data-song="music/MainYahaanHoon.mp3">
+                   🫶🏻 Main Yahaan Hoon
+                </button>
+             
+                <button class="song-btn" data-song="music/Teriore.mp3">
+                   😌 Teri Ore
+                </button>
+             
+                <button class="song-btn" data-song="music/TeraHoneLagaHoon.mp3">
+                   😚 Tera Hone Laga Hoon
+                </button>
+                <button class="song-btn" data-song="music/UffTeriAdaa.mp3">
+                  💜 Uff Teri Adaa
+                 </button>
+                <button class="song-btn" data-song="music/saazni.mp3">
+                  🌧️ Saazni
+                 </button>
+                <button class="song-btn" data-song="music/Mitwaa.mp3">
+                  😘 Mitwaa
+                 </button>
+                <button class="song-btn" data-song="music/ILoveYou.mp3">
+                  🫶🏻 I Love You
+                 </button>
+                <button class="song-btn" data-song="music/IWannaBeYours.mp3">
+                  😌 I Wanna Be Yours
+                 </button>
+                <button id="shuffleBtnAryan">
+                    🎲 Surprise Song
+                </button>
+ 
+            </div>
+ 
+        </div>
+ 
+        <!-- Background Slideshow -->
+        <div id="slideshowAryan"></div>
+ 
+        <!-- Dark Overlay -->
+        <div class="overlay">
+ 
+            <button id="backFromAryanBtn" style="margin-bottom:20px;">
+                ← Back
+            </button>
+ 
+            <h1>To, Pandi</h1>
+            
+            <p class="subtitle">
+                From, Aryan.
+            </p>
+            <p class="subtitle">
+                You are and always will be, the home I belong to my love.
+            </p>
+            <div class="gallery">
+ 
+                <div class="card" onclick="openLetterViewer(aryanLetters, 0)">
+                    ♥️
+                    <h2>2 Cute souls</h2>
+                    <h6>30-07-2026</h6>
+                    
+                </div>
+ 
+                <div class="card" onclick="openLetterViewer(aryanLetters, 1)">
+                    ♥️
+                    <h2>Meri Ankita</h2>
+                    <h6>01-08-2026</h6>
+                </div>
+              <div class="card" onclick="openLetterViewer(aryanLetters, 2)">
+                    ♥️
+                    <h2>Pandi & Pandu</h2>
+                    <h6>05-08-2026</h6>
+                </div>
+ 
+            </div>
+ 
+        </div>
+ 
+    </section>
+ 
+    <!-- ================= SINGLE LETTER VIEWER (prev / next) ================= -->
+
+    <div id="letterViewer" class="letterPopup">
+
+        <div class="letterContent">
+
+            <span class="close" onclick="closeLetterViewer()">&times;</span>
+
+            <h1 id="viewerTitle"></h1>
+            <h6 id="viewerDate"></h6>
+
+            <div id="viewerBody"></div>
+
+            <div class="letterNav">
+                <button id="prevLetterBtn" onclick="prevLetter()">← Previous</button>
+                <span id="letterPosition"></span>
+                <button id="nextLetterBtn" onclick="nextLetter()">Next →</button>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Write a Letter Popup -->
+ 
+    <div id="writeLetter" class="letterPopup">
+ 
+        <div class="letterContent">
+ 
+            <span class="close" onclick="closeLetter('writeLetter')">&times;</span>
+ 
+            <h1>Write Ankita a Letter ✍️</h1>
+ 
+            <form id="letterForm">
+                <input type="text" name="title" placeholder="Give it a title..."
+                    style="width:100%; margin-bottom:10px; padding:8px; border-radius:6px; border:1px solid #ccc; box-sizing:border-box;">
+ 
+                <textarea name="message" placeholder="Write your heart out..." rows="10" required
+                    style="width:100%; padding:8px; border-radius:6px; border:1px solid #ccc; box-sizing:border-box;"></textarea>
+ 
+                <button type="submit" style="margin-top:15px;">Send this Letter ❤️</button>
+            </form>
+            <p id="submitStatus" style="margin-top:10px;"></p>
+ 
+        </div>
+ 
+    </div>
+ 
+ <!-- =====================================================
+     REUSABLE ONE-TIME QUIZ
+     ===================================================== -->
+
+<div id="quizSurprise" class="quiz-overlay">
+
+    <div class="quiz-box">
+
+        <!-- ================= QUIZ INTRO ================= -->
+
+        <div id="quizWelcome">
+
+            <div class="quiz-heart">💌</div>
+
+            <h1 id="quizWelcomeTitle">
+                Wait, Pandu...
+            </h1>
+
+            <p id="quizWelcomeText">
+                Before you enter our little world,
+                I have one tiny surprise for you.
+            </p>
+
+            <p class="quiz-small-text">
+                Let's see how well you remember us. ❤️
+            </p>
+
+            <button id="beginQuizBtn">
+                I'm ready ❤️
+            </button>
+
+        </div>
+
+
+        <!-- ================= QUESTIONS ================= -->
+
+        <div id="quizQuestions" style="display:none;">
+
+            <div class="quiz-progress">
+                <span id="quizNumber">
+                    Question 1 of 8
+                </span>
+            </div>
+
+            <h2 id="quizQuestion"></h2>
+
+            <div id="quizOptions"></div>
+
+            <p id="quizFeedback"></p>
+
+            <button id="nextQuestionBtn" style="display:none;">
+                Next ❤️
+            </button>
+
+        </div>
+
+
+        <!-- ================= RESULT ================= -->
+
+        <div id="quizResult" style="display:none;">
+
+            <div id="quizResultEmoji">
+                ❤️
+            </div>
+
+            <h1 id="quizResultTitle">
+                You know us.
+            </h1>
+
+            <p id="quizScore"></p>
+
+            <p id="quizFinalMessage">
+                But there is one thing you will never
+                need to be tested on...
+            </p>
+
+            <h2 id="quizFinalLine">
+                We are home. ❤️
+            </h2>
+
+            <button id="enterOurStoryBtn">
+                Enter Our Story ❤️
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+    <script src="script.js"></script>
+ 
+</body>
+ 
+</html>
