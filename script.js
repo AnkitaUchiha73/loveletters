@@ -931,15 +931,25 @@ function makeLetterCard(letters, els){
 
 // Main letters card (Ankita's page)
 makeLetterCard(mainLetters, {
+
+    card: document.getElementById("mainLetterCard"),
+
     emoji: document.getElementById("viewerEmoji"),
+
     title: document.getElementById("viewerTitle"),
+
     date: document.getElementById("viewerDate"),
+
     toggle: document.getElementById("letterToggle"),
+
     body: document.getElementById("viewerBody"),
+
     position: document.getElementById("letterPosition"),
 
-    prevBtn: null,
-    nextBtn: null
+    prevBtn: document.getElementById("prevLetterBtn"),
+
+    nextBtn: document.getElementById("nextLetterBtn")
+
 });
 function makeLetterCard(letters, els){
 
@@ -949,16 +959,30 @@ function makeLetterCard(letters, els){
 
     function renderExpandState(){
 
-        els.body.style.display =
-            expanded ? "block" : "none";
+    els.body.style.display =
+        expanded ? "block" : "none";
 
-        els.toggle.textContent =
+
+    els.toggle.textContent =
+        expanded
+            ? "▲ Close Letter"
+            : "Tap to read ❤️";
+
+
+    /*
+     * Change the appearance of the card
+     * when the letter is opened.
+     */
+    if (els.card) {
+
+        els.card.classList.toggle(
+            "letter-open",
             expanded
-                ? "▲ Close Letter"
-                : "Tap to read ❤️";
+        );
 
     }
 
+}
 
     function render(){
 
