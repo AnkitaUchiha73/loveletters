@@ -1330,4 +1330,287 @@ button:hover{
     }
 
 }
+/* =====================================================
+   MAIN LETTER CARD
+   ===================================================== */
+
+/* The whole letter area */
+#gallery {
+    width: 100%;
+}
+
+
+/* Letter + arrows */
+#gallery .letterCardWrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+}
+
+
+/* =====================================================
+   COLLAPSED LETTER PREVIEW
+   ===================================================== */
+
+#mainLetterCard {
+
+    width: 600px;
+    max-width: 75vw;
+
+    /* TRANSPARENT */
+    background: rgba(255, 255, 255, 0.08);
+
+    border: 1px solid rgba(255, 255, 255, 0.55);
+
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+
+    color: white;
+
+    transition:
+        background 0.4s ease,
+        color 0.4s ease,
+        box-shadow 0.4s ease,
+        transform 0.4s ease;
+
+}
+
+
+/* =====================================================
+   WHEN LETTER IS OPEN
+   ===================================================== */
+
+#mainLetterCard.letter-open {
+
+    background: rgba(255, 255, 255, 0.97);
+
+    color: #4a2a35;
+
+    box-shadow:
+        0 15px 45px rgba(0, 0, 0, 0.30);
+
+}
+
+
+/* =====================================================
+   PREVIEW TEXT
+   ===================================================== */
+
+#mainLetterCard .letterCardEmoji {
+
+    font-size: 45px;
+
+}
+
+
+#mainLetterCard #viewerTitle {
+
+    color: white;
+
+    transition: color 0.4s ease;
+
+}
+
+
+#mainLetterCard #viewerDate {
+
+    color: rgba(255, 255, 255, 0.85);
+
+    transition: color 0.4s ease;
+
+}
+
+
+/* When opened */
+#mainLetterCard.letter-open #viewerTitle {
+
+    color: #4a2a35;
+
+}
+
+
+#mainLetterCard.letter-open #viewerDate {
+
+    color: #777;
+
+}
+
+
+/* =====================================================
+   TAP TO READ BUTTON
+   ===================================================== */
+
+#mainLetterCard .letterCardToggle {
+
+    background: rgba(255, 255, 255, 0.18);
+
+    color: white;
+
+    border: 1px solid rgba(255, 255, 255, 0.6);
+
+    transition:
+        background 0.3s ease,
+        color 0.3s ease;
+
+}
+
+
+/* When letter is open */
+#mainLetterCard.letter-open .letterCardToggle {
+
+    background: #d63384;
+
+    color: white;
+
+    border-color: #d63384;
+
+}
+
+
+/* =====================================================
+   LETTER BODY
+   ===================================================== */
+
+#mainLetterCard .letterCardBody {
+
+    color: #4a2a35;
+
+}
+
+
+/* =====================================================
+   ARROWS
+   ===================================================== */
+
+#gallery .cardArrow {
+
+    background: rgba(255, 255, 255, 0.12);
+
+    border: 1px solid rgba(255, 255, 255, 0.55);
+
+    color: white;
+
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+
+    transition:
+        background 0.3s ease,
+        transform 0.3s ease;
+
+}
+
+
+#gallery .cardArrow:hover {
+
+    background: rgba(255, 255, 255, 0.28);
+
+    transform: scale(1.08);
+
+}
+
+
+#gallery .cardArrow:disabled {
+
+    opacity: 0.3;
+
+    cursor: not-allowed;
+
+}
+
+
+/* =====================================================
+   ACTION BUTTONS
+   ===================================================== */
+
+#gallery .actionRow {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 15px;
+
+    margin-top: 25px;
+
+    flex-wrap: wrap;
+
+}
+
+
+#gallery .actionRow button {
+
+    background: rgba(255, 255, 255, 0.10);
+
+    border: 1px solid rgba(255, 255, 255, 0.55);
+
+    color: white;
+
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+
+    transition:
+        background 0.3s ease,
+        transform 0.3s ease;
+
+}
+
+
+#gallery .actionRow button:hover {
+
+    background: rgba(255, 255, 255, 0.22);
+
+    transform: translateY(-2px);
+
+}
+
+
+/* =====================================================
+   MOBILE
+   ===================================================== */
+
+@media (max-width: 768px) {
+
+    #gallery .letterCardWrap {
+
+        gap: 8px;
+
+    }
+
+
+    #mainLetterCard {
+
+        width: 100%;
+
+        max-width: 75vw;
+
+    }
+
+
+    #gallery .cardArrow {
+
+        flex-shrink: 0;
+
+    }
+
+
+    #gallery .actionRow {
+
+        flex-direction: column;
+
+        align-items: center;
+
+    }
+
+
+    #gallery .actionRow button {
+
+        width: 85%;
+
+        max-width: 300px;
+
+    }
+
+}
 
