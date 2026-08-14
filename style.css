@@ -1614,24 +1614,28 @@ button:hover{
 
 }
 /* =====================================================
-   SMALLER TRANSPARENT LETTER CARDS
+   COMPACT LETTER PREVIEW
+   Applies to DESKTOP + MOBILE
    ===================================================== */
 
 #mainLetterCard,
 #aryanLetterCard {
 
-    width: 450px;
-    max-width: 65vw;
+    /* Compact size */
+    width: 320px;
+    max-width: 320px;
 
-    min-height: 260px;
+    min-height: unset;
 
-    padding: 28px 25px;
+    padding: 22px 18px;
 
     box-sizing: border-box;
 
     background: rgba(255, 255, 255, 0.08);
 
     border: 1px solid rgba(255, 255, 255, 0.55);
+
+    border-radius: 16px;
 
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
@@ -1641,21 +1645,122 @@ button:hover{
     transition:
         background 0.4s ease,
         color 0.4s ease,
-        box-shadow 0.4s ease;
+        box-shadow 0.4s ease,
+        width 0.4s ease;
+}
+
+
+/* =====================================================
+   COMPACT PREVIEW CONTENT
+   ===================================================== */
+
+#mainLetterCard .letterCardEmoji,
+#aryanLetterCard .letterCardEmoji {
+
+    font-size: 36px;
+
+    margin-bottom: 6px;
 
 }
+
+
+#mainLetterCard #viewerTitle,
+#aryanLetterCard #viewerTitleAryan {
+
+    font-size: 21px;
+
+    line-height: 1.25;
+
+    margin: 5px 0;
+
+}
+
+
+#mainLetterCard #viewerDate,
+#aryanLetterCard #viewerDateAryan {
+
+    font-size: 12px;
+
+    margin: 4px 0 12px;
+
+}
+
+
+#mainLetterCard .letterCardToggle,
+#aryanLetterCard .letterCardToggle {
+
+    font-size: 13px;
+
+    padding: 9px 14px;
+
+}
+
+
+/* Position number */
+
+#mainLetterCard .letterCardPosition,
+#aryanLetterCard .letterCardPosition {
+
+    font-size: 11px;
+
+    margin-top: 10px;
+
+}
+
+
 /* =====================================================
-   OPEN LETTER
+   ARROWS
+   ===================================================== */
+
+#gallery .letterCardWrap,
+#aryanPage .letterCardWrap {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 15px;
+
+}
+
+
+#gallery .cardArrow,
+#aryanPage .cardArrow {
+
+    width: 42px;
+
+    min-width: 42px;
+
+    height: 52px;
+
+    padding: 0;
+
+    font-size: 32px;
+
+    flex-shrink: 0;
+
+}
+
+
+/* =====================================================
+   WHEN LETTER IS OPEN
+   Make it larger only when reading
    ===================================================== */
 
 #mainLetterCard.letter-open,
 #aryanLetterCard.letter-open {
 
+    width: 520px;
+
+    max-width: 85vw;
+
+    padding: 30px 28px;
+
     background: rgba(255, 255, 255, 0.97);
 
     color: #4a2a35;
-
-    border-color: rgba(255, 255, 255, 0.95);
 
     box-shadow:
         0 15px 45px rgba(0, 0, 0, 0.30);
@@ -1663,110 +1768,52 @@ button:hover{
 }
 
 
-/* Title */
-#mainLetterCard.letter-open #viewerTitle,
-#aryanLetterCard.letter-open #viewerTitleAryan {
+/* Letter body */
 
-    color: #4a2a35;
+#mainLetterCard.letter-open .letterCardBody,
+#aryanLetterCard.letter-open .letterCardBody {
 
-}
+    font-size: 15px;
 
+    line-height: 1.7;
 
-/* Date */
-#mainLetterCard.letter-open #viewerDate,
-#aryanLetterCard.letter-open #viewerDateAryan {
+    max-height: 55vh;
 
-    color: #777;
+    overflow-y: auto;
 
 }
 
 
-/* Letter text */
-#mainLetterCard.letter-open #viewerBody,
-#aryanLetterCard.letter-open #viewerBodyAryan {
-
-    color: #4a2a35;
-
-}
-
-
-/* Close button */
-#mainLetterCard.letter-open .letterCardToggle,
-#aryanLetterCard.letter-open .letterCardToggle {
-
-    background: #d63384;
-
-    color: white;
-
-    border-color: #d63384;
-
-}
 /* =====================================================
-   LETTER ARROWS
+   MOBILE
    ===================================================== */
 
-#gallery .cardArrow,
-#aryanPage .cardArrow {
-
-    background: rgba(255, 255, 255, 0.10);
-
-    border: 1px solid rgba(255, 255, 255, 0.55);
-
-    color: white;
-
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-
-    transition:
-        background 0.3s ease,
-        transform 0.3s ease;
-
-}
-
-
-#gallery .cardArrow:hover,
-#aryanPage .cardArrow:hover {
-
-    background: rgba(255, 255, 255, 0.25);
-
-    transform: scale(1.08);
-
-}
-/* =====================================================
-   ACTION BUTTONS
-   ===================================================== */
-
-#gallery .actionRow button {
-
-    background: rgba(255, 255, 255, 0.10);
-
-    border: 1px solid rgba(255, 255, 255, 0.55);
-
-    color: white;
-
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-
-}
-
-
-#gallery .actionRow button:hover {
-
-    background: rgba(255, 255, 255, 0.22);
-
-}
 @media (max-width: 768px) {
 
     #mainLetterCard,
     #aryanLetterCard {
 
-        width: 300px;
+        width: 280px;
 
-        max-width: 68vw;
+        max-width: calc(100vw - 105px);
 
-        min-height: 230px;
+        padding: 18px 13px;
 
-        padding: 22px 16px;
+    }
+
+
+    #mainLetterCard .letterCardEmoji,
+    #aryanLetterCard .letterCardEmoji {
+
+        font-size: 32px;
+
+    }
+
+
+    #mainLetterCard #viewerTitle,
+    #aryanLetterCard #viewerTitleAryan {
+
+        font-size: 18px;
 
     }
 
@@ -1782,7 +1829,26 @@ button:hover{
     #gallery .cardArrow,
     #aryanPage .cardArrow {
 
-        flex-shrink: 0;
+        width: 38px;
+
+        min-width: 38px;
+
+        height: 48px;
+
+        font-size: 29px;
+
+    }
+
+
+    /* Opened letter */
+    #mainLetterCard.letter-open,
+    #aryanLetterCard.letter-open {
+
+        width: 90vw;
+
+        max-width: 420px;
+
+        padding: 24px 18px;
 
     }
 
