@@ -930,19 +930,138 @@ function makeLetterCard(letters, els){
 
 
 // Main letters card (Ankita's page)
-
 makeLetterCard(mainLetters, {
-
     emoji: document.getElementById("viewerEmoji"),
     title: document.getElementById("viewerTitle"),
     date: document.getElementById("viewerDate"),
     toggle: document.getElementById("letterToggle"),
     body: document.getElementById("viewerBody"),
     position: document.getElementById("letterPosition"),
-    prevBtn: document.getElementById("prevLetterBtn"),
-    nextBtn: document.getElementById("nextLetterBtn")
 
+    prevBtn: null,
+    nextBtn: null
 });
+function makeLetterCard(letters, els){
+
+    let index = 0;
+    let expanded = false;
+
+
+    function renderExpandState(){
+
+        els.body.style.display =
+            expanded ? "block" : "none";
+
+        els.toggle.textContent =
+            expanded
+                ? "▲ Close Letter"
+                : "Tap to read ❤️";
+
+    }
+
+
+    function render(){
+
+        const letter = letters[index];
+
+        // Show preview information
+        els.emoji.textContent =
+            letter.emoji || "";
+
+        els.title.textContent =
+            letter.title;
+
+        els.date.textContent =
+            letter.date;
+
+        els.date.style.display =
+            letter.date ? "block" : "none";
+
+
+        // Put the full letter inside the body,
+        // but DON'T show it yet
+        els.body.innerHTML =
+            letter.body;
+
+
+        // Only show position if it exists
+        if(els.position){
+
+            els.position.textContent =
+                `${index + 1} / ${letters.length}`;
+
+        }
+
+
+        // Always start collapsed
+        expanded = false;
+
+        renderExpandState();
+
+    }
+
+
+    // TAP TO READ
+    els.toggle.addEventListener("click", () => {
+
+        expanded = !expanded;
+
+        renderExpandState();
+
+    });
+
+
+    // PREVIOUS LETTER
+    if(
+        els.prevBtn &&
+        typeof els.prevBtn.addEventListener === "function"
+    ){
+
+        els.prevBtn.addEventListener("click", () => {
+
+            if(index > 0){
+
+                index--;
+
+                render();
+
+            }
+
+        });
+
+    }
+
+
+    // NEXT LETTER
+    if(
+        els.nextBtn &&
+        typeof els.nextBtn.addEventListener === "function"
+    ){
+
+        els.nextBtn.addEventListener("click", () => {
+
+            if(index < letters.length - 1){
+
+                index++;
+
+                render();
+
+            }
+
+        });
+
+    }
+
+
+    // Show first letter
+    render();
+
+
+    return {
+        render
+    };
+
+}
 
 
 // Aryan's letters card (Aryan's page)
