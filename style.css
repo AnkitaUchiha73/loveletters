@@ -1197,5 +1197,137 @@ button:hover{
     }
 
 }
+/* =====================================================
+   TRANSPARENT MAIN PAGE BUTTONS
+   ===================================================== */
 
+.mainLetterButtons{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:18px;
+    width:100%;
+    max-width:650px;
+}
+
+
+/* Letter preview itself */
+
+.letterPreviewButton{
+    width:100%;
+    display:flex;
+    justify-content:center;
+}
+
+
+/* Transparent / glass buttons */
+
+.transparentActionButton{
+
+    margin:0;
+
+    width:280px;
+
+    padding:15px 25px;
+
+    border-radius:40px;
+
+    background:rgba(255,255,255,0.10);
+
+    border:1px solid rgba(255,255,255,0.45);
+
+    backdrop-filter:blur(5px);
+    -webkit-backdrop-filter:blur(5px);
+
+    color:white;
+
+    font-family:'Times New Roman', Times, serif;
+
+    font-size:18px;
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,0.15);
+
+    transition:
+        background .3s ease,
+        transform .3s ease,
+        border-color .3s ease;
+
+}
+
+
+/* Hover */
+
+.transparentActionButton:hover{
+
+    transform:translateY(-3px);
+
+    background:rgba(255,255,255,0.20);
+
+    border-color:rgba(255,255,255,0.7);
+
+}
+
+
+/* Letter card */
+
+.letterPreviewButton .letterCard{
+
+    width:600px;
+    max-width:90vw;
+
+    background:rgba(255,253,247,0.92);
+
+}
+
+
+/* Tap to read */
+
+.letterPreviewButton .letterCardToggle{
+
+    background:rgba(214,51,132,0.12);
+
+    border:1px solid rgba(214,51,132,0.35);
+
+}
+
+
+/* Mobile */
+
+@media(max-width:768px){
+
+    .mainLetterButtons{
+
+        width:95%;
+
+        gap:14px;
+
+    }
+
+
+    .transparentActionButton{
+
+        width:90%;
+
+        max-width:300px;
+
+        font-size:16px;
+
+        padding:13px 20px;
+
+    }
+
+
+    .letterPreviewButton .letterCard{
+
+        width:100%;
+
+        max-width:100%;
+
+        padding:25px 20px;
+
+    }
+
+}
 
