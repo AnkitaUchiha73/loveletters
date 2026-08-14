@@ -1,7 +1,7 @@
 // ============================
 // ELEMENTS
 // ============================
-
+ 
 const intro = document.getElementById("intro");
 const lettersPage = document.getElementById("lettersPage");
 const aryanPage = document.getElementById("aryanPage");
@@ -15,35 +15,35 @@ const musicToggle = document.getElementById("musicToggle");
 const musicMenu = document.getElementById("musicMenu");
 const musicToggleAryan = document.getElementById("musicToggleAryan");
 const musicMenuAryan = document.getElementById("musicMenuAryan");
-
-
+ 
+ 
 // ============================
 // MUSIC TOGGLE
 // ============================
-
+ 
 musicToggle.addEventListener("click",()=>{
     musicMenu.classList.toggle("show");
 });
-
+ 
 musicToggleAryan.addEventListener("click",()=>{
     musicMenuAryan.classList.toggle("show");
 });
-
+ 
 music.addEventListener("play",()=>{
     musicToggle.innerHTML="🎶❤️";
     musicToggleAryan.innerHTML="🎶❤️";
 });
-
+ 
 music.addEventListener("pause",()=>{
     musicToggle.innerHTML="🎵❤️";
     musicToggleAryan.innerHTML="🎵❤️";
 });
-
-
+ 
+ 
 // ============================
 // MUSIC PLAYLISTS
 // ============================
-
+ 
 const songs = [
     "music/GehraHua.mp3",
     "music/BadheAcheLagteHai.mp3",
@@ -56,8 +56,8 @@ const songs = [
     "music/TumSeHi.mp3",
     "music/AajkalTereMerePyarKeCharche.mp3"
 ];
-
-
+ 
+ 
 // Replace these with Aryan's own playlist filenames
 const aryanSongs = [
     "music/TujhMeinRabDikhta.mp3",
@@ -74,127 +74,127 @@ const aryanSongs = [
     "music/ILoveYou.mp3",
     "music/IWannaBeYours.mp3"
 ];
-
-
+ 
+ 
 let currentSong = songs[0];
-
+ 
 music.src = currentSong;
-
-
+ 
+ 
 // ============================
 // SONG SWITCHER
 // ============================
-
+ 
 const songButtons = document.querySelectorAll(".song-btn");
 const shuffleBtn = document.getElementById("shuffleBtn");
 const shuffleBtnAryan = document.getElementById("shuffleBtnAryan");
-
-
+ 
+ 
 function updateActiveSongButton() {
-
+ 
     songButtons.forEach(btn => {
         btn.classList.toggle(
             "active",
             btn.dataset.song === currentSong
         );
     });
-
+ 
 }
-
-
+ 
+ 
 songButtons.forEach(btn => {
-
+ 
     btn.addEventListener("click", () => {
-
+ 
         if(btn.id === "shuffleBtn" || btn.id === "shuffleBtnAryan") return;
-
+ 
         currentSong = btn.dataset.song;
-
+ 
         music.src = currentSong;
-
+ 
         music.load();
-
+ 
         music.play()
         .catch(error => {
             console.log("Music error:", error);
         });
-
+ 
         updateActiveSongButton();
-
+ 
     });
-
+ 
 });
-
-
+ 
+ 
 function playRandomFrom(playlist){
-
+ 
     let nextSong;
-
+ 
     do{
         nextSong = playlist[Math.floor(Math.random()*playlist.length)];
     }
     while(nextSong === currentSong && playlist.length > 1);
-
+ 
     currentSong = nextSong;
-
+ 
     music.src = currentSong;
-
+ 
     music.load();
-
+ 
     music.play()
     .catch(error => {
         console.log("Music error:", error);
     });
-
+ 
     updateActiveSongButton();
-
+ 
 }
-
-
+ 
+ 
 if(shuffleBtn){
-
+ 
     shuffleBtn.addEventListener("click",()=>{
-
+ 
         playRandomFrom(songs);
-
+ 
     });
-
+ 
 }
-
-
+ 
+ 
 if(shuffleBtnAryan){
-
+ 
     shuffleBtnAryan.addEventListener("click",()=>{
-
+ 
         playRandomFrom(aryanSongs);
-
+ 
     });
-
+ 
 }
-
-
+ 
+ 
 // ============================
 // AUTO NEXT SONG
 // ============================
-
+ 
 // Auto next song — picks from whichever page's playlist is currently showing
-
+ 
 music.addEventListener("ended",()=>{
-
+ 
     const activePlaylist =
         aryanPage.style.display === "block"
         ? aryanSongs
         : songs;
-
+ 
     playRandomFrom(activePlaylist);
-
+ 
 });
-
-
+ 
+ 
 // ============================
 // BACKGROUND IMAGES
 // ============================
-
+ 
 const images = [
     "images/image1.jpg",
     "images/image2.jpg",
@@ -229,8 +229,8 @@ const images = [
     "images/image33.jpeg",
     "images/image34.jpeg"
 ];
-
-
+ 
+ 
 // Replace these with the photos you want just for Aryan's page
 const aryanImages = [
     "images/aryan1.jpeg",
@@ -256,58 +256,58 @@ const aryanImages = [
     "images/aryan21.jpeg",
     "images/aryan22.jpeg"
 ];
-
-
+ 
+ 
 let currentImage = 0;
 let currentAryanImage = 0;
-
-
+ 
+ 
 // ============================
 // JOURNEY INTRO ANIMATION + LIVE COUNTER
 // ============================
-
+ 
 // Set this to the date you two got together (YYYY-MM-DDTHH:MM:SS)
 const startDate = new Date("2024-04-22T00:00:00");
-
+ 
 let counterInterval = null;
-
-
+ 
+ 
 function updateCounter() {
-
+ 
     const now = new Date();
-
+ 
     let diff = now - startDate; // milliseconds
-
+ 
     if (diff < 0) diff = 0;
-
+ 
     const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-
+ 
     diff -= days * (1000 * 60 * 60 * 24);
-
+ 
     const hours = Math.floor(diff / (1000 * 60 * 60));
-
+ 
     diff -= hours * (1000 * 60 * 60);
-
+ 
     const minutes = Math.floor(diff / (1000 * 60));
-
+ 
     diff -= minutes * (1000 * 60);
-
+ 
     const seconds = Math.floor(diff / 1000);
-
+ 
     const counterEl = document.getElementById("counter");
-
+ 
     if (counterEl) {
-
+ 
         counterEl.textContent =
             `${days}d ${hours}h ${minutes}m ${seconds}s`;
-
+ 
     }
-
+ 
 }
-
-
+ 
+ 
 function runJourneyIntro() {
-
+ 
     const mainTitle = document.getElementById("mainTitle");
     const mainSubtitle = document.getElementById("mainSubtitle");
     const mainSubtitle2 = document.getElementById("mainSubtitle2");
@@ -315,154 +315,154 @@ function runJourneyIntro() {
     const journey = document.getElementById("journeyIntro");
     const title = document.getElementById("journeyTitle");
     const timer = document.getElementById("loveCounter");
-
-
+ 
+ 
     // Hide normal content while the intro animation plays
-
+ 
     if (mainTitle)
         mainTitle.style.opacity = "0";
-
+ 
     if (mainSubtitle)
         mainSubtitle.style.opacity = "0";
-
+ 
     if (mainSubtitle2)
         mainSubtitle2.style.opacity = "0";
-
+ 
     if (gallery)
         gallery.style.opacity = "0";
-
-
+ 
+ 
     journey.style.display = "flex";
-
+ 
     journey.style.opacity = "1";
-
-
+ 
+ 
     // Start the live counter right away and keep it ticking every second
-
+ 
     updateCounter();
-
+ 
     counterInterval = setInterval(updateCounter, 1000);
-
-
+ 
+ 
     // Story text fades in, then out
-
+ 
     setTimeout(() => {
-
+ 
         title.style.opacity = "1";
-
+ 
     }, 500);
-
-
+ 
+ 
     setTimeout(() => {
-
+ 
         title.style.opacity = "0";
-
+ 
     }, 2500);
-
-
+ 
+ 
     // Counter fades in, then out
-
+ 
     setTimeout(() => {
-
+ 
         timer.style.opacity = "1";
-
+ 
     }, 3500);
-
-
+ 
+ 
     setTimeout(() => {
-
+ 
         timer.style.opacity = "0";
-
+ 
     }, 8500);
-
-
+ 
+ 
     // Remove intro overlay and reveal the real page
-
+ 
     setTimeout(() => {
-
+ 
         journey.style.display = "none";
-
+ 
         clearInterval(counterInterval);
-
+ 
         if (mainTitle)
             mainTitle.style.opacity = "1";
-
+ 
         if (mainSubtitle)
             mainSubtitle.style.opacity = "1";
-
+ 
         if (mainSubtitle2)
             mainSubtitle2.style.opacity = "1";
-
+ 
         if (gallery)
             gallery.style.opacity = "1";
-
+ 
     }, 10000);
-
+ 
 }
-
-
+ 
+ 
 // ============================
 // OPEN WEBSITE
 // ============================
-
+ 
 button.addEventListener("click", () => {
-
+ 
     // Play the selected song
-
+ 
     music.play().catch(error => {
-
+ 
         console.log("Music couldn't start:", error);
-
+ 
     });
-
+ 
     updateActiveSongButton();
-
-
+ 
+ 
     // Fade out intro
-
+ 
     intro.style.opacity = "0";
-
-
+ 
+ 
     setTimeout(() => {
-
+ 
         intro.style.display = "none";
-
+ 
         lettersPage.style.display = "block";
-
-
+ 
+ 
         // Start slideshow
-
+ 
         slideshow.style.backgroundImage =
             `url('${images[0]}')`;
-
-
+ 
+ 
         // Play the journey intro animation + live counter now that the page is visible
-
+ 
         runJourneyIntro();
-
+ 
     }, 800);
-
+ 
 });
-
-
+ 
+ 
 // ============================
 // GO TO ARYAN'S PAGE
 // ============================
-
+ 
 toAryanBtn.addEventListener("click", () => {
-
+ 
     lettersPage.style.opacity = "0";
-
-
+ 
+ 
     setTimeout(() => {
-
+ 
         lettersPage.style.display = "none";
-
+ 
         lettersPage.style.opacity = "1";
-
+ 
         aryanPage.style.display = "block";
-
-
+ 
+ 
         // FIX:
         // Aryan's gallery was staying invisible because
         // .gallery has opacity: 0 in style.css.
@@ -470,145 +470,146 @@ toAryanBtn.addEventListener("click", () => {
         // its gallery to opacity: 1, but Aryan's page doesn't.
         
         const aryanGallery = aryanPage.querySelector(".gallery");
-
+ 
         if (aryanGallery) {
-
+ 
             aryanGallery.style.opacity = "1";
-
+ 
         }
-
-
+ 
+ 
         // Switch to Aryan's own slideshow
-
+ 
         slideshowAryan.style.backgroundImage =
             `url('${aryanImages[currentAryanImage]}')`;
-
-
+ 
+ 
         // Switch to Aryan's own playlist
-
+ 
         currentSong = aryanSongs[0];
-
+ 
         music.src = currentSong;
-
+ 
         music.load();
-
+ 
         music.play().catch(error => {
-
+ 
             console.log("Music couldn't start:", error);
-
+ 
         });
-
+ 
         updateActiveSongButton();
-
-
+ 
+ 
     }, 800);
-
+ 
 });
-
-
+ 
+ 
 // ============================
 // BACK TO LETTERS PAGE
 // ============================
-
+ 
 backFromAryanBtn.addEventListener("click", () => {
-
+ 
     aryanPage.style.opacity = "0";
-
-
+ 
+ 
     setTimeout(() => {
-
+ 
         aryanPage.style.display = "none";
-
+ 
         aryanPage.style.opacity = "1";
-
+ 
         lettersPage.style.display = "block";
-
-
+ 
+ 
         // Switch back to the main slideshow
-
+ 
         slideshow.style.backgroundImage =
             `url('${images[currentImage]}')`;
-
-
+ 
+ 
         // Switch back to the main playlist
-
+ 
         currentSong = songs[0];
-
+ 
         music.src = currentSong;
-
+ 
         music.load();
-
+ 
         music.play().catch(error => {
-
+ 
             console.log("Music couldn't start:", error);
-
+ 
         });
-
+ 
         updateActiveSongButton();
-
-
+ 
+ 
     }, 800);
-
+ 
 });
-
-
+ 
+ 
 // ============================
 // SLIDESHOW
 // ============================
-
+ 
 setInterval(() => {
-
-
+ 
+ 
     if (lettersPage.style.display === "block") {
-
+ 
         currentImage++;
-
-
+ 
+ 
         if (currentImage >= images.length) {
-
+ 
             currentImage = 0;
-
+ 
         }
-
-
+ 
+ 
         slideshow.style.backgroundImage =
             `url('${images[currentImage]}')`;
-
+ 
     }
-
-
+ 
+ 
     if (aryanPage.style.display === "block") {
-
+ 
         currentAryanImage++;
-
-
+ 
+ 
         if (currentAryanImage >= aryanImages.length) {
-
+ 
             currentAryanImage = 0;
-
+ 
         }
-
-
+ 
+ 
         slideshowAryan.style.backgroundImage =
             `url('${aryanImages[currentAryanImage]}')`;
-
+ 
     }
-
-
+ 
+ 
 }, 4000);
-
-
+ 
+ 
 // ============================
 // LETTER CONTENT DATA
 // ============================
 // Each letter's full text lives here now, instead of in
 // separate hardcoded popup divs. This is what makes the
 // single-letter viewer (with Prev / Next) possible.
-
+ 
 const mainLetters = [
-
+ 
     {
         id: "letter1",
+        emoji: "❤️",
         title: "The Beginning ❤️",
         date: "23-07-2026",
         body: `
@@ -634,9 +635,10 @@ const mainLetters = [
             <p>Love you always,<br>Ankita ❤️</p>
         `
     },
-
+ 
     {
         id: "letter2",
+        emoji: "😊",
         title: "These days 😊",
         date: "28-07-2026",
         body: `
@@ -685,9 +687,10 @@ const mainLetters = [
             <p>Love you always,<br>Ankita Pi Pikaaa❤️</p>
         `
     },
-
+ 
     {
         id: "letter3",
+        emoji: "💜",
         title: "You",
         date: "31-07-2026",
         body: `
@@ -716,21 +719,23 @@ const mainLetters = [
             <p>Love you always,<br>Ankita ❤️</p>
         `
     },
-
+ 
     {
         id: "letter4",
+        emoji: "🔮",
         title: "Future Letter",
         date: "",
         body: `<p>Coming soon</p>`
     }
-
+ 
 ];
-
-
+ 
+ 
 const aryanLetters = [
-
+ 
     {
         id: "aryanLetter1",
+        emoji: "♥️",
         title: "2 Cute souls ♥️",
         date: "30-07-2026",
         body: `
@@ -749,9 +754,10 @@ const aryanLetters = [
             <p>Love u so much meri ankita<br>Muaah..!!</p>
         `
     },
-
+ 
     {
         id: "aryanLetter2",
+        emoji: "♥️",
         title: "Meri Ankita♥️",
         date: "01-08-2026",
         body: `
@@ -798,9 +804,10 @@ const aryanLetters = [
             <p>Muaah..love u</p>
         `
     },
-
+ 
     {
         id: "aryanLetter3",
+        emoji: "♥️",
         title: "Pandi & Pandu ♥️",
         date: "05-08-2026",
         body: `
@@ -826,157 +833,169 @@ const aryanLetters = [
             Countless memories await us♥️</p>
         `
     }
-
+ 
 ];
-
-
+ 
+ 
 // ============================
-// SINGLE LETTER VIEWER (Prev / Next)
+// SINGLE LETTER CARD (inline, with Prev / Next)
 // ============================
-
-let currentLetterSet = [];
-let currentLetterIndex = 0;
-
-const letterViewer = document.getElementById("letterViewer");
-const viewerTitle = document.getElementById("viewerTitle");
-const viewerDate = document.getElementById("viewerDate");
-const viewerBody = document.getElementById("viewerBody");
-const letterPosition = document.getElementById("letterPosition");
-const prevLetterBtn = document.getElementById("prevLetterBtn");
-const nextLetterBtn = document.getElementById("nextLetterBtn");
-
-
-function openLetterViewer(letterSet, startIndex){
-
-    currentLetterSet = letterSet;
-    currentLetterIndex = startIndex;
-
-    renderCurrentLetter();
-
-    letterViewer.style.display = "flex";
-
-}
-
-
-function renderCurrentLetter(){
-
-    const letter = currentLetterSet[currentLetterIndex];
-
-    viewerTitle.textContent = letter.title;
-
-    viewerDate.textContent = letter.date;
-    viewerDate.style.display = letter.date ? "block" : "none";
-
-    viewerBody.innerHTML = letter.body;
-
-    letterPosition.textContent =
-        `${currentLetterIndex + 1} / ${currentLetterSet.length}`;
-
-    prevLetterBtn.disabled = currentLetterIndex === 0;
-    nextLetterBtn.disabled = currentLetterIndex === currentLetterSet.length - 1;
-
-    // Scroll back to the top of the letter every time it changes
-    viewerBody.scrollTop = 0;
-
-}
-
-
-function prevLetter(){
-
-    if(currentLetterIndex > 0){
-
-        currentLetterIndex--;
-
-        renderCurrentLetter();
-
+// No popup — the card sits right on the page and the arrows
+// flip through the letters in place.
+ 
+function makeLetterCard(letters, els){
+ 
+    let index = 0;
+ 
+    function render(){
+ 
+        const letter = letters[index];
+ 
+        els.emoji.textContent = letter.emoji || "";
+ 
+        els.title.textContent = letter.title;
+ 
+        els.date.textContent = letter.date;
+        els.date.style.display = letter.date ? "block" : "none";
+ 
+        els.body.innerHTML = letter.body;
+ 
+        els.position.textContent =
+            `${index + 1} / ${letters.length}`;
+ 
+        els.prevBtn.disabled = index === 0;
+        els.nextBtn.disabled = index === letters.length - 1;
+ 
+        // Scroll back to the top of the card every time it changes
+        els.body.scrollTop = 0;
+ 
     }
-
+ 
+    els.prevBtn.addEventListener("click", () => {
+ 
+        if(index > 0){
+ 
+            index--;
+ 
+            render();
+ 
+        }
+ 
+    });
+ 
+    els.nextBtn.addEventListener("click", () => {
+ 
+        if(index < letters.length - 1){
+ 
+            index++;
+ 
+            render();
+ 
+        }
+ 
+    });
+ 
+    // Show the first letter right away
+    render();
+ 
+    return { render };
+ 
 }
-
-
-function nextLetter(){
-
-    if(currentLetterIndex < currentLetterSet.length - 1){
-
-        currentLetterIndex++;
-
-        renderCurrentLetter();
-
-    }
-
-}
-
-
-function closeLetterViewer(){
-
-    letterViewer.style.display = "none";
-
-}
-
-
+ 
+ 
+// Main letters card (Ankita's page)
+ 
+makeLetterCard(mainLetters, {
+ 
+    emoji: document.getElementById("viewerEmoji"),
+    title: document.getElementById("viewerTitle"),
+    date: document.getElementById("viewerDate"),
+    body: document.getElementById("viewerBody"),
+    position: document.getElementById("letterPosition"),
+    prevBtn: document.getElementById("prevLetterBtn"),
+    nextBtn: document.getElementById("nextLetterBtn")
+ 
+});
+ 
+ 
+// Aryan's letters card (Aryan's page)
+ 
+makeLetterCard(aryanLetters, {
+ 
+    emoji: document.getElementById("viewerEmojiAryan"),
+    title: document.getElementById("viewerTitleAryan"),
+    date: document.getElementById("viewerDateAryan"),
+    body: document.getElementById("viewerBodyAryan"),
+    position: document.getElementById("letterPositionAryan"),
+    prevBtn: document.getElementById("prevLetterBtnAryan"),
+    nextBtn: document.getElementById("nextLetterBtnAryan")
+ 
+});
+ 
+ 
 // ============================
-// OPEN / CLOSE (generic popups — used by Write a Letter)
+// OPEN / CLOSE (generic popup — used by Write a Letter)
 // ============================
-
+ 
 function openLetter(letterID){
-
+ 
     document.getElementById(letterID).style.display = "flex";
-
+ 
 }
-
-
+ 
+ 
 function closeLetter(letterID){
-
+ 
     document.getElementById(letterID).style.display = "none";
-
+ 
 }
-
-
+ 
+ 
 // ============================
 // CLOSE WHEN CLICKING OUTSIDE
 // ============================
-
+ 
 window.onclick = function(event){
-
+ 
     const popups =
         document.querySelectorAll(".letterPopup");
-
-
+ 
+ 
     popups.forEach(popup => {
-
+ 
         if(event.target === popup){
-
+ 
             popup.style.display = "none";
-
+ 
         }
-
+ 
     });
-
+ 
 };
-
-
+ 
+ 
 // ============================
 // WRITE A LETTER FORM
 // ============================
-
+ 
 const letterForm =
     document.getElementById('letterForm');
-
-
+ 
+ 
 letterForm.addEventListener('submit', async function (e) {
-
+ 
     e.preventDefault();
-
-
+ 
+ 
     const status =
         document.getElementById('submitStatus');
-
-
+ 
+ 
     status.textContent = "Sending...";
-
-
+ 
+ 
     try {
-
+ 
         const response = await fetch(
             "https://formspree.io/f/mjgnznjg",
             {
@@ -987,77 +1006,77 @@ letterForm.addEventListener('submit', async function (e) {
                 body: new FormData(letterForm)
             }
         );
-
-
+ 
+ 
         if (response.ok) {
-
+ 
             status.textContent =
                 "Sent! ❤️ It's on its way to her.";
-
+ 
             letterForm.reset();
-
+ 
         } else {
-
+ 
             status.textContent =
                 "Something went wrong. Try again.";
-
+ 
         }
-
+ 
     } catch (err) {
-
+ 
         status.textContent =
             "Something went wrong. Try again.";
-
+ 
     }
-
+ 
 });
 // =====================================================
 // REUSABLE ONE-TIME QUIZ SYSTEM
 // =====================================================
-
-
+ 
+ 
 // =====================================================
 // 1. QUIZ CONFIGURATION
 // =====================================================
-
+ 
 // Change this ID every time you create a NEW quiz.
-
+ 
 const CURRENT_QUIZ_ID = "quiz_001";
-
-
+ 
+ 
 // This is what the quiz says when it appears.
-
+ 
 const QUIZ_CONFIG = {
-
+ 
     title: "Wait, Pandu...",
-
+ 
     intro:
         "Before you enter our little world, I have one tiny surprise for you.",
-
+ 
     smallText:
         "Let's see how well you remember us. ❤️",
-
+ 
     startButton:
         "I'm ready ❤️",
-
+ 
     finalMessage:
         "But there is one thing you will never need to be tested on...",
-
+ 
     finalLine:
         "We are home. ❤️"
-
+ 
 };
-
-
+ 
+ 
 // =====================================================
 // 2. QUESTIONS
 // =====================================================
-
+ 
 // Add/remove questions here.
 // You can create a completely different quiz later.
-
+ 
 const LOVE_QUIZ = [
-
+ 
     {
         question: "What is Ankita's favourite thing to eat all the time?",
         options: [
@@ -1068,7 +1087,7 @@ const LOVE_QUIZ = [
         ],
         answer: 3
     },
-
+ 
     {
         question: "What is Ankita's first thought in the morning?",
         options: [
@@ -1079,7 +1098,7 @@ const LOVE_QUIZ = [
         ],
         answer: 3
     },
-
+ 
     {
         question: "Which of the following things makes Ankita blush?",
         options: [
@@ -1090,7 +1109,7 @@ const LOVE_QUIZ = [
         ],
         answer: 3
     },
-
+ 
     {
         question: "What does Ankita call Aryan?",
         options: [
@@ -1101,7 +1120,7 @@ const LOVE_QUIZ = [
         ],
         answer: 0
     },
-
+ 
     {
         question: "What does Aryan call Ankita?",
         options: [
@@ -1112,7 +1131,7 @@ const LOVE_QUIZ = [
         ],
         answer: 3
     },
-
+ 
     {
         question: "How many days of togetherness does Ankiuta want with Aryan?",
         options: [
@@ -1123,7 +1142,7 @@ const LOVE_QUIZ = [
         ],
         answer: 3
     },
-
+ 
     {
         question: "Which of the following skills of Aryan does Ankita like secretly?",
         options: [
@@ -1134,7 +1153,7 @@ const LOVE_QUIZ = [
         ],
         answer: 2
     },
-
+ 
     {
         question: "What are we?",
         options: [
@@ -1145,7 +1164,7 @@ const LOVE_QUIZ = [
         ],
         answer: 3
     },
-
+ 
     {
         question: "Which of the following things matters most to Ankita?",
         options: [
@@ -1166,541 +1185,542 @@ const LOVE_QUIZ = [
         ],
         answer: 1
     }
-
+ 
 ];
-
-
+ 
+ 
 // =====================================================
 // 3. GET HTML ELEMENTS
 // =====================================================
-
+ 
 const quizSurprise =
     document.getElementById("quizSurprise");
-
+ 
 const beginQuizBtn =
     document.getElementById("beginQuizBtn");
-
+ 
 const enterOurStoryBtn =
     document.getElementById("enterOurStoryBtn");
-
+ 
 const quizWelcome =
     document.getElementById("quizWelcome");
-
+ 
 const quizQuestions =
     document.getElementById("quizQuestions");
-
+ 
 const quizResult =
     document.getElementById("quizResult");
-
+ 
 const quizQuestion =
     document.getElementById("quizQuestion");
-
+ 
 const quizOptions =
     document.getElementById("quizOptions");
-
+ 
 const quizFeedback =
     document.getElementById("quizFeedback");
-
+ 
 const quizNumber =
     document.getElementById("quizNumber");
-
+ 
 const nextQuestionBtn =
     document.getElementById("nextQuestionBtn");
-
+ 
 const quizScore =
     document.getElementById("quizScore");
-
+ 
 const quizResultTitle =
     document.getElementById("quizResultTitle");
-
+ 
 const quizResultEmoji =
     document.getElementById("quizResultEmoji");
-
+ 
 const quizFinalMessage =
     document.getElementById("quizFinalMessage");
-
+ 
 const quizFinalLine =
     document.getElementById("quizFinalLine");
-
+ 
 const quizWelcomeTitle =
     document.getElementById("quizWelcomeTitle");
-
+ 
 const quizWelcomeText =
     document.getElementById("quizWelcomeText");
-
-
+ 
+ 
 // =====================================================
 // 4. APPLY QUIZ CONFIGURATION
 // =====================================================
-
+ 
 quizWelcomeTitle.textContent =
     QUIZ_CONFIG.title;
-
+ 
 quizWelcomeText.textContent =
     QUIZ_CONFIG.intro;
-
+ 
 document.querySelector(
     ".quiz-small-text"
 ).textContent =
     QUIZ_CONFIG.smallText;
-
+ 
 beginQuizBtn.textContent =
     QUIZ_CONFIG.startButton;
-
+ 
 quizFinalMessage.textContent =
     QUIZ_CONFIG.finalMessage;
-
+ 
 quizFinalLine.textContent =
     QUIZ_CONFIG.finalLine;
-
-
+ 
+ 
 // =====================================================
 // 5. UNIQUE STORAGE KEY
 // =====================================================
-
+ 
 // IMPORTANT:
 //
 // quiz_001 → different from quiz_002
 //
 // Therefore completing quiz_001
 // does NOT complete quiz_002.
-
+ 
 const QUIZ_STORAGE_KEY =
     "loveWebsite_" +
     CURRENT_QUIZ_ID +
     "_completed";
-
-
+ 
+ 
 // =====================================================
 // 6. QUIZ VARIABLES
 // =====================================================
-
+ 
 let currentQuestion = 0;
-
+ 
 let score = 0;
-
-
+ 
+ 
 // =====================================================
 // 7. CHECK WHETHER THIS QUIZ WAS ALREADY COMPLETED
 // =====================================================
-
+ 
 function hasCompletedQuiz() {
-
+ 
     return localStorage.getItem(
         QUIZ_STORAGE_KEY
     ) === "true";
-
+ 
 }
-
-
+ 
+ 
 // =====================================================
 // 8. SHOW QUIZ
 // =====================================================
-
+ 
 function showQuiz() {
-
+ 
     quizSurprise.style.display = "flex";
-
+ 
 }
-
-
+ 
+ 
 // =====================================================
 // 9. HIDE QUIZ
 // =====================================================
-
+ 
 function hideQuiz() {
-
+ 
     quizSurprise.style.display = "none";
-
+ 
 }
-
-
+ 
+ 
 // =====================================================
 // 10. CONNECT TO "START OUR STORY"
 // =====================================================
-
+ 
 const originalOpenButton =
     document.getElementById("openButton");
-
-
+ 
+ 
 if (
     originalOpenButton &&
     !hasCompletedQuiz()
 ) {
-
+ 
     originalOpenButton.addEventListener(
         "click",
         function () {
-
+ 
             setTimeout(
                 showQuiz,
                 1800
             );
-
+ 
         }
     );
-
+ 
 }
-
-
+ 
+ 
 // =====================================================
 // 11. START QUIZ
 // =====================================================
-
+ 
 beginQuizBtn.addEventListener(
     "click",
     function () {
-
+ 
         quizWelcome.style.display =
             "none";
-
+ 
         quizQuestions.style.display =
             "block";
-
+ 
         currentQuestion = 0;
-
+ 
         score = 0;
-
+ 
         showQuestion();
-
+ 
     }
 );
-
-
+ 
+ 
 // =====================================================
 // 12. SHOW CURRENT QUESTION
 // =====================================================
-
+ 
 function showQuestion() {
-
+ 
     const question =
         LOVE_QUIZ[currentQuestion];
-
-
+ 
+ 
     quizNumber.textContent =
         `Question ${currentQuestion + 1} of ${LOVE_QUIZ.length}`;
-
-
+ 
+ 
     quizQuestion.textContent =
         question.question;
-
-
+ 
+ 
     quizOptions.innerHTML =
         "";
-
-
+ 
+ 
     quizFeedback.textContent =
         "";
-
-
+ 
+ 
     nextQuestionBtn.style.display =
         "none";
-
-
+ 
+ 
     question.options.forEach(
         function (option, index) {
-
+ 
             const button =
                 document.createElement("button");
-
-
+ 
+ 
             button.className =
                 "quiz-option";
-
-
+ 
+ 
             button.textContent =
                 option;
-
-
+ 
+ 
             button.addEventListener(
                 "click",
                 function () {
-
+ 
                     selectAnswer(
                         index,
                         button
                     );
-
+ 
                 }
             );
-
-
+ 
+ 
             quizOptions.appendChild(
                 button
             );
-
+ 
         }
     );
-
+ 
 }
-
-
+ 
+ 
 // =====================================================
 // 13. SELECT ANSWER
 // =====================================================
-
+ 
 function selectAnswer(
     selectedIndex,
     selectedButton
 ) {
-
+ 
     const question =
         LOVE_QUIZ[currentQuestion];
-
-
+ 
+ 
     const allButtons =
         document.querySelectorAll(
             ".quiz-option"
         );
-
-
+ 
+ 
     // Stop the user from answering twice.
-
+ 
     allButtons.forEach(
         function (button) {
-
+ 
             button.classList.add(
                 "disabled"
             );
-
+ 
         }
     );
-
-
+ 
+ 
     // Correct answer
-
+ 
     if (
         selectedIndex ===
         question.answer
     ) {
-
+ 
         score++;
-
+ 
         selectedButton.classList.add(
             "correct"
         );
-
+ 
         quizFeedback.textContent =
             getCorrectMessage();
-
+ 
     }
-
-
+ 
+ 
     // Wrong answer
-
+ 
     else {
-
+ 
         selectedButton.classList.add(
             "wrong"
         );
-
-
+ 
+ 
         allButtons[
             question.answer
         ].classList.add(
             "correct"
         );
-
-
+ 
+ 
         quizFeedback.textContent =
             getWrongMessage();
-
+ 
     }
-
-
+ 
+ 
     nextQuestionBtn.style.display =
         "inline-block";
-
+ 
 }
-
-
+ 
+ 
 // =====================================================
 // 14. NEXT QUESTION
 // =====================================================
-
+ 
 nextQuestionBtn.addEventListener(
     "click",
     function () {
-
+ 
         currentQuestion++;
-
-
+ 
+ 
         if (
             currentQuestion <
             LOVE_QUIZ.length
         ) {
-
+ 
             showQuestion();
-
+ 
         }
-
+ 
         else {
-
+ 
             finishQuiz();
-
+ 
         }
-
+ 
     }
 );
-
-
+ 
+ 
 // =====================================================
 // 15. CORRECT ANSWER MESSAGES
 // =====================================================
-
+ 
 function getCorrectMessage() {
-
+ 
     const messages = [
-
+ 
         "Hihi... you actually remember. ❤️",
-
+ 
         "Pandu gets a point! 🫶🏻",
-
+ 
         "Okayyy, you know us. 🥹",
-
+ 
         "That's right, my love. ❤️",
-
+ 
         "Someone has been paying attention. 👀❤️"
-
+ 
     ];
-
-
+ 
+ 
     return messages[
         Math.floor(
             Math.random() *
             messages.length
         )
     ];
-
+ 
 }
-
-
+ 
+ 
 // =====================================================
 // 16. WRONG ANSWER MESSAGES
 // =====================================================
-
+ 
 function getWrongMessage() {
-
+ 
     const messages = [
-
+ 
         "PANDU 😭 seriously?",
-
+ 
         "Hihi... someone needs to reread the letters. 😂",
-
+ 
         "Wrongggg! But I still love you. ❤️",
-
+ 
         "How could you forget this?! 😭",
-
+ 
         "I'll pretend I didn't see that answer. 😂❤️"
-
+ 
     ];
-
-
+ 
+ 
     return messages[
         Math.floor(
             Math.random() *
             messages.length
         )
     ];
-
+ 
 }
-
-
+ 
+ 
 // =====================================================
 // 17. FINISH QUIZ
 // =====================================================
-
+ 
 function finishQuiz() {
-
+ 
     quizQuestions.style.display =
         "none";
-
+ 
     quizResult.style.display =
         "block";
-
-
+ 
+ 
     const percentage =
         Math.round(
             (score / LOVE_QUIZ.length) *
             100
         );
-
-
+ 
+ 
     quizScore.textContent =
         `You scored ${score}/${LOVE_QUIZ.length} ❤️`;
-
-
+ 
+ 
     if (
         score === LOVE_QUIZ.length
     ) {
-
+ 
         quizResultEmoji.textContent =
             "🥹❤️";
-
+ 
         quizResultTitle.textContent =
             "You know us perfectly.";
-
+ 
     }
-
-
+ 
+ 
     else if (
         percentage >= 75
     ) {
-
+ 
         quizResultEmoji.textContent =
             "🥰❤️";
-
+ 
         quizResultTitle.textContent =
             "You know us pretty damn well.";
-
+ 
     }
-
-
+ 
+ 
     else if (
         percentage >= 50
     ) {
-
+ 
         quizResultEmoji.textContent =
             "😂❤️";
-
+ 
         quizResultTitle.textContent =
             "Okay Pandu... we need to talk.";
-
+ 
     }
-
-
+ 
+ 
     else {
-
+ 
         quizResultEmoji.textContent =
             "😭❤️";
-
+ 
         quizResultTitle.textContent =
             "Pandu... who are you?!";
-
+ 
     }
-
-
+ 
+ 
     // =================================================
     // MARK ONLY THIS QUIZ AS COMPLETED
     // =================================================
-
+ 
     localStorage.setItem(
         QUIZ_STORAGE_KEY,
         "true"
     );
-
+ 
 }
-
-
+ 
+ 
 // =====================================================
 // 18. ENTER THE WEBSITE
 // =====================================================
-
+ 
 enterOurStoryBtn.addEventListener(
     "click",
     function () {
-
+ 
         hideQuiz();
-
+ 
     }
 );
+ 
