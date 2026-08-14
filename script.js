@@ -1092,13 +1092,22 @@ function makeLetterCard(letters, els){
 
 makeLetterCard(aryanLetters, {
 
+    card: document.getElementById("aryanLetterCard"),
+
     emoji: document.getElementById("viewerEmojiAryan"),
+
     title: document.getElementById("viewerTitleAryan"),
+
     date: document.getElementById("viewerDateAryan"),
+
     toggle: document.getElementById("letterToggleAryan"),
+
     body: document.getElementById("viewerBodyAryan"),
+
     position: document.getElementById("letterPositionAryan"),
+
     prevBtn: document.getElementById("prevLetterBtnAryan"),
+
     nextBtn: document.getElementById("nextLetterBtnAryan")
 
 });
