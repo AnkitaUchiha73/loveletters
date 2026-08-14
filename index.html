@@ -139,39 +139,35 @@
  
             <div class="gallery" id="gallery">
  
-                <div class="card" onclick="openLetterViewer(mainLetters, 0)">
-                    ❤️
-                    <h2>The Beginning</h2>
-                    <h6>23-07-2026</h6>
+                <!-- Single letter card with inline prev / next -->
+ 
+                <div class="letterCardWrap">
+ 
+                    <button class="cardArrow" id="prevLetterBtn" aria-label="Previous letter">‹</button>
+ 
+                    <div class="letterCard">
+ 
+                        <div class="letterCardEmoji" id="viewerEmoji"></div>
+ 
+                        <h2 id="viewerTitle"></h2>
+                        <h6 id="viewerDate"></h6>
+ 
+                        <div class="letterCardBody" id="viewerBody"></div>
+ 
+                        <span class="letterCardPosition" id="letterPosition"></span>
+ 
+                    </div>
+ 
+                    <button class="cardArrow" id="nextLetterBtn" aria-label="Next letter">›</button>
+ 
                 </div>
  
-                <div class="card" onclick="openLetterViewer(mainLetters, 1)">
-                    😊
-                    <h2>"These days"</h2>
-                    <h6>28-07-2026</h6>
-                </div>
+                <div class="actionRow">
  
-                <div class="card" onclick="openLetterViewer(mainLetters, 2)">
-                     💜
-                    <h2>You</h2>
-                    <h6>31-07-2026</h6>
-                </div>
+                    <button type="button" onclick="openLetter('writeLetter')">✍️ Write a Letter</button>
  
-                <div class="card" onclick="openLetterViewer(mainLetters, 3)">
+                    <button type="button" id="toAryanBtn">💌 His Letters</button>
  
-                    <h2>Future Letter</h2>
-                </div>
- 
-                <div class="card" onclick="openLetter('writeLetter')">
-                    ✍️
-                    <h2>Write a Letter</h2>
-                    <h6>For Ankita</h6>
-                </div>
- 
-                <div class="card" id="toAryanBtn">
-                    💌
-                    <h2>His Letters</h2>
-                    
                 </div>
  
             </div>
@@ -263,24 +259,30 @@
             <p class="subtitle">
                 You are and always will be, the home I belong to my love.
             </p>
+ 
             <div class="gallery">
  
-                <div class="card" onclick="openLetterViewer(aryanLetters, 0)">
-                    ♥️
-                    <h2>2 Cute souls</h2>
-                    <h6>30-07-2026</h6>
-                    
-                </div>
+                <!-- Single letter card with inline prev / next -->
  
-                <div class="card" onclick="openLetterViewer(aryanLetters, 1)">
-                    ♥️
-                    <h2>Meri Ankita</h2>
-                    <h6>01-08-2026</h6>
-                </div>
-              <div class="card" onclick="openLetterViewer(aryanLetters, 2)">
-                    ♥️
-                    <h2>Pandi & Pandu</h2>
-                    <h6>05-08-2026</h6>
+                <div class="letterCardWrap">
+ 
+                    <button class="cardArrow" id="prevLetterBtnAryan" aria-label="Previous letter">‹</button>
+ 
+                    <div class="letterCard">
+ 
+                        <div class="letterCardEmoji" id="viewerEmojiAryan"></div>
+ 
+                        <h2 id="viewerTitleAryan"></h2>
+                        <h6 id="viewerDateAryan"></h6>
+ 
+                        <div class="letterCardBody" id="viewerBodyAryan"></div>
+ 
+                        <span class="letterCardPosition" id="letterPositionAryan"></span>
+ 
+                    </div>
+ 
+                    <button class="cardArrow" id="nextLetterBtnAryan" aria-label="Next letter">›</button>
+ 
                 </div>
  
             </div>
@@ -289,29 +291,6 @@
  
     </section>
  
-    <!-- ================= SINGLE LETTER VIEWER (prev / next) ================= -->
-
-    <div id="letterViewer" class="letterPopup">
-
-        <div class="letterContent">
-
-            <span class="close" onclick="closeLetterViewer()">&times;</span>
-
-            <h1 id="viewerTitle"></h1>
-            <h6 id="viewerDate"></h6>
-
-            <div id="viewerBody"></div>
-
-            <div class="letterNav">
-                <button id="prevLetterBtn" onclick="prevLetter()">← Previous</button>
-                <span id="letterPosition"></span>
-                <button id="nextLetterBtn" onclick="nextLetter()">Next →</button>
-            </div>
-
-        </div>
-
-    </div>
-
     <!-- Write a Letter Popup -->
  
     <div id="writeLetter" class="letterPopup">
@@ -340,96 +319,97 @@
  <!-- =====================================================
      REUSABLE ONE-TIME QUIZ
      ===================================================== -->
-
+ 
 <div id="quizSurprise" class="quiz-overlay">
-
+ 
     <div class="quiz-box">
-
+ 
         <!-- ================= QUIZ INTRO ================= -->
-
+ 
         <div id="quizWelcome">
-
+ 
             <div class="quiz-heart">💌</div>
-
+ 
             <h1 id="quizWelcomeTitle">
                 Wait, Pandu...
             </h1>
-
+ 
             <p id="quizWelcomeText">
                 Before you enter our little world,
                 I have one tiny surprise for you.
             </p>
-
+ 
             <p class="quiz-small-text">
                 Let's see how well you remember us. ❤️
             </p>
-
+ 
             <button id="beginQuizBtn">
                 I'm ready ❤️
             </button>
-
+ 
         </div>
-
-
+ 
+ 
         <!-- ================= QUESTIONS ================= -->
-
+ 
         <div id="quizQuestions" style="display:none;">
-
+ 
             <div class="quiz-progress">
                 <span id="quizNumber">
                     Question 1 of 8
                 </span>
             </div>
-
+ 
             <h2 id="quizQuestion"></h2>
-
+ 
             <div id="quizOptions"></div>
-
+ 
             <p id="quizFeedback"></p>
-
+ 
             <button id="nextQuestionBtn" style="display:none;">
                 Next ❤️
             </button>
-
+ 
         </div>
-
-
+ 
+ 
         <!-- ================= RESULT ================= -->
-
+ 
         <div id="quizResult" style="display:none;">
-
+ 
             <div id="quizResultEmoji">
                 ❤️
             </div>
-
+ 
             <h1 id="quizResultTitle">
                 You know us.
             </h1>
-
+ 
             <p id="quizScore"></p>
-
+ 
             <p id="quizFinalMessage">
                 But there is one thing you will never
                 need to be tested on...
             </p>
-
+ 
             <h2 id="quizFinalLine">
                 We are home. ❤️
             </h2>
-
+ 
             <button id="enterOurStoryBtn">
                 Enter Our Story ❤️
             </button>
-
+ 
         </div>
-
+ 
     </div>
-
+ 
 </div>
-
-
+ 
+ 
     <script src="script.js"></script>
  
 </body>
  
 </html>
+ 
