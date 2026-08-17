@@ -1,289 +1,298 @@
-GENERAL
+/* ==========================
+   GENERAL
 ========================== */
-
+ 
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
 }
-
+ 
 body{
     font-family:'Times New Roman', Times, serif;
     overflow-x:hidden;
 }
-
+ 
+/* ==========================
    INTRO PAGE
 ========================== */
-
+ 
 #intro{
-
+ 
     position:relative;
-
+ 
     width:100%;
-
+ 
     height:100vh;
-
+ 
     overflow:hidden;
-
+ 
 }
-
+ 
 .cover{
-
+ 
     position:absolute;
-
+ 
     top:0;
     left:0;
-
+ 
     width:100%;
     height:100%;
-
+ 
     object-fit:cover;
-
+ 
 }
-
+ 
 /* Dark Overlay */
-
+ 
 #intro::before{
-
+ 
     content:"";
-
+ 
     position:absolute;
-
+ 
     inset:0;
-
+ 
     background:rgba(0,0,0,.45);
-
+ 
 }
-
+ 
 /* Center Content */
-
+ 
 .content{
-
+ 
     position:relative;
-
+ 
     z-index:2;
-
+ 
     height:100%;
-
+ 
     display:flex;
-
+ 
     flex-direction:column;
-
+ 
     justify-content:center;
-
+ 
     align-items:center;
-
+ 
     text-align:center;
-
+ 
     color:white;
-
+ 
     padding:30px;
-
+ 
 }
-
+ 
 .content h1{
-
+ 
     font-size:55px;
-
+ 
     width:70%;
-
+ 
     line-height:1.3;
-
+ 
 }
-
+ 
 .content h3{
-
+ 
     margin-top:25px;
-
+ 
     font-size:24px;
-
+ 
     color:#ffd6e7;
-
+ 
 }
-
+ 
 .content p{
-
+ 
     width:650px;
-
+ 
     max-width:90%;
-
+ 
     margin-top:35px;
-
+ 
     font-size:20px;
-
+ 
     line-height:1.8;
-
+ 
 }
-
+ 
 button{
-
+ 
     margin-top:45px;
-
+ 
     padding:18px 40px;
-
+ 
     border:none;
-
+ 
     border-radius:50px;
-
+ 
     background:#d63384;
-
+ 
     color:white;
-
+ 
     font-size:20px;
-
+ 
     cursor:pointer;
-
+ 
     transition:.3s;
-
+ 
 }
-
+ 
 button:hover{
-
+ 
     transform:scale(1.08);
-
+ 
     background:#b81f6b;
-
+ 
 }
-
+ 
+/* ==========================
    LETTER PAGE
 ========================== */
-
+ 
 #lettersPage{
-
+ 
     display:none;
-
+ 
     position:relative;
-
+ 
     width:100%;
-
+ 
     min-height:100vh;
-
+ 
     overflow:hidden;
-
+ 
 }
-
+ 
 /* Background Slideshow */
-
+ 
 #slideshow{
-
+ 
     position:fixed;
-
+ 
     inset:0;
-
+ 
+ 
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
     background-color: black;
-
+ 
+ 
     transition:background-image 1s ease;
-
+ 
     z-index:-2;
-
+ 
 }
-
+ 
+/* ==========================
    ARYAN'S LETTERS PAGE
 ========================== */
-
+ 
 #aryanPage{
-
+ 
     display:none;
-
+ 
     position:relative;
-
+ 
     width:100%;
-
+ 
     min-height:100vh;
-
+ 
     overflow:hidden;
-
+ 
 }
-
+ 
 /* Background Slideshow */
-
+ 
 #slideshowAryan{
-
+ 
     position:fixed;
-
+ 
     inset:0;
-
+ 
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
     background-color: black;
-
+ 
     transition:background-image 1s ease;
-
+ 
     z-index:-2;
-
+ 
 }
-
+ 
 /* Fade transitions between pages */
-
+ 
 #intro,
 #lettersPage,
 #aryanPage{
-
+ 
     transition: opacity .8s ease;
-
+ 
 }
-
+ 
 /* Dark Overlay */
-
+ 
 .overlay{
-
+ 
     min-height:100vh;
-
+ 
     background:rgba(0,0,0,.55);
-
+ 
     color:white;
-
+ 
     display:flex;
-
+ 
     flex-direction:column;
-
+ 
     justify-content:center;
-
+ 
     align-items:center;
-
+ 
     padding:60px;
-
+ 
 }
-
+ 
 .overlay h1{
-
+ 
     font-size:50px;
-
+ 
 }
-
+ 
 .subtitle{
-
+ 
     margin-top:15px;
-
+ 
     font-size:20px;
-
+ 
     color:#ffe3ef;
-
+ 
 }
-
+ 
+/* ==========================
    GALLERY
 ========================== */
-
+ 
 .gallery{
-
+ 
     margin-top:60px;
-
+ 
     display:flex;
 
     flex-direction:column;
 
     align-items:center;
-
+ 
     gap:35px;
-
+ 
     width:80%;
-
+ 
 }
 
+
+/* ==========================
    SINGLE LETTER CARD (inline, with Prev / Next)
 ========================== */
 
@@ -521,119 +530,121 @@ button:hover{
     }
 
 }
-
+ 
+/* ==========================
    LETTER POPUP
 ========================== */
-
+ 
 .letterPopup{
-
+ 
     display:none;
-
+ 
     position:fixed;
-
+ 
     inset:0;
-
+ 
     background:rgba(0,0,0,.65);
-
+ 
     justify-content:center;
-
+ 
     align-items:center;
-
+ 
     z-index:100;
-
+ 
 }
-
+ 
 .letterContent{
-
+ 
     width:700px;
-
+ 
     max-width:90%;
-
+ 
     max-height:85vh;
-
+ 
     overflow-y:auto;
-
+ 
     background:#fffdf7;
-
+ 
     color:#3d2d1e;
-
+ 
     border-radius:20px;
-
+ 
     padding:45px;
-
+ 
     box-shadow:0 15px 40px rgba(0,0,0,.4);
-
+ 
 }
-
+ 
 .letterContent h1{
-
+ 
     text-align:center;
-
+ 
     margin-bottom:30px;
-
+ 
 }
-
+ 
 .letterContent p{
-
+ 
     font-size:20px;
-
+ 
     line-height:1.9;
-
+ 
     margin-bottom:20px;
-
+ 
 }
-
+ 
 /* Close Button */
-
+ 
 .close{
-
+ 
     float:right;
-
+ 
     font-size:35px;
-
+ 
     cursor:pointer;
-
+ 
     color:#444;
-
+ 
 }
-
+ 
 .close:hover{
-
+ 
     color:red;
-
+ 
 }
-
+ 
+/* ==========================
    RESPONSIVE
 ========================== */
-
+ 
 @media(max-width:768px){
-
+ 
     .content h1{
-
+ 
         font-size:36px;
-
+ 
         width:90%;
-
+ 
     }
-
+ 
     .content p{
-
+ 
         font-size:18px;
-
+ 
     }
-
+ 
     .gallery{
-
+ 
         width:95%;
-
+ 
     }
-
+ 
     .letterContent{
-
+ 
         padding:30px;
-
+ 
     }
-
+ 
 }
 #musicBox{
     position:fixed;
@@ -641,90 +652,95 @@ button:hover{
     right:25px;
     z-index:999;
 }
-
+ 
 #musicBoxAryan{
     position:fixed;
     bottom:25px;
     right:25px;
     z-index:999;
 }
-
+ 
+ 
 #musicToggle,
 #musicToggleAryan{
-
+ 
     width:65px;
     height:65px;
-
+ 
     border-radius:50%;
-
+ 
     background:linear-gradient(135deg,#ff7aa8,#d63384);
-
+ 
     border:none;
-
+ 
     color:white;
-
+ 
     font-size:28px;
-
+ 
     cursor:pointer;
-
+ 
     box-shadow:0 0 25px rgba(255,120,170,.8);
-
+ 
     animation:pulse 2s infinite;
-
+ 
 }
-
+ 
+ 
 @keyframes pulse{
-
+ 
     0%{
         transform:scale(1);
     }
-
+ 
     50%{
         transform:scale(1.1);
     }
-
+ 
     100%{
         transform:scale(1);
     }
-
+ 
 }
-
+ 
+ 
+ 
 #musicMenu,
 #musicMenuAryan{
-
+ 
     position:absolute;
-
+ 
     bottom:80px;
     right:0;
-
+ 
     width:230px;
-
+ 
     padding:15px;
-
+ 
     border-radius:20px;
-
+ 
     background:rgba(255,255,255,.15);
-
+ 
     backdrop-filter:blur(15px);
-
+ 
     display:none;
-
+ 
     flex-direction:column;
-
+ 
     gap:10px;
 
     /* Scroll instead of growing past the screen once every song is listed */
     max-height:min(320px, 55vh);
     overflow-y:auto;
     overflow-x:hidden;
-
+ 
 }
-
+ 
+ 
 #musicMenu.show,
 #musicMenuAryan.show{
-
+ 
     display:flex;
-
+ 
 }
 
 /* Slim, on-brand scrollbar for the song list (webkit browsers) */
@@ -743,43 +759,49 @@ button:hover{
     background:rgba(255,255,255,.45);
     border-radius:10px;
 }
-
+ 
+ 
+ 
 .song-btn,
 #shuffleBtn,
 #shuffleBtnAryan{
-
+ 
     margin:0;
-
+ 
     padding:12px;
-
+ 
     border-radius:20px;
-
+ 
     background:rgba(255,255,255,.2);
-
+ 
     color:white;
-
+ 
     border:1px solid rgba(255,255,255,.3);
-
+ 
     font-size:14px;
 
     flex-shrink:0;
-
+ 
 }
-
+ 
+ 
+ 
 .song-btn:hover,
 #shuffleBtn:hover,
 #shuffleBtnAryan:hover{
-
+ 
     background:#ff5c8a;
-
+ 
 }
-
+ 
+ 
+ 
 .song-btn.active{
-
+ 
     background:#ff5c8a;
-
+ 
     box-shadow:0 0 15px #ff5c8a;
-
+ 
 }
 /* Hide everything initially */
 
@@ -864,6 +886,7 @@ button:hover{
     opacity:.85;
 
 }
+/* =====================================================
    REUSABLE ONE-TIME QUIZ
    ===================================================== */
 
@@ -893,6 +916,7 @@ button:hover{
     padding: 20px;
 }
 
+
 /* Quiz box */
 
 .quiz-box {
@@ -919,6 +943,7 @@ button:hover{
     animation: quizAppear 0.7s ease;
 }
 
+
 @keyframes quizAppear {
 
     from {
@@ -943,6 +968,7 @@ button:hover{
 
 }
 
+
 /* Heart */
 
 .quiz-heart {
@@ -952,6 +978,7 @@ button:hover{
     animation:
         heartbeat 1.5s infinite;
 }
+
 
 @keyframes heartbeat {
 
@@ -966,6 +993,7 @@ button:hover{
 
 }
 
+
 /* Text */
 
 .quiz-box h1 {
@@ -975,15 +1003,18 @@ button:hover{
     margin-bottom: 20px;
 }
 
+
 .quiz-box h2 {
 
     margin-bottom: 25px;
 }
 
+
 .quiz-box p {
 
     line-height: 1.7;
 }
+
 
 .quiz-small-text {
 
@@ -991,6 +1022,7 @@ button:hover{
 
     opacity: 0.75;
 }
+
 
 /* Buttons */
 
@@ -1017,6 +1049,7 @@ button:hover{
         box-shadow 0.2s ease;
 }
 
+
 .quiz-box button:hover {
 
     transform:
@@ -1026,6 +1059,7 @@ button:hover{
         0 8px 20px
         rgba(80, 30, 30, 0.3);
 }
+
 
 /* Progress */
 
@@ -1037,6 +1071,7 @@ button:hover{
 
     opacity: 0.65;
 }
+
 
 /* Answer options */
 
@@ -1071,11 +1106,13 @@ button:hover{
         transform 0.2s ease;
 }
 
+
 .quiz-option:hover {
 
     transform:
         translateY(-2px);
 }
+
 
 /* Correct */
 
@@ -1086,6 +1123,7 @@ button:hover{
     border-color: #6ba77a;
 }
 
+
 /* Wrong */
 
 .quiz-option.wrong {
@@ -1095,12 +1133,14 @@ button:hover{
     border-color: #c47777;
 }
 
+
 /* Disable after answer */
 
 .quiz-option.disabled {
 
     pointer-events: none;
 }
+
 
 /* Feedback */
 
@@ -1113,6 +1153,7 @@ button:hover{
     font-weight: 500;
 }
 
+
 /* Result */
 
 #quizResultEmoji {
@@ -1122,6 +1163,7 @@ button:hover{
     margin-bottom: 10px;
 }
 
+
 #quizScore {
 
     font-size: 20px;
@@ -1130,6 +1172,7 @@ button:hover{
 
     margin: 20px 0;
 }
+
 
 /* Mobile */
 
@@ -1154,3 +1197,774 @@ button:hover{
     }
 
 }
+/* =====================================================
+   TRANSPARENT MAIN PAGE BUTTONS
+   ===================================================== */
+
+.mainLetterButtons{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:18px;
+    width:100%;
+    max-width:650px;
+}
+
+
+/* Letter preview itself */
+
+.letterPreviewButton{
+    width:100%;
+    display:flex;
+    justify-content:center;
+}
+
+
+/* Transparent / glass buttons */
+
+.transparentActionButton{
+
+    margin:0;
+
+    width:280px;
+
+    padding:15px 25px;
+
+    border-radius:40px;
+
+    background:rgba(255,255,255,0.10);
+
+    border:1px solid rgba(255,255,255,0.45);
+
+    backdrop-filter:blur(5px);
+    -webkit-backdrop-filter:blur(5px);
+
+    color:white;
+
+    font-family:'Times New Roman', Times, serif;
+
+    font-size:18px;
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,0.15);
+
+    transition:
+        background .3s ease,
+        transform .3s ease,
+        border-color .3s ease;
+
+}
+
+
+/* Hover */
+
+.transparentActionButton:hover{
+
+    transform:translateY(-3px);
+
+    background:rgba(255,255,255,0.20);
+
+    border-color:rgba(255,255,255,0.7);
+
+}
+
+
+/* Letter card */
+
+.letterPreviewButton .letterCard{
+
+    width:600px;
+    max-width:90vw;
+
+    background:rgba(255,253,247,0.92);
+
+}
+
+
+/* Tap to read */
+
+.letterPreviewButton .letterCardToggle{
+
+    background:rgba(214,51,132,0.12);
+
+    border:1px solid rgba(214,51,132,0.35);
+
+}
+
+
+/* Mobile */
+
+@media(max-width:768px){
+
+    .mainLetterButtons{
+
+        width:95%;
+
+        gap:14px;
+
+    }
+
+
+    .transparentActionButton{
+
+        width:90%;
+
+        max-width:300px;
+
+        font-size:16px;
+
+        padding:13px 20px;
+
+    }
+
+
+    .letterPreviewButton .letterCard{
+
+        width:100%;
+
+        max-width:100%;
+
+        padding:25px 20px;
+
+    }
+
+}
+/* =====================================================
+   MAIN LETTER CARD
+   ===================================================== */
+
+/* The whole letter area */
+#gallery {
+    width: 100%;
+}
+
+
+/* Letter + arrows */
+#gallery .letterCardWrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+}
+
+
+/* =====================================================
+   COLLAPSED LETTER PREVIEW
+   ===================================================== */
+
+#mainLetterCard {
+
+    width: 600px;
+    max-width: 75vw;
+
+    /* TRANSPARENT */
+    background: rgba(255, 255, 255, 0.08);
+
+    border: 1px solid rgba(255, 255, 255, 0.55);
+
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+
+    color: white;
+
+    transition:
+        background 0.4s ease,
+        color 0.4s ease,
+        box-shadow 0.4s ease,
+        transform 0.4s ease;
+
+}
+
+
+/* =====================================================
+   WHEN LETTER IS OPEN
+   ===================================================== */
+
+#mainLetterCard.letter-open {
+
+    background: rgba(255, 255, 255, 0.97);
+
+    color: #4a2a35;
+
+    box-shadow:
+        0 15px 45px rgba(0, 0, 0, 0.30);
+
+}
+
+
+/* =====================================================
+   PREVIEW TEXT
+   ===================================================== */
+
+#mainLetterCard .letterCardEmoji {
+
+    font-size: 45px;
+
+}
+
+
+#mainLetterCard #viewerTitle {
+
+    color: white;
+
+    transition: color 0.4s ease;
+
+}
+
+
+#mainLetterCard #viewerDate {
+
+    color: rgba(255, 255, 255, 0.85);
+
+    transition: color 0.4s ease;
+
+}
+
+
+/* When opened */
+#mainLetterCard.letter-open #viewerTitle {
+
+    color: #4a2a35;
+
+}
+
+
+#mainLetterCard.letter-open #viewerDate {
+
+    color: #777;
+
+}
+
+
+/* =====================================================
+   TAP TO READ BUTTON
+   ===================================================== */
+
+#mainLetterCard .letterCardToggle {
+
+    background: rgba(255, 255, 255, 0.18);
+
+    color: white;
+
+    border: 1px solid rgba(255, 255, 255, 0.6);
+
+    transition:
+        background 0.3s ease,
+        color 0.3s ease;
+
+}
+
+
+/* When letter is open */
+#mainLetterCard.letter-open .letterCardToggle {
+
+    background: #d63384;
+
+    color: white;
+
+    border-color: #d63384;
+
+}
+
+
+/* =====================================================
+   LETTER BODY
+   ===================================================== */
+
+#mainLetterCard .letterCardBody {
+
+    color: #4a2a35;
+
+}
+
+
+/* =====================================================
+   ARROWS
+   ===================================================== */
+
+#gallery .cardArrow {
+
+    background: rgba(255, 255, 255, 0.12);
+
+    border: 1px solid rgba(255, 255, 255, 0.55);
+
+    color: white;
+
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+
+    transition:
+        background 0.3s ease,
+        transform 0.3s ease;
+
+}
+
+
+#gallery .cardArrow:hover {
+
+    background: rgba(255, 255, 255, 0.28);
+
+    transform: scale(1.08);
+
+}
+
+
+#gallery .cardArrow:disabled {
+
+    opacity: 0.3;
+
+    cursor: not-allowed;
+
+}
+
+
+/* =====================================================
+   ACTION BUTTONS
+   ===================================================== */
+
+#gallery .actionRow {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 15px;
+
+    margin-top: 25px;
+
+    flex-wrap: wrap;
+
+}
+
+
+#gallery .actionRow button {
+
+    background: rgba(255, 255, 255, 0.10);
+
+    border: 1px solid rgba(255, 255, 255, 0.55);
+
+    color: white;
+
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+
+    transition:
+        background 0.3s ease,
+        transform 0.3s ease;
+
+}
+
+
+#gallery .actionRow button:hover {
+
+    background: rgba(255, 255, 255, 0.22);
+
+    transform: translateY(-2px);
+
+}
+
+
+/* =====================================================
+   MOBILE
+   ===================================================== */
+
+@media (max-width: 768px) {
+
+    #gallery .letterCardWrap {
+
+        gap: 8px;
+
+    }
+
+
+    #mainLetterCard {
+
+        width: 100%;
+
+        max-width: 75vw;
+
+    }
+
+
+    #gallery .cardArrow {
+
+        flex-shrink: 0;
+
+    }
+
+
+    #gallery .actionRow {
+
+        flex-direction: column;
+
+        align-items: center;
+
+    }
+
+
+    #gallery .actionRow button {
+
+        width: 85%;
+
+        max-width: 300px;
+
+    }
+
+}
+/* =====================================================
+   COMPACT LETTER PREVIEW
+   Applies to DESKTOP + MOBILE
+   ===================================================== */
+
+#mainLetterCard,
+#aryanLetterCard {
+
+    /* Compact size */
+    width: 320px;
+    max-width: 320px;
+
+    min-height: unset;
+
+    padding: 22px 18px;
+
+    box-sizing: border-box;
+
+    background: rgba(255, 255, 255, 0.08);
+
+    border: 1px solid rgba(255, 255, 255, 0.55);
+
+    border-radius: 16px;
+
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+
+    color: white;
+
+    transition:
+        background 0.4s ease,
+        color 0.4s ease,
+        box-shadow 0.4s ease,
+        width 0.4s ease;
+}
+
+
+/* =====================================================
+   COMPACT PREVIEW CONTENT
+   ===================================================== */
+
+#mainLetterCard .letterCardEmoji,
+#aryanLetterCard .letterCardEmoji {
+
+    font-size: 36px;
+
+    margin-bottom: 6px;
+
+}
+
+
+#mainLetterCard #viewerTitle,
+#aryanLetterCard #viewerTitleAryan {
+
+    font-size: 21px;
+
+    line-height: 1.25;
+
+    margin: 5px 0;
+
+}
+
+
+#mainLetterCard #viewerDate,
+#aryanLetterCard #viewerDateAryan {
+
+    font-size: 12px;
+
+    margin: 4px 0 12px;
+
+}
+
+
+#mainLetterCard .letterCardToggle,
+#aryanLetterCard .letterCardToggle {
+
+    font-size: 13px;
+
+    padding: 9px 14px;
+
+}
+
+
+/* Position number */
+
+#mainLetterCard .letterCardPosition,
+#aryanLetterCard .letterCardPosition {
+
+    font-size: 11px;
+
+    margin-top: 10px;
+
+}
+
+
+/* =====================================================
+   ARROWS
+   ===================================================== */
+
+#gallery .letterCardWrap,
+#aryanPage .letterCardWrap {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 15px;
+
+}
+
+
+#gallery .cardArrow,
+#aryanPage .cardArrow {
+
+    width: 42px;
+
+    min-width: 42px;
+
+    height: 52px;
+
+    padding: 0;
+
+    font-size: 32px;
+
+    flex-shrink: 0;
+
+}
+
+
+/* =====================================================
+   WHEN LETTER IS OPEN
+   Make it larger only when reading
+   ===================================================== */
+
+#mainLetterCard.letter-open,
+#aryanLetterCard.letter-open {
+
+    width: 520px;
+
+    max-width: 85vw;
+
+    padding: 30px 28px;
+
+    background: rgba(255, 255, 255, 0.97);
+
+    color: #4a2a35;
+
+    box-shadow:
+        0 15px 45px rgba(0, 0, 0, 0.30);
+
+}
+
+
+/* Letter body */
+
+#mainLetterCard.letter-open .letterCardBody,
+#aryanLetterCard.letter-open .letterCardBody {
+
+    font-size: 15px;
+
+    line-height: 1.7;
+
+    max-height: 55vh;
+
+    overflow-y: auto;
+
+}
+
+
+/* =====================================================
+   MOBILE
+   ===================================================== */
+
+@media (max-width: 768px) {
+
+    #mainLetterCard,
+    #aryanLetterCard {
+
+        width: 280px;
+
+        max-width: calc(100vw - 105px);
+
+        padding: 18px 13px;
+
+    }
+
+
+    #mainLetterCard .letterCardEmoji,
+    #aryanLetterCard .letterCardEmoji {
+
+        font-size: 32px;
+
+    }
+
+
+    #mainLetterCard #viewerTitle,
+    #aryanLetterCard #viewerTitleAryan {
+
+        font-size: 18px;
+
+    }
+
+
+    #gallery .letterCardWrap,
+    #aryanPage .letterCardWrap {
+
+        gap: 6px;
+
+    }
+
+
+    #gallery .cardArrow,
+    #aryanPage .cardArrow {
+
+        width: 38px;
+
+        min-width: 38px;
+
+        height: 48px;
+
+        font-size: 29px;
+
+    }
+
+
+    /* Opened letter */
+    #mainLetterCard.letter-open,
+    #aryanLetterCard.letter-open {
+
+        width: 90vw;
+
+        max-width: 420px;
+
+        padding: 24px 18px;
+
+    }
+
+}
+/* =====================================================
+   CINEMATIC IDLE MODE
+   ===================================================== */
+
+/*
+   The slideshow and music continue running.
+   Everything else gently disappears.
+*/
+
+#lettersPage,
+#aryanPage {
+    position: relative;
+}
+
+
+/* Smoothly hide the interface */
+
+#lettersPage .overlay,
+#lettersPage #musicBox,
+#aryanPage .overlay,
+#aryanPage #musicBoxAryan {
+
+    transition:
+        opacity 1.2s ease,
+        visibility 1.2s ease;
+
+}
+
+/* =====================================================
+   CINEMATIC IDLE MODE
+   Music box intentionally stays visible
+   ===================================================== */
+
+#lettersPage .overlay,
+#aryanPage .overlay {
+
+    transition:
+        opacity 1.2s ease,
+        visibility 1.2s ease;
+
+}
+
+
+/* Hide ONLY the main page content */
+
+#lettersPage.idle-mode .overlay,
+#aryanPage.idle-mode .overlay {
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+
+}
+
+
+/* Music boxes NEVER fade */
+
+#lettersPage #musicBox,
+#aryanPage #musicBoxAryan {
+
+    opacity: 1 !important;
+
+    visibility: visible !important;
+
+    pointer-events: auto !important;
+
+}
+
+
+/* =====================================================
+   MAKE SURE SLIDESHOW STAYS VISIBLE
+   ===================================================== */
+
+#lettersPage #slideshow,
+#aryanPage #slideshowAryan {
+
+    opacity: 1 !important;
+
+}
+
+
+/* =====================================================
+   OPTIONAL: DARKEN THE SLIDESHOW SLIGHTLY IN IDLE MODE
+   ===================================================== */
+
+#lettersPage.idle-mode .overlay,
+#aryanPage.idle-mode .overlay {
+
+    /* The overlay itself disappears.
+       The slideshow remains untouched. */
+
+}
+
+
+/* =====================================================
+   MOBILE
+   ===================================================== */
+
+@media (max-width: 768px) {
+
+    #lettersPage .overlay,
+    #lettersPage #musicBox,
+    #aryanPage .overlay,
+    #aryanPage #musicBoxAryan {
+
+        transition:
+            opacity 0.9s ease,
+            visibility 0.9s ease;
+
+    }
+
+}
+
