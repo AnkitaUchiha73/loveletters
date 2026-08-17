@@ -1,6 +1,4 @@
-// ============================
 // ELEMENTS
-// ============================
 
 const intro = document.getElementById("intro");
 const lettersPage = document.getElementById("lettersPage");
@@ -16,10 +14,7 @@ const musicMenu = document.getElementById("musicMenu");
 const musicToggleAryan = document.getElementById("musicToggleAryan");
 const musicMenuAryan = document.getElementById("musicMenuAryan");
 
-
-// ============================
 // MUSIC TOGGLE
-// ============================
 
 musicToggle.addEventListener("click",()=>{
     musicMenu.classList.toggle("show");
@@ -39,10 +34,7 @@ music.addEventListener("pause",()=>{
     musicToggleAryan.innerHTML="🎵❤️";
 });
 
-
-// ============================
 // MUSIC PLAYLISTS
-// ============================
 
 const songs = [
     "music/GehraHua.mp3",
@@ -56,7 +48,6 @@ const songs = [
     "music/TumSeHi.mp3",
     "music/AajkalTereMerePyarKeCharche.mp3"
 ];
-
 
 // Replace these with Aryan's own playlist filenames
 const aryanSongs = [
@@ -75,20 +66,15 @@ const aryanSongs = [
     "music/IWannaBeYours.mp3"
 ];
 
-
 let currentSong = songs[0];
 
 music.src = currentSong;
 
-
-// ============================
 // SONG SWITCHER
-// ============================
 
 const songButtons = document.querySelectorAll(".song-btn");
 const shuffleBtn = document.getElementById("shuffleBtn");
 const shuffleBtnAryan = document.getElementById("shuffleBtnAryan");
-
 
 function updateActiveSongButton() {
 
@@ -100,7 +86,6 @@ function updateActiveSongButton() {
     });
 
 }
-
 
 songButtons.forEach(btn => {
 
@@ -124,7 +109,6 @@ songButtons.forEach(btn => {
     });
 
 });
-
 
 function playRandomFrom(playlist){
 
@@ -150,7 +134,6 @@ function playRandomFrom(playlist){
 
 }
 
-
 if(shuffleBtn){
 
     shuffleBtn.addEventListener("click",()=>{
@@ -160,7 +143,6 @@ if(shuffleBtn){
     });
 
 }
-
 
 if(shuffleBtnAryan){
 
@@ -172,10 +154,7 @@ if(shuffleBtnAryan){
 
 }
 
-
-// ============================
 // AUTO NEXT SONG
-// ============================
 
 // Auto next song — picks from whichever page's playlist is currently showing
 
@@ -190,10 +169,7 @@ music.addEventListener("ended",()=>{
 
 });
 
-
-// ============================
 // BACKGROUND IMAGES
-// ============================
 
 const images = [
     "images/image1.jpg",
@@ -230,7 +206,6 @@ const images = [
     "images/image34.jpeg"
 ];
 
-
 // Replace these with the photos you want just for Aryan's page
 const aryanImages = [
     "images/aryan1.jpeg",
@@ -257,20 +232,15 @@ const aryanImages = [
     "images/aryan22.jpeg"
 ];
 
-
 let currentImage = 0;
 let currentAryanImage = 0;
 
-
-// ============================
 // JOURNEY INTRO ANIMATION + LIVE COUNTER
-// ============================
 
 // Set this to the date you two got together (YYYY-MM-DDTHH:MM:SS)
 const startDate = new Date("2024-04-22T00:00:00");
 
 let counterInterval = null;
-
 
 function updateCounter() {
 
@@ -305,7 +275,6 @@ function updateCounter() {
 
 }
 
-
 function runJourneyIntro() {
 
     const mainTitle = document.getElementById("mainTitle");
@@ -315,7 +284,6 @@ function runJourneyIntro() {
     const journey = document.getElementById("journeyIntro");
     const title = document.getElementById("journeyTitle");
     const timer = document.getElementById("loveCounter");
-
 
     // Hide normal content while the intro animation plays
 
@@ -331,18 +299,15 @@ function runJourneyIntro() {
     if (gallery)
         gallery.style.opacity = "0";
 
-
     journey.style.display = "flex";
 
     journey.style.opacity = "1";
-
 
     // Start the live counter right away and keep it ticking every second
 
     updateCounter();
 
     counterInterval = setInterval(updateCounter, 1000);
-
 
     // Story text fades in, then out
 
@@ -352,13 +317,11 @@ function runJourneyIntro() {
 
     }, 500);
 
-
     setTimeout(() => {
 
         title.style.opacity = "0";
 
     }, 2500);
-
 
     // Counter fades in, then out
 
@@ -368,13 +331,11 @@ function runJourneyIntro() {
 
     }, 3500);
 
-
     setTimeout(() => {
 
         timer.style.opacity = "0";
 
     }, 8500);
-
 
     // Remove intro overlay and reveal the real page
 
@@ -400,10 +361,7 @@ function runJourneyIntro() {
 
 }
 
-
-// ============================
 // OPEN WEBSITE
-// ============================
 
 button.addEventListener("click", () => {
 
@@ -417,11 +375,9 @@ button.addEventListener("click", () => {
 
     updateActiveSongButton();
 
-
     // Fade out intro
 
     intro.style.opacity = "0";
-
 
     setTimeout(() => {
 
@@ -429,12 +385,10 @@ button.addEventListener("click", () => {
 
         lettersPage.style.display = "block";
 
-
         // Start slideshow
 
         slideshow.style.backgroundImage =
             `url('${images[0]}')`;
-
 
         // Play the journey intro animation + live counter now that the page is visible
 
@@ -444,15 +398,11 @@ button.addEventListener("click", () => {
 
 });
 
-
-// ============================
 // GO TO ARYAN'S PAGE
-// ============================
 
 toAryanBtn.addEventListener("click", () => {
 
     lettersPage.style.opacity = "0";
-
 
     setTimeout(() => {
 
@@ -462,13 +412,12 @@ toAryanBtn.addEventListener("click", () => {
 
         aryanPage.style.display = "block";
 
-
         // FIX:
         // Aryan's gallery was staying invisible because
         // .gallery has opacity: 0 in style.css.
         // The main page has runJourneyIntro() which changes
         // its gallery to opacity: 1, but Aryan's page doesn't.
-        
+
         const aryanGallery = aryanPage.querySelector(".gallery");
 
         if (aryanGallery) {
@@ -477,12 +426,10 @@ toAryanBtn.addEventListener("click", () => {
 
         }
 
-
         // Switch to Aryan's own slideshow
 
         slideshowAryan.style.backgroundImage =
             `url('${aryanImages[currentAryanImage]}')`;
-
 
         // Switch to Aryan's own playlist
 
@@ -500,20 +447,15 @@ toAryanBtn.addEventListener("click", () => {
 
         updateActiveSongButton();
 
-
     }, 800);
 
 });
 
-
-// ============================
 // BACK TO LETTERS PAGE
-// ============================
 
 backFromAryanBtn.addEventListener("click", () => {
 
     aryanPage.style.opacity = "0";
-
 
     setTimeout(() => {
 
@@ -523,12 +465,10 @@ backFromAryanBtn.addEventListener("click", () => {
 
         lettersPage.style.display = "block";
 
-
         // Switch back to the main slideshow
 
         slideshow.style.backgroundImage =
             `url('${images[currentImage]}')`;
-
 
         // Switch back to the main playlist
 
@@ -546,23 +486,17 @@ backFromAryanBtn.addEventListener("click", () => {
 
         updateActiveSongButton();
 
-
     }, 800);
 
 });
 
-
-// ============================
 // SLIDESHOW
-// ============================
 
 setInterval(() => {
-
 
     if (lettersPage.style.display === "block") {
 
         currentImage++;
-
 
         if (currentImage >= images.length) {
 
@@ -570,17 +504,14 @@ setInterval(() => {
 
         }
 
-
         slideshow.style.backgroundImage =
             `url('${images[currentImage]}')`;
 
     }
 
-
     if (aryanPage.style.display === "block") {
 
         currentAryanImage++;
-
 
         if (currentAryanImage >= aryanImages.length) {
 
@@ -588,19 +519,14 @@ setInterval(() => {
 
         }
 
-
         slideshowAryan.style.backgroundImage =
             `url('${aryanImages[currentAryanImage]}')`;
 
     }
 
-
 }, 4000);
 
-
-// ============================
 // LETTER CONTENT DATA
-// ============================
 // Each letter's full text lives here now, instead of in
 // separate hardcoded popup divs. This is what makes the
 // single-letter viewer (with Prev / Next) possible.
@@ -697,12 +623,12 @@ const mainLetters = [
             <p>I still remember the first time I met you at the airport. You had this very handsome smile on your face. I didn't had any expectations from you to be honest.
             As I was in my own world the least I expected was for you to not give me hope. But to my surprise you never said unrealistic things to win my heart over like
             other stupid guys. I have had "I love you's" and what not. But this was something different.</p>
-            <p>You always held my hand when I wanted you to. You said things which you wanted and my heart needed. It was never fake but so real.I never asked you 
+            <p>You always held my hand when I wanted you to. You said things which you wanted and my heart needed. It was never fake but so real.I never asked you
             for things because I was so disappointed in the world but you held me. I never expected us to be an us because seeing you I could see that you had
             your MBBS, family and all of your life and I never thought I would fit in. So I geuinely felt ki Aryan you would move on as soon as I left which is why my heart
             was prepared for worst. But you never left me. You held me because you could feel that Ankita wanted someone who was her home.</p>
             <p>People always have used me, yes I know used is a brutually odd word but it is that. So I was actually prepared for anything but you let it soft and slow. You
-            took me in and showed me what you are. Initially you weren't that expressive but then as time passed you started speaking your heart and you weren't afraid to 
+            took me in and showed me what you are. Initially you weren't that expressive but then as time passed you started speaking your heart and you weren't afraid to
             hold my hand even when the world said you can't. You never gave me promises to bring me the moon but you made my life a moonland.</p>
             <p>I didn't talk to you after I went back mumbai because I wanted to see if you make any effort. It was a test for our things from my side. I was walking away from you
             . You were walking right behind me. You called me, texted me , took care of me. I wanted to end it all but you wanted to even go against the god to save it. I then
@@ -714,7 +640,7 @@ const mainLetters = [
             <p>Each day with you no matter even if we are in long distance its so peaceful.I love taking care of you. I love you and I don't care about anything but you just be here.
             Aryan panduuu you are my world kabhi bhi kisi bhi situation never think that what would I think as long as you are happy and want it I'll always be along with you.</p>
             <p>The time when I am with you uhh only 5 days of my life but I remember each second of those 5 days..kissing, loving, fucking.. all of it.All of our memories have had all
-            of the shades happy, sad , roller coaster all of it. I am happy that I met you and I wish nothing more or nothing less. Whatever time fraction we will have together all 
+            of the shades happy, sad , roller coaster all of it. I am happy that I met you and I wish nothing more or nothing less. Whatever time fraction we will have together all
             of it would be great no matter sad,happy I love you and thats simple and thats breathing.</p>
             <p>Love you always,<br>Ankita ❤️</p>
         `
@@ -729,7 +655,6 @@ const mainLetters = [
     }
 
 ];
-
 
 const aryanLetters = [
 
@@ -818,7 +743,7 @@ const aryanLetters = [
             <p>Hihi aapko Good morning bolna daily itself is so special…..
             <br>Voh ek VIDEO CALL ek Voice call ….. The emotions we carry in each word is like explainable nahi hai….</p>
             <p>U know……..
-            <br>When u smile laugh…..doo pandu expressions hihi….I love each and everything….. I love to be a cat for u…..love to be a pandu for u…..HIHI… 
+            <br>When u smile laugh…..doo pandu expressions hihi….I love each and everything….. I love to be a cat for u…..love to be a pandu for u…..HIHI…
             <br>WE ARE HOMEE♥️
             <br>Yesss jald hi milege…..one day closerrr toh apna aa hi raha hai…
             <br>Panduuuuu loveeeeeeeeeee uuu alotttttt…….
@@ -836,10 +761,7 @@ const aryanLetters = [
 
 ];
 
-
-// ============================
 // SINGLE LETTER CARD (inline, with Prev / Next)
-// ============================
 // No popup — the card sits right on the page and the arrows
 // flip through the letters in place.
 
@@ -928,7 +850,6 @@ function makeLetterCard(letters, els){
 
 }
 
-
 // Main letters card (Ankita's page)
 makeLetterCard(mainLetters, {
 
@@ -956,18 +877,15 @@ function makeLetterCard(letters, els){
     let index = 0;
     let expanded = false;
 
-
     function renderExpandState(){
 
     els.body.style.display =
         expanded ? "block" : "none";
 
-
     els.toggle.textContent =
         expanded
             ? "▲ Close Letter"
             : "Tap to read ❤️";
-
 
     /*
      * Change the appearance of the card
@@ -1001,12 +919,10 @@ function makeLetterCard(letters, els){
         els.date.style.display =
             letter.date ? "block" : "none";
 
-
         // Put the full letter inside the body,
         // but DON'T show it yet
         els.body.innerHTML =
             letter.body;
-
 
         // Only show position if it exists
         if(els.position){
@@ -1016,14 +932,12 @@ function makeLetterCard(letters, els){
 
         }
 
-
         // Always start collapsed
         expanded = false;
 
         renderExpandState();
 
     }
-
 
     // TAP TO READ
     els.toggle.addEventListener("click", () => {
@@ -1033,7 +947,6 @@ function makeLetterCard(letters, els){
         renderExpandState();
 
     });
-
 
     // PREVIOUS LETTER
     if(
@@ -1055,7 +968,6 @@ function makeLetterCard(letters, els){
 
     }
 
-
     // NEXT LETTER
     if(
         els.nextBtn &&
@@ -1076,17 +988,14 @@ function makeLetterCard(letters, els){
 
     }
 
-
     // Show first letter
     render();
-
 
     return {
         render
     };
 
 }
-
 
 // Aryan's letters card (Aryan's page)
 
@@ -1112,10 +1021,7 @@ makeLetterCard(aryanLetters, {
 
 });
 
-
-// ============================
 // OPEN / CLOSE (generic popup — used by Write a Letter)
-// ============================
 
 function openLetter(letterID){
 
@@ -1123,23 +1029,18 @@ function openLetter(letterID){
 
 }
 
-
 function closeLetter(letterID){
 
     document.getElementById(letterID).style.display = "none";
 
 }
 
-
-// ============================
 // CLOSE WHEN CLICKING OUTSIDE
-// ============================
 
 window.onclick = function(event){
 
     const popups =
         document.querySelectorAll(".letterPopup");
-
 
     popups.forEach(popup => {
 
@@ -1153,26 +1054,19 @@ window.onclick = function(event){
 
 };
 
-
-// ============================
 // WRITE A LETTER FORM
-// ============================
 
 const letterForm =
     document.getElementById('letterForm');
-
 
 letterForm.addEventListener('submit', async function (e) {
 
     e.preventDefault();
 
-
     const status =
         document.getElementById('submitStatus');
 
-
     status.textContent = "Sending...";
-
 
     try {
 
@@ -1186,7 +1080,6 @@ letterForm.addEventListener('submit', async function (e) {
                 body: new FormData(letterForm)
             }
         );
-
 
         if (response.ok) {
 
@@ -1210,19 +1103,13 @@ letterForm.addEventListener('submit', async function (e) {
     }
 
 });
-// =====================================================
 // REUSABLE ONE-TIME QUIZ SYSTEM
-// =====================================================
 
-
-// =====================================================
 // 1. QUIZ CONFIGURATION
-// =====================================================
 
 // Change this ID every time you create a NEW quiz.
 
 const CURRENT_QUIZ_ID = "quiz_001";
-
 
 // This is what the quiz says when it appears.
 
@@ -1247,10 +1134,7 @@ const QUIZ_CONFIG = {
 
 };
 
-
-// =====================================================
 // 2. QUESTIONS
-// =====================================================
 
 // Add/remove questions here.
 // You can create a completely different quiz later.
@@ -1368,10 +1252,7 @@ const LOVE_QUIZ = [
 
 ];
 
-
-// =====================================================
 // 3. GET HTML ELEMENTS
-// =====================================================
 
 const quizSurprise =
     document.getElementById("quizSurprise");
@@ -1427,10 +1308,7 @@ const quizWelcomeTitle =
 const quizWelcomeText =
     document.getElementById("quizWelcomeText");
 
-
-// =====================================================
 // 4. APPLY QUIZ CONFIGURATION
-// =====================================================
 
 quizWelcomeTitle.textContent =
     QUIZ_CONFIG.title;
@@ -1452,10 +1330,7 @@ quizFinalMessage.textContent =
 quizFinalLine.textContent =
     QUIZ_CONFIG.finalLine;
 
-
-// =====================================================
 // 5. UNIQUE STORAGE KEY
-// =====================================================
 
 // IMPORTANT:
 //
@@ -1469,19 +1344,13 @@ const QUIZ_STORAGE_KEY =
     CURRENT_QUIZ_ID +
     "_completed";
 
-
-// =====================================================
 // 6. QUIZ VARIABLES
-// =====================================================
 
 let currentQuestion = 0;
 
 let score = 0;
 
-
-// =====================================================
 // 7. CHECK WHETHER THIS QUIZ WAS ALREADY COMPLETED
-// =====================================================
 
 function hasCompletedQuiz() {
 
@@ -1491,10 +1360,7 @@ function hasCompletedQuiz() {
 
 }
 
-
-// =====================================================
 // 8. SHOW QUIZ
-// =====================================================
 
 function showQuiz() {
 
@@ -1502,10 +1368,7 @@ function showQuiz() {
 
 }
 
-
-// =====================================================
 // 9. HIDE QUIZ
-// =====================================================
 
 function hideQuiz() {
 
@@ -1513,14 +1376,10 @@ function hideQuiz() {
 
 }
 
-
-// =====================================================
 // 10. CONNECT TO "START OUR STORY"
-// =====================================================
 
 const originalOpenButton =
     document.getElementById("openButton");
-
 
 if (
     originalOpenButton &&
@@ -1541,10 +1400,7 @@ if (
 
 }
 
-
-// =====================================================
 // 11. START QUIZ
-// =====================================================
 
 beginQuizBtn.addEventListener(
     "click",
@@ -1565,36 +1421,27 @@ beginQuizBtn.addEventListener(
     }
 );
 
-
-// =====================================================
 // 12. SHOW CURRENT QUESTION
-// =====================================================
 
 function showQuestion() {
 
     const question =
         LOVE_QUIZ[currentQuestion];
 
-
     quizNumber.textContent =
         `Question ${currentQuestion + 1} of ${LOVE_QUIZ.length}`;
-
 
     quizQuestion.textContent =
         question.question;
 
-
     quizOptions.innerHTML =
         "";
-
 
     quizFeedback.textContent =
         "";
 
-
     nextQuestionBtn.style.display =
         "none";
-
 
     question.options.forEach(
         function (option, index) {
@@ -1602,14 +1449,11 @@ function showQuestion() {
             const button =
                 document.createElement("button");
 
-
             button.className =
                 "quiz-option";
 
-
             button.textContent =
                 option;
-
 
             button.addEventListener(
                 "click",
@@ -1623,7 +1467,6 @@ function showQuestion() {
                 }
             );
 
-
             quizOptions.appendChild(
                 button
             );
@@ -1633,10 +1476,7 @@ function showQuestion() {
 
 }
 
-
-// =====================================================
 // 13. SELECT ANSWER
-// =====================================================
 
 function selectAnswer(
     selectedIndex,
@@ -1646,12 +1486,10 @@ function selectAnswer(
     const question =
         LOVE_QUIZ[currentQuestion];
 
-
     const allButtons =
         document.querySelectorAll(
             ".quiz-option"
         );
-
 
     // Stop the user from answering twice.
 
@@ -1664,7 +1502,6 @@ function selectAnswer(
 
         }
     );
-
 
     // Correct answer
 
@@ -1684,7 +1521,6 @@ function selectAnswer(
 
     }
 
-
     // Wrong answer
 
     else {
@@ -1693,36 +1529,29 @@ function selectAnswer(
             "wrong"
         );
 
-
         allButtons[
             question.answer
         ].classList.add(
             "correct"
         );
 
-
         quizFeedback.textContent =
             getWrongMessage();
 
     }
-
 
     nextQuestionBtn.style.display =
         "inline-block";
 
 }
 
-
-// =====================================================
 // 14. NEXT QUESTION
-// =====================================================
 
 nextQuestionBtn.addEventListener(
     "click",
     function () {
 
         currentQuestion++;
-
 
         if (
             currentQuestion <
@@ -1742,10 +1571,7 @@ nextQuestionBtn.addEventListener(
     }
 );
 
-
-// =====================================================
 // 15. CORRECT ANSWER MESSAGES
-// =====================================================
 
 function getCorrectMessage() {
 
@@ -1763,7 +1589,6 @@ function getCorrectMessage() {
 
     ];
 
-
     return messages[
         Math.floor(
             Math.random() *
@@ -1773,10 +1598,7 @@ function getCorrectMessage() {
 
 }
 
-
-// =====================================================
 // 16. WRONG ANSWER MESSAGES
-// =====================================================
 
 function getWrongMessage() {
 
@@ -1794,7 +1616,6 @@ function getWrongMessage() {
 
     ];
 
-
     return messages[
         Math.floor(
             Math.random() *
@@ -1804,10 +1625,7 @@ function getWrongMessage() {
 
 }
 
-
-// =====================================================
 // 17. FINISH QUIZ
-// =====================================================
 
 function finishQuiz() {
 
@@ -1817,17 +1635,14 @@ function finishQuiz() {
     quizResult.style.display =
         "block";
 
-
     const percentage =
         Math.round(
             (score / LOVE_QUIZ.length) *
             100
         );
 
-
     quizScore.textContent =
         `You scored ${score}/${LOVE_QUIZ.length} ❤️`;
-
 
     if (
         score === LOVE_QUIZ.length
@@ -1841,7 +1656,6 @@ function finishQuiz() {
 
     }
 
-
     else if (
         percentage >= 75
     ) {
@@ -1853,7 +1667,6 @@ function finishQuiz() {
             "You know us pretty damn well.";
 
     }
-
 
     else if (
         percentage >= 50
@@ -1867,7 +1680,6 @@ function finishQuiz() {
 
     }
 
-
     else {
 
         quizResultEmoji.textContent =
@@ -1878,10 +1690,7 @@ function finishQuiz() {
 
     }
 
-
-    // =================================================
     // MARK ONLY THIS QUIZ AS COMPLETED
-    // =================================================
 
     localStorage.setItem(
         QUIZ_STORAGE_KEY,
@@ -1890,10 +1699,7 @@ function finishQuiz() {
 
 }
 
-
-// =====================================================
 // 18. ENTER THE WEBSITE
-// =====================================================
 
 enterOurStoryBtn.addEventListener(
     "click",
@@ -1903,9 +1709,7 @@ enterOurStoryBtn.addEventListener(
 
     }
 );
-// =====================================================
 // CINEMATIC IDLE MODE
-// =====================================================
 
 (function () {
 
@@ -1916,10 +1720,7 @@ enterOurStoryBtn.addEventListener(
 
     let idleTimer = null;
 
-
-    // -------------------------------------------------
     // Check which page is currently visible
-    // -------------------------------------------------
 
     function getActivePage() {
 
@@ -1940,17 +1741,13 @@ enterOurStoryBtn.addEventListener(
         return null;
     }
 
-
-    // -------------------------------------------------
     // Enter idle mode
-    // -------------------------------------------------
 
     function enterIdleMode() {
 
         const activePage = getActivePage();
 
         if (!activePage) return;
-
 
         // Don't hide the website while a popup is open
 
@@ -1959,7 +1756,6 @@ enterOurStoryBtn.addEventListener(
 
         const quiz =
             document.getElementById("quizSurprise");
-
 
         if (
             (writePopup &&
@@ -1972,15 +1768,11 @@ enterOurStoryBtn.addEventListener(
             return;
         }
 
-
         activePage.classList.add("idle-mode");
 
     }
 
-
-    // -------------------------------------------------
     // Exit idle mode
-    // -------------------------------------------------
 
     function exitIdleMode() {
 
@@ -1994,10 +1786,7 @@ enterOurStoryBtn.addEventListener(
 
     }
 
-
-    // -------------------------------------------------
     // Reset timer
-    // -------------------------------------------------
 
     function resetIdleTimer() {
 
@@ -2012,10 +1801,7 @@ enterOurStoryBtn.addEventListener(
 
     }
 
-
-    // -------------------------------------------------
     // User activity
-    // -------------------------------------------------
 
     const activityEvents = [
 
@@ -2029,7 +1815,6 @@ enterOurStoryBtn.addEventListener(
 
     ];
 
-
     activityEvents.forEach(function (eventName) {
 
         document.addEventListener(
@@ -2040,12 +1825,8 @@ enterOurStoryBtn.addEventListener(
 
     });
 
-
-    // -------------------------------------------------
     // Start timer
-    // -------------------------------------------------
 
     resetIdleTimer();
-
 
 })();
