@@ -1853,4 +1853,118 @@ button:hover{
     }
 
 }
+/* =====================================================
+   CINEMATIC IDLE MODE
+   ===================================================== */
+
+/*
+   The slideshow and music continue running.
+   Everything else gently disappears.
+*/
+
+#lettersPage,
+#aryanPage {
+    position: relative;
+}
+
+
+/* Smoothly hide the interface */
+
+#lettersPage .overlay,
+#lettersPage #musicBox,
+#aryanPage .overlay,
+#aryanPage #musicBoxAryan {
+
+    transition:
+        opacity 1.2s ease,
+        visibility 1.2s ease;
+
+}
+
+/* =====================================================
+   CINEMATIC IDLE MODE
+   Music box intentionally stays visible
+   ===================================================== */
+
+#lettersPage .overlay,
+#aryanPage .overlay {
+
+    transition:
+        opacity 1.2s ease,
+        visibility 1.2s ease;
+
+}
+
+
+/* Hide ONLY the main page content */
+
+#lettersPage.idle-mode .overlay,
+#aryanPage.idle-mode .overlay {
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+
+}
+
+
+/* Music boxes NEVER fade */
+
+#lettersPage #musicBox,
+#aryanPage #musicBoxAryan {
+
+    opacity: 1 !important;
+
+    visibility: visible !important;
+
+    pointer-events: auto !important;
+
+}
+
+
+/* =====================================================
+   MAKE SURE SLIDESHOW STAYS VISIBLE
+   ===================================================== */
+
+#lettersPage #slideshow,
+#aryanPage #slideshowAryan {
+
+    opacity: 1 !important;
+
+}
+
+
+/* =====================================================
+   OPTIONAL: DARKEN THE SLIDESHOW SLIGHTLY IN IDLE MODE
+   ===================================================== */
+
+#lettersPage.idle-mode .overlay,
+#aryanPage.idle-mode .overlay {
+
+    /* The overlay itself disappears.
+       The slideshow remains untouched. */
+
+}
+
+
+/* =====================================================
+   MOBILE
+   ===================================================== */
+
+@media (max-width: 768px) {
+
+    #lettersPage .overlay,
+    #lettersPage #musicBox,
+    #aryanPage .overlay,
+    #aryanPage #musicBoxAryan {
+
+        transition:
+            opacity 0.9s ease,
+            visibility 0.9s ease;
+
+    }
+
+}
 
