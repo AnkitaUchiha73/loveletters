@@ -1903,3 +1903,149 @@ enterOurStoryBtn.addEventListener(
 
     }
 );
+// =====================================================
+// CINEMATIC IDLE MODE
+// =====================================================
+
+(function () {
+
+    const IDLE_TIME = 10000; // 10 seconds
+
+    const lettersPage = document.getElementById("lettersPage");
+    const aryanPage = document.getElementById("aryanPage");
+
+    let idleTimer = null;
+
+
+    // -------------------------------------------------
+    // Check which page is currently visible
+    // -------------------------------------------------
+
+    function getActivePage() {
+
+        if (
+            lettersPage &&
+            getComputedStyle(lettersPage).display !== "none"
+        ) {
+            return lettersPage;
+        }
+
+        if (
+            aryanPage &&
+            getComputedStyle(aryanPage).display !== "none"
+        ) {
+            return aryanPage;
+        }
+
+        return null;
+    }
+
+
+    // -------------------------------------------------
+    // Enter idle mode
+    // -------------------------------------------------
+
+    function enterIdleMode() {
+
+        const activePage = getActivePage();
+
+        if (!activePage) return;
+
+
+        // Don't hide the website while a popup is open
+
+        const writePopup =
+            document.getElementById("writeLetter");
+
+        const quiz =
+            document.getElementById("quizSurprise");
+
+
+        if (
+            (writePopup &&
+             getComputedStyle(writePopup).display !== "none")
+            ||
+            (quiz &&
+             getComputedStyle(quiz).display !== "none")
+        ) {
+            resetIdleTimer();
+            return;
+        }
+
+
+        activePage.classList.add("idle-mode");
+
+    }
+
+
+    // -------------------------------------------------
+    // Exit idle mode
+    // -------------------------------------------------
+
+    function exitIdleMode() {
+
+        if (lettersPage) {
+            lettersPage.classList.remove("idle-mode");
+        }
+
+        if (aryanPage) {
+            aryanPage.classList.remove("idle-mode");
+        }
+
+    }
+
+
+    // -------------------------------------------------
+    // Reset timer
+    // -------------------------------------------------
+
+    function resetIdleTimer() {
+
+        exitIdleMode();
+
+        clearTimeout(idleTimer);
+
+        idleTimer = setTimeout(
+            enterIdleMode,
+            IDLE_TIME
+        );
+
+    }
+
+
+    // -------------------------------------------------
+    // User activity
+    // -------------------------------------------------
+
+    const activityEvents = [
+
+        "mousemove",
+        "mousedown",
+        "click",
+        "touchstart",
+        "touchmove",
+        "keydown",
+        "scroll"
+
+    ];
+
+
+    activityEvents.forEach(function (eventName) {
+
+        document.addEventListener(
+            eventName,
+            resetIdleTimer,
+            { passive: true }
+        );
+
+    });
+
+
+    // -------------------------------------------------
+    // Start timer
+    // -------------------------------------------------
+
+    resetIdleTimer();
+
+
+})();
