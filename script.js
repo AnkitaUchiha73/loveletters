@@ -72,7 +72,12 @@ const aryanSongs = [
     "music/saazni.mp3",
     "music/Mitwaa.mp3",
     "music/ILoveYou.mp3",
-    "music/IWannaBeYours.mp3"
+    "music/IWannaBeYours.mp3",
+    "music/AaoNaa.mp3",
+    "music/Aayat.mp3",
+    "music/Afeemi.mp3",
+    "music/Birdsoffeather.mp3"
+    
 ];
 
 
