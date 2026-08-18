@@ -61,23 +61,29 @@ const songs = [
 // Replace these with Aryan's own playlist filenames
 const aryanSongs = [
     "music/TujhMeinRabDikhta.mp3",
-    "music/FinallyFoundyou.mp3",
-    "music/IThinkTheyCallThisLove.mp3",
-    "music/FalakTakTashan.mp3",
-    "music/Guzarish.mp3",
-    "music/MainYahaanHoon.mp3",
-    "music/TeraHoneLagaHoon.mp3",
-    "music/Teriore.mp3",
-    "music/UffTeriAdaa.mp3",
-    "music/saazni.mp3",
-    "music/Mitwaa.mp3",
-    "music/ILoveYou.mp3",
-    "music/IWannaBeYours.mp3",
     "music/AaoNaa.mp3",
     "music/Aayat.mp3",
     "music/Afeemi.mp3",
-    "music/Birdsoffeather.mp3"
-    
+    "music/AyeUdiUdiUdi.mp3",
+    "music/Birdsoffeather.mp3",
+    "music/DilKyunYehMera.mp3",
+    "music/FalakTak.mp3",
+    "music/FinallyFoundyou.mp3",
+    "music/Guzarish.mp3",
+    "music/ILoveYou.mp3",
+    "music/IThinkTheyCallThisLove.mp3",
+    "music/IWannaBeYours.mp3",
+    "music/IshqBina.mp3",
+    "music/JagGhoomeya.mp3",
+    "music/MainYahaanHoon.mp3",
+    "music/MeriChunarUddUddJaye.mp3",
+    "music/Mitwa.mp3",
+    "music/NahiSamneTu.mp3",
+    "music/OReyChhori.mp3",
+    "music/TeraHoneLagaHoon.mp3",
+    "music/Teriore.mp3",
+    "music/UffTeriAdaa.mp3",
+    "music/saazni.mp3"
 ];
 
 
