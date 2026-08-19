@@ -1967,4 +1967,24 @@ button:hover{
     }
 
 }
+/* ==========================
+   ARYAN TAP TO READ BUTTON
+   Same glass style as Letters Page
+   ========================== */
+
+#aryanLetterCard .letterCardToggle,
+#aryanLetterCard.letter-open .letterCardToggle {
+    background: rgba(255,255,255,0.18);
+    color: white;
+    border: 1px solid rgba(255,255,255,0.6);
+    box-shadow: none;
+}
+
+#aryanLetterCard .letterCardToggle:hover,
+#aryanLetterCard.letter-open .letterCardToggle:hover {
+    background: rgba(255,255,255,0.28);
+    color: white;
+    border-color: rgba(255,255,255,0.8);
+    transform: none;
+}
 
