@@ -1987,4 +1987,533 @@ button:hover{
     border-color: rgba(255,255,255,0.8);
     transform: none;
 }
+/* =====================================================
+   A MOVIE MADE OF US — POLAROID SECTION
+   ===================================================== */
+
+.movieSection {
+    margin-top: 45px;
+    text-align: center;
+    position: relative;
+    z-index: 20;
+}
+
+
+/* Main clickable Polaroid */
+
+.moviePolaroid {
+    width: 190px;
+    background: #f7f2e8;
+    padding: 12px 12px 25px;
+    margin: 0 auto;
+    box-shadow:
+        0 12px 30px rgba(0,0,0,0.25);
+
+    transform: rotate(-3deg);
+
+    cursor: pointer;
+
+    transition:
+        transform 0.4s ease,
+        box-shadow 0.4s ease;
+}
+
+
+.moviePolaroid:hover {
+    transform:
+        rotate(1deg)
+        translateY(-8px)
+        scale(1.04);
+
+    box-shadow:
+        0 20px 40px rgba(0,0,0,0.35);
+}
+
+
+.polaroid-photo {
+    width: 100%;
+    height: 170px;
+    overflow: hidden;
+}
+
+
+.polaroid-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+.polaroid-caption {
+    margin-top: 13px;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size: 16px;
+
+    color: #292929;
+}
+
+
+.movieHint {
+    margin-top: 15px;
+
+    font-size: 13px;
+
+    color: rgba(255,255,255,0.85);
+
+    letter-spacing: 0.5px;
+}
+
+
+/* =====================================================
+   FULL SCREEN MOVIE
+   ===================================================== */
+
+#movieExperience {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 99999;
+
+    display: none;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #242424 0%,
+            #090909 65%,
+            #000000 100%
+        );
+
+    color: white;
+}
+
+
+/* =====================================================
+   FILM GRAIN
+   ===================================================== */
+
+.movieFilmGrain {
+
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    opacity: 0.12;
+
+    z-index: 20;
+
+    background-image:
+        url("https://grainy-gradients.vercel.app/noise.svg");
+
+    animation:
+        filmGrain 0.2s steps(2) infinite;
+}
+
+
+@keyframes filmGrain {
+
+    0% {
+        transform: translate(0,0);
+    }
+
+    25% {
+        transform: translate(2%, -2%);
+    }
+
+    50% {
+        transform: translate(-2%, 2%);
+    }
+
+    75% {
+        transform: translate(1%, 2%);
+    }
+
+    100% {
+        transform: translate(-1%, -1%);
+    }
+
+}
+
+
+/* =====================================================
+   CLOSE BUTTON
+   ===================================================== */
+
+.movieClose {
+
+    position: absolute;
+
+    top: 25px;
+    right: 30px;
+
+    z-index: 50;
+
+    border: none;
+
+    background: rgba(255,255,255,0.1);
+
+    color: white;
+
+    width: 42px;
+    height: 42px;
+
+    border-radius: 50%;
+
+    font-size: 30px;
+
+    cursor: pointer;
+
+    backdrop-filter: blur(8px);
+}
+
+
+.movieClose:hover {
+    background: rgba(255,255,255,0.2);
+}
+
+
+/* =====================================================
+   MOVIE COUNTER
+   ===================================================== */
+
+.movieCounter {
+
+    position: absolute;
+
+    top: 35px;
+    left: 35px;
+
+    z-index: 50;
+
+    font-size: 13px;
+
+    letter-spacing: 2px;
+
+    opacity: 0.7;
+}
+
+
+/* =====================================================
+   POLAROID STAGE
+   ===================================================== */
+
+.movieStage {
+
+    position: absolute;
+
+    inset: 0;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+}
+
+
+/* =====================================================
+   MOVIE POLAROID
+   ===================================================== */
+
+.moviePolaroidFrame {
+
+    width: min(430px, 70vw);
+
+    background: #f7f2e8;
+
+    padding:
+        18px
+        18px
+        55px;
+
+    box-shadow:
+        0 25px 70px rgba(0,0,0,0.65);
+
+    transform:
+        rotate(-4deg)
+        scale(0.7);
+
+    opacity: 0;
+}
+
+
+.moviePhoto {
+
+    width: 100%;
+
+    height: min(55vh, 430px);
+
+    overflow: hidden;
+
+    background: #111;
+}
+
+
+.moviePhoto img {
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+}
+
+
+.movieCaption {
+
+    color: #202020;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    text-align: center;
+
+    margin-top: 18px;
+
+    font-size: 20px;
+
+    line-height: 1.3;
+}
+
+
+/* =====================================================
+   POLAROID ENTER ANIMATION
+   ===================================================== */
+
+.moviePolaroidFrame.movieEnter {
+
+    animation:
+        polaroidEnter 1.3s
+        cubic-bezier(.2,.8,.2,1)
+        forwards;
+}
+
+
+@keyframes polaroidEnter {
+
+    0% {
+
+        opacity: 0;
+
+        transform:
+            translateX(120vw)
+            rotate(25deg)
+            scale(0.5);
+
+    }
+
+    55% {
+
+        opacity: 1;
+
+        transform:
+            translateX(-30px)
+            rotate(-7deg)
+            scale(0.95);
+
+    }
+
+    75% {
+
+        transform:
+            translateX(15px)
+            rotate(4deg)
+            scale(1.02);
+
+    }
+
+    100% {
+
+        opacity: 1;
+
+        transform:
+            translateX(0)
+            rotate(-2deg)
+            scale(1);
+
+    }
+
+}
+
+
+/* =====================================================
+   MOVIE EXIT
+   ===================================================== */
+
+.moviePolaroidFrame.movieExit {
+
+    animation:
+        polaroidExit 0.8s
+        ease-in
+        forwards;
+}
+
+
+@keyframes polaroidExit {
+
+    0% {
+
+        opacity: 1;
+
+        transform:
+            translateX(0)
+            rotate(-2deg)
+            scale(1);
+
+    }
+
+    100% {
+
+        opacity: 0;
+
+        transform:
+            translateX(-120vw)
+            rotate(-25deg)
+            scale(0.5);
+
+    }
+
+}
+
+
+/* =====================================================
+   ENDING
+   ===================================================== */
+
+.movieEnding {
+
+    position: absolute;
+
+    inset: 0;
+
+    display: none;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    padding: 30px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(50,50,50,0.8),
+            rgba(0,0,0,0.98)
+        );
+
+    z-index: 30;
+}
+
+
+.movieEnding h1 {
+
+    font-size: clamp(
+        25px,
+        5vw,
+        50px
+    );
+
+    font-weight: 400;
+
+    margin-bottom: 15px;
+}
+
+
+.movieEnding p {
+
+    opacity: 0.75;
+
+    font-size: 16px;
+
+    margin-bottom: 30px;
+}
+
+
+#finishMovie {
+
+    border: 1px solid rgba(255,255,255,0.4);
+
+    background: rgba(255,255,255,0.08);
+
+    color: white;
+
+    padding: 12px 22px;
+
+    border-radius: 30px;
+
+    cursor: pointer;
+
+    font-size: 15px;
+
+    backdrop-filter: blur(8px);
+}
+
+
+/* =====================================================
+   MOBILE
+   ===================================================== */
+
+@media (max-width: 600px) {
+
+    .moviePolaroid {
+        width: 155px;
+        padding: 9px 9px 20px;
+    }
+
+
+    .polaroid-photo {
+        height: 140px;
+    }
+
+
+    .moviePolaroidFrame {
+
+        width: min(
+            330px,
+            78vw
+        );
+
+        padding:
+            12px
+            12px
+            40px;
+    }
+
+
+    .moviePhoto {
+
+        height: 48vh;
+    }
+
+
+    .movieCaption {
+
+        font-size: 16px;
+
+        margin-top: 13px;
+    }
+
+
+    .movieClose {
+
+        top: 15px;
+        right: 15px;
+    }
+
+}
 
