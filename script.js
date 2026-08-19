@@ -2060,3 +2060,334 @@ enterOurStoryBtn.addEventListener(
 
 
 })();
+// =====================================================
+// A MOVIE MADE OF US
+// =====================================================
+
+(function () {
+
+    const openMovie =
+        document.getElementById("openMovie");
+
+    const movieExperience =
+        document.getElementById("movieExperience");
+
+    const moviePolaroid =
+        document.getElementById("moviePolaroid");
+
+    const movieImage =
+        document.getElementById("movieImage");
+
+    const movieCaption =
+        document.getElementById("movieCaption");
+
+    const movieCounter =
+        document.getElementById("movieCounter");
+
+    const closeMovie =
+        document.getElementById("closeMovie");
+
+    const movieEnding =
+        document.getElementById("movieEnding");
+
+    const finishMovie =
+        document.getElementById("finishMovie");
+
+
+    // =================================================
+    // YOUR MOVIE PHOTOS + CAPTIONS
+    // =================================================
+
+    const movieMemories = [
+
+        {
+            image: "images/image1.jpg",
+            caption: "It started with two people..."
+        },
+
+        {
+            image: "images/image2.jpg",
+            caption: "...who had no idea what was coming."
+        },
+
+        {
+            image: "images/image3.jpg",
+            caption: "Then slowly, you became my favourite person."
+        },
+
+        {
+            image: "images/image4.jpg",
+            caption: "Somewhere between the calls and conversations..."
+        },
+
+        {
+            image: "images/image5.jpg",
+            caption: "...we became us."
+        },
+
+        {
+            image: "images/image6.jpg",
+            caption: "Five days became a lifetime of memories."
+        },
+
+        {
+            image: "images/image7.jpg",
+            caption: "Every little moment became something worth keeping."
+        },
+
+        {
+            image: "images/image8.jpg",
+            caption: "And somehow, you became home. ❤️"
+        },
+
+        {
+            image: "images/image9.jpg",
+            caption: "This isn't the end of our story..."
+        },
+
+        {
+            image: "images/image10.jpg",
+            caption: "It's only the beginning. ❤️"
+        }
+
+    ];
+
+
+    let movieIndex = 0;
+
+    let movieTimer = null;
+
+
+    // =================================================
+    // OPEN MOVIE
+    // =================================================
+
+    function startMovie() {
+
+        movieIndex = 0;
+
+        movieEnding.style.display = "none";
+
+        movieExperience.style.display = "block";
+
+        document.body.style.overflow = "hidden";
+
+        showMovieMemory();
+
+
+        // Make sure the page starts from the first frame
+
+        requestAnimationFrame(() => {
+
+            moviePolaroid.classList.add(
+                "movieEnter"
+            );
+
+        });
+
+    }
+
+
+    // =================================================
+    // SHOW MEMORY
+    // =================================================
+
+    function showMovieMemory() {
+
+        clearTimeout(movieTimer);
+
+        const memory =
+            movieMemories[movieIndex];
+
+
+        movieCounter.textContent =
+            `${movieIndex + 1} / ${movieMemories.length}`;
+
+
+        movieImage.src =
+            memory.image;
+
+
+        movieCaption.textContent =
+            memory.caption;
+
+
+        // Reset animation
+
+        moviePolaroid.classList.remove(
+            "movieEnter"
+        );
+
+        moviePolaroid.classList.remove(
+            "movieExit"
+        );
+
+
+        // Force browser to restart animation
+
+        void moviePolaroid.offsetWidth;
+
+
+        moviePolaroid.classList.add(
+            "movieEnter"
+        );
+
+
+        // How long each Polaroid stays
+
+        movieTimer = setTimeout(
+            nextMovieMemory,
+            4000
+        );
+
+    }
+
+
+    // =================================================
+    // NEXT MEMORY
+    // =================================================
+
+    function nextMovieMemory() {
+
+        moviePolaroid.classList.remove(
+            "movieEnter"
+        );
+
+
+        moviePolaroid.classList.add(
+            "movieExit"
+        );
+
+
+        setTimeout(() => {
+
+            movieIndex++;
+
+
+            if (
+                movieIndex >=
+                movieMemories.length
+            ) {
+
+                finishMovieSequence();
+
+                return;
+
+            }
+
+
+            showMovieMemory();
+
+        }, 800);
+
+    }
+
+
+    // =================================================
+    // FINISH MOVIE
+    // =================================================
+
+    function finishMovieSequence() {
+
+        clearTimeout(movieTimer);
+
+        moviePolaroid.style.display =
+            "none";
+
+        movieCounter.style.display =
+            "none";
+
+        movieEnding.style.display =
+            "flex";
+
+    }
+
+
+    // =================================================
+    // CLOSE MOVIE
+    // =================================================
+
+    function closeMovieExperience() {
+
+        clearTimeout(movieTimer);
+
+        movieExperience.style.display =
+            "none";
+
+        moviePolaroid.style.display =
+            "block";
+
+        movieCounter.style.display =
+            "block";
+
+        movieEnding.style.display =
+            "none";
+
+        moviePolaroid.classList.remove(
+            "movieEnter"
+        );
+
+        moviePolaroid.classList.remove(
+            "movieExit"
+        );
+
+        document.body.style.overflow =
+            "";
+
+    }
+
+
+    // =================================================
+    // EVENTS
+    // =================================================
+
+    if (openMovie) {
+
+        openMovie.addEventListener(
+            "click",
+            startMovie
+        );
+
+    }
+
+
+    if (closeMovie) {
+
+        closeMovie.addEventListener(
+            "click",
+            closeMovieExperience
+        );
+
+    }
+
+
+    if (finishMovie) {
+
+        finishMovie.addEventListener(
+            "click",
+            closeMovieExperience
+        );
+
+    }
+
+
+    // ESCAPE KEY
+
+    document.addEventListener(
+        "keydown",
+        function (event) {
+
+            if (
+                event.key === "Escape" &&
+                movieExperience.style.display !== "none"
+            ) {
+
+                closeMovieExperience();
+
+            }
+
+        }
+    );
+
+
+})();
