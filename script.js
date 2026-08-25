@@ -85,7 +85,7 @@ const aryanSongs = [
     "music/OReyChhori.mp3",
     "music/TeraHoneLagaHoon.mp3",
     "music/Teriore.mp3",
-    "music/TumJoAayeZindegiMein.mp3",
+    "music/TumJoAayeJindagi.mp3",
     "music/UffTeriAdaa.mp3",
     "music/saazni.mp3"
 ];
