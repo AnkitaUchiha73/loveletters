@@ -46,13 +46,13 @@ music.addEventListener("pause",()=>{
 
 const songs = [
     "music/GehraHua.mp3",
-    "music/AajkalTereMerePyarKeCharche.mp3"
+    "music/AajkalTereMerePyarKeCharche.mp3",
     "music/BadheAcheLagteHai.mp3",
     "music/Barbaad.mp3",
     "music/Dhun.mp3",
     "music/YehRatein.mp3",
     "music/PalPalDilKePaas.mp3",
-    "music/KyaMujhePyaarHai.mp3,
+    "music/KyaMujhePyaarHai.mp3",
     "music/LikheJoKhatTujhe.mp3",
     "music/PalPalDilKePass.mp3",
     "music/TumSeHi.mp3",
@@ -1225,7 +1225,8 @@ letterForm.addEventListener('submit', async function (e) {
     }
 
 });
-#// =====================================================
+/* 
+// =====================================================
 // REUSABLE ONE-TIME QUIZ SYSTEM
 // =====================================================
 
@@ -1904,7 +1905,7 @@ function finishQuiz() {
     );
 
 }
-#
+
 
 // =====================================================
 // 18. ENTER THE WEBSITE
@@ -1918,6 +1919,7 @@ enterOurStoryBtn.addEventListener(
 
     }
 );
+*/ 
 // =====================================================
 // CINEMATIC IDLE MODE
 // =====================================================
