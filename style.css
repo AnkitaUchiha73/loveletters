@@ -2554,3 +2554,7 @@ button:hover{
 .slide-out-right { animation: slideOutRight 0.22s ease forwards; }
 .slide-in-right   { animation: slideInFromRight 0.28s ease forwards; }
 .slide-in-left    { animation: slideInFromLeft 0.28s ease forwards; }
+#prevLetterBtn,
+#nextLetterBtn {
+    display: none !important;
+}
