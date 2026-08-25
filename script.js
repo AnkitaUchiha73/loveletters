@@ -857,11 +857,11 @@ const aryanLetters = [
 // ============================
 // No popup — the card sits right on the page and the arrows
 // flip through the letters in place.
-
 function makeLetterCard(letters, els){
 
     let index = 0;
     let expanded = false;
+    let isAnimating = false;
 
     function renderExpandState(){
 
@@ -869,80 +869,192 @@ function makeLetterCard(letters, els){
 
         els.toggle.textContent = expanded ? "▲ Collapse" : "Tap to read ❤️";
 
+        if(els.card){
+            els.card.classList.toggle("letter-open", expanded);
+        }
+
         if(expanded){
-
             els.body.scrollTop = 0;
-
         }
 
     }
 
-    function render(){
+    function renderContent(){
 
         const letter = letters[index];
 
         els.emoji.textContent = letter.emoji || "";
-
         els.title.textContent = letter.title;
-
         els.date.textContent = letter.date;
         els.date.style.display = letter.date ? "block" : "none";
-
         els.body.innerHTML = letter.body;
 
-        els.position.textContent =
-            `${index + 1} / ${letters.length}`;
+        if(els.position){
+            els.position.textContent = `${index + 1} / ${letters.length}`;
+        }
 
-        els.prevBtn.disabled = index === 0;
-        els.nextBtn.disabled = index === letters.length - 1;
+        if(els.prevBtn) els.prevBtn.disabled = index === 0;
+        if(els.nextBtn) els.nextBtn.disabled = index === letters.length - 1;
 
-        // Collapse back to just emoji / title / date whenever
-        // we land on a different letter
         expanded = false;
-
         renderExpandState();
 
     }
 
+    // First render — no animation, just show it
+    function render(){
+        renderContent();
+    }
+
+    // Slide to a new index, direction: "next" or "prev"
+    function slideTo(newIndex, direction){
+
+        if(isAnimating) return;
+        if(newIndex < 0 || newIndex > letters.length - 1) return;
+        if(!els.card) { index = newIndex; renderContent(); return; }
+
+        isAnimating = true;
+
+        const outClass = direction === "next" ? "slide-out-left" : "slide-out-right";
+        const inClass  = direction === "next" ? "slide-in-right" : "slide-in-left";
+
+        els.card.classList.remove("slide-in-right", "slide-in-left");
+        els.card.classList.add(outClass);
+
+        const onOutEnd = () => {
+
+            els.card.removeEventListener("animationend", onOutEnd);
+            els.card.classList.remove(outClass);
+
+            index = newIndex;
+            renderContent();
+
+            els.card.classList.add(inClass);
+
+            const onInEnd = () => {
+                els.card.removeEventListener("animationend", onInEnd);
+                els.card.classList.remove(inClass);
+                isAnimating = false;
+            };
+
+            els.card.addEventListener("animationend", onInEnd);
+
+        };
+
+        els.card.addEventListener("animationend", onOutEnd);
+
+    }
+
+    function goNext(){
+        if(index < letters.length - 1) slideTo(index + 1, "next");
+    }
+
+    function goPrev(){
+        if(index > 0) slideTo(index - 1, "prev");
+    }
+
     els.toggle.addEventListener("click", () => {
-
         expanded = !expanded;
-
         renderExpandState();
-
     });
 
-    els.prevBtn.addEventListener("click", () => {
+    if(els.prevBtn) els.prevBtn.addEventListener("click", goPrev);
+    if(els.nextBtn) els.nextBtn.addEventListener("click", goNext);
 
-        if(index > 0){
+    // =====================================================
+    // SWIPE / DRAG SUPPORT
+    // =====================================================
 
-            index--;
+    if(els.card){
 
-            render();
+        let startX = 0;
+        let startY = 0;
+        let dragging = false;
+        let lockedAxis = null; // "x" or "y", decided after a small threshold
 
+        const SWIPE_THRESHOLD = 45; // px needed to count as a swipe
+
+        function onDragStart(x, y){
+            if(expanded) return; // don't swipe while reading a letter
+            if(isAnimating) return;
+            dragging = true;
+            lockedAxis = null;
+            startX = x;
+            startY = y;
         }
 
-    });
+        function onDragMove(x, y){
+            if(!dragging) return;
 
-    els.nextBtn.addEventListener("click", () => {
+            const dx = x - startX;
+            const dy = y - startY;
 
-        if(index < letters.length - 1){
+            if(lockedAxis === null){
+                if(Math.abs(dx) > 8 || Math.abs(dy) > 8){
+                    lockedAxis = Math.abs(dx) > Math.abs(dy) ? "x" : "y";
+                }
+            }
 
-            index++;
-
-            render();
-
+            if(lockedAxis === "x"){
+                els.card.style.transform = `translateX(${dx}px)`;
+            }
         }
 
-    });
+        function onDragEnd(x){
+            if(!dragging) return;
+            dragging = false;
 
-    // Show the first letter's preview right away
+            const dx = x - startX;
+
+            els.card.style.transform = "";
+
+            if(lockedAxis === "x"){
+                if(dx <= -SWIPE_THRESHOLD){
+                    goNext();
+                } else if(dx >= SWIPE_THRESHOLD){
+                    goPrev();
+                }
+            }
+
+            lockedAxis = null;
+        }
+
+        // Touch events
+        els.card.addEventListener("touchstart", (e) => {
+            const t = e.touches[0];
+            onDragStart(t.clientX, t.clientY);
+        }, { passive: true });
+
+        els.card.addEventListener("touchmove", (e) => {
+            const t = e.touches[0];
+            onDragMove(t.clientX, t.clientY);
+        }, { passive: true });
+
+        els.card.addEventListener("touchend", (e) => {
+            const t = e.changedTouches[0];
+            onDragEnd(t.clientX);
+        });
+
+        // Mouse drag (desktop)
+        els.card.addEventListener("mousedown", (e) => {
+            onDragStart(e.clientX, e.clientY);
+        });
+
+        window.addEventListener("mousemove", (e) => {
+            if(dragging) onDragMove(e.clientX, e.clientY);
+        });
+
+        window.addEventListener("mouseup", (e) => {
+            if(dragging) onDragEnd(e.clientX);
+        });
+
+    }
+
     render();
 
     return { render };
 
 }
-
 
 // Main letters card (Ankita's page)
 makeLetterCard(mainLetters, {
@@ -966,141 +1078,6 @@ makeLetterCard(mainLetters, {
     nextBtn: document.getElementById("nextLetterBtn")
 
 });
-function makeLetterCard(letters, els){
-
-    let index = 0;
-    let expanded = false;
-
-
-    function renderExpandState(){
-
-    els.body.style.display =
-        expanded ? "block" : "none";
-
-
-    els.toggle.textContent =
-        expanded
-            ? "▲ Close Letter"
-            : "Tap to read ❤️";
-
-
-    /*
-     * Change the appearance of the card
-     * when the letter is opened.
-     */
-    if (els.card) {
-
-        els.card.classList.toggle(
-            "letter-open",
-            expanded
-        );
-
-    }
-
-}
-
-    function render(){
-
-        const letter = letters[index];
-
-        // Show preview information
-        els.emoji.textContent =
-            letter.emoji || "";
-
-        els.title.textContent =
-            letter.title;
-
-        els.date.textContent =
-            letter.date;
-
-        els.date.style.display =
-            letter.date ? "block" : "none";
-
-
-        // Put the full letter inside the body,
-        // but DON'T show it yet
-        els.body.innerHTML =
-            letter.body;
-
-
-        // Only show position if it exists
-        if(els.position){
-
-            els.position.textContent =
-                `${index + 1} / ${letters.length}`;
-
-        }
-
-
-        // Always start collapsed
-        expanded = false;
-
-        renderExpandState();
-
-    }
-
-
-    // TAP TO READ
-    els.toggle.addEventListener("click", () => {
-
-        expanded = !expanded;
-
-        renderExpandState();
-
-    });
-
-
-    // PREVIOUS LETTER
-    if(
-        els.prevBtn &&
-        typeof els.prevBtn.addEventListener === "function"
-    ){
-
-        els.prevBtn.addEventListener("click", () => {
-
-            if(index > 0){
-
-                index--;
-
-                render();
-
-            }
-
-        });
-
-    }
-
-
-    // NEXT LETTER
-    if(
-        els.nextBtn &&
-        typeof els.nextBtn.addEventListener === "function"
-    ){
-
-        els.nextBtn.addEventListener("click", () => {
-
-            if(index < letters.length - 1){
-
-                index++;
-
-                render();
-
-            }
-
-        });
-
-    }
-
-
-    // Show first letter
-    render();
-
-
-    return {
-        render
-    };
-
-}
 
 
 // Aryan's letters card (Aryan's page)
