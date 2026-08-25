@@ -2516,3 +2516,41 @@ button:hover{
     }
 
 }
+/* =====================================================
+   SLIDE TRANSITION FOR LETTER CARDS
+   ===================================================== */
+
+#mainLetterCard,
+#aryanLetterCard {
+    touch-action: pan-y;   /* let vertical scroll pass through, we handle horizontal */
+    cursor: grab;
+    will-change: transform, opacity;
+}
+
+#mainLetterCard:active,
+#aryanLetterCard:active {
+    cursor: grabbing;
+}
+
+@keyframes slideOutLeft {
+    to { transform: translateX(-60px); opacity: 0; }
+}
+
+@keyframes slideOutRight {
+    to { transform: translateX(60px); opacity: 0; }
+}
+
+@keyframes slideInFromRight {
+    from { transform: translateX(60px); opacity: 0; }
+    to   { transform: translateX(0);    opacity: 1; }
+}
+
+@keyframes slideInFromLeft {
+    from { transform: translateX(-60px); opacity: 0; }
+    to   { transform: translateX(0);     opacity: 1; }
+}
+
+.slide-out-left  { animation: slideOutLeft 0.22s ease forwards; }
+.slide-out-right { animation: slideOutRight 0.22s ease forwards; }
+.slide-in-right   { animation: slideInFromRight 0.28s ease forwards; }
+.slide-in-left    { animation: slideInFromLeft 0.28s ease forwards; }
