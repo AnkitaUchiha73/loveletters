@@ -958,8 +958,6 @@ function makeLetterCard(letters, els){
         renderExpandState();
     });
 
-    if(els.prevBtn) els.prevBtn.addEventListener("click", goPrev);
-    if(els.nextBtn) els.nextBtn.addEventListener("click", goNext);
 
     // =====================================================
     // SWIPE / DRAG SUPPORT
@@ -1071,12 +1069,7 @@ makeLetterCard(mainLetters, {
 
     body: document.getElementById("viewerBody"),
 
-    position: document.getElementById("letterPosition"),
-
-    prevBtn: document.getElementById("prevLetterBtn"),
-
-    nextBtn: document.getElementById("nextLetterBtn")
-
+    position: document.getElementById("letterPosition")
 });
 
 
@@ -1096,11 +1089,7 @@ makeLetterCard(aryanLetters, {
 
     body: document.getElementById("viewerBodyAryan"),
 
-    position: document.getElementById("letterPositionAryan"),
-
-    prevBtn: document.getElementById("prevLetterBtnAryan"),
-
-    nextBtn: document.getElementById("nextLetterBtnAryan")
+    position: document.getElementById("letterPositionAryan")
 
 });
 
