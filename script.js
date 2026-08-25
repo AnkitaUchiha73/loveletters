@@ -46,15 +46,18 @@ music.addEventListener("pause",()=>{
 
 const songs = [
     "music/GehraHua.mp3",
+    "music/AajkalTereMerePyarKeCharche.mp3"
     "music/BadheAcheLagteHai.mp3",
-    "music/YehRatein.mp3",
-    "music/PalPalDilKePaas.mp3",
     "music/Barbaad.mp3",
     "music/Dhun.mp3",
-    "music/FinallyFoundyou.mp3",
+    "music/YehRatein.mp3",
+    "music/PalPalDilKePaas.mp3",
+    "music/KyaMujhePyaarHai.mp3,
     "music/LikheJoKhatTujhe.mp3",
+    "music/PalPalDilKePass.mp3",
     "music/TumSeHi.mp3",
-    "music/AajkalTereMerePyarKeCharche.mp3"
+    "music/YehTuneKya.mp3",
+    "music/YehRatein.mp3"
 ];
 
 
@@ -82,6 +85,7 @@ const aryanSongs = [
     "music/OReyChhori.mp3",
     "music/TeraHoneLagaHoon.mp3",
     "music/Teriore.mp3",
+    "music/TumJoAayeZindegiMein.mp3",
     "music/UffTeriAdaa.mp3",
     "music/saazni.mp3"
 ];
@@ -1221,7 +1225,7 @@ letterForm.addEventListener('submit', async function (e) {
     }
 
 });
-// =====================================================
+#// =====================================================
 // REUSABLE ONE-TIME QUIZ SYSTEM
 // =====================================================
 
@@ -1900,7 +1904,7 @@ function finishQuiz() {
     );
 
 }
-
+#
 
 // =====================================================
 // 18. ENTER THE WEBSITE
