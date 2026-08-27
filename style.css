@@ -1971,22 +1971,34 @@ button:hover{
    ARYAN TAP TO READ BUTTON
    Same glass style as Letters Page
    ========================== */
-
-#aryanLetterCard .letterCardToggle,
-#aryanLetterCard.letter-open .letterCardToggle {
+/* Collapsed (glass/white) */
+#aryanLetterCard .letterCardToggle {
     background: rgba(255,255,255,0.18);
-    color: pink;
+    color: white;
     border: 1px solid rgba(255,255,255,0.6);
     box-shadow: none;
 }
 
-#aryanLetterCard .letterCardToggle:hover,
-#aryanLetterCard.letter-open .letterCardToggle:hover {
+#aryanLetterCard .letterCardToggle:hover {
     background: rgba(255,255,255,0.28);
     color: white;
     border-color: rgba(255,255,255,0.8);
     transform: none;
 }
+
+/* When letter is open — pink, same as main */
+#aryanLetterCard.letter-open .letterCardToggle {
+    background: #d63384;
+    color: white;
+    border-color: #d63384;
+}
+
+#aryanLetterCard.letter-open .letterCardToggle:hover {
+    background: #b81f6b;
+    border-color: #b81f6b;
+}
+
+
 /* =====================================================
    A MOVIE MADE OF US — POLAROID SECTION
    ===================================================== */
