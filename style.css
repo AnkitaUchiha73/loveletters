@@ -1996,6 +1996,7 @@ button:hover{
 #aryanLetterCard.letter-open .letterCardToggle:hover {
     background: #b81f6b;
     border-color: #b81f6b;
+    transform: none;
 }
 
 
