@@ -1975,7 +1975,7 @@ button:hover{
 #aryanLetterCard .letterCardToggle,
 #aryanLetterCard.letter-open .letterCardToggle {
     background: rgba(255,255,255,0.18);
-    color: white;
+    color: pink;
     border: 1px solid rgba(255,255,255,0.6);
     box-shadow: none;
 }
