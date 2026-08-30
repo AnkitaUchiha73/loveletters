@@ -2131,12 +2131,16 @@ enterOurStoryBtn.addEventListener(
     // OPEN MOVIE
     // =================================================
 function startMovie() {
+
     const onePieceTheme = document.getElementById("onePieceTheme");
 
     movieIndex = 0;
+
     movieEnding.style.display = "none";
 
-    onePieceTheme.pause();
+    // Pause the background playlist so it doesn't play under the movie theme
+    music.pause();
+
     onePieceTheme.currentTime = 0;
     onePieceTheme.volume = 0.65;
     onePieceTheme.play().catch(() => {
@@ -2272,35 +2276,32 @@ function startMovie() {
     // =================================================
     // CLOSE MOVIE
     // =================================================
+function closeMovieExperience() {
 
-    function closeMovieExperience() {
+    const onePieceTheme = document.getElementById("onePieceTheme");
 
-        clearTimeout(movieTimer);
+    clearTimeout(movieTimer);
 
-        movieExperience.style.display =
-            "none";
+    // Stop the movie theme
+    onePieceTheme.pause();
+    onePieceTheme.currentTime = 0;
 
-        moviePolaroid.style.display =
-            "block";
+    movieExperience.style.display = "none";
 
-        movieCounter.style.display =
-            "block";
+    moviePolaroid.style.display = "block";
+    movieCounter.style.display = "block";
+    movieEnding.style.display = "none";
 
-        movieEnding.style.display =
-            "none";
+    moviePolaroid.classList.remove("movieEnter");
+    moviePolaroid.classList.remove("movieExit");
 
-        moviePolaroid.classList.remove(
-            "movieEnter"
-        );
+    document.body.style.overflow = "";
 
-        moviePolaroid.classList.remove(
-            "movieExit"
-        );
-
-        document.body.style.overflow =
-            "";
-
-    }
+    // Resume the background playlist where it left off
+    music.play().catch(error => {
+        console.log("Music couldn't resume:", error);
+    });
+}
 
 
     // =================================================
