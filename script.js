@@ -50,8 +50,6 @@ const songs = [
     "music/BadheAcheLagteHai.mp3",
     "music/Barbaad.mp3",
     "music/Dhun.mp3",
-    "music/YehRatein.mp3",
-    "music/PalPalDilKePaas.mp3",
     "music/KyaMujhePyaarHai.mp3",
     "music/LikheJoKhatTujhe.mp3",
     "music/PalPalDilKePass.mp3",
@@ -2132,42 +2130,28 @@ enterOurStoryBtn.addEventListener(
     // =================================================
     // OPEN MOVIE
     // =================================================
+function startMovie() {
+    const onePieceTheme = document.getElementById("onePieceTheme");
 
-    function startMovie() {
+    movieIndex = 0;
+    movieEnding.style.display = "none";
 
-        movieIndex = 0;
-
-        movieEnding.style.display = "none";
-        onePieceTheme.pause();
-        onePieceTheme.currentTime = 0;
-
-        movieExperience.style.display = "block";
-        const onePieceTheme = document.getElementById("onePieceTheme");
-
-        onePieceTheme.currentTime = 0;
-
-        onePieceTheme.volume = 0.65;
-
-        onePieceTheme.play().catch(() => {
+    onePieceTheme.pause();
+    onePieceTheme.currentTime = 0;
+    onePieceTheme.volume = 0.65;
+    onePieceTheme.play().catch(() => {
         console.log("Audio waiting for user interaction.");
-        });
+    });
 
-        document.body.style.overflow = "hidden";
+    movieExperience.style.display = "block";
+    document.body.style.overflow = "hidden";
 
-        showMovieMemory();
+    showMovieMemory();
 
-
-        // Make sure the page starts from the first frame
-
-        requestAnimationFrame(() => {
-
-            moviePolaroid.classList.add(
-                "movieEnter"
-            );
-
-        });
-
-    }
+    requestAnimationFrame(() => {
+        moviePolaroid.classList.add("movieEnter");
+    });
+}
 
 
     // =================================================
