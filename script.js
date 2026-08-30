@@ -2138,8 +2138,19 @@ enterOurStoryBtn.addEventListener(
         movieIndex = 0;
 
         movieEnding.style.display = "none";
+        onePieceTheme.pause();
+        onePieceTheme.currentTime = 0;
 
         movieExperience.style.display = "block";
+        const onePieceTheme = document.getElementById("onePieceTheme");
+
+        onePieceTheme.currentTime = 0;
+
+        onePieceTheme.volume = 0.65;
+
+        onePieceTheme.play().catch(() => {
+        console.log("Audio waiting for user interaction.");
+        });
 
         document.body.style.overflow = "hidden";
 
