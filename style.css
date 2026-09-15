@@ -1942,10 +1942,8 @@ button:hover{
 
 #lettersPage.idle-mode .overlay,
 #aryanPage.idle-mode .overlay {
-
-    /* The overlay itself disappears.
-       The slideshow remains untouched. */
-
+    opacity: 0;
+    pointer-events: none;
 }
 
 
@@ -1999,658 +1997,6 @@ button:hover{
     transform: none;
 }
 /* =====================================================
-   A MOVIE MADE OF US — PIRATE TREASURE POLAROID
-   ===================================================== */
-
-.movieSection {
-    margin-top: 55px;
-    text-align: center;
-    position: relative;
-    z-index: 20;
-}
-
-.moviePolaroid {
-    position: relative;
-    width: 210px;
-    margin: 0 auto;
-    cursor: pointer;
-}
-
-/* Stack of "old photos" peeking out behind */
-.moviePolaroid::before,
-.moviePolaroid::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: #e8d9b5;
-    border-radius: 2px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-    z-index: -1;
-    transition: transform 0.4s ease;
-}
-
-.moviePolaroid::before { transform: rotate(-10deg) translateY(4px); }
-.moviePolaroid::after  { transform: rotate(8deg) translateY(6px); }
-
-.moviePolaroid:hover::before { transform: rotate(-14deg) translateY(2px); }
-.moviePolaroid:hover::after  { transform: rotate(12deg) translateY(4px); }
-
-/* Main card — aged parchment look */
-.moviePolaroid {
-    background:
-        radial-gradient(circle at 30% 20%, rgba(255,255,255,0.25), transparent 60%),
-        linear-gradient(155deg, #f2e3bd 0%, #dfc794 55%, #d3b876 100%);
-
-    padding: 16px 14px 34px;
-    border-radius: 2px;
-
-    /* rope-like double border */
-    border: 3px solid #6b4a2b;
-    outline: 1px solid #3d2914;
-    outline-offset: -6px;
-
-    box-shadow:
-        0 4px 8px rgba(0,0,0,0.25),
-        0 18px 40px rgba(0,0,0,0.35);
-
-    transform: rotate(-4deg);
-
-    transition:
-        transform 0.45s cubic-bezier(.2,.8,.2,1),
-        box-shadow 0.45s ease;
-}
-
-.moviePolaroid:hover {
-    transform: rotate(0.5deg) translateY(-10px) scale(1.05);
-    box-shadow:
-        0 8px 16px rgba(0,0,0,0.25),
-        0 28px 55px rgba(0,0,0,0.45);
-}
-
-/* Wax seal instead of tape */
-.moviePolaroid .washi-tape {
-    position: absolute;
-    top: -18px;
-    left: 50%;
-    width: 42px;
-    height: 42px;
-    background: radial-gradient(circle at 35% 30%, #a83232, #6b1717);
-    border-radius: 50%;
-    transform: translateX(-50%);
-    box-shadow:
-        0 3px 6px rgba(0,0,0,0.4),
-        inset 0 0 0 2px rgba(255,255,255,0.15);
-    z-index: 5;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
-}
-
-.moviePolaroid .washi-tape::after {
-    content: "☠";
-    color: rgba(255,235,200,0.85);
-}
-
-/* Photo frame — slightly sepia-toned like an old photograph */
-.polaroid-photo {
-    width: 100%;
-    height: 180px;
-    overflow: hidden;
-    border-radius: 1px;
-    background: #111;
-    box-shadow: inset 0 0 0 1px rgba(0,0,0,0.15), inset 0 0 20px rgba(107,74,43,0.25);
-}
-
-.polaroid-photo img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center 25%;
-    display: block;
-    filter: sepia(0.15) saturate(1.05) contrast(1.05);
-}
-
-/* Caption — pirate poster style header + handwritten note */
-.polaroid-caption {
-    margin-top: 14px;
-    font-family: 'Caveat', cursive;
-    font-size: 21px;
-    color: #3d2914;
-    letter-spacing: 0.3px;
-    transform: rotate(-0.5deg);
-}
-
-.polaroid-caption::before {
-    content: "☆ OUR JOURNEY ☆";
-    display: block;
-    font-family: 'Pirata One', cursive;
-    font-size: 13px;
-    letter-spacing: 2px;
-    color: #6b1717;
-    margin-bottom: 4px;
-    opacity: 0.85;
-}
-
-.movieHint {
-    margin-top: 24px;
-    font-size: 13px;
-    color: rgba(255,255,255,0.85);
-    letter-spacing: 0.6px;
-    font-style: italic;
-}
-
-.movieHint::before { content: "⚓  "; }
-.movieHint::after  { content: "  ⚓"; }
-
-/* =====================================================
-   FULL SCREEN MOVIE — ONE PIECE MANGA / PIRATE CHAPTER
-   ===================================================== */
-
-#movieExperience {
-    position: fixed;
-    inset: 0;
-    z-index: 99999;
-    display: none;
-    overflow: hidden;
-
-    /* Aged manga paper + halftone print texture */
-    background:
-        radial-gradient(circle at 18% 22%,
-            rgba(0,0,0,0.075) 0 1px,
-            transparent 1.5px) 0 0 / 9px 9px,
-        radial-gradient(circle at 82% 68%,
-            rgba(0,0,0,0.055) 0 1px,
-            transparent 1.5px) 0 0 / 11px 11px,
-        linear-gradient(135deg,
-            #eee2c7 0%,
-            #fffaf0 45%,
-            #e7dbc1 100%);
-
-    color: #171717;
-}
-
-/* Manga-page outer frame */
-#movieExperience::before {
-    content: "";
-    position: absolute;
-    inset: 18px;
-    border: 4px solid #171717;
-    pointer-events: none;
-    z-index: 10;
-    box-shadow:
-        inset 0 0 0 2px rgba(255,255,255,0.65),
-        0 0 0 2px rgba(0,0,0,0.12);
-}
-
-/* Manga radial speed lines */
-#movieExperience::after {
-    content: "";
-    position: absolute;
-    inset: -20%;
-    pointer-events: none;
-    z-index: 2;
-    background:
-        repeating-conic-gradient(
-            from 0deg at 50% 50%,
-            rgba(0,0,0,0.045) 0deg 0.65deg,
-            transparent 0.65deg 7deg
-        );
-    opacity: 0.42;
-}
-
-/* =====================================================
-   FILM GRAIN
-   ===================================================== */
-
-.movieFilmGrain {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    opacity: 0.08;
-    z-index: 20;
-    background-image:
-        url("https://grainy-gradients.vercel.app/noise.svg");
-    animation: filmGrain 0.2s steps(2) infinite;
-}
-
-@keyframes filmGrain {
-    0% { transform: translate(0,0); }
-    25% { transform: translate(2%, -2%); }
-    50% { transform: translate(-2%, 2%); }
-    75% { transform: translate(1%, 2%); }
-    100% { transform: translate(-1%, -1%); }
-}
-
-/* =====================================================
-   MANGA DECORATIONS
-   ===================================================== */
-
-.movieStage::before {
-    content: "☠   ⚓   ☠";
-    position: absolute;
-    top: 35px;
-    right: 55px;
-    z-index: 12;
-    font-family: "Times New Roman", serif;
-    font-size: 25px;
-    letter-spacing: 8px;
-    color: #171717;
-    opacity: 0.62;
-    transform: rotate(4deg);
-}
-
-.movieStage::after {
-    content: "OUR GRAND ADVENTURE";
-    position: absolute;
-    bottom: 35px;
-    left: 50px;
-    z-index: 12;
-    padding: 7px 13px;
-    border: 3px solid #171717;
-    background: rgba(255,250,235,0.78);
-    font-family: "Times New Roman", serif;
-    font-size: 17px;
-    font-weight: bold;
-    letter-spacing: 3px;
-    color: #171717;
-    transform: rotate(-3deg);
-}
-
-/* =====================================================
-   CLOSE BUTTON
-   ===================================================== */
-
-.movieClose {
-    position: absolute;
-    top: 25px;
-    right: 30px;
-    z-index: 50;
-    border: 3px solid #171717;
-    background: rgba(255,250,235,0.72);
-    color: #171717;
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    font-size: 27px;
-    font-weight: bold;
-    cursor: pointer;
-    backdrop-filter: blur(7px);
-    -webkit-backdrop-filter: blur(7px);
-    box-shadow: 4px 4px 0 rgba(0,0,0,0.18);
-    transition:
-        transform 0.25s ease,
-        background 0.25s ease;
-}
-
-.movieClose:hover {
-    background: #fffaf0;
-    transform: rotate(8deg) scale(1.06);
-}
-
-/* =====================================================
-   MOVIE COUNTER
-   ===================================================== */
-
-.movieCounter {
-    position: absolute;
-    top: 35px;
-    left: 35px;
-    z-index: 50;
-    font-family: "Courier New", monospace;
-    font-size: 13px;
-    font-weight: bold;
-    letter-spacing: 2px;
-    color: #171717;
-    opacity: 0.72;
-    background: rgba(255,250,235,0.65);
-    border: 2px solid #171717;
-    padding: 6px 10px;
-    transform: rotate(-2deg);
-}
-
-/* =====================================================
-   POLAROID STAGE
-   ===================================================== */
-
-.movieStage {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 70px 30px;
-    box-sizing: border-box;
-}
-
-/* =====================================================
-   MOVIE POLAROID — MANGA PANEL
-   ===================================================== */
-
-.moviePolaroidFrame {
-    width: min(430px, 70vw);
-    background:
-        radial-gradient(circle,
-            rgba(0,0,0,0.045) 0 1px,
-            transparent 1.5px) 0 0 / 7px 7px,
-        #fffaf0;
-    padding: 18px 18px 55px;
-    border: 4px solid #171717;
-    position: relative;
-    box-shadow:
-        10px 10px 0 rgba(23,23,23,0.12),
-        0 25px 70px rgba(0,0,0,0.32);
-    transform: rotate(-4deg) scale(0.7);
-    opacity: 0;
-}
-
-.moviePolaroidFrame::before {
-    content: "";
-    position: absolute;
-    inset: -11px;
-    border: 2px solid #171717;
-    transform: rotate(2deg);
-    z-index: -1;
-    opacity: 0.42;
-}
-
-.moviePolaroidFrame::after {
-    content: "☠";
-    position: absolute;
-    right: 12px;
-    bottom: 8px;
-    font-family: serif;
-    font-size: 28px;
-    color: #171717;
-    transform: rotate(8deg);
-}
-
-/* =====================================================
-   PHOTO
-   ===================================================== */
-
-.moviePhoto {
-    width: 100%;
-    height: min(55vh, 430px);
-    overflow: hidden;
-    background: #eee2c7;
-    border: 3px solid #171717;
-    position: relative;
-}
-
-.moviePhoto::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background:
-        radial-gradient(circle,
-            rgba(0,0,0,0.055) 0 0.8px,
-            transparent 1.3px) 0 0 / 6px 6px;
-    mix-blend-mode: multiply;
-    opacity: 0.35;
-}
-
-.moviePhoto img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    filter:
-        contrast(1.08)
-        saturate(0.92)
-        brightness(1.03);
-}
-
-/* =====================================================
-   CAPTION
-   ===================================================== */
-
-.movieCaption {
-    color: #202020;
-    font-family: "Courier New", monospace;
-    text-align: center;
-    margin-top: 18px;
-    font-size: 20px;
-    line-height: 1.3;
-    font-weight: bold;
-}
-
-/* =====================================================
-   POLAROID ENTER ANIMATION
-   ===================================================== */
-
-.moviePolaroidFrame.movieEnter {
-    animation:
-        polaroidEnter 1.3s
-        cubic-bezier(.2,.8,.2,1)
-        forwards;
-}
-
-@keyframes polaroidEnter {
-    0% {
-        opacity: 0;
-        transform:
-            translateX(120vw)
-            rotate(25deg)
-            scale(0.5);
-    }
-
-    35% {
-        opacity: 1;
-    }
-
-    55% {
-        opacity: 1;
-        transform:
-            translateX(-30px)
-            rotate(-7deg)
-            scale(0.95);
-    }
-
-    75% {
-        transform:
-            translateX(15px)
-            rotate(4deg)
-            scale(1.02);
-    }
-
-    100% {
-        opacity: 1;
-        transform:
-            translateX(0)
-            rotate(-2deg)
-            scale(1);
-    }
-}
-
-/* =====================================================
-   MOVIE EXIT
-   ===================================================== */
-
-.moviePolaroidFrame.movieExit {
-    animation:
-        polaroidExit 0.8s
-        ease-in
-        forwards;
-}
-
-@keyframes polaroidExit {
-    0% {
-        opacity: 1;
-        transform:
-            translateX(0)
-            rotate(-2deg)
-            scale(1);
-    }
-
-    100% {
-        opacity: 0;
-        transform:
-            translateX(-120vw)
-            rotate(-25deg)
-            scale(0.5);
-    }
-}
-
-/* =====================================================
-   ENDING — MANGA CHAPTER END
-   ===================================================== */
-
-.movieEnding {
-    position: absolute;
-    inset: 0;
-    display: none;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 30px;
-    background:
-        radial-gradient(circle at center,
-            rgba(255,250,235,0.96),
-            rgba(231,219,193,0.98)),
-        radial-gradient(circle,
-            rgba(0,0,0,0.06) 0 1px,
-            transparent 1.5px) 0 0 / 8px 8px;
-    color: #171717;
-    z-index: 30;
-    border: 8px solid #171717;
-}
-
-.movieEnding::before {
-    content: "☠  CHAPTER COMPLETE  ☠";
-    font-family: "Times New Roman", serif;
-    font-size: 14px;
-    font-weight: bold;
-    letter-spacing: 4px;
-    margin-bottom: 25px;
-    opacity: 0.7;
-}
-
-.movieEnding h1 {
-    font-size: clamp(25px, 5vw, 50px);
-    font-weight: 800;
-    margin-bottom: 15px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    transform: rotate(-2deg);
-}
-
-.movieEnding p {
-    opacity: 0.75;
-    font-size: 16px;
-    margin-bottom: 30px;
-    max-width: 500px;
-}
-
-#finishMovie {
-    border: 3px solid #171717;
-    background: #fffaf0;
-    color: #171717;
-    padding: 12px 22px;
-    border-radius: 3px;
-    cursor: pointer;
-    font-size: 15px;
-    font-weight: bold;
-    box-shadow: 5px 5px 0 rgba(23,23,23,0.18);
-    transition:
-        transform 0.25s ease,
-        box-shadow 0.25s ease;
-}
-
-#finishMovie:hover {
-    transform: translate(-2px,-2px) rotate(-1deg);
-    box-shadow: 8px 8px 0 rgba(23,23,23,0.18);
-}
-
-/* =====================================================
-   MOBILE
-   ===================================================== */
-
-@media (max-width: 600px) {
-
-    #movieExperience::before {
-        inset: 9px;
-        border-width: 3px;
-    }
-
-    #movieExperience::after {
-        opacity: 0.28;
-    }
-
-    .movieStage {
-        padding: 65px 18px 65px;
-    }
-
-    .movieStage::before {
-        top: 22px;
-        right: 22px;
-        font-size: 17px;
-        letter-spacing: 4px;
-    }
-
-    .movieStage::after {
-        bottom: 20px;
-        left: 22px;
-        padding: 5px 8px;
-        font-size: 10px;
-        letter-spacing: 1.5px;
-    }
-
-    .moviePolaroidFrame {
-        width: min(330px, 78vw);
-        padding: 12px 12px 40px;
-        border-width: 3px;
-    }
-
-    .moviePhoto {
-        height: 48vh;
-        max-height: 430px;
-        border-width: 2px;
-    }
-
-    .movieCaption {
-        font-size: 16px;
-        margin-top: 13px;
-    }
-
-    .movieClose {
-        top: 15px;
-        right: 15px;
-        width: 38px;
-        height: 38px;
-        font-size: 24px;
-    }
-
-    .movieCounter {
-        top: 22px;
-        left: 22px;
-        font-size: 11px;
-        padding: 5px 8px;
-    }
-
-    .movieEnding {
-        border-width: 5px;
-        padding: 22px;
-    }
-
-    .movieEnding::before {
-        font-size: 10px;
-        letter-spacing: 2px;
-    }
-
-    .movieEnding h1 {
-        font-size: 28px;
-    }
-
-    .movieEnding p {
-        font-size: 14px;
-    }
-}
-
-/* =====================================================
    SLIDE TRANSITION FOR LETTER CARDS
    ===================================================== */
 
@@ -2691,4 +2037,1878 @@ button:hover{
 #prevLetterBtn,
 #nextLetterBtn {
     display: none !important;
+}
+
+/* =====================================================
+   ONE PIECE — SUNNY + OCEAN DESIGN
+   =====================================================
+
+/* The Grand Line header contains only Back (left) and Music (right). */
+.one-piece-page .op-header-title {
+    display: none !important;
+}
+
+@font-face {
+    font-family: "One Piece";
+    src: url("onepiecefont.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+:root {
+    --op-blue: #0879c9;
+    --op-deep-blue: #034f91;
+    --op-sky: #7ed8ff;
+    --op-gold: #f4c35b;
+    --op-paper: #ead39a;
+    --op-paper-dark: #b88b45;
+    --op-ink: #20170f;
+    --op-red: #b93427;
+    --op-white: #fffdf2;
+    --op-shadow: rgba(0, 33, 65, .42);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100%;
+    background: #0879c9;
+}
+
+button {
+    font: inherit;
+}
+
+.one-piece-page,
+.one-piece-page *,
+.one-piece-page *::before,
+.one-piece-page *::after,
+.one-piece-page button,
+.one-piece-page input,
+.one-piece-page textarea,
+.one-piece-page select {
+    font-family: "One Piece", Georgia, serif !important;
+}
+
+.one-piece-page {
+    position: relative;
+    min-height: 100vh;
+    overflow-x: hidden;
+    color: var(--op-ink);
+    isolation: isolate;
+    background: #0879c9;
+}
+
+.one-piece-page::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -3;
+    background:
+        linear-gradient(to bottom, rgba(0, 55, 105, .04), rgba(0, 31, 75, .24)),
+        url("images/sunny.png") center center / cover no-repeat;
+    transform: translateZ(0);
+}
+
+.one-piece-page::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    pointer-events: none;
+    background:
+        linear-gradient(to bottom, rgba(255, 255, 255, .03), rgba(0, 0, 0, .16)),
+        radial-gradient(circle at 50% 25%, transparent 0 32%, rgba(0, 29, 65, .18) 100%);
+}
+
+.grand-line-content {
+    min-height: 100vh;
+    background: linear-gradient(
+        to bottom,
+        rgba(255,255,255,.02) 0%,
+        rgba(255,255,255,.05) 45%,
+        rgba(0,38,75,.18) 100%
+    );
+}
+
+/* Opening */
+.op-opening {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: grid;
+    place-items: center;
+    padding: 24px;
+    text-align: center;
+    background:
+        linear-gradient(rgba(1, 43, 82, .42), rgba(1, 36, 70, .64)),
+        url("images/sunny.png") center / cover no-repeat;
+    transition: opacity .8s ease, visibility .8s ease, transform .8s ease;
+}
+
+.op-opening.hidden {
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(1.04);
+    pointer-events: none;
+}
+
+.op-opening-content {
+    width: min(680px, 94vw);
+    padding: clamp(28px, 5vw, 58px);
+    color: var(--op-white);
+    text-shadow: 0 4px 18px rgba(0, 0, 0, .5);
+}
+
+.op-compass {
+    font-size: clamp(44px, 8vw, 76px);
+    margin-bottom: 8px;
+    animation: spinCompass 12s linear infinite;
+}
+
+.op-small-text,
+.op-kicker,
+.op-chapter {
+    letter-spacing: .16em;
+    font-size: clamp(11px, 1.5vw, 15px);
+}
+
+.op-opening h1 {
+    margin: 12px 0;
+    font-size: clamp(48px, 10vw, 112px);
+    line-height: .9;
+    letter-spacing: .05em;
+    color: #fff3bd;
+}
+
+.op-crossed {
+    font-size: 36px;
+    margin: 12px 0;
+}
+
+.op-couple-name {
+    font-size: clamp(22px, 4vw, 34px);
+    letter-spacing: .12em;
+}
+
+.op-couple-name span {
+    color: #ffb2aa;
+    margin: 0 8px;
+}
+
+/* Buttons */
+.op-main-button,
+.op-scroll-button {
+    border: 0;
+    cursor: pointer;
+    color: #20170f;
+    background: linear-gradient(#ffe7a0, #dca94f);
+    border: 3px solid #5f3d16;
+    box-shadow:
+        0 7px 0 #4c3217,
+        0 12px 24px rgba(0,0,0,.28);
+    transition: transform .2s ease, filter .2s ease, box-shadow .2s ease;
+}
+
+.op-main-button {
+    margin-top: 28px;
+    padding: 14px 32px;
+    border-radius: 10px;
+    font-size: clamp(18px, 2.5vw, 25px);
+}
+
+.op-main-button:hover,
+.op-scroll-button:hover {
+    transform: translateY(-3px);
+    filter: brightness(1.06);
+    box-shadow: 0 10px 0 #4c3217, 0 16px 28px rgba(0,0,0,.3);
+}
+
+.op-main-button:active,
+.op-scroll-button:active {
+    transform: translateY(3px);
+    box-shadow: 0 3px 0 #4c3217, 0 7px 14px rgba(0,0,0,.22);
+}
+
+/* =========================================================
+   GRAND LINE HEADER — BACK LEFT / MUSIC RIGHT
+   ========================================================= */
+.op-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 76px;
+    z-index: 10050;
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    padding: 16px 22px;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    backdrop-filter: none;
+    pointer-events: none;
+}
+
+.op-header .op-back-button,
+.op-header .op-music-wrap {
+    pointer-events: auto;
+}
+
+.op-back-button,
+.op-music-button {
+    border: 2px solid rgba(255, 235, 167, .85);
+    background: rgba(0, 34, 67, .48);
+    color: white;
+    cursor: pointer;
+    border-radius: 9px;
+    min-height: 44px;
+    transition: .2s ease;
+}
+
+.op-back-button {
+    padding: 8px 16px;
+    font-size: 17px;
+    letter-spacing: .08em;
+}
+
+.op-music-button {
+    width: 48px;
+    font-size: 22px;
+}
+
+.op-back-button:hover,
+.op-music-button:hover {
+    background: rgba(255, 226, 128, .18);
+    transform: translateY(-2px);
+}
+
+/* Hero */
+.op-hero {
+    position: relative;
+    min-height: min(92vh, 880px);
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    padding: 100px 20px 80px;
+}
+
+.op-sun-glow {
+    position: absolute;
+    width: min(50vw, 580px);
+    aspect-ratio: 1;
+    left: 14%;
+    top: 30%;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,238,158,.34), rgba(255,238,158,0) 68%);
+    pointer-events: none;
+}
+
+.op-hero-content {
+    position: relative;
+    z-index: 2;
+    width: min(700px, 94vw);
+    margin-right: auto;
+    margin-left: clamp(3vw, 8vw, 12vw);
+    padding: clamp(28px, 5vw, 52px);
+    color: white;
+    text-align: left;
+    text-shadow: 0 4px 15px rgba(0,0,0,.58);
+}
+
+.op-kicker {
+    color: #fff1ae;
+    margin-bottom: 15px;
+}
+
+.op-hero h2 {
+    font-size: clamp(42px, 7vw, 84px);
+    line-height: .94;
+    letter-spacing: .02em;
+}
+
+.op-hero h2 span {
+    color: #ffe083;
+}
+
+.op-hero p:not(.op-kicker) {
+    margin-top: 22px;
+    font-family: Georgia, serif;
+    font-size: clamp(15px, 2vw, 20px);
+    line-height: 1.7;
+    letter-spacing: .01em;
+}
+
+.op-scroll-button {
+    margin-top: 28px;
+    padding: 11px 18px;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.op-cloud {
+    position: absolute;
+    width: 180px;
+    height: 65px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.28);
+    filter: blur(2px);
+    pointer-events: none;
+}
+
+.cloud-one {
+    left: -190px;
+    top: 18%;
+    animation: cloudMove 30s linear infinite;
+}
+
+.cloud-two {
+    left: -280px;
+    top: 35%;
+    transform: scale(.7);
+    animation: cloudMove 40s linear infinite 8s;
+}
+
+/* Sections */
+.op-section {
+    position: relative;
+    width: min(1180px, 92vw);
+    margin: 45px auto;
+    padding: clamp(28px, 5vw, 58px);
+    border: 4px solid #704b1f;
+    border-radius: 18px;
+    background:
+        radial-gradient(circle at 10% 15%, rgba(96, 57, 15, .1) 0 2px, transparent 3px),
+        radial-gradient(circle at 88% 70%, rgba(96, 57, 15, .12) 0 2px, transparent 3px),
+        linear-gradient(rgba(246,225,164,.94), rgba(221,193,123,.93));
+    background-size: auto, auto, auto;
+    box-shadow: 0 18px 45px var(--op-shadow), inset 0 0 35px rgba(91,55,12,.12);
+}
+
+.op-section::before,
+.op-section::after {
+    content: "✦";
+    position: absolute;
+    color: rgba(92, 57, 20, .65);
+    font-size: 25px;
+}
+
+.op-section::before {
+    top: 12px;
+    left: 18px;
+}
+
+.op-section::after {
+    right: 18px;
+    bottom: 12px;
+}
+
+.op-section-title {
+    text-align: center;
+    color: #24170e;
+    font-size: clamp(26px, 4vw, 48px);
+    letter-spacing: .07em;
+    text-shadow: 1px 2px 0 rgba(255,255,255,.28);
+}
+
+.op-section-title span {
+    color: #6b241d;
+}
+
+.section-subtitle,
+.map-intro,
+.counter-intro,
+.treasure-intro,
+.treasure-section > p {
+    text-align: center;
+    font-family: Georgia, serif;
+}
+
+.section-subtitle,
+.map-intro {
+    margin-top: 10px;
+    font-size: 17px;
+}
+
+/* Wanted posters */
+.wanted-container {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(230px, 1fr));
+    gap: clamp(20px, 5vw, 55px);
+    width: min(820px, 100%);
+    margin: 35px auto 0;
+}
+
+.wanted-poster {
+    padding: 17px 17px 24px;
+    text-align: center;
+    color: #21160d;
+    background:
+        linear-gradient(rgba(235,207,139,.92), rgba(210,174,98,.95));
+    border: 4px solid #805820;
+    box-shadow: 0 13px 25px rgba(72,42,9,.35);
+    transform: rotate(-1.2deg);
+}
+
+.wanted-poster:nth-child(2) {
+    transform: rotate(1.2deg);
+}
+
+.wanted-top {
+    font-size: clamp(34px, 5vw, 58px);
+    letter-spacing: .08em;
+    border-bottom: 3px solid #5e3b17;
+    padding-bottom: 5px;
+}
+
+.wanted-photo {
+    height: 230px;
+    margin: 16px auto;
+    display: grid;
+    place-items: center;
+    border: 4px solid #5e3b17;
+    background: linear-gradient(135deg, #7ec4d8, #e9d79e);
+    overflow: hidden;
+}
+
+.wanted-photo span {
+    font-size: 70px;
+    filter: drop-shadow(0 4px 5px rgba(0,0,0,.2));
+}
+
+.wanted-poster h3 {
+    font-size: clamp(26px, 4vw, 42px);
+}
+
+.wanted-subtitle {
+    margin-top: 3px;
+    font-size: 13px;
+    letter-spacing: .1em;
+}
+
+.bounty {
+    margin-top: 14px;
+    font-size: 21px;
+}
+
+.crime {
+    margin-top: 12px;
+    font-family: Georgia, serif;
+    line-height: 1.5;
+}
+
+/* Map */
+.map-section {
+    overflow: hidden;
+}
+
+.grand-line-map {
+    position: relative;
+    min-height: 520px;
+    margin-top: 25px;
+    border: 4px solid #6f4a20;
+    border-radius: 15px;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 25% 25%, rgba(255,255,255,.32) 0 4px, transparent 5px),
+        linear-gradient(145deg, rgba(93,178,194,.78), rgba(221,194,119,.82));
+    box-shadow: inset 0 0 50px rgba(70,43,9,.18);
+}
+
+.map-route {
+    position: absolute;
+    left: 10%;
+    right: 10%;
+    top: 50%;
+    height: 5px;
+    border-top: 5px dashed #8a4e22;
+    transform: rotate(-7deg);
+    opacity: .8;
+}
+
+.memory-island {
+    position: absolute;
+
+    /* Override global button spacing so the map coordinates are reliable. */
+    margin: 0 !important;
+    padding: 12px !important;
+    z-index: 3;
+    width: 130px;
+    min-height: 105px;
+    border: 3px solid #5f3b16;
+    border-radius: 48% 52% 45% 55%;
+    color: #25170d;
+    background: linear-gradient(#f6d97d, #c9933f);
+    box-shadow: 0 9px 0 #704516, 0 15px 22px rgba(50,33,10,.28);
+    cursor: pointer;
+    transition: transform .22s ease, filter .22s ease;
+}
+
+.memory-island:hover {
+    transform: translateY(-8px) scale(1.06);
+    filter: brightness(1.08);
+}
+
+.island-icon {
+    display: block;
+    font-size: 31px;
+    margin-bottom: 5px;
+}
+
+.memory-island strong {
+    font-size: 15px;
+    letter-spacing: .04em;
+}
+
+.island-one { left: 7%; top: 11%; }
+.island-two { left: 31%; top: 30%; }
+.island-three { left: 59%; top: 10%; }
+.island-four { left: 76%; top: 39%; }
+.island-five { left: 41%; top: 63%; }
+.island-six { left: 8%; top: 70%; }
+
+.map-ship {
+    position: absolute;
+    z-index: 4;
+    font-size: 70px;
+    filter: drop-shadow(0 8px 4px rgba(0,0,0,.3));
+    animation: shipBob 2.8s ease-in-out infinite;
+}
+
+/* Memory modal */
+/* Keep island memory pop-ups above the map destination panel and its buttons. */
+.memory-modal,
+.treasure-message {
+    position: fixed;
+    inset: 0;
+    z-index: 1200;
+    display: grid;
+    place-items: center;
+    padding: 20px;
+    background: rgba(0, 31, 60, .74);
+    backdrop-filter: blur(7px);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: .3s ease;
+}
+
+.memory-modal.open,
+.treasure-message.open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.memory-modal-box,
+.treasure-message-box {
+    position: relative;
+    width: min(620px, 94vw);
+    padding: clamp(28px, 5vw, 55px);
+    text-align: center;
+    border: 5px solid #704b1f;
+    border-radius: 17px;
+    background: linear-gradient(#f5df9e, #d7b96f);
+    box-shadow: 0 25px 70px rgba(0,0,0,.45);
+    transform: translateY(25px) scale(.96);
+    transition: .35s ease;
+}
+
+.memory-modal.open .memory-modal-box,
+.treasure-message.open .treasure-message-box {
+    transform: translateY(0) scale(1);
+}
+
+.close-memory {
+    position: absolute;
+    right: 12px;
+    top: 8px;
+    border: 0;
+    background: transparent;
+    color: #38220f;
+    font-size: 35px;
+    cursor: pointer;
+}
+
+.memory-modal-icon {
+    font-size: 58px;
+}
+
+.memory-chapter {
+    margin-top: 8px;
+    font-size: 14px;
+    letter-spacing: .14em;
+    color: #74471b;
+}
+
+.memory-modal-box h2 {
+    margin-top: 7px;
+    font-size: clamp(30px, 6vw, 50px);
+}
+
+.memory-line {
+    width: 120px;
+    height: 4px;
+    margin: 15px auto;
+    background: #74471b;
+}
+
+.memory-modal-box > p:last-child {
+    font-family: Georgia, serif;
+    font-size: 18px;
+    line-height: 1.7;
+}
+
+/* Counter */
+.counter-section {
+    text-align: center;
+}
+
+.counter-section h3 {
+    margin-top: 7px;
+    font-size: 18px;
+    letter-spacing: .13em;
+}
+
+.op-counter {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin: 30px auto 20px;
+    width: min(820px, 100%);
+}
+
+.counter-box {
+    padding: 18px 10px;
+    border: 3px solid #5d3914;
+    border-radius: 11px;
+    background: linear-gradient(#4b2e15, #291a0c);
+    color: #ffe7a1;
+    box-shadow: 0 7px 0 #211407;
+}
+
+.counter-box span {
+    display: block;
+    font-size: clamp(30px, 5vw, 54px);
+}
+
+.counter-box small {
+    display: block;
+    margin-top: 4px;
+    color: #fff4c5;
+    font-size: 12px;
+    letter-spacing: .12em;
+}
+
+.counter-quote {
+    width: min(720px, 100%);
+    margin: 0 auto;
+    font-family: Georgia, serif;
+    font-size: 17px;
+    line-height: 1.6;
+}
+
+/* Treasure */
+.treasure-section {
+    text-align: center;
+}
+
+.treasure-section > p {
+    margin-top: 8px;
+    font-size: 17px;
+}
+
+.treasure-area {
+    margin-top: 30px;
+}
+
+.treasure-chest {
+    position: relative;
+    width: 180px;
+    height: 150px;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    transition: transform .2s ease;
+}
+
+.treasure-chest:hover {
+    transform: translateY(-7px) rotate(-2deg);
+}
+
+.chest-body {
+    position: absolute;
+    left: 15px;
+    right: 15px;
+    bottom: 10px;
+    height: 92px;
+    display: grid;
+    place-items: center;
+    border: 7px solid #5a3513;
+    border-radius: 0 0 18px 18px;
+    background: linear-gradient(#bd7b25, #73410e);
+    font-size: 46px;
+    box-shadow: 0 10px 0 #4a2c12;
+}
+
+.chest-lid {
+    position: absolute;
+    z-index: 2;
+    left: 10px;
+    right: 10px;
+    top: 25px;
+    height: 55px;
+    border: 7px solid #5a3513;
+    border-bottom: 0;
+    border-radius: 70px 70px 0 0;
+    background: linear-gradient(#e2a443, #945716);
+    transform-origin: bottom center;
+    transition: transform .6s ease;
+}
+
+.treasure-chest.open .chest-lid {
+    transform: rotateX(-55deg) translateY(-10px);
+}
+
+.chest-lock {
+    position: absolute;
+    z-index: 4;
+    left: 50%;
+    top: 66px;
+    transform: translateX(-50%);
+    font-size: 28px;
+    transition: .4s ease;
+}
+
+.treasure-chest.open .chest-lock {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-20px);
+}
+
+.chest-hint {
+    margin-top: 9px;
+    font-size: 14px;
+    letter-spacing: .12em;
+}
+
+/* Treasure popup */
+.treasure-heart {
+    font-size: 58px;
+    animation: heartBeat 1.2s ease-in-out infinite;
+}
+
+.treasure-message-box > p {
+    margin-top: 8px;
+    font-size: 17px;
+}
+
+.treasure-message-box h2 {
+    margin-top: 12px;
+    font-size: clamp(36px, 7vw, 64px);
+    color: #9e3028;
+    line-height: 1;
+}
+
+.treasure-sign {
+    margin-top: 18px;
+    font-family: Georgia, serif;
+    font-size: 18px;
+}
+
+/* Footer */
+.op-footer {
+    padding: 75px 20px 90px;
+    text-align: center;
+    color: white;
+    background: rgba(3, 38, 70, .76);
+    border-top: 4px solid rgba(255,223,137,.7);
+    box-shadow: 0 -10px 35px rgba(0,0,0,.2);
+}
+
+.footer-skull {
+    font-size: 44px;
+    color: #ffe28d;
+}
+
+.op-footer h3 {
+    margin-top: 10px;
+    font-size: clamp(26px, 5vw, 46px);
+    color: #fff1b5;
+}
+
+.op-footer p {
+    margin-top: 10px;
+    font-family: Georgia, serif;
+    font-size: 16px;
+}
+
+.footer-couple {
+    margin-top: 25px;
+    font-size: 23px;
+    letter-spacing: .1em;
+    color: #ffd878;
+}
+
+/* Animations */
+@keyframes spinCompass {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes cloudMove {
+    from { transform: translateX(0) scale(1); }
+    to { transform: translateX(calc(100vw + 450px)) scale(1.15); }
+}
+
+@keyframes shipBob {
+    0%, 100% { transform: translateY(0) rotate(-2deg); }
+    50% { transform: translateY(-13px) rotate(3deg); }
+}
+
+@keyframes heartBeat {
+    0%, 100% { transform: scale(1); }
+    20% { transform: scale(1.12); }
+    40% { transform: scale(1); }
+}
+
+/* Mobile */
+@media (max-width: 850px) {
+    .op-header {
+        padding: 10px 12px;
+    }
+
+    .op-back-button {
+        font-size: 14px;
+        padding: 7px 12px;
+    }
+
+    .op-hero {
+        min-height: 760px;
+        align-items: end;
+        padding-bottom: 70px;
+    }
+
+    .op-hero-content {
+        margin: 0;
+        text-align: center;
+        padding: 22px;
+    }
+
+    .op-hero p:not(.op-kicker) br {
+        display: none;
+    }
+
+    .wanted-container {
+        grid-template-columns: 1fr;
+        width: min(430px, 100%);
+    }
+
+    .grand-line-map {
+        min-height: 680px;
+    }
+
+    .memory-island {
+        width: 112px;
+        min-height: 92px;
+    }
+
+    .island-one { left: 4%; top: 8%; }
+    .island-two { left: 39%; top: 18%; }
+    .island-three { left: 63%; top: 8%; }
+    .island-four { left: 67%; top: 43%; }
+    .island-five { left: 36%; top: 61%; }
+    .island-six { left: 5%; top: 70%; }
+
+    .map-ship {
+        left: 44%;
+        top: 42%;
+        font-size: 58px;
+    }
+
+
+
+    .op-counter {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 520px) {
+    .op-section {
+        width: 95vw;
+        padding: 27px 17px 35px;
+        margin: 28px auto;
+    }
+
+    .op-back-button {
+        font-size: 12px;
+        padding: 7px 9px;
+    }
+
+    .op-music-button {
+        width: 42px;
+    }
+
+    .op-header-title {
+        font-size: 14px;
+    }
+
+    .op-opening h1 {
+        font-size: 49px;
+    }
+
+    .op-hero h2 {
+        font-size: 39px;
+    }
+
+    .grand-line-map {
+        min-height: 700px;
+    }
+
+    .memory-island {
+        width: 100px;
+        min-height: 84px;
+    }
+
+    .memory-island strong {
+        font-size: 12px;
+    }
+
+    .island-one { left: 2%; }
+    .island-two { left: 36%; }
+    .island-three { left: 64%; }
+    .island-four { left: 64%; top: 42%; }
+    .island-five { left: 34%; top: 62%; }
+    .island-six { left: 2%; top: 72%; }
+
+
+
+    .op-polaroid {
+        padding: 7px 7px 15px;
+    }
+
+    .op-polaroid figcaption {
+        font-size: 11px;
+    }
+
+    .counter-box {
+        padding: 13px 7px;
+    }
+
+    .counter-box span {
+        font-size: 28px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: .001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .001ms !important;
+    }
+}
+
+
+/* Current One Piece HTML uses .op-scroll */
+.one-piece-page .op-scroll {
+    margin-top: 28px;
+    display: inline-block;
+    padding: 11px 18px;
+    border-radius: 8px;
+    color: #20170f;
+    background: linear-gradient(#ffe7a0, #dca94f);
+    border: 3px solid #5f3d16;
+    box-shadow: 0 7px 0 #4c3217, 0 12px 24px rgba(0,0,0,.28);
+    cursor: default;
+    font-size: 16px;
+    letter-spacing: .04em;
+}
+
+#gallery .one-piece-entry-button {
+    margin-top: 0;
+    background: rgba(255,255,255,.10);
+    border: 1px solid rgba(255,255,255,.55);
+    color: white;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+#gallery .one-piece-entry-button:hover {
+    background: rgba(255,255,255,.22);
+    transform: translateY(-2px);
+}
+
+
+/* =====================================================
+   ONE PIECE — INTEGRATION OVERRIDES
+   ===================================================== */
+/* Our Grand Line is a completely separate full-screen landing page.
+   It must never become a normal section in the main page flow.
+   IMPORTANT: give the overlay its OWN opaque background so the normal
+   website can never show through it. */
+.one-piece-page {
+    display: none;
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    min-height: 100vh;
+    z-index: 10000;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    isolation: isolate;
+    background:
+        linear-gradient(rgba(2, 48, 88, .24), rgba(1, 27, 58, .40)),
+        url("images/sunny.png") center center / cover no-repeat;
+    color: var(--op-white);
+}
+
+.one-piece-page .op-opening.hide {
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(1.04);
+    pointer-events: none;
+}
+
+.one-piece-page .grand-line-content {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    background: linear-gradient(
+        to bottom,
+        rgba(3, 54, 96, .12),
+        rgba(0, 27, 57, .28)
+    );
+
+    /* Keep the Voyage completely hidden behind the opening screen.
+       It appears only after the opening screen has finished fading out. */
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .15s ease, visibility 0s linear .15s;
+}
+
+.one-piece-page .grand-line-content.op-grand-line-visible {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    transition: opacity .25s ease;
+}
+
+.one-piece-page .op-opening {
+    position: fixed;
+}
+
+.one-piece-page .op-header {
+    z-index: 1200;
+}
+
+/* Keep the Grand Line music control locked to the top-right even when
+   WANTED / MAP / FINAL TREASURE opens as a full-screen panel. */
+.one-piece-page .op-header {
+    box-sizing: border-box;
+    width: 100vw;
+    right: 0;
+}
+
+.one-piece-page .op-header .op-music-wrap {
+    position: absolute;
+    top: 16px;
+    right: 22px;
+    left: auto;
+    margin: 0;
+}
+
+@font-face {
+    font-family: "One Piece";
+    src: url("onepiecefont.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+.one-piece-page,
+.one-piece-page *,
+.one-piece-page button,
+.one-piece-page input,
+.one-piece-page textarea,
+.one-piece-page select {
+    font-family: "One Piece", Georgia, serif !important;
+}
+
+
+/* =========================================================
+   GRAND LINE DESTINATION MENU
+   ========================================================= */
+.one-piece-page .op-grand-line-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 20px;
+    width: min(360px, 86vw);
+    margin: 32px 0 0;
+}
+
+.one-piece-page .op-destination-button {
+    width: 100%;
+    min-height: 72px;
+    padding: 14px 18px;
+    border: 3px solid #5e3b17;
+    border-radius: 12px;
+    background: linear-gradient(#f7d982, #bd8735);
+    color: #24170e;
+    box-shadow: 0 6px 0 #6e4518, 0 12px 22px rgba(0,0,0,.25);
+    cursor: pointer;
+    font-size: clamp(16px, 2.2vw, 23px);
+    letter-spacing: .05em;
+    transition: transform .2s ease, filter .2s ease;
+}
+
+.one-piece-page .op-destination-button:hover {
+    transform: translateY(-5px) scale(1.02);
+    filter: brightness(1.08);
+}
+
+.one-piece-page .op-menu-hint {
+    margin-top: 16px;
+    font-size: 14px;
+    letter-spacing: .15em;
+    color: #fff1bd;
+    text-shadow: 1px 2px 2px rgba(0,0,0,.45);
+}
+
+.one-piece-page .op-destination-panel {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1100;
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    box-sizing: border-box;
+    padding: 82px clamp(18px, 5vw, 70px) 50px;
+    /* Keep the Thousand Sunny ocean scene visible behind EVERY destination. */
+    background:
+        linear-gradient(135deg, rgba(4,30,52,.52), rgba(8,65,91,.42)),
+        url("images/sunny.png") center center / cover no-repeat;
+    background-attachment: fixed;
+    backdrop-filter: blur(1.5px);
+}
+
+.one-piece-page .op-destination-panel.op-panel-active {
+    display: block;
+    animation: opPanelPop .48s cubic-bezier(.2,.85,.25,1) both;
+}
+
+/* When a destination popup is open, hide the global BACK button so the
+   popup has only its single GRAND LINE button on the top-left. */
+.one-piece-page .grand-line-content.op-destination-open .op-header .op-back-button {
+    display: none;
+}
+
+/* Hide the three destination buttons while their selected destination is open. */
+.one-piece-page .grand-line-content.op-destination-open .op-grand-line-menu,
+.one-piece-page .grand-line-content.op-destination-open .op-menu-hint {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.one-piece-page .op-panel-back {
+    position: absolute;
+    top: 22px;
+    left: 22px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 16px;
+    border: 2px solid #5e3b17;
+    border-radius: 9px;
+    background: linear-gradient(#f7d982, #bd8735);
+    color: #2b1a0d;
+    box-shadow: 0 4px 0 #6e4518, 0 8px 16px rgba(0,0,0,.25);
+    cursor: pointer;
+    font-size: 14px;
+    letter-spacing: .06em;
+    transition: transform .16s ease, filter .16s ease;
+}
+
+.one-piece-page .op-panel-back:hover {
+    filter: brightness(1.08);
+    transform: translateY(-2px);
+}
+
+@keyframes opPanelPop {
+    0% { opacity: 0; transform: scale(.82) translateY(35px); }
+    55% { opacity: 1; transform: scale(1.025) translateY(-4px); }
+    78% { transform: scale(.99) translateY(1px); }
+    100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@media (max-width: 700px) {
+    .one-piece-page .op-grand-line-menu {
+        width: min(340px, 86vw);
+        margin-left: 0;
+        margin-right: 0;
+        gap: 16px;
+        align-items: stretch;
+    }
+
+    .one-piece-page .op-destination-button {
+        width: 100%;
+        min-height: 62px;
+    }
+}
+
+/* The Grand Line no longer contains a journey timer. */
+.one-piece-page .counter-section {
+    display: none !important;
+}
+
+
+/* =========================================================
+   GRAND LINE MUSIC — DEDICATED ONLY
+   ========================================================= */
+body.one-piece-active #musicBox,
+body.one-piece-active #musicBoxAryan {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
+
+.one-piece-page .op-music-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.one-piece-page .op-music-menu {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    width: min(260px, 78vw);
+    padding: 12px;
+    border: 2px solid #e8c86b;
+    border-radius: 12px;
+    background: rgba(7, 26, 44, .97);
+    box-shadow: 0 12px 30px rgba(0,0,0,.45);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-6px);
+    transition: opacity .2s ease, transform .2s ease, visibility .2s ease;
+    z-index: 1001;
+}
+
+.one-piece-page .op-music-menu.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.one-piece-page .op-music-menu-title {
+    padding: 4px 6px 10px;
+    color: #f8d979;
+    font-size: 13px;
+    letter-spacing: .08em;
+    text-align: center;
+}
+
+.one-piece-page .op-song-btn {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid rgba(248,217,121,.65);
+    border-radius: 8px;
+    background: rgba(255,255,255,.08);
+    color: #fff7dc;
+    cursor: pointer;
+    text-align: left;
+    font-size: 13px;
+}
+
+.one-piece-page .op-song-btn:hover {
+    background: rgba(248,217,121,.18);
+}
+
+@media (max-width: 700px) {
+    .one-piece-page .op-music-menu {
+        right: -8px;
+    }
+}
+
+/* Grand Line destination buttons: press-to-pop animation */
+.one-piece-page .op-destination-button.button-pop {
+    animation: grandLineButtonPop .42s cubic-bezier(.2,.85,.25,1) both;
+}
+
+@keyframes grandLineButtonPop {
+    0%   { transform: translateX(0) scale(1); }
+    38%  { transform: translateX(16px) scale(1.12); }
+    68%  { transform: translateX(7px) scale(1.04); }
+    100% { transform: translateX(0) scale(1); }
+}
+
+@media (max-width: 700px) {
+    .one-piece-page .op-destination-panel {
+        padding: 76px 16px 38px;
+    }
+
+    .one-piece-page .op-panel-back {
+        top: 16px;
+        left: 16px;
+        padding: 9px 13px;
+        font-size: 12px;
+    }
+}
+/* =========================================================
+   MEMORY POLAROID SLIDESHOW
+========================================================= */
+
+.memory-modal {
+    position: fixed;
+    inset: 0;
+
+    z-index: 7000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 12px;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(255,255,255,0.15),
+            rgba(0,0,0,0.72)
+        );
+
+    backdrop-filter: blur(6px);
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transition:
+        opacity 0.35s ease,
+        visibility 0.35s ease;
+}
+
+
+/* OPEN */
+
+.memory-modal.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+
+/* =========================================================
+   POPUP BOX
+========================================================= */
+
+.memory-modal-box {
+    position: relative;
+
+    width: min(96vw, 1400px);
+    max-width: 96vw;
+    max-height: 96vh;
+
+    overflow-y: auto;
+
+    padding: 35px 30px 30px;
+
+    text-align: center;
+
+    background:
+        linear-gradient(135deg, rgba(4,30,52,.72), rgba(8,65,91,.62)),
+        url("images/sunny.png") center center / cover no-repeat;
+    background-attachment: fixed;
+
+    border: 4px solid #151515;
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,0.55),
+        8px 8px 0 rgba(0,0,0,0.2);
+
+    transform: scale(0.85) translateY(25px);
+
+    transition: transform 0.4s cubic-bezier(.2,.8,.2,1);
+}
+
+
+.memory-modal.active .memory-modal-box {
+    transform: scale(1) translateY(0);
+}
+
+
+/* =========================================================
+   CLOSE BUTTON
+========================================================= */
+
+.close-memory {
+    position: absolute;
+
+    top: 8px;
+    right: 12px;
+
+    width: 42px;
+    height: 42px;
+
+    border: 2px solid #111;
+    border-radius: 50%;
+
+    background: rgba(255,255,255,0.9);
+
+    color: #111;
+
+    font-size: 30px;
+    line-height: 35px;
+
+    cursor: pointer;
+
+    z-index: 5;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+}
+
+
+.close-memory:hover {
+    transform: rotate(90deg) scale(1.08);
+}
+
+
+/* =========================================================
+   MEMORY TEXT
+========================================================= */
+
+.memory-modal-icon {
+    font-size: 42px;
+    margin-bottom: 5px;
+}
+
+
+.memory-chapter {
+    margin: 0 0 5px;
+
+    font-size: 14px;
+    letter-spacing: 3px;
+
+    opacity: 0.7;
+}
+
+
+.memory-modal-box h2 {
+    margin: 5px 0 10px;
+
+    font-size: clamp(28px, 5vw, 46px);
+}
+
+
+.memory-line {
+    width: 100px;
+    height: 3px;
+
+    margin: 12px auto 15px;
+
+    background: #111;
+}
+
+
+.memory-modal-box #memoryText {
+    max-width: 650px;
+
+    margin: 0 auto 25px;
+
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   POLAROID AREA
+========================================================= */
+
+.memory-polaroid-area,
+.memory-polaroid {
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 20px;
+
+    width: 100%;
+
+    margin: 10px auto 5px;
+}
+
+
+/* =========================================================
+   POLAROID FRAME
+========================================================= */
+
+.memory-polaroid-frame {
+
+    position: relative;
+
+    width: min(1100px, 88vw);
+    max-width: 88vw;
+    max-height: 82vh;
+
+    padding: 16px 16px 58px;
+
+    background: #fff;
+
+    box-shadow:
+        0 12px 25px rgba(0,0,0,0.28),
+        3px 4px 0 rgba(0,0,0,0.12);
+
+    transform: rotate(-1.5deg);
+
+    transition:
+        transform 0.3s ease,
+        opacity 0.25s ease;
+}
+
+
+.memory-polaroid-frame:hover {
+    transform: rotate(0deg) scale(1.015);
+}
+
+
+/* =========================================================
+   PHOTO
+========================================================= */
+
+.memory-polaroid-frame img {
+
+    display: block;
+
+    width: 100%;
+    height: auto;
+    max-height: 72vh;
+
+    /* Keep the complete photo visible instead of cropping it. */
+    aspect-ratio: auto;
+    object-fit: contain;
+
+    background: #eee;
+
+    border: 1px solid #ddd;
+
+    opacity: 1;
+
+    transition: opacity 0.25s ease;
+}
+
+
+.memory-polaroid-frame img.photo-changing {
+    opacity: 0;
+}
+
+
+/* =========================================================
+   CAPTION
+========================================================= */
+
+.memory-photo-caption,
+#memoryPhotoCaption {
+
+    position: absolute;
+
+    left: 14px;
+    right: 14px;
+    bottom: 10px;
+
+    margin: 0;
+
+    min-height: 30px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-family:
+        "Comic Sans MS",
+        "Bradley Hand",
+        cursive;
+
+    font-size: 18px;
+
+    color: #222;
+
+    line-height: 1.2;
+}
+
+
+/* =========================================================
+   POLAROID PIN
+========================================================= */
+
+.memory-polaroid-pin,
+.polaroid-pin {
+
+    position: absolute;
+
+    width: 18px;
+    height: 18px;
+
+    top: -9px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    border-radius: 50%;
+
+    background: #333;
+
+    box-shadow:
+        0 2px 4px rgba(0,0,0,0.35);
+
+    z-index: 3;
+}
+
+
+.memory-polaroid-pin::after,
+.polaroid-pin::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 7px;
+    height: 7px;
+
+    top: 3px;
+    left: 3px;
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,0.5);
+}
+
+
+/* =========================================================
+   PREVIOUS / NEXT BUTTONS
+========================================================= */
+
+.memory-photo-nav {
+
+    flex-shrink: 0;
+
+    width: 56px;
+    min-width: 56px;
+    height: 56px;
+
+    border-radius: 50%;
+
+    border: 2px solid #111;
+
+    background: rgba(255,255,255,0.9);
+
+    color: #111;
+
+    font-family: Georgia, serif;
+
+    font-size: 40px;
+
+    line-height: 35px;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+}
+
+
+.memory-photo-nav:hover {
+
+    transform: scale(1.12);
+
+    background: #fff;
+}
+
+
+.memory-photo-nav:active {
+    transform: scale(0.95);
+}
+
+
+/* =========================================================
+   PHOTO COUNTER
+========================================================= */
+
+.memory-photo-counter {
+
+    margin: 10px 0 0;
+
+    font-size: 13px;
+
+    letter-spacing: 2px;
+
+    opacity: 0.65;
+}
+
+
+/* =========================================================
+   LOADING / MISSING PHOTO
+========================================================= */
+
+.memory-polaroid-frame img[src=""] {
+    visibility: hidden;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .memory-modal {
+        padding: 6px;
+    }
+
+    .memory-modal-box {
+        width: 99vw;
+        max-width: 99vw;
+        max-height: 98vh;
+        padding: 42px 8px 12px;
+    }
+
+    .memory-modal-icon {
+        font-size: 34px;
+    }
+
+    .memory-modal-box h2 {
+        font-size: 27px;
+    }
+
+    .memory-modal-box #memoryText {
+        font-size: 14px;
+        line-height: 1.55;
+        margin-bottom: 18px;
+    }
+
+    .memory-polaroid-area,
+    .memory-polaroid {
+        gap: 8px;
+        width: 100%;
+    }
+
+    .memory-polaroid-frame {
+        width: min(92vw, 900px);
+        max-width: 92vw;
+        max-height: 82vh;
+        padding: 10px 10px 48px;
+    }
+
+    .memory-polaroid-frame img {
+        width: 100%;
+        max-height: 70vh;
+        aspect-ratio: auto;
+        object-fit: contain;
+    }
+
+    .memory-photo-caption,
+    #memoryPhotoCaption {
+        left: 9px;
+        right: 9px;
+        bottom: 7px;
+        font-size: 14px;
+    }
+
+    .memory-photo-nav {
+        width: 44px;
+        min-width: 44px;
+        height: 44px;
+        margin: 0 !important;
+        padding: 0 !important;
+        font-size: 32px;
+        line-height: 1;
+    }
+
+    .memory-polaroid-pin,
+    .polaroid-pin {
+        width: 14px;
+        height: 14px;
+        top: -7px;
+    }
+
+    .memory-polaroid-pin::after,
+    .polaroid-pin::after {
+        width: 5px;
+        height: 5px;
+        top: 2px;
+        left: 2px;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+
+@media (max-width: 380px) {
+
+    .memory-modal-box {
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+
+    .memory-polaroid-frame {
+
+        width: 63vw;
+
+        padding-bottom: 38px;
+    }
+
+
+    .memory-photo-nav {
+
+        width: 34px;
+        height: 34px;
+
+        font-size: 27px;
+    }
+
+
+    .memory-photo-caption {
+        font-size: 12px;
+    }
 }
