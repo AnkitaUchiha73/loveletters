@@ -5,20 +5,404 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To, Dr. Aryan Goyal ❤️</title>
-        <link href="https://fonts.googleapis.com/css2?family=Pirata+One&family=Caveat:wght@600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
  
 <body>
+ <!-- =========================================================
+     ONE PIECE — OUR GRAND LINE
+ ========================================================= -->
+
+ <section id="onePiecePage" class="one-piece-page">
+
+    <!-- Opening Screen -->
+    <div id="opOpening" class="op-opening">
+
+        <div class="op-opening-content">
+
+            <div class="op-compass">☸</div>
+
+            <p class="op-small-text">
+                EVERY ADVENTURE NEEDS A BEGINNING...
+            </p>
+
+            <h1>OUR GRAND LINE</h1>
+
+            <div class="op-crossed">☠</div>
+
+            <p class="op-couple-name">
+                ANKITA <span>X</span> ARYAN
+            </p>
+
+            <button id="startGrandLine" class="op-main-button">
+                SET SAIL ⚓
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- Main Grand Line -->
+    <div id="grandLineContent" class="grand-line-content">
+
+        <!-- Grand Line header: back on the left, music on the right -->
+        <header class="op-header">
+            <button id="backFromOnePiece" class="op-back-button" type="button" aria-label="Back to main website">
+                ← BACK
+            </button>
+
+            <div class="op-music-wrap">
+                <button id="opMusicButton" class="op-music-button" type="button" aria-label="Grand Line music">
+                    🎵
+                </button>
+                <div id="opMusicMenu" class="op-music-menu" aria-label="Grand Line playlist">
+                    <div class="op-music-menu-title">☠ GRAND LINE PLAYLIST</div>
+                    <button type="button" class="op-song-btn" data-op-song="music/onepiece.mp3">
+                        🎵 One Piece Theme
+                    </button>
+                </div>
+            </div>
+
+        </header>
+
+
+        <!-- Hero -->
+        <section class="op-hero">
+
+            <div class="op-cloud cloud-one"></div>
+            <div class="op-cloud cloud-two"></div>
+
+            <div class="op-hero-content">
+
+                <p class="op-kicker">
+                    TWO STRANGERS. ONE ADVENTURE.
+                </p>
+
+                <h2>
+                    THE VOYAGE OF<br>
+                    <span>ANKITA & ARYAN</span>
+                </h2>
+
+                <p>
+                    Somewhere between one match of CODM
+                    and a thousand memories,
+                    our adventure began.
+                </p>
+
+                <div class="op-grand-line-menu" aria-label="Grand Line destinations">
+                    <button type="button" class="op-destination-button" data-op-section="wantedSection">☠ WANTED</button>
+                    <button type="button" class="op-destination-button" data-op-section="mapSection">🗺 OUR WORLD MAP</button>
+                    <button type="button" class="op-destination-button" data-op-section="treasureSection">ONE PIECE</button>
+                </div>
+
+                
+            </div>
+
+        </section>
+
+
+        <!-- Wanted Posters -->
+        <section id="wantedSection" class="op-section wanted-section op-destination-panel">
+
+            <button type="button" class="op-panel-back" data-op-home>GRAND LINE</button>
+
+            <div class="op-section-title">
+                <span>☠</span>
+                WANTED
+                <span>☠</span>
+            </div>
+
+            <div class="wanted-container">
+
+                <div class="wanted-poster">
+
+                    <div class="wanted-top">
+                        WANTED
+                    </div>
+
+                    <div class="wanted-photo">
+                        <span>❤️</span>
+                    </div>
+
+                    <h3>ARYAN GOYAL</h3>
+
+                    <p class="wanted-subtitle">
+                        DEAD OR ALIVE
+                    </p>
+
+                    <p class="bounty">
+                        BOUNTY: ∞ ❤️
+                    </p>
+
+                    <p class="crime">
+                        Crime:<br>
+                        Stealing Ankita's heart.
+                    </p>
+
+                </div>
+
+
+                <div class="wanted-poster">
+
+                    <div class="wanted-top">
+                        WANTED
+                    </div>
+
+                    <div class="wanted-photo">
+                        <span>🌸</span>
+                    </div>
+
+                    <h3>ANKITA</h3>
+
+                    <p class="wanted-subtitle">
+                        DEAD OR ALIVE
+                    </p>
+
+                    <p class="bounty">
+                        BOUNTY: ∞ ❤️
+                    </p>
+
+                    <p class="crime">
+                        Crime:<br>
+                        Making Aryan fall in love.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Grand Line Map -->
+        <section id="mapSection" class="op-section map-section op-destination-panel">
+
+            <button type="button" class="op-panel-back" data-op-home>GRAND LINE</button>
+
+            <div class="op-section-title">
+                <span>🗺️</span>
+                OUR GRAND LINE
+                <span>🗺️</span>
+            </div>
+
+            <p class="map-intro">
+                Every island holds a piece of our story.
+            </p>
+
+            <div class="grand-line-map">
+
+                <div class="map-route"></div>
+
+                <!-- Island 1 -->
+                <button class="memory-island island-one"
+                        data-memory="codm">
+                    <span class="island-icon">🎮</span>
+                    <strong>CODM<br>ISLAND</strong>
+                </button>
+
+                <!-- Island 2 -->
+                <button class="memory-island island-two"
+                        data-memory="videocall">
+                    <span class="island-icon">📞</span>
+                    <strong>VIDEO<br>CALLS</strong>
+                </button>
+
+                <!-- Island 3 -->
+                <button class="memory-island island-three"
+                        data-memory="Mysore">
+                    <span class="island-icon">🏰✨</span>
+                    <strong>MYSORE<br>ISLAND</strong>
+                </button>
+
+                <!-- Island 4 -->
+                <button class="memory-island island-four"
+                        data-memory="Banglore">
+                    <span class="island-icon">🏰</span>
+                    <strong>BANGLORE<br>ISLAND</strong>
+                </button>
+
+                <!-- Island 5 -->
+                <button class="memory-island island-five"
+                        data-memory="Mumbai">
+                    <span class="island-icon">🌊</span>
+                    <strong>MUMBAI<br>ISLAND</strong>
+                </button>
+
+            
+
+                <div class="map-ship">
+                    ⛵
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+     MEMORY / POLAROID POPUP
+========================= -->
+
+<div id="memoryModal" class="memory-modal">
+
+    <div class="memory-modal-box">
+
+        <button
+            id="closeMemory"
+            class="close-memory"
+            type="button"
+            aria-label="Close memory">
+            ×
+        </button>
+
+        <div id="memoryIcon" class="memory-modal-icon">❤️</div>
+
+        <p id="memoryChapter" class="memory-chapter">
+            CHAPTER I
+        </p>
+
+        <h2 id="memoryTitle">Our Beginning</h2>
+
+        <div class="memory-line"></div>
+
+        <p id="memoryText">
+            Our story begins here.
+        </p>
+
+        <div class="memory-polaroid">
+
+            <button
+                id="memoryPhotoPrev"
+                class="memory-photo-nav memory-photo-prev"
+                type="button">
+                ‹
+            </button>
+
+            <div class="memory-polaroid-frame">
+
+                <span class="polaroid-pin"></span>
+
+                <img
+                    id="memoryPhoto"
+                    src=""
+                    alt="Our memory">
+
+                <p id="memoryPhotoCaption"></p>
+
+            </div>
+
+            <button
+                id="memoryPhotoNext"
+                class="memory-photo-nav memory-photo-next"
+                type="button">
+                ›
+            </button>
+
+        </div>
+
+        <p
+            id="memoryPhotoCounter"
+            class="memory-photo-counter">
+            1 / 1
+        </p>
+
+    </div>
+
+</div>
+
+        <!-- Treasure -->
+        <section id="treasureSection" class="op-section treasure-section op-destination-panel">
+
+            <button type="button" class="op-panel-back" data-op-home>GRAND LINE</button>
+
+            <div class="op-section-title">
+                ☠ THE FINAL ISLAND ☠
+            </div>
+
+            <p class="treasure-intro">
+                You've reached the end of the Grand Line.
+            </p>
+
+            <p>
+                But every great adventure has one final treasure...
+            </p>
+
+            <div class="treasure-area">
+
+                <button id="treasureChest"
+                        class="treasure-chest">
+
+                    <div class="chest-lock">
+                        🔒
+                    </div>
+
+                    <div class="chest-lid"></div>
+
+                    <div class="chest-body">
+                        💎
+                    </div>
+
+                </button>
+
+                <p class="chest-hint">
+                    TAP THE CHEST
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- Treasure Message -->
+        <div id="treasureMessage"
+             class="treasure-message">
+
+            <div class="treasure-message-box">
+
+                <div class="treasure-heart">
+                    ❤️
+                </div>
+
+                <p>
+                    IF THIS JOURNEY<br>
+                    HAD A TREASURE...
+                </p>
+
+                <h2>
+                    IT WOULD BE YOU.
+                </h2>
+
+                <div class="treasure-sign">
+                    — Ankita ❤️
+                </div>
+
+                <button id="closeTreasure"
+                        class="op-main-button">
+                    KEEP SAILING ⚓
+                </button>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+ </section>
+
+
+ <!-- One Piece Music -->
+ <audio id="onePieceMusic"
+       preload="auto">
+
+    <source src="music/onepiece.mp3" type="audio/mpeg">
+
+ </audio>
  
     <!-- Background Music -->
     <audio id="bgMusic" preload="auto"></audio>
-    <audio id="onePieceTheme" preload="auto">
-    <source src="music/one_piece.mp3" type="audio/mpeg">
-    </audio>
- 
- 
-    <!-- ================= INTRO PAGE ================= -->
+<!-- ================= INTRO PAGE ================= -->
  
     <section id="intro">
  
@@ -192,29 +576,14 @@
             💌 His Letters
         </button>
 
-    </div>
-<!-- ================= MOVIE OF US ================= -->
-
-<div class="movieSection">
-
-    <div class="moviePolaroid" id="openMovie">
-        <div class="washi-tape"></div>
-        <div class="polaroid-photo">
-            <img src="images/image1.jpg" alt="Our memory">
-        </div>
-
-        <div class="polaroid-caption">
-            A Movie Made of Us ♡
-        </div>
+        <button
+            type="button"
+            id="onePieceButton"
+            class="one-piece-entry-button">
+            🏴‍☠️ Our Grand Line
+        </button>
 
     </div>
-
-    <p class="movieHint">
-        Tap the photograph to play our story 🎞️
-    </p>
-
-</div>
-
 </div>
 
             </div>
@@ -490,63 +859,8 @@
     </div>
 
 </div>
-<!-- =====================================================
-     A MOVIE MADE OF US
-     ===================================================== -->
-
-<div id="movieExperience">
-
-    <div class="movieFilmGrain"></div>
-
-    <button id="closeMovie" class="movieClose">
-        ×
-    </button>
-
-    <div class="movieCounter" id="movieCounter">
-        1 / 10
-    </div>
-
-    <div class="movieStage">
-
-        <div class="moviePolaroidFrame" id="moviePolaroid">
-
-            <div class="moviePhoto">
-
-                <img
-                    id="movieImage"
-                    src=""
-                    alt="Our memory">
-
-            </div>
-
-            <div
-                class="movieCaption"
-                id="movieCaption">
-            </div>
-
-        </div>
-
-    </div>
-
-    <div class="movieEnding" id="movieEnding">
-
-        <h1>And this is only the beginning...</h1>
-
-        <p>
-            There are still so many memories left to make. ❤️
-        </p>
-
-        <button id="finishMovie">
-            Back to Our Story
-        </button>
-
-    </div>
-
-</div>
-
     <script src="script.js"></script>
  
 </body>
  
 </html>
-
