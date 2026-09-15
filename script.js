@@ -18,36 +18,36 @@ const musicMenuAryan = document.getElementById("musicMenuAryan");
 
 
 // ============================
-// GLOBAL STATE
-// ============================
-
-// True while the "Movie Made of Us" experience is open.
-// Used to stop the background playlist from starting/restarting
-// underneath the movie theme (song clicks, shuffle, auto-next-on-end).
-let movieIsOpen = false;
-
-
-// ============================
 // MUSIC TOGGLE
 // ============================
 
-musicToggle.addEventListener("click",()=>{
-    musicMenu.classList.toggle("show");
-});
+if (musicToggle) {
+    musicToggle.addEventListener("click", () => {
+        if (musicMenu) {
+            musicMenu.classList.toggle("show");
+        }
+    });
+}
 
-musicToggleAryan.addEventListener("click",()=>{
-    musicMenuAryan.classList.toggle("show");
-});
+if (musicToggleAryan) {
+    musicToggleAryan.addEventListener("click", () => {
+        if (musicMenuAryan) {
+            musicMenuAryan.classList.toggle("show");
+        }
+    });
+}
 
-music.addEventListener("play",()=>{
-    musicToggle.innerHTML="🎶❤️";
-    musicToggleAryan.innerHTML="🎶❤️";
-});
+if (music) {
+    music.addEventListener("play", () => {
+        if (musicToggle) musicToggle.innerHTML = "🎶❤️";
+        if (musicToggleAryan) musicToggleAryan.innerHTML = "🎶❤️";
+    });
 
-music.addEventListener("pause",()=>{
-    musicToggle.innerHTML="🎵❤️";
-    musicToggleAryan.innerHTML="🎵❤️";
-});
+    music.addEventListener("pause", () => {
+        if (musicToggle) musicToggle.innerHTML = "🎵❤️";
+        if (musicToggleAryan) musicToggleAryan.innerHTML = "🎵❤️";
+    });
+}
 
 
 // ============================
@@ -68,8 +68,6 @@ const songs = [
     "music/YehRatein.mp3"
 ];
 
-
-// Replace these with Aryan's own playlist filenames
 const aryanSongs = [
     "music/TujhMeinRabDikhta.mp3",
     "music/AaoNaa.mp3",
@@ -98,10 +96,11 @@ const aryanSongs = [
     "music/saazni.mp3"
 ];
 
-
 let currentSong = songs[0];
 
-music.src = currentSong;
+if (music) {
+    music.src = currentSong;
+}
 
 
 // ============================
@@ -112,36 +111,38 @@ const songButtons = document.querySelectorAll(".song-btn");
 const shuffleBtn = document.getElementById("shuffleBtn");
 const shuffleBtnAryan = document.getElementById("shuffleBtnAryan");
 
-
 function updateActiveSongButton() {
 
     songButtons.forEach(btn => {
+
         btn.classList.toggle(
             "active",
             btn.dataset.song === currentSong
         );
+
     });
 
 }
-
 
 songButtons.forEach(btn => {
 
     btn.addEventListener("click", () => {
 
-        // Don't let playlist clicks start music while the movie is open
-        if (movieIsOpen) return;
-
-        if(btn.id === "shuffleBtn" || btn.id === "shuffleBtnAryan") return;
+        if (
+            btn.id === "shuffleBtn" ||
+            btn.id === "shuffleBtnAryan"
+        ) {
+            return;
+        }
 
         currentSong = btn.dataset.song;
 
-        music.src = currentSong;
+        if (!music) return;
 
+        music.src = currentSong;
         music.load();
 
-        music.play()
-        .catch(error => {
+        music.play().catch(error => {
             console.log("Music error:", error);
         });
 
@@ -152,26 +153,28 @@ songButtons.forEach(btn => {
 });
 
 
-function playRandomFrom(playlist){
+function playRandomFrom(playlist) {
 
-    // Don't let auto-next / shuffle restart the playlist while the movie is open
-    if (movieIsOpen) return;
+    if (!playlist || !playlist.length || !music) return;
 
     let nextSong;
 
-    do{
-        nextSong = playlist[Math.floor(Math.random()*playlist.length)];
-    }
-    while(nextSong === currentSong && playlist.length > 1);
+    do {
+        nextSong =
+            playlist[
+                Math.floor(Math.random() * playlist.length)
+            ];
+    } while (
+        nextSong === currentSong &&
+        playlist.length > 1
+    );
 
     currentSong = nextSong;
 
     music.src = currentSong;
-
     music.load();
 
-    music.play()
-    .catch(error => {
+    music.play().catch(error => {
         console.log("Music error:", error);
     });
 
@@ -180,23 +183,19 @@ function playRandomFrom(playlist){
 }
 
 
-if(shuffleBtn){
+if (shuffleBtn) {
 
-    shuffleBtn.addEventListener("click",()=>{
-
+    shuffleBtn.addEventListener("click", () => {
         playRandomFrom(songs);
-
     });
 
 }
 
 
-if(shuffleBtnAryan){
+if (shuffleBtnAryan) {
 
-    shuffleBtnAryan.addEventListener("click",()=>{
-
+    shuffleBtnAryan.addEventListener("click", () => {
         playRandomFrom(aryanSongs);
-
     });
 
 }
@@ -206,21 +205,21 @@ if(shuffleBtnAryan){
 // AUTO NEXT SONG
 // ============================
 
-// Auto next song — picks from whichever page's playlist is currently showing
+if (music) {
 
-music.addEventListener("ended",()=>{
+    music.addEventListener("ended", () => {
 
-    // Don't auto-advance the playlist while the movie is open
-    if (movieIsOpen) return;
+        const activePlaylist =
+            aryanPage &&
+            aryanPage.style.display === "block"
+                ? aryanSongs
+                : songs;
 
-    const activePlaylist =
-        aryanPage.style.display === "block"
-        ? aryanSongs
-        : songs;
+        playRandomFrom(activePlaylist);
 
-    playRandomFrom(activePlaylist);
+    });
 
-});
+}
 
 
 // ============================
@@ -262,7 +261,6 @@ const images = [
 ];
 
 
-// Replace these with the photos you want just for Aryan's page
 const aryanImages = [
     "images/aryan1.jpeg",
     "images/aryan2.jpeg",
@@ -294,11 +292,11 @@ let currentAryanImage = 0;
 
 
 // ============================
-// JOURNEY INTRO ANIMATION + LIVE COUNTER
+// JOURNEY INTRO + LIVE COUNTER
 // ============================
 
-// Set this to the date you two got together (YYYY-MM-DDTHH:MM:SS)
-const startDate = new Date("2024-04-22T00:00:00");
+const startDate =
+    new Date("2024-04-22T00:00:00");
 
 let counterInterval = null;
 
@@ -307,25 +305,42 @@ function updateCounter() {
 
     const now = new Date();
 
-    let diff = now - startDate; // milliseconds
+    let diff = now - startDate;
 
     if (diff < 0) diff = 0;
 
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const days =
+        Math.floor(
+            diff / (1000 * 60 * 60 * 24)
+        );
 
-    diff -= days * (1000 * 60 * 60 * 24);
+    diff -=
+        days *
+        (1000 * 60 * 60 * 24);
 
-    const hours = Math.floor(diff / (1000 * 60 * 60));
+    const hours =
+        Math.floor(
+            diff / (1000 * 60 * 60)
+        );
 
-    diff -= hours * (1000 * 60 * 60);
+    diff -=
+        hours *
+        (1000 * 60 * 60);
 
-    const minutes = Math.floor(diff / (1000 * 60));
+    const minutes =
+        Math.floor(
+            diff / (1000 * 60)
+        );
 
-    diff -= minutes * (1000 * 60);
+    diff -=
+        minutes *
+        (1000 * 60);
 
-    const seconds = Math.floor(diff / 1000);
+    const seconds =
+        Math.floor(diff / 1000);
 
-    const counterEl = document.getElementById("counter");
+    const counterEl =
+        document.getElementById("counter");
 
     if (counterEl) {
 
@@ -339,16 +354,36 @@ function updateCounter() {
 
 function runJourneyIntro() {
 
-    const mainTitle = document.getElementById("mainTitle");
-    const mainSubtitle = document.getElementById("mainSubtitle");
-    const mainSubtitle2 = document.getElementById("mainSubtitle2");
-    const gallery = document.getElementById("gallery");
-    const journey = document.getElementById("journeyIntro");
-    const title = document.getElementById("journeyTitle");
-    const timer = document.getElementById("loveCounter");
+    const mainTitle =
+        document.getElementById("mainTitle");
+
+    const mainSubtitle =
+        document.getElementById("mainSubtitle");
+
+    const mainSubtitle2 =
+        document.getElementById("mainSubtitle2");
+
+    const gallery =
+        document.getElementById("gallery");
+
+    const journey =
+        document.getElementById("journeyIntro");
+
+    const title =
+        document.getElementById("journeyTitle");
+
+    const timer =
+        document.getElementById("loveCounter");
 
 
-    // Hide normal content while the intro animation plays
+    if (
+        !journey ||
+        !title ||
+        !timer
+    ) {
+        return;
+    }
+
 
     if (mainTitle)
         mainTitle.style.opacity = "0";
@@ -364,18 +399,19 @@ function runJourneyIntro() {
 
 
     journey.style.display = "flex";
-
     journey.style.opacity = "1";
 
 
-    // Start the live counter right away and keep it ticking every second
-
     updateCounter();
 
-    counterInterval = setInterval(updateCounter, 1000);
+    clearInterval(counterInterval);
 
+    counterInterval =
+        setInterval(
+            updateCounter,
+            1000
+        );
 
-    // Story text fades in, then out
 
     setTimeout(() => {
 
@@ -391,8 +427,6 @@ function runJourneyIntro() {
     }, 2500);
 
 
-    // Counter fades in, then out
-
     setTimeout(() => {
 
         timer.style.opacity = "1";
@@ -406,8 +440,6 @@ function runJourneyIntro() {
 
     }, 8500);
 
-
-    // Remove intro overlay and reveal the real page
 
     setTimeout(() => {
 
@@ -436,171 +468,223 @@ function runJourneyIntro() {
 // OPEN WEBSITE
 // ============================
 
-button.addEventListener("click", () => {
+if (button) {
 
-    // Play the selected song
+    button.addEventListener("click", () => {
 
-    music.play().catch(error => {
+        if (music) {
 
-        console.log("Music couldn't start:", error);
+            music.play().catch(error => {
+                console.log(
+                    "Music couldn't start:",
+                    error
+                );
+            });
+
+            updateActiveSongButton();
+
+        }
+
+
+        if (intro) {
+            intro.style.opacity = "0";
+        }
+
+
+        setTimeout(() => {
+
+            if (intro)
+                intro.style.display = "none";
+
+            if (lettersPage)
+                lettersPage.style.display = "block";
+
+
+            if (
+                slideshow &&
+                images.length
+            ) {
+
+                slideshow.style.backgroundImage =
+                    `url('${images[0]}')`;
+
+            }
+
+
+            runJourneyIntro();
+
+        }, 800);
 
     });
 
-    updateActiveSongButton();
-
-
-    // Fade out intro
-
-    intro.style.opacity = "0";
-
-
-    setTimeout(() => {
-
-        intro.style.display = "none";
-
-        lettersPage.style.display = "block";
-
-
-        // Start slideshow
-
-        slideshow.style.backgroundImage =
-            `url('${images[0]}')`;
-
-
-        // Play the journey intro animation + live counter now that the page is visible
-
-        runJourneyIntro();
-
-    }, 800);
-
-});
+}
 
 
 // ============================
 // GO TO ARYAN'S PAGE
 // ============================
 
-toAryanBtn.addEventListener("click", () => {
+if (toAryanBtn) {
 
-    lettersPage.style.opacity = "0";
+    toAryanBtn.addEventListener("click", () => {
 
-
-    setTimeout(() => {
-
-        lettersPage.style.display = "none";
-
-        lettersPage.style.opacity = "1";
-
-        aryanPage.style.display = "block";
-
-
-        // FIX:
-        // Aryan's gallery was staying invisible because
-        // .gallery has opacity: 0 in style.css.
-        // The main page has runJourneyIntro() which changes
-        // its gallery to opacity: 1, but Aryan's page doesn't.
-
-        const aryanGallery = aryanPage.querySelector(".gallery");
-
-        if (aryanGallery) {
-
-            aryanGallery.style.opacity = "1";
-
+        if (lettersPage) {
+            lettersPage.style.opacity = "0";
         }
 
 
-        // Switch to Aryan's own slideshow
+        setTimeout(() => {
 
-        slideshowAryan.style.backgroundImage =
-            `url('${aryanImages[currentAryanImage]}')`;
+            if (lettersPage) {
 
+                lettersPage.style.display = "none";
+                lettersPage.style.opacity = "1";
 
-        // Switch to Aryan's own playlist
+            }
 
-        currentSong = aryanSongs[0];
+            if (aryanPage) {
 
-        music.src = currentSong;
+                aryanPage.style.display = "block";
 
-        music.load();
-
-        music.play().catch(error => {
-
-            console.log("Music couldn't start:", error);
-
-        });
-
-        updateActiveSongButton();
+            }
 
 
-    }, 800);
+            const aryanGallery =
+                aryanPage
+                    ? aryanPage.querySelector(".gallery")
+                    : null;
 
-});
+            if (aryanGallery) {
+                aryanGallery.style.opacity = "1";
+            }
+
+
+            if (
+                slideshowAryan &&
+                aryanImages.length
+            ) {
+
+                slideshowAryan.style.backgroundImage =
+                    `url('${aryanImages[currentAryanImage]}')`;
+
+            }
+
+
+            currentSong =
+                aryanSongs[0];
+
+            if (music) {
+
+                music.src =
+                    currentSong;
+
+                music.load();
+
+                music.play().catch(error => {
+                    console.log(
+                        "Music couldn't start:",
+                        error
+                    );
+                });
+
+            }
+
+            updateActiveSongButton();
+
+        }, 800);
+
+    });
+
+}
 
 
 // ============================
 // BACK TO LETTERS PAGE
 // ============================
 
-backFromAryanBtn.addEventListener("click", () => {
+if (backFromAryanBtn) {
 
-    aryanPage.style.opacity = "0";
+    backFromAryanBtn.addEventListener("click", () => {
 
-
-    setTimeout(() => {
-
-        aryanPage.style.display = "none";
-
-        aryanPage.style.opacity = "1";
-
-        lettersPage.style.display = "block";
+        if (aryanPage) {
+            aryanPage.style.opacity = "0";
+        }
 
 
-        // Switch back to the main slideshow
+        setTimeout(() => {
 
-        slideshow.style.backgroundImage =
-            `url('${images[currentImage]}')`;
+            if (aryanPage) {
 
+                aryanPage.style.display = "none";
+                aryanPage.style.opacity = "1";
 
-        // Switch back to the main playlist
+            }
 
-        currentSong = songs[0];
-
-        music.src = currentSong;
-
-        music.load();
-
-        music.play().catch(error => {
-
-            console.log("Music couldn't start:", error);
-
-        });
-
-        updateActiveSongButton();
+            if (lettersPage) {
+                lettersPage.style.display = "block";
+            }
 
 
-    }, 800);
+            if (
+                slideshow &&
+                images.length
+            ) {
 
-});
+                slideshow.style.backgroundImage =
+                    `url('${images[currentImage]}')`;
+
+            }
+
+
+            currentSong =
+                songs[0];
+
+            if (music) {
+
+                music.src =
+                    currentSong;
+
+                music.load();
+
+                music.play().catch(error => {
+                    console.log(
+                        "Music couldn't start:",
+                        error
+                    );
+                });
+
+            }
+
+            updateActiveSongButton();
+
+        }, 800);
+
+    });
+
+}
 
 
 // ============================
-// SLIDESHOW
+// BACKGROUND SLIDESHOW
 // ============================
 
 setInterval(() => {
 
-
-    if (lettersPage.style.display === "block") {
+    if (
+        lettersPage &&
+        lettersPage.style.display === "block" &&
+        slideshow &&
+        images.length
+    ) {
 
         currentImage++;
 
-
-        if (currentImage >= images.length) {
-
+        if (
+            currentImage >=
+            images.length
+        ) {
             currentImage = 0;
-
         }
-
 
         slideshow.style.backgroundImage =
             `url('${images[currentImage]}')`;
@@ -608,23 +692,26 @@ setInterval(() => {
     }
 
 
-    if (aryanPage.style.display === "block") {
+    if (
+        aryanPage &&
+        aryanPage.style.display === "block" &&
+        slideshowAryan &&
+        aryanImages.length
+    ) {
 
         currentAryanImage++;
 
-
-        if (currentAryanImage >= aryanImages.length) {
-
+        if (
+            currentAryanImage >=
+            aryanImages.length
+        ) {
             currentAryanImage = 0;
-
         }
-
 
         slideshowAryan.style.backgroundImage =
             `url('${aryanImages[currentAryanImage]}')`;
 
     }
-
 
 }, 4000);
 
@@ -632,9 +719,6 @@ setInterval(() => {
 // ============================
 // LETTER CONTENT DATA
 // ============================
-// Each letter's full text lives here now, instead of in
-// separate hardcoded popup divs. This is what makes the
-// single-letter viewer (with Prev / Next) possible.
 
 const mainLetters = [
 
@@ -869,286 +953,604 @@ const aryanLetters = [
 
 
 // ============================
-// SINGLE LETTER CARD (inline, with Prev / Next)
+// SINGLE LETTER CARD
 // ============================
-// No popup — the card sits right on the page and the arrows
-// flip through the letters in place.
-function makeLetterCard(letters, els){
+
+function makeLetterCard(letters, els) {
 
     let index = 0;
     let expanded = false;
     let isAnimating = false;
 
-    function renderExpandState(){
 
-        els.body.style.display = expanded ? "block" : "none";
+    function renderExpandState() {
 
-        els.toggle.textContent = expanded ? "▲ Collapse" : "Tap to read ❤️";
+        els.body.style.display =
+            expanded ? "block" : "none";
 
-        if(els.card){
-            els.card.classList.toggle("letter-open", expanded);
+        els.toggle.textContent =
+            expanded
+                ? "▲ Collapse"
+                : "Tap to read ❤️";
+
+        if (els.card) {
+
+            els.card.classList.toggle(
+                "letter-open",
+                expanded
+            );
+
         }
 
-        if(expanded){
+        if (expanded) {
             els.body.scrollTop = 0;
         }
 
     }
 
-    function renderContent(){
 
-        const letter = letters[index];
+    function renderContent() {
 
-        els.emoji.textContent = letter.emoji || "";
-        els.title.textContent = letter.title;
-        els.date.textContent = letter.date;
-        els.date.style.display = letter.date ? "block" : "none";
-        els.body.innerHTML = letter.body;
+        const letter =
+            letters[index];
 
-        if(els.position){
-            els.position.textContent = `${index + 1} / ${letters.length}`;
+        els.emoji.textContent =
+            letter.emoji || "";
+
+        els.title.textContent =
+            letter.title;
+
+        els.date.textContent =
+            letter.date;
+
+        els.date.style.display =
+            letter.date
+                ? "block"
+                : "none";
+
+        els.body.innerHTML =
+            letter.body;
+
+        if (els.position) {
+
+            els.position.textContent =
+                `${index + 1} / ${letters.length}`;
+
         }
 
-        if(els.prevBtn) els.prevBtn.disabled = index === 0;
-        if(els.nextBtn) els.nextBtn.disabled = index === letters.length - 1;
+        if (els.prevBtn) {
+
+            els.prevBtn.disabled =
+                index === 0;
+
+        }
+
+        if (els.nextBtn) {
+
+            els.nextBtn.disabled =
+                index === letters.length - 1;
+
+        }
 
         expanded = false;
+
         renderExpandState();
 
     }
 
-    // First render — no animation, just show it
-    function render(){
-        renderContent();
-    }
 
-    // Slide to a new index, direction: "next" or "prev"
-    function slideTo(newIndex, direction){
+    function slideTo(newIndex, direction) {
 
-        if(isAnimating) return;
-        if(newIndex < 0 || newIndex > letters.length - 1) return;
-        if(!els.card) { index = newIndex; renderContent(); return; }
+        if (isAnimating) return;
+
+        if (
+            newIndex < 0 ||
+            newIndex > letters.length - 1
+        ) {
+            return;
+        }
+
+        if (!els.card) {
+
+            index = newIndex;
+
+            renderContent();
+
+            return;
+
+        }
+
 
         isAnimating = true;
 
-        const outClass = direction === "next" ? "slide-out-left" : "slide-out-right";
-        const inClass  = direction === "next" ? "slide-in-right" : "slide-in-left";
+        const outClass =
+            direction === "next"
+                ? "slide-out-left"
+                : "slide-out-right";
 
-        els.card.classList.remove("slide-in-right", "slide-in-left");
-        els.card.classList.add(outClass);
+        const inClass =
+            direction === "next"
+                ? "slide-in-right"
+                : "slide-in-left";
+
+
+        els.card.classList.remove(
+            "slide-in-right",
+            "slide-in-left"
+        );
+
+        els.card.classList.add(
+            outClass
+        );
+
 
         const onOutEnd = () => {
 
-            els.card.removeEventListener("animationend", onOutEnd);
-            els.card.classList.remove(outClass);
+            els.card.removeEventListener(
+                "animationend",
+                onOutEnd
+            );
+
+            els.card.classList.remove(
+                outClass
+            );
 
             index = newIndex;
+
             renderContent();
 
-            els.card.classList.add(inClass);
+            els.card.classList.add(
+                inClass
+            );
+
 
             const onInEnd = () => {
-                els.card.removeEventListener("animationend", onInEnd);
-                els.card.classList.remove(inClass);
+
+                els.card.removeEventListener(
+                    "animationend",
+                    onInEnd
+                );
+
+                els.card.classList.remove(
+                    inClass
+                );
+
                 isAnimating = false;
+
             };
 
-            els.card.addEventListener("animationend", onInEnd);
+
+            els.card.addEventListener(
+                "animationend",
+                onInEnd
+            );
 
         };
 
-        els.card.addEventListener("animationend", onOutEnd);
+
+        els.card.addEventListener(
+            "animationend",
+            onOutEnd
+        );
 
     }
 
-    function goNext(){
-        if(index < letters.length - 1) slideTo(index + 1, "next");
+
+    function goNext() {
+
+        if (
+            index <
+            letters.length - 1
+        ) {
+
+            slideTo(
+                index + 1,
+                "next"
+            );
+
+        }
+
     }
 
-    function goPrev(){
-        if(index > 0) slideTo(index - 1, "prev");
+
+    function goPrev() {
+
+        if (index > 0) {
+
+            slideTo(
+                index - 1,
+                "prev"
+            );
+
+        }
+
     }
 
-    els.toggle.addEventListener("click", () => {
-        expanded = !expanded;
-        renderExpandState();
-    });
+
+    if (els.toggle) {
+
+        els.toggle.addEventListener(
+            "click",
+            () => {
+
+                expanded = !expanded;
+
+                renderExpandState();
+
+            }
+        );
+
+    }
 
 
-    // =====================================================
+    // ============================
     // SWIPE / DRAG SUPPORT
-    // =====================================================
+    // ============================
 
-    if(els.card){
+    if (els.card) {
 
         let startX = 0;
         let startY = 0;
         let dragging = false;
-        let lockedAxis = null; // "x" or "y", decided after a small threshold
+        let lockedAxis = null;
 
-        const SWIPE_THRESHOLD = 45; // px needed to count as a swipe
+        const SWIPE_THRESHOLD = 45;
 
-        function onDragStart(x, y){
-            if(expanded) return; // don't swipe while reading a letter
-            if(isAnimating) return;
+
+        function onDragStart(x, y) {
+
+            if (expanded) return;
+            if (isAnimating) return;
+
             dragging = true;
             lockedAxis = null;
+
             startX = x;
             startY = y;
+
         }
 
-        function onDragMove(x, y){
-            if(!dragging) return;
 
-            const dx = x - startX;
-            const dy = y - startY;
+        function onDragMove(x, y) {
 
-            if(lockedAxis === null){
-                if(Math.abs(dx) > 8 || Math.abs(dy) > 8){
-                    lockedAxis = Math.abs(dx) > Math.abs(dy) ? "x" : "y";
+            if (!dragging) return;
+
+            const dx =
+                x - startX;
+
+            const dy =
+                y - startY;
+
+
+            if (lockedAxis === null) {
+
+                if (
+                    Math.abs(dx) > 8 ||
+                    Math.abs(dy) > 8
+                ) {
+
+                    lockedAxis =
+                        Math.abs(dx) >
+                        Math.abs(dy)
+                            ? "x"
+                            : "y";
+
                 }
+
             }
 
-            if(lockedAxis === "x"){
-                els.card.style.transform = `translateX(${dx}px)`;
+
+            if (
+                lockedAxis === "x"
+            ) {
+
+                els.card.style.transform =
+                    `translateX(${dx}px)`;
+
             }
+
         }
 
-        function onDragEnd(x){
-            if(!dragging) return;
+
+        function onDragEnd(x) {
+
+            if (!dragging) return;
+
             dragging = false;
 
-            const dx = x - startX;
+            const dx =
+                x - startX;
 
-            els.card.style.transform = "";
+            els.card.style.transform =
+                "";
 
-            if(lockedAxis === "x"){
-                if(dx <= -SWIPE_THRESHOLD){
+
+            if (
+                lockedAxis === "x"
+            ) {
+
+                if (
+                    dx <=
+                    -SWIPE_THRESHOLD
+                ) {
+
                     goNext();
-                } else if(dx >= SWIPE_THRESHOLD){
+
+                } else if (
+                    dx >=
+                    SWIPE_THRESHOLD
+                ) {
+
                     goPrev();
+
                 }
+
             }
 
+
             lockedAxis = null;
+
         }
 
-        // Touch events
-        els.card.addEventListener("touchstart", (e) => {
-            const t = e.touches[0];
-            onDragStart(t.clientX, t.clientY);
-        }, { passive: true });
 
-        els.card.addEventListener("touchmove", (e) => {
-            const t = e.touches[0];
-            onDragMove(t.clientX, t.clientY);
-        }, { passive: true });
+        els.card.addEventListener(
+            "touchstart",
+            e => {
 
-        els.card.addEventListener("touchend", (e) => {
-            const t = e.changedTouches[0];
-            onDragEnd(t.clientX);
-        });
+                const t =
+                    e.touches[0];
 
-        // Mouse drag (desktop)
-        els.card.addEventListener("mousedown", (e) => {
-            onDragStart(e.clientX, e.clientY);
-        });
+                onDragStart(
+                    t.clientX,
+                    t.clientY
+                );
 
-        window.addEventListener("mousemove", (e) => {
-            if(dragging) onDragMove(e.clientX, e.clientY);
-        });
+            },
+            { passive: true }
+        );
 
-        window.addEventListener("mouseup", (e) => {
-            if(dragging) onDragEnd(e.clientX);
-        });
+
+        els.card.addEventListener(
+            "touchmove",
+            e => {
+
+                const t =
+                    e.touches[0];
+
+                onDragMove(
+                    t.clientX,
+                    t.clientY
+                );
+
+            },
+            { passive: true }
+        );
+
+
+        els.card.addEventListener(
+            "touchend",
+            e => {
+
+                const t =
+                    e.changedTouches[0];
+
+                onDragEnd(
+                    t.clientX
+                );
+
+            }
+        );
+
+
+        els.card.addEventListener(
+            "mousedown",
+            e => {
+
+                onDragStart(
+                    e.clientX,
+                    e.clientY
+                );
+
+            }
+        );
+
+
+        window.addEventListener(
+            "mousemove",
+            e => {
+
+                if (dragging) {
+
+                    onDragMove(
+                        e.clientX,
+                        e.clientY
+                    );
+
+                }
+
+            }
+        );
+
+
+        window.addEventListener(
+            "mouseup",
+            e => {
+
+                if (dragging) {
+
+                    onDragEnd(
+                        e.clientX
+                    );
+
+                }
+
+            }
+        );
 
     }
 
-    render();
 
-    return { render };
+    renderContent();
 
-}
-
-// Main letters card (Ankita's page)
-makeLetterCard(mainLetters, {
-
-    card: document.getElementById("mainLetterCard"),
-
-    emoji: document.getElementById("viewerEmoji"),
-
-    title: document.getElementById("viewerTitle"),
-
-    date: document.getElementById("viewerDate"),
-
-    toggle: document.getElementById("letterToggle"),
-
-    body: document.getElementById("viewerBody"),
-
-    position: document.getElementById("letterPosition")
-});
-
-
-// Aryan's letters card (Aryan's page)
-
-makeLetterCard(aryanLetters, {
-
-    card: document.getElementById("aryanLetterCard"),
-
-    emoji: document.getElementById("viewerEmojiAryan"),
-
-    title: document.getElementById("viewerTitleAryan"),
-
-    date: document.getElementById("viewerDateAryan"),
-
-    toggle: document.getElementById("letterToggleAryan"),
-
-    body: document.getElementById("viewerBodyAryan"),
-
-    position: document.getElementById("letterPositionAryan")
-
-});
-
-
-// ============================
-// OPEN / CLOSE (generic popup — used by Write a Letter)
-// ============================
-
-function openLetter(letterID){
-
-    document.getElementById(letterID).style.display = "flex";
-
-}
-
-
-function closeLetter(letterID){
-
-    document.getElementById(letterID).style.display = "none";
+    return {
+        render: renderContent
+    };
 
 }
 
 
 // ============================
-// CLOSE WHEN CLICKING OUTSIDE
+// MAIN LETTER CARD
 // ============================
 
-window.onclick = function(event){
+makeLetterCard(
+    mainLetters,
+    {
+        card:
+            document.getElementById(
+                "mainLetterCard"
+            ),
 
-    const popups =
-        document.querySelectorAll(".letterPopup");
+        emoji:
+            document.getElementById(
+                "viewerEmoji"
+            ),
+
+        title:
+            document.getElementById(
+                "viewerTitle"
+            ),
+
+        date:
+            document.getElementById(
+                "viewerDate"
+            ),
+
+        toggle:
+            document.getElementById(
+                "letterToggle"
+            ),
+
+        body:
+            document.getElementById(
+                "viewerBody"
+            ),
+
+        position:
+            document.getElementById(
+                "letterPosition"
+            )
+    }
+);
 
 
-    popups.forEach(popup => {
+// ============================
+// ARYAN LETTER CARD
+// ============================
 
-        if(event.target === popup){
+makeLetterCard(
+    aryanLetters,
+    {
+        card:
+            document.getElementById(
+                "aryanLetterCard"
+            ),
 
-            popup.style.display = "none";
+        emoji:
+            document.getElementById(
+                "viewerEmojiAryan"
+            ),
 
-        }
+        title:
+            document.getElementById(
+                "viewerTitleAryan"
+            ),
 
-    });
+        date:
+            document.getElementById(
+                "viewerDateAryan"
+            ),
 
-};
+        toggle:
+            document.getElementById(
+                "letterToggleAryan"
+            ),
+
+        body:
+            document.getElementById(
+                "viewerBodyAryan"
+            ),
+
+        position:
+            document.getElementById(
+                "letterPositionAryan"
+            )
+    }
+);
+
+
+// ============================
+// OPEN / CLOSE GENERIC LETTER POPUP
+// ============================
+
+function openLetter(letterID) {
+
+    const letter =
+        document.getElementById(
+            letterID
+        );
+
+    if (letter) {
+        letter.style.display = "flex";
+    }
+
+}
+
+
+function closeLetter(letterID) {
+
+    const letter =
+        document.getElementById(
+            letterID
+        );
+
+    if (letter) {
+        letter.style.display = "none";
+    }
+
+}
+
+
+// ============================
+// CLOSE POPUPS WHEN CLICKING OUTSIDE
+// ============================
+
+window.addEventListener(
+    "click",
+    event => {
+
+        const popups =
+            document.querySelectorAll(
+                ".letterPopup"
+            );
+
+        popups.forEach(
+            popup => {
+
+                if (
+                    event.target === popup
+                ) {
+
+                    popup.style.display =
+                        "none";
+
+                }
+
+            }
+        );
+
+    }
+);
 
 
 // ============================
@@ -1156,57 +1558,88 @@ window.onclick = function(event){
 // ============================
 
 const letterForm =
-    document.getElementById('letterForm');
+    document.getElementById(
+        "letterForm"
+    );
 
 
-letterForm.addEventListener('submit', async function (e) {
+if (letterForm) {
 
-    e.preventDefault();
+    letterForm.addEventListener(
+        "submit",
+        async function (e) {
 
+            e.preventDefault();
 
-    const status =
-        document.getElementById('submitStatus');
+            const status =
+                document.getElementById(
+                    "submitStatus"
+                );
 
-
-    status.textContent = "Sending...";
-
-
-    try {
-
-        const response = await fetch(
-            "https://formspree.io/f/mjgnznjg",
-            {
-                method: "POST",
-                headers: {
-                    "Accept": "application/json"
-                },
-                body: new FormData(letterForm)
+            if (status) {
+                status.textContent =
+                    "Sending...";
             }
-        );
 
 
-        if (response.ok) {
+            try {
 
-            status.textContent =
-                "Sent! ❤️ It's on its way to her.";
+                const response =
+                    await fetch(
+                        "https://formspree.io/f/mjgnznjg",
+                        {
+                            method: "POST",
 
-            letterForm.reset();
+                            headers: {
+                                "Accept":
+                                    "application/json"
+                            },
 
-        } else {
+                            body:
+                                new FormData(
+                                    letterForm
+                                )
+                        }
+                    );
 
-            status.textContent =
-                "Something went wrong. Try again.";
+
+                if (response.ok) {
+
+                    if (status) {
+
+                        status.textContent =
+                            "Sent! ❤️ It's on its way to her.";
+
+                    }
+
+                    letterForm.reset();
+
+                } else {
+
+                    if (status) {
+
+                        status.textContent =
+                            "Something went wrong. Try again.";
+
+                    }
+
+                }
+
+            } catch (err) {
+
+                if (status) {
+
+                    status.textContent =
+                        "Something went wrong. Try again.";
+
+                }
+
+            }
 
         }
+    );
 
-    } catch (err) {
-
-        status.textContent =
-            "Something went wrong. Try again.";
-
-    }
-
-});
+}
 
 
 // ============================
@@ -1215,118 +1648,141 @@ letterForm.addEventListener('submit', async function (e) {
 
 (function () {
 
-    const IDLE_TIME = 10000; // 10 seconds
+    const IDLE_TIME =
+        10000;
 
-    const lettersPage = document.getElementById("lettersPage");
-    const aryanPage = document.getElementById("aryanPage");
+    const lettersPage =
+        document.getElementById(
+            "lettersPage"
+        );
+
+    const aryanPage =
+        document.getElementById(
+            "aryanPage"
+        );
 
     let idleTimer = null;
 
-
-    // -------------------------------------------------
-    // Check which page is currently visible
-    // -------------------------------------------------
 
     function getActivePage() {
 
         if (
             lettersPage &&
-            getComputedStyle(lettersPage).display !== "none"
+            getComputedStyle(
+                lettersPage
+            ).display !== "none"
         ) {
+
             return lettersPage;
+
         }
+
 
         if (
             aryanPage &&
-            getComputedStyle(aryanPage).display !== "none"
+            getComputedStyle(
+                aryanPage
+            ).display !== "none"
         ) {
+
             return aryanPage;
+
         }
 
+
         return null;
+
     }
 
 
-    // -------------------------------------------------
-    // Enter idle mode
-    // -------------------------------------------------
-
     function enterIdleMode() {
 
-        const activePage = getActivePage();
+        const activePage =
+            getActivePage();
 
         if (!activePage) return;
 
 
-        // Don't hide the website while a popup is open
-
         const writePopup =
-            document.getElementById("writeLetter");
+            document.getElementById(
+                "writeLetter"
+            );
 
         const quiz =
-            document.getElementById("quizSurprise");
+            document.getElementById(
+                "quizSurprise"
+            );
 
 
         if (
-            (writePopup &&
-             getComputedStyle(writePopup).display !== "none")
+            (
+                writePopup &&
+                getComputedStyle(
+                    writePopup
+                ).display !== "none"
+            )
             ||
-            (quiz &&
-             getComputedStyle(quiz).display !== "none")
-            ||
-            movieIsOpen
+            (
+                quiz &&
+                getComputedStyle(
+                    quiz
+                ).display !== "none"
+            )
         ) {
+
             resetIdleTimer();
+
             return;
+
         }
 
 
-        activePage.classList.add("idle-mode");
-
-    }
-
-
-    // -------------------------------------------------
-    // Exit idle mode
-    // -------------------------------------------------
-
-    function exitIdleMode() {
-
-        if (lettersPage) {
-            lettersPage.classList.remove("idle-mode");
-        }
-
-        if (aryanPage) {
-            aryanPage.classList.remove("idle-mode");
-        }
-
-    }
-
-
-    // -------------------------------------------------
-    // Reset timer
-    // -------------------------------------------------
-
-    function resetIdleTimer() {
-
-        exitIdleMode();
-
-        clearTimeout(idleTimer);
-
-        idleTimer = setTimeout(
-            enterIdleMode,
-            IDLE_TIME
+        activePage.classList.add(
+            "idle-mode"
         );
 
     }
 
 
-    // -------------------------------------------------
-    // User activity
-    // -------------------------------------------------
+    function exitIdleMode() {
+
+        if (lettersPage) {
+
+            lettersPage.classList.remove(
+                "idle-mode"
+            );
+
+        }
+
+        if (aryanPage) {
+
+            aryanPage.classList.remove(
+                "idle-mode"
+            );
+
+        }
+
+    }
+
+
+    function resetIdleTimer() {
+
+        exitIdleMode();
+
+        clearTimeout(
+            idleTimer
+        );
+
+        idleTimer =
+            setTimeout(
+                enterIdleMode,
+                IDLE_TIME
+            );
+
+    }
+
 
     const activityEvents = [
-
         "mousemove",
         "mousedown",
         "click",
@@ -1334,366 +1790,1174 @@ letterForm.addEventListener('submit', async function (e) {
         "touchmove",
         "keydown",
         "scroll"
-
     ];
 
 
-    activityEvents.forEach(function (eventName) {
-
-        document.addEventListener(
-            eventName,
-            resetIdleTimer,
-            { passive: true }
-        );
-
-    });
-
-
-    // -------------------------------------------------
-    // Start timer
-    // -------------------------------------------------
-
-    resetIdleTimer();
-
-
-})();
-
-
-// ============================
-// A MOVIE MADE OF US
-// ============================
-
-(function () {
-
-    const openMovie =
-        document.getElementById("openMovie");
-
-    const movieExperience =
-        document.getElementById("movieExperience");
-
-    const moviePolaroid =
-        document.getElementById("moviePolaroid");
-
-    const movieImage =
-        document.getElementById("movieImage");
-
-    const movieCaption =
-        document.getElementById("movieCaption");
-
-    const movieCounter =
-        document.getElementById("movieCounter");
-
-    const closeMovie =
-        document.getElementById("closeMovie");
-
-    const movieEnding =
-        document.getElementById("movieEnding");
-
-    const finishMovie =
-        document.getElementById("finishMovie");
-
-
-    // =================================================
-    // YOUR MOVIE PHOTOS + CAPTIONS
-    // =================================================
-
-    const movieMemories = [
-
-        {
-            image: "images/image1.jpg",
-            caption: "It started with two people..."
-        },
-
-        {
-            image: "images/image2.jpg",
-            caption: "...who had no idea what was coming."
-        },
-
-        {
-            image: "images/image3.jpg",
-            caption: "Then slowly, you became my favourite person."
-        },
-
-        {
-            image: "images/image4.jpg",
-            caption: "Somewhere between the calls and conversations..."
-        },
-
-        {
-            image: "images/image5.jpg",
-            caption: "...we became us."
-        },
-
-        {
-            image: "images/image6.jpg",
-            caption: "Five days became a lifetime of memories."
-        },
-
-        {
-            image: "images/image7.jpg",
-            caption: "Every little moment became something worth keeping."
-        },
-
-        {
-            image: "images/image8.jpg",
-            caption: "And somehow, you became home. ❤️"
-        },
-
-        {
-            image: "images/image9.jpg",
-            caption: "This isn't the end of our story..."
-        },
-
-        {
-            image: "images/image10.jpg",
-            caption: "It's only the beginning. ❤️"
-        }
-
-    ];
-
-
-    let movieIndex = 0;
-
-    let movieTimer = null;
-
-
-    // =================================================
-    // OPEN MOVIE
-    // =================================================
-
-    function startMovie() {
-
-        // Block the background playlist from starting/restarting
-        // for as long as the movie is open
-        movieIsOpen = true;
-
-        const onePieceTheme = document.getElementById("onePieceTheme");
-
-        movieIndex = 0;
-
-        movieEnding.style.display = "none";
-
-        // Pause the background playlist so it doesn't play under the movie theme
-        music.pause();
-
-        onePieceTheme.currentTime = 0;
-        onePieceTheme.volume = 0.65;
-        onePieceTheme.play().catch(() => {
-            console.log("Audio waiting for user interaction.");
-        });
-
-        movieExperience.style.display = "block";
-        document.body.style.overflow = "hidden";
-
-        showMovieMemory();
-
-        requestAnimationFrame(() => {
-            moviePolaroid.classList.add("movieEnter");
-        });
-    }
-
-
-    // =================================================
-    // SHOW MEMORY
-    // =================================================
-
-    function showMovieMemory() {
-
-        clearTimeout(movieTimer);
-
-        const memory =
-            movieMemories[movieIndex];
-
-
-        movieCounter.textContent =
-            `${movieIndex + 1} / ${movieMemories.length}`;
-
-
-        movieImage.src =
-            memory.image;
-
-
-        movieCaption.textContent =
-            memory.caption;
-
-
-        // Reset animation
-
-        moviePolaroid.classList.remove(
-            "movieEnter"
-        );
-
-        moviePolaroid.classList.remove(
-            "movieExit"
-        );
-
-
-        // Force browser to restart animation
-
-        void moviePolaroid.offsetWidth;
-
-
-        moviePolaroid.classList.add(
-            "movieEnter"
-        );
-
-
-        // How long each Polaroid stays
-
-        movieTimer = setTimeout(
-            nextMovieMemory,
-            4000
-        );
-
-    }
-
-
-    // =================================================
-    // NEXT MEMORY
-    // =================================================
-
-    function nextMovieMemory() {
-
-        moviePolaroid.classList.remove(
-            "movieEnter"
-        );
-
-
-        moviePolaroid.classList.add(
-            "movieExit"
-        );
-
-
-        setTimeout(() => {
-
-            movieIndex++;
-
-
-            if (
-                movieIndex >=
-                movieMemories.length
-            ) {
-
-                finishMovieSequence();
-
-                return;
-
-            }
-
-
-            showMovieMemory();
-
-        }, 800);
-
-    }
-
-
-    // =================================================
-    // FINISH MOVIE
-    // =================================================
-
-    function finishMovieSequence() {
-
-        clearTimeout(movieTimer);
-
-        moviePolaroid.style.display =
-            "none";
-
-        movieCounter.style.display =
-            "none";
-
-        movieEnding.style.display =
-            "flex";
-
-    }
-
-
-    // =================================================
-    // CLOSE MOVIE
-    // =================================================
-
-    function closeMovieExperience() {
-
-        // Allow the background playlist to play again
-        movieIsOpen = false;
-
-        const onePieceTheme = document.getElementById("onePieceTheme");
-
-        clearTimeout(movieTimer);
-
-        // Stop the movie theme
-        onePieceTheme.pause();
-        onePieceTheme.currentTime = 0;
-
-        movieExperience.style.display = "none";
-
-        moviePolaroid.style.display = "block";
-        movieCounter.style.display = "block";
-        movieEnding.style.display = "none";
-
-        moviePolaroid.classList.remove("movieEnter");
-        moviePolaroid.classList.remove("movieExit");
-
-        document.body.style.overflow = "";
-
-        // Resume the background playlist where it left off
-        music.play().catch(error => {
-            console.log("Music couldn't resume:", error);
-        });
-    }
-
-
-    // =================================================
-    // EVENTS
-    // =================================================
-
-    if (openMovie) {
-
-        openMovie.addEventListener(
-            "click",
-            startMovie
-        );
-
-    }
-
-
-    if (closeMovie) {
-
-        closeMovie.addEventListener(
-            "click",
-            closeMovieExperience
-        );
-
-    }
-
-
-    if (finishMovie) {
-
-        finishMovie.addEventListener(
-            "click",
-            closeMovieExperience
-        );
-
-    }
-
-
-    // ESCAPE KEY
-
-    document.addEventListener(
-        "keydown",
-        function (event) {
-
-            if (
-                event.key === "Escape" &&
-                movieExperience.style.display !== "none"
-            ) {
-
-                closeMovieExperience();
-
-            }
+    activityEvents.forEach(
+        eventName => {
+
+            document.addEventListener(
+                eventName,
+                resetIdleTimer,
+                { passive: true }
+            );
 
         }
     );
 
 
+    resetIdleTimer();
+
 })();
+
+
+// =========================================================
+// ONE PIECE — OUR GRAND LINE
+// =========================================================
+
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+
+        const onePiecePage =
+            document.getElementById(
+                "onePiecePage"
+            );
+
+        const opening =
+            document.getElementById(
+                "opOpening"
+            );
+
+        const grandLine =
+            document.getElementById(
+                "grandLineContent"
+            );
+
+        const startButton =
+            document.getElementById(
+                "startGrandLine"
+            );
+
+        const backButton =
+            document.getElementById(
+                "backFromOnePiece"
+            );
+
+        const musicButton =
+            document.getElementById(
+                "opMusicButton"
+            );
+
+        const opMusicMenu =
+            document.getElementById(
+                "opMusicMenu"
+            );
+
+        const onePieceMusic =
+            document.getElementById(
+                "onePieceMusic"
+            );
+
+        const onePieceButton =
+            document.getElementById(
+                "onePieceButton"
+            );
+
+
+        // =====================================================
+        // ONE PIECE PLAYLIST
+        // =====================================================
+
+        const onePiecePlaylist = [
+            {
+                name: "One Piece Theme",
+                src: "music/onepiece.mp3"
+            }
+        ];
+
+        let opPlaylistIndex = 0;
+        let opMusicPlaying = false;
+
+
+        function playOpSong(
+            index,
+            autoplay = true
+        ) {
+
+            if (
+                !onePieceMusic ||
+                !onePiecePlaylist.length
+            ) {
+                return;
+            }
+
+
+            opPlaylistIndex =
+                (
+                    index +
+                    onePiecePlaylist.length
+                ) %
+                onePiecePlaylist.length;
+
+
+            onePieceMusic.src =
+                onePiecePlaylist[
+                    opPlaylistIndex
+                ].src;
+
+            onePieceMusic.load();
+
+
+            if (autoplay) {
+
+                onePieceMusic
+                    .play()
+                    .then(() => {
+
+                        opMusicPlaying =
+                            true;
+
+                        if (musicButton) {
+
+                            musicButton.textContent =
+                                "🎶";
+
+                        }
+
+                    })
+                    .catch(() => {
+
+                        opMusicPlaying =
+                            false;
+
+                        if (musicButton) {
+
+                            musicButton.textContent =
+                                "🎵";
+
+                        }
+
+                    });
+
+            }
+
+        }
+
+
+        // =====================================================
+        // OPEN ONE PIECE PAGE
+        // =====================================================
+
+        if (onePieceButton) {
+
+            onePieceButton.addEventListener(
+                "click",
+                () => {
+
+                    if (!onePiecePage) return;
+
+
+                    onePiecePage.style.display =
+                        "block";
+
+                    document.body.classList.add(
+                        "one-piece-active"
+                    );
+
+                    document.body.style.overflow =
+                        "hidden";
+
+
+                    if (opening) {
+
+                        opening.classList.remove(
+                            "hide"
+                        );
+
+                    }
+
+
+                    if (grandLine) {
+
+                        grandLine.style.display =
+                            "block";
+
+                        grandLine.classList.remove(
+                            "op-grand-line-visible"
+                        );
+
+                    }
+
+
+                    onePiecePage.scrollTop =
+                        0;
+
+
+                    if (onePieceMusic) {
+
+                        onePieceMusic.pause();
+
+                        onePieceMusic.currentTime =
+                            0;
+
+                    }
+
+                }
+            );
+
+        }
+
+
+        // =====================================================
+        // START GRAND LINE
+        // =====================================================
+
+        if (startButton) {
+
+            startButton.addEventListener(
+                "click",
+                () => {
+
+                    if (opening) {
+
+                        opening.classList.add(
+                            "hide"
+                        );
+
+                    }
+
+
+                    setTimeout(() => {
+
+                        if (
+                            onePiecePage &&
+                            onePiecePage.style.display !==
+                                "none" &&
+                            grandLine
+                        ) {
+
+                            grandLine.classList.add(
+                                "op-grand-line-visible"
+                            );
+
+                        }
+
+                    }, 850);
+
+
+                    document.body.style.overflow =
+                        "hidden";
+
+
+                    if (onePieceMusic) {
+
+                        onePieceMusic.volume =
+                            0.35;
+
+                        playOpSong(
+                            opPlaylistIndex,
+                            true
+                        );
+
+                    }
+
+                }
+            );
+
+        }
+
+
+        // =====================================================
+        // BACK BUTTON
+        // =====================================================
+
+        if (backButton) {
+
+            backButton.addEventListener(
+                "click",
+                () => {
+
+                    if (onePiecePage) {
+
+                        onePiecePage.style.display =
+                            "none";
+
+                    }
+
+
+                    if (grandLine) {
+
+                        grandLine.classList.remove(
+                            "op-grand-line-visible"
+                        );
+
+                    }
+
+
+                    document.body.classList.remove(
+                        "one-piece-active"
+                    );
+
+                    document.body.style.overflow =
+                        "";
+
+
+                    if (onePieceMusic) {
+
+                        onePieceMusic.pause();
+
+                        onePieceMusic.currentTime =
+                            0;
+
+                    }
+
+
+                    opMusicPlaying =
+                        false;
+
+
+                    if (musicButton) {
+
+                        musicButton.textContent =
+                            "🎵";
+
+                    }
+
+
+                    if (opMusicMenu) {
+
+                        opMusicMenu.classList.remove(
+                            "show"
+                        );
+
+                    }
+
+
+                    const normalMusic =
+                        document.getElementById(
+                            "bgMusic"
+                        );
+
+                    if (normalMusic) {
+
+                        normalMusic
+                            .play()
+                            .catch(() => {});
+
+                    }
+
+                }
+            );
+
+        }
+
+
+        // =====================================================
+        // ONE PIECE MUSIC BUTTON
+        // =====================================================
+
+        if (musicButton) {
+
+            musicButton.addEventListener(
+                "click",
+                event => {
+
+                    event.stopPropagation();
+
+                    if (!onePieceMusic) return;
+
+
+                    if (opMusicPlaying) {
+
+                        onePieceMusic.pause();
+
+                        opMusicPlaying =
+                            false;
+
+                        musicButton.textContent =
+                            "🎵";
+
+                    } else {
+
+                        playOpSong(
+                            opPlaylistIndex,
+                            true
+                        );
+
+                    }
+
+
+                    if (opMusicMenu) {
+
+                        opMusicMenu.classList.toggle(
+                            "show"
+                        );
+
+                    }
+
+                }
+            );
+
+        }
+
+
+        // =====================================================
+        // ONE PIECE MUSIC MENU
+        // =====================================================
+
+        if (opMusicMenu) {
+
+            opMusicMenu.addEventListener(
+                "click",
+                event => {
+
+                    const songButton =
+                        event.target.closest(
+                            ".op-song-btn"
+                        );
+
+                    if (!songButton) return;
+
+
+                    const index =
+                        onePiecePlaylist.findIndex(
+                            song =>
+                                song.src ===
+                                songButton.dataset.opSong
+                        );
+
+
+                    if (index >= 0) {
+
+                        playOpSong(
+                            index,
+                            true
+                        );
+
+                    }
+
+                }
+            );
+
+        }
+
+
+        // =====================================================
+        // AUTO LOOP ONE PIECE MUSIC
+        // =====================================================
+
+        if (onePieceMusic) {
+
+            onePieceMusic.addEventListener(
+                "ended",
+                () => {
+
+                    playOpSong(
+                        opPlaylistIndex + 1,
+                        true
+                    );
+
+                }
+            );
+
+        }
+
+
+        // =====================================================
+        // GRAND LINE DESTINATION NAVIGATION
+        // =====================================================
+
+        const destinationButtons =
+            document.querySelectorAll(
+                ".op-destination-button"
+            );
+
+        const destinationPanels =
+            document.querySelectorAll(
+                ".op-destination-panel"
+            );
+
+
+        function showGrandLineHome() {
+
+            destinationPanels.forEach(
+                panel => {
+
+                    panel.classList.remove(
+                        "op-panel-active"
+                    );
+
+                }
+            );
+
+
+            if (grandLine) {
+
+                grandLine.classList.remove(
+                    "op-destination-open"
+                );
+
+                grandLine.scrollTop =
+                    0;
+
+            }
+
+        }
+
+
+        function showGrandLinePanel(id) {
+
+            const panel =
+                document.getElementById(
+                    id
+                );
+
+            if (!panel) return;
+
+
+            destinationPanels.forEach(
+                otherPanel => {
+
+                    otherPanel.classList.remove(
+                        "op-panel-active"
+                    );
+
+                }
+            );
+
+
+            if (grandLine) {
+
+                grandLine.classList.add(
+                    "op-destination-open"
+                );
+
+            }
+
+
+            panel.classList.add(
+                "op-panel-active"
+            );
+
+            panel.scrollTop =
+                0;
+
+        }
+
+
+        destinationButtons.forEach(
+            destinationButton => {
+
+                destinationButton.addEventListener(
+                    "click",
+                    () => {
+
+                        destinationButton.classList.remove(
+                            "button-pop"
+                        );
+
+                        void destinationButton.offsetWidth;
+
+                        destinationButton.classList.add(
+                            "button-pop"
+                        );
+
+
+                        const target =
+                            destinationButton.dataset.opSection;
+
+
+                        if (target) {
+
+                            setTimeout(
+                                () => {
+
+                                    showGrandLinePanel(
+                                        target
+                                    );
+
+                                },
+                                260
+                            );
+
+                        }
+
+                    }
+                );
+
+            }
+        );
+
+
+        document
+            .querySelectorAll(
+                "[data-op-home]"
+            )
+            .forEach(
+                homeButton => {
+
+                    homeButton.addEventListener(
+                        "click",
+                        showGrandLineHome
+                    );
+
+                }
+            );
+
+
+        showGrandLineHome();
+
+
+        /* =========================================================
+   GRAND LINE MEMORY POLAROIDS
+   ========================================================= */
+
+const memories = {
+    codm: {
+        icon: "🎮",
+        chapter: "CHAPTER I",
+        title: "Where It All Began",
+        text: "Our story began somewhere between a game of CODM and two people who had no idea what was coming next.",
+        photos: [
+            "images/codm1.jpeg",
+            "images/codm2.jpeg",
+            "images/codm3.jpeg"
+        ],
+        captions: [
+            "The beginning of our adventure 🎮",
+            "Two players. One story.",
+            "And somehow, we found each other ❤️"
+        ]
+    },
+
+    videocall: {
+        icon: "📞",
+        chapter: "CHAPTER II",
+        title: "Across The Distance",
+        text: "From messages to calls, somehow the distance never felt quite so far when you were on the other side.",
+        photos: [
+            "images/videocall1.jpeg",
+            "images/videocall2.jpeg",
+            "images/videocall3.jpeg"
+        ],
+        captions: [
+            "Hours that never felt long 📞",
+            "Your face became my favourite notification.",
+            "A little closer, every call ❤️"
+        ]
+    },
+
+    Mysore: {
+        icon: "🏰✨",
+        chapter: "CHAPTER III",
+        title: "Mysore",
+        text: "Another chapter, another place, and another collection of memories that became ours.",
+        photos: [
+            "images/Mysore1.jpeg",
+            "images/Mysore2.jpeg",
+            "images/Mysore3.jpeg"
+        ],
+        captions: [
+            "A place became a memory.",
+            "One more adventure together ✨",
+            "Mysore, but make it ours ❤️"
+        ]
+    },
+
+    Banglore: {
+        icon: "🏰",
+        chapter: "CHAPTER IV",
+        title: "Banglore",
+        text: "Some places are special because of where they are. Others become special because of who you were with.",
+        photos: [
+            "images/Banglore1.jpeg",
+            "images/Banglore2.jpeg",
+            "images/Banglore3.jpeg"
+        ],
+        captions: [
+            "Another stop on our Grand Line.",
+            "Another memory with you.",
+            "Another chapter of us ❤️"
+        ]
+    },
+
+    Mumbai: {
+        icon: "🌊",
+        chapter: "CHAPTER V",
+        title: "Mumbai",
+        text: "A city full of lights, chaos and endless stories — and somehow, one of my favourite stories here is ours.",
+        photos: [
+            "images/Mumbai1.jpeg",
+            "images/Mumbai2.jpeg",
+            "images/Mumbai3.jpeg"
+        ],
+        captions: [
+            "Mumbai nights 🌊",
+            "Our little adventure in the city.",
+            "A memory worth keeping forever ❤️"
+        ]
+    }
+};
+
+
+/* ---------- DOM ELEMENTS ---------- */
+
+const memoryModal = document.getElementById("memoryModal");
+const closeMemory = document.getElementById("closeMemory");
+
+const memoryIcon = document.getElementById("memoryIcon");
+const memoryChapter = document.getElementById("memoryChapter");
+const memoryTitle = document.getElementById("memoryTitle");
+const memoryText = document.getElementById("memoryText");
+
+const memoryPhoto = document.getElementById("memoryPhoto");
+const memoryPhotoCaption = document.getElementById("memoryPhotoCaption");
+const memoryPhotoCounter = document.getElementById("memoryPhotoCounter");
+
+const memoryPhotoPrev = document.getElementById("memoryPhotoPrev");
+const memoryPhotoNext = document.getElementById("memoryPhotoNext");
+
+let currentMemory = null;
+let currentPhotoIndex = 0;
+let memoryPhotoTimer = null;
+
+
+/* =========================================================
+   SHOW PHOTO
+   ========================================================= */
+
+function showMemoryPhoto(index) {
+
+    if (!currentMemory) return;
+
+    const photos = currentMemory.photos || [];
+
+    if (!photos.length) return;
+
+    currentPhotoIndex =
+        (index + photos.length) % photos.length;
+
+    const photo = photos[currentPhotoIndex];
+
+    if (memoryPhoto) {
+
+        // Small fade animation
+        memoryPhoto.classList.remove("photo-changing");
+
+        void memoryPhoto.offsetWidth;
+
+        memoryPhoto.classList.add("photo-changing");
+
+        memoryPhoto.src = photo;
+
+        memoryPhoto.onerror = function () {
+            console.warn("Could not load memory photo:", photo);
+        };
+    }
+
+    if (memoryPhotoCaption) {
+
+        const captions = currentMemory.captions || [];
+
+        memoryPhotoCaption.textContent =
+            captions[currentPhotoIndex] || "";
+    }
+
+    if (memoryPhotoCounter) {
+
+        memoryPhotoCounter.textContent =
+            `${currentPhotoIndex + 1} / ${photos.length}`;
+    }
+
+    // Hide navigation if there is only one photo
+    if (memoryPhotoPrev) {
+        memoryPhotoPrev.style.display =
+            photos.length > 1 ? "flex" : "none";
+    }
+
+    if (memoryPhotoNext) {
+        memoryPhotoNext.style.display =
+            photos.length > 1 ? "flex" : "none";
+    }
+}
+
+
+/* =========================================================
+   AUTOMATIC SLIDESHOW
+   ========================================================= */
+
+function startMemoryPhotoSlideshow() {
+
+    clearInterval(memoryPhotoTimer);
+
+    if (!currentMemory) return;
+
+    if (!currentMemory.photos || currentMemory.photos.length <= 1) {
+        return;
+    }
+
+    memoryPhotoTimer = setInterval(() => {
+
+        showMemoryPhoto(currentPhotoIndex + 1);
+
+    }, 5000);
+}
+
+
+/* =========================================================
+   OPEN MEMORY
+   ========================================================= */
+
+function openMemory(memoryKey) {
+
+    const memory = memories[memoryKey];
+
+    if (!memory || !memoryModal) return;
+
+    currentMemory = memory;
+    currentPhotoIndex = 0;
+
+    if (memoryIcon) {
+        memoryIcon.textContent = memory.icon;
+    }
+
+    if (memoryChapter) {
+        memoryChapter.textContent = memory.chapter;
+    }
+
+    if (memoryTitle) {
+        memoryTitle.textContent = memory.title;
+    }
+
+    if (memoryText) {
+        memoryText.textContent = memory.text;
+    }
+
+    showMemoryPhoto(0);
+
+    memoryModal.classList.add("active");
+
+    // Important: make sure the modal is actually above the map
+    memoryModal.style.display = "flex";
+    memoryModal.style.zIndex = "11000";
+
+    document.body.classList.add("memory-open");
+
+    startMemoryPhotoSlideshow();
+}
+
+
+/* =========================================================
+   CLOSE MEMORY
+   ========================================================= */
+
+function closeMemoryModal() {
+
+    clearInterval(memoryPhotoTimer);
+    memoryPhotoTimer = null;
+
+    currentMemory = null;
+    currentPhotoIndex = 0;
+
+    if (!memoryModal) return;
+
+    memoryModal.classList.remove("active");
+
+    memoryModal.style.display = "none";
+
+    document.body.classList.remove("memory-open");
+}
+
+
+/* =========================================================
+   ISLAND CLICK
+   ========================================================= */
+
+document.querySelectorAll(".memory-island").forEach(island => {
+
+    island.addEventListener("click", function (event) {
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        const memoryKey = this.dataset.memory;
+
+        openMemory(memoryKey);
+    });
+
+});
+
+
+/* =========================================================
+   CLOSE BUTTON
+   ========================================================= */
+
+if (closeMemory) {
+
+    closeMemory.addEventListener("click", function (event) {
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        closeMemoryModal();
+
+    });
+
+}
+
+
+/* =========================================================
+   NEXT PHOTO
+   ========================================================= */
+
+if (memoryPhotoNext) {
+
+    memoryPhotoNext.addEventListener("click", function (event) {
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        if (!currentMemory) return;
+
+        showMemoryPhoto(currentPhotoIndex + 1);
+
+        startMemoryPhotoSlideshow();
+
+    });
+
+}
+
+
+/* =========================================================
+   PREVIOUS PHOTO
+   ========================================================= */
+
+if (memoryPhotoPrev) {
+
+    memoryPhotoPrev.addEventListener("click", function (event) {
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        if (!currentMemory) return;
+
+        showMemoryPhoto(currentPhotoIndex - 1);
+
+        startMemoryPhotoSlideshow();
+
+    });
+
+}
+
+
+/* =========================================================
+   CLICK OUTSIDE MODAL BOX TO CLOSE
+   ========================================================= */
+
+if (memoryModal) {
+
+    memoryModal.addEventListener("click", function (event) {
+
+        // Only close when clicking the dark area,
+        // NOT when clicking anything inside the modal box.
+        if (event.target === memoryModal) {
+            closeMemoryModal();
+        }
+
+    });
+
+}
+
+
+/* =========================================================
+   ESCAPE KEY
+   ========================================================= */
+
+document.addEventListener("keydown", function (event) {
+
+    if (event.key !== "Escape") return;
+
+    if (
+        memoryModal &&
+        memoryModal.classList.contains("active")
+    ) {
+        closeMemoryModal();
+    }
+
+});
+
+
+        // =========================================================
+        // TREASURE CHEST
+        // =========================================================
+
+        const treasureChest =
+            document.getElementById(
+                "treasureChest"
+            );
+
+        const treasureMessage =
+            document.getElementById(
+                "treasureMessage"
+            );
+
+        const closeTreasure =
+            document.getElementById(
+                "closeTreasure"
+            );
+
+
+        if (treasureChest) {
+
+            treasureChest.addEventListener(
+                "click",
+                () => {
+
+                    treasureChest.style.transform =
+                        "scale(0.9) rotate(-4deg)";
+
+
+                    setTimeout(
+                        () => {
+
+                            if (
+                                treasureMessage
+                            ) {
+
+                                treasureMessage.classList.add(
+                                    "active",
+                                    "open"
+                                );
+
+                            }
+
+
+                            treasureChest.style.transform =
+                                "";
+
+                        },
+                        350
+                    );
+
+                }
+            );
+
+        }
+
+
+        if (closeTreasure) {
+
+            closeTreasure.addEventListener(
+                "click",
+                () => {
+
+                    if (
+                        treasureMessage
+                    ) {
+
+                        treasureMessage.classList.remove(
+                            "active",
+                            "open"
+                        );
+
+                    }
+
+                }
+            );
+
+        }
+
+
+        // =========================================================
+        // ONE PIECE ESCAPE KEY
+        // =========================================================
+
+        document.addEventListener(
+            "keydown",
+            event => {
+
+                if (
+                    event.key !==
+                    "Escape"
+                ) {
+                    return;
+                }
+
+
+                // Close memory popup first
+
+                if (
+                    memoryModal &&
+                    memoryModal.classList.contains(
+                        "active"
+                    )
+                ) {
+
+                    closeMemoryModal();
+
+                    return;
+
+                }
+
+
+                // Close treasure popup
+
+                if (
+                    treasureMessage &&
+                    (
+                        treasureMessage.classList.contains(
+                            "active"
+                        ) ||
+                        treasureMessage.classList.contains(
+                            "open"
+                        )
+                    )
+                ) {
+
+                    treasureMessage.classList.remove(
+                        "active",
+                        "open"
+                    );
+
+                    return;
+
+                }
+
+
+                // Leave Grand Line
+
+                if (
+                    onePiecePage &&
+                    onePiecePage.style.display !==
+                        "none" &&
+                    backButton
+                ) {
+
+                    backButton.click();
+
+                }
+
+            }
+        );
+
+
+        // =========================================================
+        // STOP ONE PIECE MUSIC WHEN PAGE CLOSES
+        // =========================================================
+
+        window.addEventListener(
+            "beforeunload",
+            () => {
+
+                if (onePieceMusic) {
+
+                    onePieceMusic.pause();
+
+                }
+
+            }
+        );
+
+    }
+);
