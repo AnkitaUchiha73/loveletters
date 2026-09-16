@@ -1813,1377 +1813,543 @@ if (letterForm) {
 // ONE PIECE — OUR GRAND LINE
 // =========================================================
 
-const onePiecePage = document.getElementById("onePiecePage");
-const opening = document.getElementById("opOpening");
-const grandLine = document.getElementById("grandLineContent");
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
 
-const startButton = document.getElementById("startGrandLine");
-const backButton = document.getElementById("backFromOnePiece");
+        // =====================================================
+        // ELEMENTS
+        // =====================================================
 
-const musicButton = document.getElementById("opMusicButton");
-const opMusicMenu = document.getElementById("opMusicMenu");
-const onePieceMusic = document.getElementById("onePieceMusic");
+        const onePiecePage =
+            document.getElementById(
+                "onePiecePage"
+            );
 
-const onePieceButton = document.getElementById("onePieceButton");
+        const opening =
+            document.getElementById(
+                "opOpening"
+            );
 
+        const grandLine =
+            document.getElementById(
+                "grandLineContent"
+            );
 
-// =========================================================
-// ONE PIECE PLAYLIST
-// =========================================================
+        const startButton =
+            document.getElementById(
+                "startGrandLine"
+            );
 
-const onePiecePlaylist = [
+        const backButton =
+            document.getElementById(
+                "backFromOnePiece"
+            );
 
-    {
-        name: "One Piece Theme",
-        src: "music/onepiece.mp3"
-    },
+        const musicButton =
+            document.getElementById(
+                "opMusicButton"
+            );
 
-    {
-        name: "Binks' Sake",
-        src: "music/BinksSake.mp3"
-    },
+        const opMusicMenu =
+            document.getElementById(
+                "opMusicMenu"
+            );
 
-    {
-        name: "Brand New World",
-        src: "music/BrandNewWorld.mp3"
-    },
+        const onePieceMusic =
+            document.getElementById(
+                "onePieceMusic"
+            );
 
-    {
-        name: "Fight Together",
-        src: "music/FightTogether.mp3"
-    },
-
-    {
-        name: "Marvelous Battle",
-        src: "music/MarvelousBattle.mp3"
-    }
-
-];
-
-
-// =========================================================
-// ONE PIECE MUSIC STATE
-// =========================================================
-
-let opPlaylistIndex = 0;
-let opMusicPlaying = false;
+        const onePieceButton =
+            document.getElementById(
+                "onePieceButton"
+            );
 
 
-// This remembers whether normal/Aryan music
-// was actually playing before Grand Line opened.
+        // =====================================================
+        // ONE PIECE PLAYLIST
+        // =====================================================
 
-let normalMusicWasPlayingBeforeOP = false;
+        const onePiecePlaylist = [
 
+            {
+                name: "One Piece Theme",
+                src: "music/one_piece.mp3"
+            },
 
-// =========================================================
-// BUILD ONE PIECE PLAYLIST MENU
-// =========================================================
+            {
+                name: "Binks' Sake",
+                src: "music/BinksSake.mp3"
+            },
 
-function buildOpPlaylistMenu() {
+            {
+                name: "Brand New World",
+                src: "music/BrandNewWorld.mp3"
+            },
 
-    if (!opMusicMenu) return;
+            {
+                name: "Fight Together",
+                src: "music/FightTogether.mp3"
+            },
 
+            {
+                name: "Marvelous Battle",
+                src: "music/MarvelousBattle.mp3"
+            }
 
-    // Remove existing song buttons
-    opMusicMenu
-        .querySelectorAll(".op-song-btn")
-        .forEach(button => button.remove());
-
-
-    onePiecePlaylist.forEach((song, index) => {
-
-        const button =
-            document.createElement("button");
-
-        button.type = "button";
-
-        button.className =
-            "op-song-btn";
-
-        button.dataset.opIndex =
-            String(index);
-
-        button.dataset.opSong =
-            song.src;
-
-        button.textContent =
-            `🎵 ${song.name}`;
-
-
-        opMusicMenu.appendChild(button);
-
-    });
-
-}
-
-
-// =========================================================
-// UPDATE ACTIVE SONG
-// =========================================================
-
-function updateOpSongButton() {
-
-    if (!opMusicMenu) return;
-
-
-    const buttons =
-        opMusicMenu.querySelectorAll(
-            ".op-song-btn"
-        );
-
-
-    buttons.forEach(button => {
-
-        const index =
-            Number(button.dataset.opIndex);
-
-
-        button.classList.toggle(
-            "active",
-            index === opPlaylistIndex
-        );
-
-    });
-
-}
-
-
-// =========================================================
-// PLAY ONE PIECE SONG
-// =========================================================
-
-function playOpSong(index) {
-
-    if (
-        !onePieceMusic ||
-        !onePiecePlaylist.length
-    ) {
-        return;
-    }
-
-
-    // Make sure index always stays inside playlist
-    const safeIndex =
-        (
-            index +
-            onePiecePlaylist.length
-        ) %
-        onePiecePlaylist.length;
-
-
-    opPlaylistIndex =
-        safeIndex;
-
-
-    const song =
-        onePiecePlaylist[
-            opPlaylistIndex
         ];
 
 
-    // Change audio
-    onePieceMusic.src =
-        song.src;
+        // =====================================================
+        // ONE PIECE MUSIC STATE
+        // =====================================================
 
-    onePieceMusic.load();
+        let opPlaylistIndex = 0;
+        let opMusicPlaying = false;
 
 
-    updateOpSongButton();
+        // =====================================================
+        // UPDATE ACTIVE PLAYLIST BUTTON
+        // =====================================================
 
+        function updateOpSongButton() {
 
-    onePieceMusic
-        .play()
-        .then(() => {
+            if (!opMusicMenu) return;
 
-            opMusicPlaying = true;
 
-
-            if (musicButton) {
-
-                musicButton.textContent =
-                    "🎶";
-
-            }
-
-        })
-        .catch(error => {
-
-            opMusicPlaying = false;
-
-
-            if (musicButton) {
-
-                musicButton.textContent =
-                    "🎵";
-
-            }
-
-
-            console.log(
-                "Grand Line music could not play:",
-                error
-            );
-
-        });
-
-}
-
-
-// =========================================================
-// STOP ONE PIECE MUSIC
-// =========================================================
-
-function stopOpMusic() {
-
-    if (!onePieceMusic) return;
-
-
-    onePieceMusic.pause();
-
-    onePieceMusic.currentTime = 0;
-
-    opMusicPlaying = false;
-
-
-    if (musicButton) {
-
-        musicButton.textContent =
-            "🎵";
-
-    }
-
-}
-
-
-// =========================================================
-// OPEN ONE PIECE / GRAND LINE
-// =========================================================
-
-if (onePieceButton) {
-
-    onePieceButton.addEventListener(
-        "click",
-        () => {
-
-            if (!onePiecePage) return;
-
-
-            // ---------------------------------------------
-            // REMEMBER NORMAL MUSIC STATE
-            // ---------------------------------------------
-
-            normalMusicWasPlayingBeforeOP =
-                !!music &&
-                !music.paused;
-
-
-            // ---------------------------------------------
-            // STOP NORMAL / ARYAN MUSIC
-            // ---------------------------------------------
-
-            if (music) {
-
-                music.pause();
-
-            }
-
-
-            if (musicToggle) {
-
-                musicToggle.innerHTML =
-                    "🎵❤️";
-
-            }
-
-
-            if (musicToggleAryan) {
-
-                musicToggleAryan.innerHTML =
-                    "🎵❤️";
-
-            }
-
-
-            // ---------------------------------------------
-            // STOP ANY PREVIOUS ONE PIECE MUSIC
-            // ---------------------------------------------
-
-            stopOpMusic();
-
-
-            // ---------------------------------------------
-            // SHOW ONE PIECE PAGE
-            // ---------------------------------------------
-
-            onePiecePage.style.display =
-                "block";
-
-
-            document.body.classList.add(
-                "one-piece-active"
-            );
-
-
-            document.body.style.overflow =
-                "hidden";
-
-
-            // ---------------------------------------------
-            // SHOW OPENING
-            // ---------------------------------------------
-
-            if (opening) {
-
-                opening.style.display =
-                    "grid";
-
-                opening.classList.remove(
-                    "hide"
-                );
-
-            }
-
-
-            // ---------------------------------------------
-            // RESET GRAND LINE
-            // ---------------------------------------------
-
-            if (grandLine) {
-
-                grandLine.classList.remove(
-                    "op-grand-line-visible"
-                );
-
-                grandLine.classList.remove(
-                    "op-destination-open"
-                );
-
-            }
-
-
-            // ---------------------------------------------
-            // RESET MUSIC
-            // ---------------------------------------------
-
-            opPlaylistIndex = 0;
-
-            opMusicPlaying = false;
-
-
-            if (musicButton) {
-
-                musicButton.textContent =
-                    "🎵";
-
-            }
-
-
-            updateOpSongButton();
-
-
-            // ---------------------------------------------
-            // RESET SCROLL
-            // ---------------------------------------------
-
-            onePiecePage.scrollTop = 0;
-
-        }
-    );
-
-}
-
-
-// =========================================================
-// SET SAIL — START GRAND LINE
-// =========================================================
-
-if (startButton) {
-
-    startButton.addEventListener(
-        "click",
-        () => {
-
-            // ---------------------------------------------
-            // HIDE OPENING
-            // ---------------------------------------------
-
-            if (opening) {
-
-                opening.classList.add(
-                    "hide"
-                );
-
-
-                setTimeout(() => {
-
-                    opening.style.display =
-                        "none";
-
-                }, 850);
-
-            }
-
-
-            // ---------------------------------------------
-            // SHOW GRAND LINE
-            // ---------------------------------------------
-
-            if (grandLine) {
-
-                grandLine.classList.add(
-                    "op-grand-line-visible"
-                );
-
-            }
-
-
-            // ---------------------------------------------
-            // START ONE PIECE PLAYLIST
-            // ---------------------------------------------
-
-            playOpSong(
-                opPlaylistIndex
-            );
-
-        }
-    );
-
-}
-
-
-// =========================================================
-// BACK FROM GRAND LINE
-// =========================================================
-
-if (backButton) {
-
-    backButton.addEventListener(
-        "click",
-        () => {
-
-            // ---------------------------------------------
-            // STOP ONE PIECE MUSIC
-            // ---------------------------------------------
-
-            stopOpMusic();
-
-
-            opPlaylistIndex = 0;
-
-
-            // ---------------------------------------------
-            // CLOSE PLAYLIST
-            // ---------------------------------------------
-
-            if (opMusicMenu) {
-
-                opMusicMenu.classList.remove(
-                    "show"
-                );
-
-            }
-
-
-            // ---------------------------------------------
-            // RESET GRAND LINE
-            // ---------------------------------------------
-
-            if (grandLine) {
-
-                grandLine.classList.remove(
-                    "op-grand-line-visible"
-                );
-
-                grandLine.classList.remove(
-                    "op-destination-open"
-                );
-
-            }
-
-
-            // ---------------------------------------------
-            // HIDE ONE PIECE
-            // ---------------------------------------------
-
-            if (onePiecePage) {
-
-                onePiecePage.style.display =
-                    "none";
-
-            }
-
-
-            document.body.classList.remove(
-                "one-piece-active"
-            );
-
-
-            document.body.style.overflow =
-                "";
-
-
-            // ---------------------------------------------
-            // RESUME NORMAL MUSIC ONLY IF IT WAS PLAYING
-            // ---------------------------------------------
-
-            if (
-                music &&
-                normalMusicWasPlayingBeforeOP
-            ) {
-
-                music.play()
-                    .catch(() => {});
-
-            }
-
-
-            normalMusicWasPlayingBeforeOP =
-                false;
-
-        }
-    );
-
-}
-
-
-// =========================================================
-// ONE PIECE MUSIC BUTTON
-// =========================================================
-
-if (musicButton) {
-
-    musicButton.addEventListener(
-        "click",
-        event => {
-
-            event.preventDefault();
-            event.stopPropagation();
-
-
-            if (!onePieceMusic) return;
-
-
-            // ---------------------------------------------
-            // TOGGLE PLAY / PAUSE
-            // ---------------------------------------------
-
-            if (opMusicPlaying) {
-
-                onePieceMusic.pause();
-
-                opMusicPlaying = false;
-
-                musicButton.textContent =
-                    "🎵";
-
-            } else {
-
-                playOpSong(
-                    opPlaylistIndex
-                );
-
-            }
-
-
-            // ---------------------------------------------
-            // TOGGLE PLAYLIST MENU
-            // ---------------------------------------------
-
-            if (opMusicMenu) {
-
-                opMusicMenu.classList.toggle(
-                    "show"
-                );
-
-            }
-
-        }
-    );
-
-}
-
-
-// =========================================================
-// CLOSE MUSIC MENU WHEN CLICKING OUTSIDE
-// =========================================================
-
-document.addEventListener(
-    "click",
-    event => {
-
-        if (
-            !opMusicMenu ||
-            !musicButton
-        ) {
-            return;
-        }
-
-
-        if (
-            !opMusicMenu.contains(
-                event.target
-            ) &&
-            event.target !==
-                musicButton
-        ) {
-
-            opMusicMenu.classList.remove(
-                "show"
-            );
-
-        }
-
-    }
-);
-
-
-// =========================================================
-// ONE PIECE PLAYLIST BUTTONS
-// =========================================================
-
-if (opMusicMenu) {
-
-    opMusicMenu.addEventListener(
-        "click",
-        event => {
-
-            event.preventDefault();
-            event.stopPropagation();
-
-
-            const songButton =
-                event.target.closest(
+            const buttons =
+                opMusicMenu.querySelectorAll(
                     ".op-song-btn"
                 );
 
 
-            if (!songButton) return;
+            buttons.forEach(button => {
+
+                const isActive =
+                    button.dataset.opSong ===
+                    onePiecePlaylist[
+                        opPlaylistIndex
+                    ]?.src;
 
 
-            const index =
-                Number(
-                    songButton.dataset.opIndex
+                button.classList.toggle(
+                    "active",
+                    isActive
                 );
 
+            });
+
+        }
+
+
+        // =====================================================
+        // PLAY ONE PIECE SONG
+        // =====================================================
+
+        function playOpSong(index) {
 
             if (
-                !Number.isInteger(index)
+                !onePiecePlaylist[index] ||
+                !onePieceMusic
             ) {
                 return;
             }
 
 
-            playOpSong(index);
+            // Keep playlist index synchronized
+            opPlaylistIndex = index;
 
 
-            // Keep menu visible
-            opMusicMenu.classList.add(
-                "show"
-            );
+            const song =
+                onePiecePlaylist[
+                    opPlaylistIndex
+                ];
+
+
+            // Change audio source
+            onePieceMusic.src =
+                song.src;
+
+            onePieceMusic.load();
+
+
+            // Update active menu button
+            updateOpSongButton();
+
+
+            // Play
+            onePieceMusic
+                .play()
+                .then(() => {
+
+                    opMusicPlaying = true;
+
+
+                    if (musicButton) {
+
+                        musicButton.textContent =
+                            "🎶";
+
+                    }
+
+                })
+                .catch(error => {
+
+                    console.log(
+                        "Grand Line music could not autoplay:",
+                        error
+                    );
+
+                });
 
         }
-    );
-
-}
 
 
-// =========================================================
-// AUTOMATIC NEXT ONE PIECE SONG
-// =========================================================
+        // =====================================================
+        // OPEN ONE PIECE PAGE
+        // =====================================================
 
-if (onePieceMusic) {
+        if (onePieceButton) {
 
-    onePieceMusic.addEventListener(
-        "ended",
-        () => {
+            onePieceButton.addEventListener(
+                "click",
+                () => {
 
-            const nextIndex =
-                (
-                    opPlaylistIndex + 1
-                ) %
-                onePiecePlaylist.length;
+                    if (!onePiecePage) {
+                        return;
+                    }
 
 
-            playOpSong(
-                nextIndex
-            );
+                    // -----------------------------------------
+                    // STOP NORMAL MUSIC
+                    // -----------------------------------------
 
-        }
-    );
+                    if (music) {
 
+                        music.pause();
+                        music.currentTime = 0;
 
-    onePieceMusic.addEventListener(
-        "pause",
-        () => {
-
-            if (
-                !onePieceMusic.ended
-            ) {
-
-                opMusicPlaying =
-                    false;
+                    }
 
 
-                if (musicButton) {
+                    // Reset normal music icons
 
-                    musicButton.textContent =
-                        "🎵";
+                    if (musicToggle) {
+
+                        musicToggle.innerHTML =
+                            "🎵❤️";
+
+                    }
+
+
+                    if (musicToggleAryan) {
+
+                        musicToggleAryan.innerHTML =
+                            "🎵❤️";
+
+                    }
+
+
+                    // -----------------------------------------
+                    // SHOW ONE PIECE PAGE
+                    // -----------------------------------------
+
+                    onePiecePage.style.display =
+                        "block";
+
+
+                    document.body.classList.add(
+                        "one-piece-active"
+                    );
+
+
+                    document.body.style.overflow =
+                        "hidden";
+
+
+                    // -----------------------------------------
+                    // SHOW OPENING SCREEN
+                    // -----------------------------------------
+
+                    if (opening) {
+
+                        opening.style.display =
+                            "grid";
+
+                        opening.classList.remove(
+                            "hide"
+                        );
+
+                    }
+
+
+                    // -----------------------------------------
+                    // RESET GRAND LINE
+                    // -----------------------------------------
+
+                    if (grandLine) {
+
+                        grandLine.style.display =
+                            "block";
+
+                        grandLine.classList.remove(
+                            "op-grand-line-visible"
+                        );
+
+                        grandLine.classList.remove(
+                            "op-destination-open"
+                        );
+
+                    }
+
+
+                    // -----------------------------------------
+                    // RESET ONE PIECE MUSIC
+                    // -----------------------------------------
+
+                    if (onePieceMusic) {
+
+                        onePieceMusic.pause();
+
+                        onePieceMusic.currentTime =
+                            0;
+
+                    }
+
+
+                    opPlaylistIndex = 0;
+
+                    opMusicPlaying = false;
+
+
+                    if (musicButton) {
+
+                        musicButton.textContent =
+                            "🎵";
+
+                    }
+
+
+                    updateOpSongButton();
+
+
+                    // -----------------------------------------
+                    // RESET PAGE SCROLL
+                    // -----------------------------------------
+
+                    onePiecePage.scrollTop =
+                        0;
 
                 }
-
-            }
-
-        }
-    );
-
-
-    onePieceMusic.addEventListener(
-        "play",
-        () => {
-
-            opMusicPlaying =
-                true;
-
-
-            if (musicButton) {
-
-                musicButton.textContent =
-                    "🎶";
-
-            }
-
-        }
-    );
-
-}
-
-
-// =========================================================
-// GRAND LINE DESTINATION NAVIGATION
-// =========================================================
-
-const destinationButtons =
-    document.querySelectorAll(
-        ".op-destination-button"
-    );
-
-
-const destinationPanels =
-    document.querySelectorAll(
-        ".op-destination-panel"
-    );
-
-
-function showGrandLineHome() {
-
-    destinationPanels.forEach(
-        panel => {
-
-            panel.classList.remove(
-                "op-panel-active"
             );
 
         }
-    );
 
 
-    if (grandLine) {
+        // =====================================================
+        // START GRAND LINE
+        // =====================================================
 
-        grandLine.classList.remove(
-            "op-destination-open"
-        );
+        if (startButton) {
 
-        grandLine.scrollTop = 0;
-
-    }
-
-}
+            startButton.addEventListener(
+                "click",
+                () => {
 
 
-function showGrandLinePanel(id) {
+                    // -----------------------------------------
+                    // STOP MAIN / ARYAN MUSIC
+                    // -----------------------------------------
 
-    const panel =
-        document.getElementById(id);
+                    if (music) {
 
+                        music.pause();
 
-    if (!panel) return;
+                        music.currentTime =
+                            0;
 
-
-    destinationPanels.forEach(
-        otherPanel => {
-
-            otherPanel.classList.remove(
-                "op-panel-active"
-            );
-
-        }
-    );
+                    }
 
 
-    if (grandLine) {
+                    // Reset normal music icons
 
-        grandLine.classList.add(
-            "op-destination-open"
-        );
+                    if (musicToggle) {
 
-    }
+                        musicToggle.innerHTML =
+                            "🎵❤️";
 
-
-    panel.classList.add(
-        "op-panel-active"
-    );
+                    }
 
 
-    panel.scrollTop = 0;
+                    if (musicToggleAryan) {
 
-}
+                        musicToggleAryan.innerHTML =
+                            "🎵❤️";
 
-
-destinationButtons.forEach(
-    destinationButton => {
-
-        destinationButton.addEventListener(
-            "click",
-            () => {
-
-                destinationButton.classList.remove(
-                    "button-pop"
-                );
+                    }
 
 
-                void destinationButton.offsetWidth;
+                    // -----------------------------------------
+                    // HIDE OPENING
+                    // -----------------------------------------
+
+                    if (opening) {
+
+                        opening.style.display =
+                            "none";
+
+                    }
 
 
-                destinationButton.classList.add(
-                    "button-pop"
-                );
-
-
-                const target =
-                    destinationButton.dataset
-                        .opSection;
-
-
-                if (target) {
+                    // -----------------------------------------
+                    // SHOW GRAND LINE
+                    // -----------------------------------------
 
                     setTimeout(
                         () => {
 
-                            showGrandLinePanel(
-                                target
-                            );
+                            if (grandLine) {
+
+                                grandLine.classList.add(
+                                    "op-grand-line-visible"
+                                );
+
+                            }
 
                         },
-                        260
+                        850
                     );
 
+
+                    // -----------------------------------------
+                    // START FIRST ONE PIECE SONG
+                    // -----------------------------------------
+
+                    playOpSong(0);
+
                 }
-
-            }
-        );
-
-    }
-);
-
-
-document
-    .querySelectorAll(
-        "[data-op-home]"
-    )
-    .forEach(
-        homeButton => {
-
-            homeButton.addEventListener(
-                "click",
-                showGrandLineHome
             );
 
         }
-    );
 
 
-showGrandLineHome();
+        // =====================================================
+        // BACK BUTTON
+        // =====================================================
 
+        if (backButton) {
 
-// =========================================================
-// GRAND LINE MEMORY DATA
-// =========================================================
+            backButton.addEventListener(
+                "click",
+                () => {
 
-const memories = {
 
-    codm: {
+                    // -----------------------------------------
+                    // STOP ONE PIECE MUSIC
+                    // -----------------------------------------
 
-        icon: "🎮",
+                    if (onePieceMusic) {
 
-        chapter: "CHAPTER I",
+                        onePieceMusic.pause();
 
-        title: "Where It All Began",
+                        onePieceMusic.currentTime =
+                            0;
 
-        text:
-            "Our story began somewhere between a game of CODM and two people who had no idea what was coming next.",
+                    }
 
-        photos: [
-            "images/codm1.jpeg",
-            "images/codm2.jpeg",
-            "images/codm3.jpeg"
-        ],
 
-        captions: [
-            "The beginning of our adventure 🎮",
-            "Two players. One story.",
-            "And somehow, we found each other ❤️"
-        ]
+                    opMusicPlaying =
+                        false;
 
-    },
 
+                    opPlaylistIndex =
+                        0;
 
-    videocall: {
 
-        icon: "📞",
+                    // -----------------------------------------
+                    // RESET MUSIC BUTTON
+                    // -----------------------------------------
 
-        chapter: "CHAPTER II",
+                    if (musicButton) {
 
-        title: "Across The Distance",
+                        musicButton.textContent =
+                            "🎵";
 
-        text:
-            "From messages to calls, somehow the distance never felt quite so far when you were on the other side.",
+                    }
 
-        photos: [
-            "images/videocall1.jpeg",
-            "images/videocall2.jpeg",
-            "images/videocall3.jpeg"
-        ],
 
-        captions: [
-            "Hours that never felt long 📞",
-            "Your face became my favourite notification.",
-            "A little closer, every call ❤️"
-        ]
+                    // -----------------------------------------
+                    // CLOSE MUSIC MENU
+                    // -----------------------------------------
 
-    },
+                    if (opMusicMenu) {
 
+                        opMusicMenu.classList.remove(
+                            "show"
+                        );
 
-    Mysore: {
+                    }
 
-        icon: "🏰✨",
 
-        chapter: "CHAPTER III",
+                    // -----------------------------------------
+                    // HIDE ONE PIECE PAGE
+                    // -----------------------------------------
 
-        title: "Mysore",
+                    if (onePiecePage) {
 
-        text:
-            "Another chapter, another place, and another collection of memories that became ours.",
+                        onePiecePage.style.display =
+                            "none";
 
-        photos: [
-            "images/Mysore1.jpeg",
-            "images/Mysore2.jpeg",
-            "images/Mysore3.jpeg"
-        ],
+                    }
 
-        captions: [
-            "A place became a memory.",
-            "One more adventure together ✨",
-            "Mysore, but make it ours ❤️"
-        ]
 
-    },
+                    if (grandLine) {
 
+                        grandLine.classList.remove(
+                            "op-grand-line-visible"
+                        );
 
-    Banglore: {
+                        grandLine.classList.remove(
+                            "op-destination-open"
+                        );
 
-        icon: "🏰",
+                    }
 
-        chapter: "CHAPTER IV",
 
-        title: "Banglore",
+                    document.body.classList.remove(
+                        "one-piece-active"
+                    );
 
-        text:
-            "Some places are special because of where they are. Others become special because of who you were with.",
 
-        photos: [
-            "images/Banglore1.jpeg",
-            "images/Banglore2.jpeg",
-            "images/Banglore3.jpeg"
-        ],
+                    document.body.style.overflow =
+                        "";
 
-        captions: [
-            "Another stop on our Grand Line.",
-            "Another memory with you.",
-            "Another chapter of us ❤️"
-        ]
 
-    },
+                    // -----------------------------------------
+                    // RESUME NORMAL MUSIC
+                    // -----------------------------------------
 
+                    if (music) {
 
-    Mumbai: {
+                        music.play()
+                            .catch(() => {});
 
-        icon: "🌊",
+                    }
 
-        chapter: "CHAPTER V",
+                }
+            );
 
-        title: "Mumbai",
+        }
 
-        text:
-            "A city full of lights, chaos and endless stories — and somehow, one of my favourite stories here is ours.",
 
-        photos: [
-            "images/Mumbai1.jpeg",
-            "images/Mumbai2.jpeg",
-            "images/Mumbai3.jpeg"
-        ],
+        // =====================================================
+        // ONE PIECE MUSIC BUTTON
+        // =====================================================
 
-        captions: [
-            "Mumbai nights 🌊",
-            "Our little adventure in the city.",
-            "A memory worth keeping forever ❤️"
-        ]
+        if (musicButton) {
 
-    }
-
-};
-
-
-// =========================================================
-// MEMORY DOM
-// =========================================================
-
-const memoryModal =
-    document.getElementById(
-        "memoryModal"
-    );
-
-const closeMemory =
-    document.getElementById(
-        "closeMemory"
-    );
-
-const memoryIcon =
-    document.getElementById(
-        "memoryIcon"
-    );
-
-const memoryChapter =
-    document.getElementById(
-        "memoryChapter"
-    );
-
-const memoryTitle =
-    document.getElementById(
-        "memoryTitle"
-    );
-
-const memoryText =
-    document.getElementById(
-        "memoryText"
-    );
-
-const memoryPhoto =
-    document.getElementById(
-        "memoryPhoto"
-    );
-
-const memoryPhotoCaption =
-    document.getElementById(
-        "memoryPhotoCaption"
-    );
-
-const memoryPhotoCounter =
-    document.getElementById(
-        "memoryPhotoCounter"
-    );
-
-const memoryPhotoPrev =
-    document.getElementById(
-        "memoryPhotoPrev"
-    );
-
-const memoryPhotoNext =
-    document.getElementById(
-        "memoryPhotoNext"
-    );
-
-
-let currentMemory = null;
-let currentPhotoIndex = 0;
-let memoryPhotoTimer = null;
-
-
-// =========================================================
-// SHOW MEMORY PHOTO
-// =========================================================
-
-function showMemoryPhoto(index) {
-
-    if (!currentMemory) return;
-
-
-    const photos =
-        currentMemory.photos || [];
-
-
-    if (!photos.length) return;
-
-
-    currentPhotoIndex =
-        (
-            index +
-            photos.length
-        ) %
-        photos.length;
-
-
-    const photo =
-        photos[
-            currentPhotoIndex
-        ];
-
-
-    if (memoryPhoto) {
-
-        memoryPhoto.classList.remove(
-            "photo-changing"
-        );
-
-
-        void memoryPhoto.offsetWidth;
-
-
-        memoryPhoto.classList.add(
-            "photo-changing"
-        );
-
-
-        memoryPhoto.src =
-            photo;
-
-
-        memoryPhoto.onerror =
-            function () {
-
-                console.warn(
-                    "Could not load memory photo:",
-                    photo
-                );
-
-            };
-
-    }
-
-
-    if (memoryPhotoCaption) {
-
-        const captions =
-            currentMemory.captions || [];
-
-
-        memoryPhotoCaption.textContent =
-            captions[
-                currentPhotoIndex
-            ] || "";
-
-    }
-
-
-    if (memoryPhotoCounter) {
-
-        memoryPhotoCounter.textContent =
-            `${currentPhotoIndex + 1} / ${photos.length}`;
-
-    }
-
-
-    if (memoryPhotoPrev) {
-
-        memoryPhotoPrev.style.display =
-            photos.length > 1
-                ? "flex"
-                : "none";
-
-    }
-
-
-    if (memoryPhotoNext) {
-
-        memoryPhotoNext.style.display =
-            photos.length > 1
-                ? "flex"
-                : "none";
-
-    }
-
-}
-
-
-// =========================================================
-// MEMORY PHOTO AUTO SLIDESHOW
-// =========================================================
-
-function startMemoryPhotoSlideshow() {
-
-    clearInterval(
-        memoryPhotoTimer
-    );
-
-
-    if (!currentMemory) return;
-
-
-    if (
-        !currentMemory.photos ||
-        currentMemory.photos.length <= 1
-    ) {
-        return;
-    }
-
-
-    memoryPhotoTimer =
-        setInterval(
-            () => {
-
-                showMemoryPhoto(
-                    currentPhotoIndex + 1
-                );
-
-            },
-            5000
-        );
-
-}
-
-
-// =========================================================
-// OPEN MEMORY
-// =========================================================
-
-function openMemory(memoryKey) {
-
-    const memory =
-        memories[memoryKey];
-
-
-    if (
-        !memory ||
-        !memoryModal
-    ) {
-        return;
-    }
-
-
-    currentMemory =
-        memory;
-
-    currentPhotoIndex =
-        0;
-
-
-    if (memoryIcon) {
-
-        memoryIcon.textContent =
-            memory.icon;
-
-    }
-
-
-    if (memoryChapter) {
-
-        memoryChapter.textContent =
-            memory.chapter;
-
-    }
-
-
-    if (memoryTitle) {
-
-        memoryTitle.textContent =
-            memory.title;
-
-    }
-
-
-    if (memoryText) {
-
-        memoryText.textContent =
-            memory.text;
-
-    }
-
-
-    showMemoryPhoto(0);
-
-
-    memoryModal.style.display =
-        "flex";
-
-
-    memoryModal.classList.add(
-        "active"
-    );
-
-
-    document.body.classList.add(
-        "memory-open"
-    );
-
-
-    startMemoryPhotoSlideshow();
-
-}
-
-
-// =========================================================
-// CLOSE MEMORY
-// =========================================================
-
-function closeMemoryModal() {
-
-    clearInterval(
-        memoryPhotoTimer
-    );
-
-
-    memoryPhotoTimer =
-        null;
-
-
-    currentMemory =
-        null;
-
-
-    currentPhotoIndex =
-        0;
-
-
-    if (!memoryModal) return;
-
-
-    memoryModal.classList.remove(
-        "active"
-    );
-
-
-    memoryModal.style.display =
-        "none";
-
-
-    document.body.classList.remove(
-        "memory-open"
-    );
-
-}
-
-
-// =========================================================
-// MEMORY ISLANDS
-// =========================================================
-
-document
-    .querySelectorAll(
-        ".memory-island"
-    )
-    .forEach(
-        island => {
-
-            island.addEventListener(
+            musicButton.addEventListener(
                 "click",
                 event => {
 
@@ -3191,305 +2357,1126 @@ document
                     event.stopPropagation();
 
 
-                    openMemory(
-                        island.dataset.memory
+                    if (!onePieceMusic) {
+                        return;
+                    }
+
+
+                    // -----------------------------------------
+                    // PLAY / PAUSE
+                    // -----------------------------------------
+
+                    if (opMusicPlaying) {
+
+                        onePieceMusic.pause();
+
+                        opMusicPlaying =
+                            false;
+
+
+                        musicButton.textContent =
+                            "🎵";
+
+                    } else {
+
+                        playOpSong(
+                            opPlaylistIndex
+                        );
+
+                    }
+
+
+                    // -----------------------------------------
+                    // OPEN / CLOSE PLAYLIST
+                    // -----------------------------------------
+
+                    if (opMusicMenu) {
+
+                        opMusicMenu.classList.toggle(
+                            "show"
+                        );
+
+                    }
+
+                }
+            );
+
+        }
+
+
+        // =====================================================
+        // CLOSE PLAYLIST WHEN CLICKING ELSEWHERE
+        // =====================================================
+
+        document.addEventListener(
+            "click",
+            event => {
+
+                if (
+                    !opMusicMenu ||
+                    !musicButton
+                ) {
+                    return;
+                }
+
+
+                if (
+                    !opMusicMenu.contains(
+                        event.target
+                    ) &&
+                    event.target !==
+                        musicButton
+                ) {
+
+                    opMusicMenu.classList.remove(
+                        "show"
+                    );
+
+                }
+
+            }
+        );
+
+
+        // =====================================================
+        // ONE PIECE MUSIC MENU
+        // =====================================================
+
+        if (opMusicMenu) {
+
+            opMusicMenu.addEventListener(
+                "click",
+                event => {
+
+                    event.stopPropagation();
+
+
+                    const songButton =
+                        event.target.closest(
+                            ".op-song-btn"
+                        );
+
+
+                    if (!songButton) {
+                        return;
+                    }
+
+
+                    const index =
+                        onePiecePlaylist.findIndex(
+                            song =>
+                                song.src ===
+                                songButton.dataset.opSong
+                        );
+
+
+                    if (index === -1) {
+                        return;
+                    }
+
+
+                    playOpSong(index);
+
+
+                    // Keep menu open after selecting
+                    opMusicMenu.classList.add(
+                        "show"
                     );
 
                 }
             );
 
         }
-    );
 
 
-// =========================================================
-// CLOSE MEMORY
-// =========================================================
+        // =====================================================
+        // AUTOMATIC NEXT ONE PIECE SONG
+        // =====================================================
 
-if (closeMemory) {
+        if (onePieceMusic) {
 
-    closeMemory.addEventListener(
-        "click",
-        event => {
+            onePieceMusic.addEventListener(
+                "ended",
+                () => {
 
-            event.preventDefault();
-            event.stopPropagation();
 
-            closeMemoryModal();
+                    const nextIndex =
+                        (
+                            opPlaylistIndex + 1
+                        ) %
+                        onePiecePlaylist.length;
+
+
+                    playOpSong(
+                        nextIndex
+                    );
+
+                }
+            );
 
         }
-    );
-
-}
 
 
-// =========================================================
-// NEXT MEMORY PHOTO
-// =========================================================
+        // =====================================================
+        // GRAND LINE DESTINATION NAVIGATION
+        // =====================================================
 
-if (memoryPhotoNext) {
-
-    memoryPhotoNext.addEventListener(
-        "click",
-        event => {
-
-            event.preventDefault();
-            event.stopPropagation();
-
-
-            if (!currentMemory) return;
-
-
-            showMemoryPhoto(
-                currentPhotoIndex + 1
+        const destinationButtons =
+            document.querySelectorAll(
+                ".op-destination-button"
             );
 
 
-            startMemoryPhotoSlideshow();
-
-        }
-    );
-
-}
-
-
-// =========================================================
-// PREVIOUS MEMORY PHOTO
-// =========================================================
-
-if (memoryPhotoPrev) {
-
-    memoryPhotoPrev.addEventListener(
-        "click",
-        event => {
-
-            event.preventDefault();
-            event.stopPropagation();
-
-
-            if (!currentMemory) return;
-
-
-            showMemoryPhoto(
-                currentPhotoIndex - 1
+        const destinationPanels =
+            document.querySelectorAll(
+                ".op-destination-panel"
             );
 
 
-            startMemoryPhotoSlideshow();
+        function showGrandLineHome() {
 
-        }
-    );
+            destinationPanels.forEach(
+                panel => {
 
-}
+                    panel.classList.remove(
+                        "op-panel-active"
+                    );
+
+                }
+            );
 
 
-// =========================================================
-// CLICK OUTSIDE MEMORY
-// =========================================================
+            if (grandLine) {
 
-if (memoryModal) {
+                grandLine.classList.remove(
+                    "op-destination-open"
+                );
 
-    memoryModal.addEventListener(
-        "click",
-        event => {
-
-            if (
-                event.target ===
-                memoryModal
-            ) {
-
-                closeMemoryModal();
+                grandLine.scrollTop =
+                    0;
 
             }
 
         }
-    );
-
-}
 
 
-// =========================================================
-// TREASURE CHEST
-// =========================================================
+        function showGrandLinePanel(id) {
 
-const treasureChest =
-    document.getElementById(
-        "treasureChest"
-    );
-
-const treasureMessage =
-    document.getElementById(
-        "treasureMessage"
-    );
-
-const closeTreasure =
-    document.getElementById(
-        "closeTreasure"
-    );
+            const panel =
+                document.getElementById(
+                    id
+                );
 
 
-if (treasureChest) {
-
-    treasureChest.addEventListener(
-        "click",
-        () => {
-
-            treasureChest.style.transform =
-                "scale(0.9) rotate(-4deg)";
+            if (!panel) {
+                return;
+            }
 
 
-            setTimeout(
+            destinationPanels.forEach(
+                otherPanel => {
+
+                    otherPanel.classList.remove(
+                        "op-panel-active"
+                    );
+
+                }
+            );
+
+
+            if (grandLine) {
+
+                grandLine.classList.add(
+                    "op-destination-open"
+                );
+
+            }
+
+
+            panel.classList.add(
+                "op-panel-active"
+            );
+
+
+            panel.scrollTop =
+                0;
+
+        }
+
+
+        destinationButtons.forEach(
+            destinationButton => {
+
+                destinationButton.addEventListener(
+                    "click",
+                    () => {
+
+
+                        destinationButton.classList.remove(
+                            "button-pop"
+                        );
+
+
+                        void destinationButton.offsetWidth;
+
+
+                        destinationButton.classList.add(
+                            "button-pop"
+                        );
+
+
+                        const target =
+                            destinationButton.dataset
+                                .opSection;
+
+
+                        if (target) {
+
+                            setTimeout(
+                                () => {
+
+                                    showGrandLinePanel(
+                                        target
+                                    );
+
+                                },
+                                260
+                            );
+
+                        }
+
+                    }
+                );
+
+            }
+        );
+
+
+        document
+            .querySelectorAll(
+                "[data-op-home]"
+            )
+            .forEach(
+                homeButton => {
+
+                    homeButton.addEventListener(
+                        "click",
+                        showGrandLineHome
+                    );
+
+                }
+            );
+
+
+        showGrandLineHome();
+
+
+        // =====================================================
+        // GRAND LINE MEMORY POLAROIDS
+        // =====================================================
+
+        const memories = {
+
+            codm: {
+
+                icon: "🎮",
+
+                chapter: "CHAPTER I",
+
+                title: "Where It All Began",
+
+                text:
+                    "Our story began somewhere between a game of CODM and two people who had no idea what was coming next.",
+
+                photos: [
+                    "images/codm1.jpeg",
+                    "images/codm2.jpeg",
+                    "images/codm3.jpeg"
+                ],
+
+                captions: [
+                    "The beginning of our adventure 🎮",
+                    "Two players. One story.",
+                    "And somehow, we found each other ❤️"
+                ]
+
+            },
+
+
+            videocall: {
+
+                icon: "📞",
+
+                chapter: "CHAPTER II",
+
+                title: "Across The Distance",
+
+                text:
+                    "From messages to calls, somehow the distance never felt quite so far when you were on the other side.",
+
+                photos: [
+                    "images/videocall1.jpeg",
+                    "images/videocall2.jpeg",
+                    "images/videocall3.jpeg"
+                ],
+
+                captions: [
+                    "Hours that never felt long 📞",
+                    "Your face became my favourite notification.",
+                    "A little closer, every call ❤️"
+                ]
+
+            },
+
+
+            Mysore: {
+
+                icon: "🏰✨",
+
+                chapter: "CHAPTER III",
+
+                title: "Mysore",
+
+                text:
+                    "Another chapter, another place, and another collection of memories that became ours.",
+
+                photos: [
+                    "images/Mysore1.jpeg",
+                    "images/Mysore2.jpeg",
+                    "images/Mysore3.jpeg"
+                ],
+
+                captions: [
+                    "A place became a memory.",
+                    "One more adventure together ✨",
+                    "Mysore, but make it ours ❤️"
+                ]
+
+            },
+
+
+            Banglore: {
+
+                icon: "🏰",
+
+                chapter: "CHAPTER IV",
+
+                title: "Banglore",
+
+                text:
+                    "Some places are special because of where they are. Others become special because of who you were with.",
+
+                photos: [
+                    "images/Banglore1.jpeg",
+                    "images/Banglore2.jpeg",
+                    "images/Banglore3.jpeg"
+                ],
+
+                captions: [
+                    "Another stop on our Grand Line.",
+                    "Another memory with you.",
+                    "Another chapter of us ❤️"
+                ]
+
+            },
+
+
+            Mumbai: {
+
+                icon: "🌊",
+
+                chapter: "CHAPTER V",
+
+                title: "Mumbai",
+
+                text:
+                    "A city full of lights, chaos and endless stories — and somehow, one of my favourite stories here is ours.",
+
+                photos: [
+                    "images/Mumbai1.jpeg",
+                    "images/Mumbai2.jpeg",
+                    "images/Mumbai3.jpeg"
+                ],
+
+                captions: [
+                    "Mumbai nights 🌊",
+                    "Our little adventure in the city.",
+                    "A memory worth keeping forever ❤️"
+                ]
+
+            }
+
+        };
+
+
+        // =====================================================
+        // MEMORY DOM ELEMENTS
+        // =====================================================
+
+        const memoryModal =
+            document.getElementById(
+                "memoryModal"
+            );
+
+        const closeMemory =
+            document.getElementById(
+                "closeMemory"
+            );
+
+        const memoryIcon =
+            document.getElementById(
+                "memoryIcon"
+            );
+
+        const memoryChapter =
+            document.getElementById(
+                "memoryChapter"
+            );
+
+        const memoryTitle =
+            document.getElementById(
+                "memoryTitle"
+            );
+
+        const memoryText =
+            document.getElementById(
+                "memoryText"
+            );
+
+        const memoryPhoto =
+            document.getElementById(
+                "memoryPhoto"
+            );
+
+        const memoryPhotoCaption =
+            document.getElementById(
+                "memoryPhotoCaption"
+            );
+
+        const memoryPhotoCounter =
+            document.getElementById(
+                "memoryPhotoCounter"
+            );
+
+        const memoryPhotoPrev =
+            document.getElementById(
+                "memoryPhotoPrev"
+            );
+
+        const memoryPhotoNext =
+            document.getElementById(
+                "memoryPhotoNext"
+            );
+
+
+        let currentMemory = null;
+
+        let currentPhotoIndex = 0;
+
+        let memoryPhotoTimer = null;
+
+
+        // =====================================================
+        // SHOW MEMORY PHOTO
+        // =====================================================
+
+        function showMemoryPhoto(index) {
+
+            if (!currentMemory) {
+                return;
+            }
+
+
+            const photos =
+                currentMemory.photos || [];
+
+
+            if (!photos.length) {
+                return;
+            }
+
+
+            currentPhotoIndex =
+                (
+                    index +
+                    photos.length
+                ) %
+                photos.length;
+
+
+            const photo =
+                photos[
+                    currentPhotoIndex
+                ];
+
+
+            if (memoryPhoto) {
+
+                memoryPhoto.classList.remove(
+                    "photo-changing"
+                );
+
+
+                void memoryPhoto.offsetWidth;
+
+
+                memoryPhoto.classList.add(
+                    "photo-changing"
+                );
+
+
+                memoryPhoto.src =
+                    photo;
+
+
+                memoryPhoto.onerror =
+                    function () {
+
+                        console.warn(
+                            "Could not load memory photo:",
+                            photo
+                        );
+
+                    };
+
+            }
+
+
+            if (memoryPhotoCaption) {
+
+                const captions =
+                    currentMemory.captions ||
+                    [];
+
+
+                memoryPhotoCaption.textContent =
+                    captions[
+                        currentPhotoIndex
+                    ] || "";
+
+            }
+
+
+            if (memoryPhotoCounter) {
+
+                memoryPhotoCounter.textContent =
+                    `${currentPhotoIndex + 1} / ${photos.length}`;
+
+            }
+
+
+            if (memoryPhotoPrev) {
+
+                memoryPhotoPrev.style.display =
+                    photos.length > 1
+                        ? "flex"
+                        : "none";
+
+            }
+
+
+            if (memoryPhotoNext) {
+
+                memoryPhotoNext.style.display =
+                    photos.length > 1
+                        ? "flex"
+                        : "none";
+
+            }
+
+        }
+
+
+        // =====================================================
+        // AUTOMATIC MEMORY SLIDESHOW
+        // =====================================================
+
+        function startMemoryPhotoSlideshow() {
+
+            clearInterval(
+                memoryPhotoTimer
+            );
+
+
+            if (!currentMemory) {
+                return;
+            }
+
+
+            if (
+                !currentMemory.photos ||
+                currentMemory.photos.length <= 1
+            ) {
+                return;
+            }
+
+
+            memoryPhotoTimer =
+                setInterval(
+                    () => {
+
+                        showMemoryPhoto(
+                            currentPhotoIndex + 1
+                        );
+
+                    },
+                    5000
+                );
+
+        }
+
+
+        // =====================================================
+        // OPEN MEMORY
+        // =====================================================
+
+        function openMemory(memoryKey) {
+
+            const memory =
+                memories[memoryKey];
+
+
+            if (
+                !memory ||
+                !memoryModal
+            ) {
+                return;
+            }
+
+
+            currentMemory =
+                memory;
+
+
+            currentPhotoIndex =
+                0;
+
+
+            if (memoryIcon) {
+
+                memoryIcon.textContent =
+                    memory.icon;
+
+            }
+
+
+            if (memoryChapter) {
+
+                memoryChapter.textContent =
+                    memory.chapter;
+
+            }
+
+
+            if (memoryTitle) {
+
+                memoryTitle.textContent =
+                    memory.title;
+
+            }
+
+
+            if (memoryText) {
+
+                memoryText.textContent =
+                    memory.text;
+
+            }
+
+
+            showMemoryPhoto(0);
+
+
+            memoryModal.style.display =
+                "flex";
+
+
+            memoryModal.classList.add(
+                "active"
+            );
+
+
+            document.body.classList.add(
+                "memory-open"
+            );
+
+
+            startMemoryPhotoSlideshow();
+
+        }
+
+
+        // =====================================================
+        // CLOSE MEMORY
+        // =====================================================
+
+        function closeMemoryModal() {
+
+            clearInterval(
+                memoryPhotoTimer
+            );
+
+
+            memoryPhotoTimer =
+                null;
+
+
+            currentMemory =
+                null;
+
+
+            currentPhotoIndex =
+                0;
+
+
+            if (!memoryModal) {
+                return;
+            }
+
+
+            memoryModal.classList.remove(
+                "active"
+            );
+
+
+            memoryModal.style.display =
+                "none";
+
+
+            document.body.classList.remove(
+                "memory-open"
+            );
+
+        }
+
+
+        // =====================================================
+        // MEMORY ISLAND CLICK
+        // =====================================================
+
+        document
+            .querySelectorAll(
+                ".memory-island"
+            )
+            .forEach(
+                island => {
+
+                    island.addEventListener(
+                        "click",
+                        event => {
+
+                            event.preventDefault();
+
+                            event.stopPropagation();
+
+
+                            const memoryKey =
+                                island.dataset.memory;
+
+
+                            openMemory(
+                                memoryKey
+                            );
+
+                        }
+                    );
+
+                }
+            );
+
+
+        // =====================================================
+        // CLOSE MEMORY BUTTON
+        // =====================================================
+
+        if (closeMemory) {
+
+            closeMemory.addEventListener(
+                "click",
+                event => {
+
+                    event.preventDefault();
+
+                    event.stopPropagation();
+
+                    closeMemoryModal();
+
+                }
+            );
+
+        }
+
+
+        // =====================================================
+        // NEXT MEMORY PHOTO
+        // =====================================================
+
+        if (memoryPhotoNext) {
+
+            memoryPhotoNext.addEventListener(
+                "click",
+                event => {
+
+                    event.preventDefault();
+
+                    event.stopPropagation();
+
+
+                    if (!currentMemory) {
+                        return;
+                    }
+
+
+                    showMemoryPhoto(
+                        currentPhotoIndex + 1
+                    );
+
+
+                    startMemoryPhotoSlideshow();
+
+                }
+            );
+
+        }
+
+
+        // =====================================================
+        // PREVIOUS MEMORY PHOTO
+        // =====================================================
+
+        if (memoryPhotoPrev) {
+
+            memoryPhotoPrev.addEventListener(
+                "click",
+                event => {
+
+                    event.preventDefault();
+
+                    event.stopPropagation();
+
+
+                    if (!currentMemory) {
+                        return;
+                    }
+
+
+                    showMemoryPhoto(
+                        currentPhotoIndex - 1
+                    );
+
+
+                    startMemoryPhotoSlideshow();
+
+                }
+            );
+
+        }
+
+
+        // =====================================================
+        // CLICK OUTSIDE MEMORY MODAL
+        // =====================================================
+
+        if (memoryModal) {
+
+            memoryModal.addEventListener(
+                "click",
+                event => {
+
+                    if (
+                        event.target ===
+                        memoryModal
+                    ) {
+
+                        closeMemoryModal();
+
+                    }
+
+                }
+            );
+
+        }
+
+
+        // =====================================================
+        // TREASURE CHEST
+        // =====================================================
+
+        const treasureChest =
+            document.getElementById(
+                "treasureChest"
+            );
+
+        const treasureMessage =
+            document.getElementById(
+                "treasureMessage"
+            );
+
+        const closeTreasure =
+            document.getElementById(
+                "closeTreasure"
+            );
+
+
+        if (treasureChest) {
+
+            treasureChest.addEventListener(
+                "click",
                 () => {
 
-                    if (treasureMessage) {
+                    treasureChest.style.transform =
+                        "scale(0.9) rotate(-4deg)";
 
-                        treasureMessage.classList.add(
+
+                    setTimeout(
+                        () => {
+
+                            if (
+                                treasureMessage
+                            ) {
+
+                                treasureMessage.classList.add(
+                                    "active",
+                                    "open"
+                                );
+
+                            }
+
+
+                            treasureChest.style.transform =
+                                "";
+
+                        },
+                        350
+                    );
+
+                }
+            );
+
+        }
+
+
+        if (closeTreasure) {
+
+            closeTreasure.addEventListener(
+                "click",
+                () => {
+
+                    if (
+                        treasureMessage
+                    ) {
+
+                        treasureMessage.classList.remove(
                             "active",
                             "open"
                         );
 
                     }
 
-
-                    treasureChest.style.transform =
-                        "";
-
-                },
-                350
+                }
             );
 
         }
-    );
-
-}
 
 
-if (closeTreasure) {
+        // =====================================================
+        // ESCAPE KEY
+        // =====================================================
 
-    closeTreasure.addEventListener(
-        "click",
-        () => {
+        document.addEventListener(
+            "keydown",
+            event => {
 
-            if (treasureMessage) {
-
-                treasureMessage.classList.remove(
-                    "active",
-                    "open"
-                );
-
-            }
-
-        }
-    );
-
-}
+                if (
+                    event.key !==
+                    "Escape"
+                ) {
+                    return;
+                }
 
 
-// =========================================================
-// ESCAPE KEY
-// =========================================================
+                // -----------------------------------------
+                // MEMORY POPUP
+                // -----------------------------------------
 
-document.addEventListener(
-    "keydown",
-    event => {
+                if (
+                    memoryModal &&
+                    memoryModal.classList.contains(
+                        "active"
+                    )
+                ) {
 
-        if (event.key !== "Escape") {
-            return;
-        }
+                    closeMemoryModal();
 
+                    return;
 
-        // ---------------------------------------------
-        // CLOSE MEMORY
-        // ---------------------------------------------
-
-        if (
-            memoryModal &&
-            (
-                memoryModal.classList.contains(
-                    "active"
-                ) ||
-                memoryModal.classList.contains(
-                    "open"
-                )
-            )
-        ) {
-
-            closeMemoryModal();
-
-            return;
-
-        }
+                }
 
 
-        // ---------------------------------------------
-        // CLOSE TREASURE
-        // ---------------------------------------------
+                // -----------------------------------------
+                // TREASURE POPUP
+                // -----------------------------------------
 
-        if (
-            treasureMessage &&
-            (
-                treasureMessage.classList.contains(
-                    "active"
-                ) ||
-                treasureMessage.classList.contains(
-                    "open"
-                )
-            )
-        ) {
+                if (
+                    treasureMessage &&
+                    (
+                        treasureMessage.classList.contains(
+                            "active"
+                        ) ||
+                        treasureMessage.classList.contains(
+                            "open"
+                        )
+                    )
+                ) {
 
-            treasureMessage.classList.remove(
-                "active",
-                "open"
-            );
+                    treasureMessage.classList.remove(
+                        "active",
+                        "open"
+                    );
 
-            return;
+                    return;
 
-        }
+                }
 
 
-        // ---------------------------------------------
-        // LEAVE GRAND LINE
-        // ---------------------------------------------
+                // -----------------------------------------
+                // LEAVE GRAND LINE
+                // -----------------------------------------
 
-        if (
-            onePiecePage &&
-            onePiecePage.style.display !== "none"
-        ) {
+                if (
+                    onePiecePage &&
+                    onePiecePage.style.display !==
+                        "none"
+                ) {
 
-            if (backButton) {
+                    if (backButton) {
 
-                backButton.click();
+                        backButton.click();
+
+                    }
+
+                }
 
             }
-
-        }
-
-    }
-);
+        );
 
 
-// =========================================================
-// BUILD PLAYLIST ON LOAD
-// =========================================================
+        // =====================================================
+        // STOP ONE PIECE MUSIC BEFORE PAGE UNLOAD
+        // =====================================================
 
-buildOpPlaylistMenu();
+        window.addEventListener(
+            "beforeunload",
+            () => {
 
-updateOpSongButton();
+                if (onePieceMusic) {
 
+                    onePieceMusic.pause();
 
-// =========================================================
-// STOP ONE PIECE MUSIC BEFORE LEAVING PAGE
-// =========================================================
+                }
 
-window.addEventListener(
-    "beforeunload",
-    () => {
-
-        if (onePieceMusic) {
-
-            onePieceMusic.pause();
-
-        }
+            }
+        );
 
     }
 );
