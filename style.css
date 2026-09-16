@@ -820,6 +820,7 @@ button:hover{
 #journeyIntro{
     position: fixed;
     inset: 0;
+    background: transparent;
     display: flex;
     flex-direction: column;
     justify-content: center;
