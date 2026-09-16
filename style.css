@@ -1,7 +1,11 @@
 /* ============================================================
-   ANKITA & ARYAN — CLEANED STYLESHEET
-   Visual design preserved from the supplied stylesheet.
-   Duplicate rules consolidated; cascade conflicts retained.
+   ANKITA & ARYAN — CLEANED / CONSOLIDATED STYLESHEET
+   Generated from the supplied CSS.
+
+   - Duplicate selector blocks consolidated (last intended cascade kept).
+   - Repeated One Piece "fix" blocks consolidated.
+   - Interactive controls given explicit pointer-event/z-index behavior.
+   - Thousand Sunny remains the single Grand Line page background.
    ============================================================ */
 
 * {
@@ -342,7 +346,6 @@ button:hover {
         max-width: 100%;
         padding: 25px 20px;
     }
-
 }
 
 .letterPopup {
@@ -418,17 +421,17 @@ button:hover {
 }
 
 @keyframes pulse {
-    0%{
-            transform:scale(1);
-        }
-     
-        50%{
-            transform:scale(1.1);
-        }
-     
-        100%{
-            transform:scale(1);
-        }
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
 }
 
 #musicMenu,
@@ -584,24 +587,16 @@ button:hover {
 
 @keyframes quizAppear {
     from {
-    
-            opacity: 0;
-    
-            transform:
-                scale(0.85)
+        opacity: 0;
+        transform: scale(0.85)
                 translateY(30px);
-    
-        }
-    
-        to {
-    
-            opacity: 1;
-    
-            transform:
-                scale(1)
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1)
                 translateY(0);
-    
-        }
+    }
 }
 
 .quiz-heart {
@@ -612,12 +607,12 @@ button:hover {
 @keyframes heartbeat {
     0%,
         100% {
-            transform: scale(1);
-        }
-    
-        50% {
-            transform: scale(1.15);
-        }
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.15);
+    }
 }
 
 .quiz-box h1 {
@@ -805,7 +800,6 @@ button:hover {
         top: 2px;
         left: 2px;
     }
-
 }
 
 .mainLetterButtons {
@@ -1042,7 +1036,6 @@ button:hover {
         transition: opacity 0.9s ease,
                     visibility 0.9s ease;
     }
-
 }
 
 #mainLetterCard,
@@ -1204,21 +1197,41 @@ button:hover {
 }
 
 @keyframes slideOutLeft {
-    to { transform: translateX(-60px); opacity: 0; }
+    to {
+        transform: translateX(-60px);
+        opacity: 0;
+    }
 }
 
 @keyframes slideOutRight {
-    to { transform: translateX(60px); opacity: 0; }
+    to {
+        transform: translateX(60px);
+        opacity: 0;
+    }
 }
 
 @keyframes slideInFromRight {
-    from { transform: translateX(60px); opacity: 0; }
-        to   { transform: translateX(0);    opacity: 1; }
+    from {
+        transform: translateX(60px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
 }
 
 @keyframes slideInFromLeft {
-    from { transform: translateX(-60px); opacity: 0; }
-        to   { transform: translateX(0);     opacity: 1; }
+    from {
+        transform: translateX(-60px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
 }
 
 .slide-out-left {
@@ -1284,62 +1297,77 @@ html {
 
 .one-piece-page {
     display: none;
-    position: fixed;
-    inset: 0;
-    width: 100vw;
-    height: 100vh;
-    min-height: 100vh;
-    z-index: 10000;
-    overflow-x: hidden;
-    overflow-y: auto;
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100vw !important;
+    height: 100dvh !important;
+    min-height: 100dvh !important;
+    z-index: 10000 !important;
+    overflow: hidden !important;
     overscroll-behavior: contain;
     isolation: isolate;
-    background: linear-gradient(rgba(2, 48, 88, .24), rgba(1, 27, 58, .40)),
-            url("images/sunny.png") center center / cover no-repeat;
+    background: #0879c9 !important;
     color: var(--op-white);
 }
 
 .one-piece-page::before {
     content: "";
-    position: fixed;
-    inset: 0;
-    z-index: -3;
-    background: linear-gradient(to bottom, rgba(0, 55, 105, .04), rgba(0, 31, 75, .24)),
-            url("images/sunny.png") center center / cover no-repeat;
-    transform: translateZ(0);
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: 0 !important;
+    background: linear-gradient(
+            to bottom,
+            rgba(2, 48, 88, .18),
+            rgba(1, 27, 58, .38)
+        ),
+        url("images/sunny.png");
+    background-size: cover !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    pointer-events: none;
 }
 
 .one-piece-page::after {
     content: "";
-    position: fixed;
-    inset: 0;
-    z-index: -2;
+    position: absolute !important;
+    inset: 0 !important;
+    z-index: 1 !important;
     pointer-events: none;
-    background: linear-gradient(to bottom, rgba(255, 255, 255, .03), rgba(0, 0, 0, .16)),
-            radial-gradient(circle at 50% 25%, transparent 0 32%, rgba(0, 29, 65, .18) 100%);
-}
-
-.grand-line-content {
-    min-height: 100vh;
     background: linear-gradient(
             to bottom,
-            rgba(255,255,255,.02) 0%,
-            rgba(255,255,255,.05) 45%,
-            rgba(0,38,75,.18) 100%
+            rgba(255,255,255,.02),
+            rgba(0,0,0,.16)
+        ),
+        radial-gradient(
+            circle at 50% 25%,
+            transparent 0 32%,
+            rgba(0,29,65,.18) 100%
         );
 }
 
-.op-opening {
-    position: fixed;
-    inset: 0;
-    z-index: 100;
-    display: grid;
-    place-items: center;
-    padding: 24px;
-    text-align: center;
-    background: linear-gradient(rgba(1, 43, 82, .42), rgba(1, 36, 70, .64)),
-            url("images/sunny.png") center / cover no-repeat;
-    transition: opacity .8s ease, visibility .8s ease, transform .8s ease;
+.one-piece-page
+.grand-line-content.op-grand-line-visible {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    transition: opacity .25s ease;
+}
+
+.one-piece-page .op-opening.hidden,
+.one-piece-page .op-opening.hide {
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(1.04);
+    pointer-events: none;
+}
+
+@media (max-width: 700px) {
+    .one-piece-page::before {
+        background-position: center center !important;
+        background-size: cover !important;
+    }
 }
 
 .op-opening.hidden {
@@ -2060,23 +2088,43 @@ html {
 }
 
 @keyframes spinCompass {
-    to { transform: rotate(360deg); }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 @keyframes cloudMove {
-    from { transform: translateX(0) scale(1); }
-        to { transform: translateX(calc(100vw + 450px)) scale(1.15); }
+    from {
+        transform: translateX(0) scale(1);
+    }
+
+    to {
+        transform: translateX(calc(100vw + 450px)) scale(1.15);
+    }
 }
 
 @keyframes shipBob {
-    0%, 100% { transform: translateY(0) rotate(-2deg); }
-        50% { transform: translateY(-13px) rotate(3deg); }
+    0%, 100% {
+        transform: translateY(0) rotate(-2deg);
+    }
+
+    50% {
+        transform: translateY(-13px) rotate(3deg);
+    }
 }
 
 @keyframes heartBeat {
-    0%, 100% { transform: scale(1); }
-        20% { transform: scale(1.12); }
-        40% { transform: scale(1); }
+    0%, 100% {
+        transform: scale(1);
+    }
+
+    20% {
+        transform: scale(1.12);
+    }
+
+    40% {
+        transform: scale(1);
+    }
 }
 
 @media (max-width: 850px) {
@@ -2158,7 +2206,6 @@ html {
     .op-counter {
         grid-template-columns: repeat(2, 1fr);
     }
-
 }
 
 @media (max-width: 520px) {
@@ -2244,7 +2291,6 @@ html {
     .counter-box span {
         font-size: 28px;
     }
-
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -2259,7 +2305,6 @@ html {
         animation-iteration-count: 1 !important;
         transition-duration: .001ms !important;
     }
-
 }
 
 .one-piece-page .op-scroll {
@@ -2347,31 +2392,6 @@ html {
     font-family: "One Piece", Georgia, serif !important;
 }
 
-.one-piece-page .op-grand-line-menu {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    gap: 20px;
-    width: min(360px, 86vw);
-    margin: 32px 0 0;
-}
-
-.one-piece-page .op-destination-button {
-    width: 100%;
-    min-height: 72px;
-    padding: 14px 18px;
-    border: 3px solid #5e3b17;
-    border-radius: 12px;
-    background: linear-gradient(#f7d982, #bd8735);
-    color: #24170e;
-    box-shadow: 0 6px 0 #6e4518, 0 12px 22px rgba(0,0,0,.25);
-    cursor: pointer;
-    font-size: clamp(16px, 2.2vw, 23px);
-    letter-spacing: .05em;
-    transition: transform .2s ease, filter .2s ease;
-}
-
 .one-piece-page .op-destination-button:hover {
     transform: translateY(-5px) scale(1.02);
     filter: brightness(1.08);
@@ -2383,29 +2403,6 @@ html {
     letter-spacing: .15em;
     color: #fff1bd;
     text-shadow: 1px 2px 2px rgba(0,0,0,.45);
-}
-
-.one-piece-page .op-destination-panel {
-    display: none;
-    position: fixed;
-    inset: 0;
-    z-index: 1100;
-    width: 100%;
-    height: 100%;
-    min-height: 100%;
-    overflow-x: hidden;
-    overflow-y: auto;
-    box-sizing: border-box;
-    padding: 82px clamp(18px, 5vw, 70px) 50px;
-    background: linear-gradient(135deg, rgba(4,30,52,.52), rgba(8,65,91,.42)),
-            url("images/sunny.png") center center / cover no-repeat;
-    background-attachment: fixed;
-    backdrop-filter: blur(1.5px);
-}
-
-.one-piece-page .op-destination-panel.op-panel-active {
-    display: block;
-    animation: opPanelPop .48s cubic-bezier(.2,.85,.25,1) both;
 }
 
 .one-piece-page .grand-line-content.op-destination-open .op-header .op-back-button {
@@ -2444,10 +2441,24 @@ html {
 }
 
 @keyframes opPanelPop {
-    0% { opacity: 0; transform: scale(.82) translateY(35px); }
-        55% { opacity: 1; transform: scale(1.025) translateY(-4px); }
-        78% { transform: scale(.99) translateY(1px); }
-        100% { opacity: 1; transform: scale(1) translateY(0); }
+    0% {
+        opacity: 0;
+        transform: scale(.82) translateY(35px);
+    }
+
+    55% {
+        opacity: 1;
+        transform: scale(1.025) translateY(-4px);
+    }
+
+    78% {
+        transform: scale(.99) translateY(1px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
 }
 
 @media (max-width: 700px) {
@@ -2478,7 +2489,6 @@ html {
         padding: 9px 13px;
         font-size: 12px;
     }
-
 }
 
 .one-piece-page .counter-section {
@@ -2490,13 +2500,6 @@ body.one-piece-active #musicBoxAryan {
     display: none !important;
     visibility: hidden !important;
     pointer-events: none !important;
-}
-
-.one-piece-page .op-music-wrap {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .one-piece-page .op-music-menu {
@@ -2551,10 +2554,21 @@ body.one-piece-active #musicBoxAryan {
 }
 
 @keyframes grandLineButtonPop {
-    0%   { transform: translateX(0) scale(1); }
-        38%  { transform: translateX(16px) scale(1.12); }
-        68%  { transform: translateX(7px) scale(1.04); }
-        100% { transform: translateX(0) scale(1); }
+    0% {
+        transform: translateX(0) scale(1);
+    }
+
+    38% {
+        transform: translateX(16px) scale(1.12);
+    }
+
+    68% {
+        transform: translateX(7px) scale(1.04);
+    }
+
+    100% {
+        transform: translateX(0) scale(1);
+    }
 }
 
 .memory-modal {
@@ -2768,100 +2782,14 @@ body.one-piece-active #musicBoxAryan {
     .memory-photo-caption {
         font-size: 12px;
     }
-
 }
 
-
-/* ============================================================
-   FINAL ONE PIECE LAYOUT FIXES
-   ============================================================ */
-
-/* Keep the three Grand Line destination buttons on the LEFT. */
-.one-piece-page .op-grand-line-menu {
-    position: absolute;
-    left: clamp(24px, 5vw, 80px);
-    top: 50%;
-    transform: translateY(-50%);
-    width: min(360px, 30vw);
-    margin: 0;
-    align-items: stretch;
-    justify-content: flex-start;
-    z-index: 50;
-}
-
-.one-piece-page .op-destination-button {
-    width: 100%;
-    min-height: 72px;
-    margin: 0;
-}
-
-/* When a destination is opened, it is a true viewport-covering screen. */
-.one-piece-page .op-destination-panel {
-    position: fixed !important;
-    inset: 0 !important;
-    width: 100vw !important;
-    height: 100dvh !important;
-    min-width: 100vw !important;
-    min-height: 100dvh !important;
-    margin: 0 !important;
-    border-radius: 0 !important;
-    overflow-x: hidden !important;
-    overflow-y: auto !important;
-    z-index: 1100 !important;
-}
-
-/* The panel content should use the whole screen rather than looking
-   like a small card in the middle. */
 .one-piece-page .op-destination-panel.op-panel-active {
     display: flex !important;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
     padding: 86px clamp(20px, 5vw, 80px) 55px !important;
-}
-
-/* Wanted posters: use the available screen width. */
-.one-piece-page .wanted-posters {
-    width: min(1100px, 92vw);
-    margin: 25px auto 0;
-}
-
-/* Memory map fills its destination screen. */
-.one-piece-page .grand-line-map {
-    width: min(1200px, 94vw);
-    min-height: min(70vh, 760px);
-    margin: 20px auto 0;
-}
-
-/* Make the memory Polaroid clearly visible and large. */
-.one-piece-page .memory-modal {
-    position: fixed !important;
-    inset: 0 !important;
-    width: 100vw !important;
-    height: 100dvh !important;
-    z-index: 7000 !important;
-    padding: 18px !important;
-}
-
-.one-piece-page .memory-modal-box {
-    width: min(1100px, 94vw) !important;
-    max-width: 94vw !important;
-    max-height: 94dvh !important;
-    overflow-y: auto !important;
-    padding: 28px 30px 24px !important;
-}
-
-.one-piece-page .memory-polaroid {
-    width: 100% !important;
-    min-height: 0;
-    gap: clamp(10px, 2vw, 28px) !important;
-}
-
-.one-piece-page .memory-polaroid-frame {
-    width: min(720px, 72vw) !important;
-    max-width: 720px !important;
-    max-height: 70dvh !important;
-    padding: 14px 14px 62px !important;
 }
 
 .one-piece-page .memory-polaroid-frame img {
@@ -2873,7 +2801,6 @@ body.one-piece-active #musicBoxAryan {
     object-fit: contain !important;
 }
 
-/* Keep the photo caption inside the Polaroid. */
 .one-piece-page .memory-polaroid-frame #memoryPhotoCaption,
 .one-piece-page #memoryPhotoCaption {
     left: 14px !important;
@@ -2883,7 +2810,6 @@ body.one-piece-active #musicBoxAryan {
     font-size: clamp(14px, 1.5vw, 20px) !important;
 }
 
-/* Mobile: left-side buttons remain left, but don't become too wide. */
 @media (max-width: 700px) {
     .one-piece-page .op-grand-line-menu {
         left: 16px;
@@ -2931,98 +2857,48 @@ body.one-piece-active #musicBoxAryan {
         font-size: 30px !important;
     }
 }
-/* ============================================================
-   FINAL ONE PIECE SCREEN FIX
-   ============================================================ */
-
-/* ------------------------------------------------------------
-   1. MAKE ONE PIECE A TRUE FULL-SCREEN OPAQUE LAYER
-   ------------------------------------------------------------ */
 
 #onePiecePage {
     position: fixed !important;
     inset: 0 !important;
-
     width: 100vw !important;
     height: 100dvh !important;
-
     min-width: 100vw !important;
     min-height: 100dvh !important;
-
     z-index: 9999 !important;
-
     overflow: hidden !important;
-
-    /* Prevent Aryan / Letters page from showing through */
     background-color: #0879c9 !important;
-
     isolation: isolate;
 }
 
-
-/*
-   Keep the One Piece background above the solid base
-   but below all of its actual content.
-*/
 #onePiecePage > * {
     position: relative;
     z-index: 2;
 }
 
-
-/* ------------------------------------------------------------
-   2. GRAND LINE MENU — MOVE IT INWARD
-   ------------------------------------------------------------ */
-
 .one-piece-page .op-grand-line-menu {
     position: absolute !important;
-
-    /*
-       Previously this was around 5vw.
-       11vw gives it breathing room from the edge.
-    */
     left: 11vw !important;
-
     top: 50% !important;
     bottom: auto !important;
-
     transform: translateY(-50%) !important;
-
     width: 320px !important;
     max-width: 24vw !important;
-
     margin: 0 !important;
-
     display: flex !important;
     flex-direction: column !important;
-
     align-items: stretch !important;
     justify-content: flex-start !important;
-
     gap: 18px !important;
-
     z-index: 50 !important;
 }
 
-
-/* ------------------------------------------------------------
-   3. BUTTON SIZE
-   ------------------------------------------------------------ */
-
 .one-piece-page .op-destination-button {
     width: 100% !important;
-
     min-height: 68px !important;
-
     margin: 0 !important;
-
     box-sizing: border-box;
 }
-
-
-/* ------------------------------------------------------------
-   4. KEEP GRAND LINE TITLE / DESCRIPTION AWAY FROM BUTTONS
-   ------------------------------------------------------------ */
 
 .one-piece-page .grand-line-title,
 .one-piece-page .grand-line-subtitle,
@@ -3031,317 +2907,253 @@ body.one-piece-active #musicBoxAryan {
     z-index: 10;
 }
 
-
-/* ------------------------------------------------------------
-   5. DESTINATION PANELS MUST FULLY COVER THE SCREEN
-   ------------------------------------------------------------ */
-
 .one-piece-page .op-destination-panel {
     position: fixed !important;
-
     inset: 0 !important;
-
     width: 100vw !important;
     height: 100dvh !important;
-
     min-width: 100vw !important;
     min-height: 100dvh !important;
-
     margin: 0 !important;
-
     border-radius: 0 !important;
-
     overflow-x: hidden !important;
     overflow-y: auto !important;
-
     z-index: 2000 !important;
 }
 
-
-/* Active destination screen */
 .one-piece-page
 .op-destination-panel.op-panel-active {
     display: flex !important;
-
     flex-direction: column !important;
-
     align-items: center !important;
     justify-content: flex-start !important;
-
-    padding:
-        90px
+    padding: 90px
         clamp(25px, 6vw, 100px)
         50px !important;
 }
 
-
-/* ------------------------------------------------------------
-   6. MEMORY MAP SHOULD USE THE WHOLE SCREEN
-   ------------------------------------------------------------ */
-
 .one-piece-page .grand-line-map {
     width: min(1200px, 90vw) !important;
-
     min-height: 65vh !important;
-
     margin: 25px auto 0 !important;
 }
-
-
-/* ------------------------------------------------------------
-   7. WANTED SECTION
-   ------------------------------------------------------------ */
 
 .one-piece-page .wanted-posters {
     width: min(1100px, 90vw) !important;
-
     margin: 25px auto 0 !important;
 }
 
-
-/* ------------------------------------------------------------
-   8. MEMORY POLAROID — BIGGER AND CLEARER
-   ------------------------------------------------------------ */
-
 .one-piece-page .memory-modal {
     position: fixed !important;
-
     inset: 0 !important;
-
     width: 100vw !important;
     height: 100dvh !important;
-
     z-index: 7000 !important;
-
     padding: 20px !important;
 }
 
-
 .one-piece-page .memory-modal-box {
     width: min(1100px, 92vw) !important;
-
     max-width: 92vw !important;
-
     max-height: 92dvh !important;
-
     overflow-y: auto !important;
-
-    padding:
-        30px
+    padding: 30px
         35px
         25px !important;
 }
 
-
 .one-piece-page .memory-polaroid {
     width: 100% !important;
-
     display: flex !important;
-
     align-items: center !important;
     justify-content: center !important;
-
     gap: 25px !important;
 }
 
-
 .one-piece-page .memory-polaroid-frame {
     width: min(650px, 65vw) !important;
-
     max-width: 650px !important;
-
     max-height: 72dvh !important;
-
-    padding:
-        14px
+    padding: 14px
         14px
         65px !important;
 }
 
-
 .one-piece-page
 .memory-polaroid-frame img {
     display: block !important;
-
     width: 100% !important;
-
     height: auto !important;
-
     max-width: 100% !important;
-
     max-height: 60dvh !important;
-
     object-fit: contain !important;
 }
 
-
-/* Caption stays inside the Polaroid */
 .one-piece-page
 .memory-polaroid-frame #memoryPhotoCaption,
 .one-piece-page #memoryPhotoCaption {
     left: 14px !important;
     right: 14px !important;
-
     bottom: 12px !important;
-
     max-width: calc(100% - 28px) !important;
-
-    font-size:
-        clamp(14px, 1.4vw, 20px) !important;
+    font-size: clamp(14px, 1.4vw, 20px) !important;
 }
-
-
-/* ------------------------------------------------------------
-   9. TOP BACK BUTTON + MUSIC BUTTON
-   ------------------------------------------------------------ */
 
 .one-piece-page .op-back-button {
     position: absolute !important;
-
     top: 55px !important;
     left: 35px !important;
-
     z-index: 100 !important;
 }
-
 
 .one-piece-page .op-music-wrap {
     position: absolute !important;
-
     top: 55px !important;
     right: 35px !important;
-
     z-index: 100 !important;
 }
 
-
-/* ------------------------------------------------------------
-   10. MOBILE
-   ------------------------------------------------------------ */
-
 @media (max-width: 700px) {
-
     #onePiecePage {
         width: 100vw !important;
         height: 100dvh !important;
-
         overflow: hidden !important;
     }
 
-
     .one-piece-page .op-grand-line-menu {
-
         left: 7vw !important;
-
         top: auto !important;
         bottom: 8vh !important;
-
         transform: none !important;
-
         width: min(
             310px,
             72vw
         ) !important;
-
         max-width: 72vw !important;
-
         gap: 12px !important;
     }
 
-
     .one-piece-page .op-destination-button {
-
         min-height: 58px !important;
-
         font-size: 14px !important;
     }
 
-
     .one-piece-page
     .op-destination-panel.op-panel-active {
-
-        padding:
-            78px
+        padding: 78px
             12px
             30px !important;
     }
 
-
     .one-piece-page .memory-modal {
-
         padding: 8px !important;
     }
 
-
     .one-piece-page .memory-modal-box {
-
         width: 96vw !important;
-
         max-width: 96vw !important;
-
         max-height: 96dvh !important;
-
-        padding:
-            35px
+        padding: 35px
             10px
             15px !important;
     }
 
-
     .one-piece-page .memory-polaroid {
-
         gap: 8px !important;
     }
 
-
     .one-piece-page .memory-polaroid-frame {
-
         width: min(
             76vw,
             500px
         ) !important;
-
         max-width: 76vw !important;
-
         max-height: 68dvh !important;
-
-        padding:
-            10px
+        padding: 10px
             10px
             50px !important;
     }
 
-
     .one-piece-page
     .memory-polaroid-frame img {
-
         max-height: 58dvh !important;
     }
 
-
     .one-piece-page .memory-photo-nav {
-
         width: 42px !important;
-
         min-width: 42px !important;
-
         height: 42px !important;
-
         font-size: 28px !important;
     }
 
-
     .one-piece-page .op-back-button {
-
         top: 20px !important;
         left: 16px !important;
     }
 
-
     .one-piece-page .op-music-wrap {
-
         top: 20px !important;
         right: 16px !important;
     }
+}
 
+/* ============================================================
+   INTERACTION SAFETY FIXES
+   ============================================================ */
+
+/* The global button rule gives every button a 45px top margin.
+   These controls must not inherit that spacing. */
+.close-memory,
+.memory-photo-nav,
+.op-panel-back,
+.op-back-button,
+.op-music-button,
+.op-song-btn {
+    margin-top: 0 !important;
+    pointer-events: auto !important;
+}
+
+/* Keep the close button above the Polaroid content and clickable. */
+.close-memory {
+    z-index: 20 !important;
+}
+
+/* Keep the previous/next controls above the Polaroid frame. */
+.memory-photo-nav {
+    position: relative;
+    z-index: 20 !important;
+    flex: 0 0 auto;
+}
+
+/* Explicitly make the active memory modal receive input. */
+.memory-modal.active,
+.memory-modal.active * {
+    pointer-events: auto;
+}
+
+/* The destination screen is the scrolling surface. */
+.one-piece-page .op-destination-panel.op-panel-active {
+    pointer-events: auto !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Keep the Grand Line controls above decorative layers. */
+.one-piece-page .op-grand-line-menu,
+.one-piece-page .op-header,
+.one-piece-page .op-panel-back {
+    isolation: isolate;
+}
+
+/* Prevent horizontal overflow while preserving vertical scrolling. */
+html,
+body {
+    max-width: 100%;
+}
+
+/* Ensure the full-screen One Piece layer itself remains opaque. */
+#onePiecePage,
+.one-piece-page {
+    background-color: #0879c9;
 }
