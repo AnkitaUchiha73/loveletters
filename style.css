@@ -816,19 +816,26 @@ button:hover{
 }
 
 /* Journey Screen */
-
 #journeyIntro{
     position: fixed;
     inset: 0;
+
+    width: 100vw;
+    height: 100vh;
+
+    background: #000;
+
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
     text-align: center;
     color: white;
-    opacity: 0;              /* keep your existing fade-in behavior */
-    z-index: 100;
-    pointer-events: none;    /* so it doesn't block clicks while invisible */
+
+    opacity: 0;
+    z-index: 9999;
+    pointer-events: none;
 }
 
 #journeyTitle{
@@ -2081,7 +2088,7 @@ html {
 
 body {
     min-height: 100%;
-    background: #0879c9;
+    background: #000;
 }
 
 button {
