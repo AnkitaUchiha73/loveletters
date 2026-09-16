@@ -1,1893 +1,3794 @@
-/* =========================================================
-   GLOBAL RESET
-========================================================= */
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* ==========================
+   GENERAL
+========================== */
+ 
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
-
-html,
-body {
-    width: 100%;
-    min-height: 100%;
+ 
+body{
+    font-family:'Times New Roman', Times, serif;
+    overflow-x:hidden;
 }
-
-body {
-    font-family: "Times New Roman", Times, serif;
-    overflow-x: hidden;
-    background: #000;
-}
-
-button,
-input,
-textarea {
-    font-family: inherit;
-}
-
-button {
-    cursor: pointer;
-}
-
-
-/* =========================================================
+ 
+/* ==========================
    INTRO PAGE
-========================================================= */
-
-#intro {
-    position: fixed;
-    inset: 0;
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-    background: #000;
-    z-index: 9000;
-    transition: opacity 1.2s ease, visibility 1.2s ease;
+========================== */
+ 
+#intro{
+ 
+    position:relative;
+ 
+    width:100%;
+ 
+    height:100vh;
+ 
+    overflow:hidden;
+ 
 }
-
-#intro::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background:
-        linear-gradient(
-            to bottom,
-            rgba(0, 0, 0, 0.25),
-            rgba(0, 0, 0, 0.55)
-        );
-    z-index: 1;
-    pointer-events: none;
+ 
+.cover{
+ 
+    position:absolute;
+ 
+    top:0;
+    left:0;
+ 
+    width:100%;
+    height:100%;
+ 
+    object-fit:cover;
+ 
 }
-
-#intro .cover {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+ 
+/* Dark Overlay */
+ 
+#intro::before{
+ 
+    content:"";
+ 
+    position:absolute;
+ 
+    inset:0;
+ 
+    background:rgba(0,0,0,.45);
+ 
 }
-
-#intro .content {
-    position: relative;
-    z-index: 2;
-    width: min(900px, 90%);
-    height: 100%;
-    margin: auto;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    text-align: center;
-    color: white;
-
-    padding: 30px 20px;
+ 
+/* Center Content */
+ 
+.content{
+ 
+    position:relative;
+ 
+    z-index:2;
+ 
+    height:100%;
+ 
+    display:flex;
+ 
+    flex-direction:column;
+ 
+    justify-content:center;
+ 
+    align-items:center;
+ 
+    text-align:center;
+ 
+    color:white;
+ 
+    padding:30px;
+ 
 }
-
-#intro h1 {
-    max-width: 850px;
-    font-size: clamp(1.7rem, 4vw, 3rem);
-    line-height: 1.25;
-    margin-bottom: 18px;
-
-    text-shadow:
-        0 2px 10px rgba(0, 0, 0, 0.8),
-        0 0 25px rgba(0, 0, 0, 0.5);
+ 
+.content h1{
+ 
+    font-size:55px;
+ 
+    width:70%;
+ 
+    line-height:1.3;
+ 
 }
-
-#intro h3 {
-    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
-    margin-bottom: 25px;
-
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+ 
+.content h3{
+ 
+    margin-top:25px;
+ 
+    font-size:24px;
+ 
+    color:#ffd6e7;
+ 
 }
-
-#intro p {
-    max-width: 720px;
-    font-size: clamp(0.95rem, 2vw, 1.15rem);
-    line-height: 1.7;
-
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
+ 
+.content p{
+ 
+    width:650px;
+ 
+    max-width:90%;
+ 
+    margin-top:35px;
+ 
+    font-size:20px;
+ 
+    line-height:1.8;
+ 
 }
-
-#openButton {
-    margin-top: 30px;
-    padding: 13px 28px;
-
-    border: 1px solid rgba(255, 255, 255, 0.8);
-    border-radius: 30px;
-
-    background: rgba(255, 255, 255, 0.12);
-    color: white;
-
-    font-size: 1rem;
-    font-weight: bold;
-
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-
-    box-shadow:
-        0 8px 25px rgba(0, 0, 0, 0.35);
-
-    transition:
-        transform 0.25s ease,
-        background 0.25s ease,
-        box-shadow 0.25s ease;
+ 
+button{
+ 
+    margin-top:45px;
+ 
+    padding:18px 40px;
+ 
+    border:none;
+ 
+    border-radius:50px;
+ 
+    background:#d63384;
+ 
+    color:white;
+ 
+    font-size:20px;
+ 
+    cursor:pointer;
+ 
+    transition:.3s;
+ 
 }
-
-#openButton:hover {
-    transform: translateY(-2px);
-    background: rgba(255, 255, 255, 0.22);
-    box-shadow:
-        0 12px 30px rgba(0, 0, 0, 0.45);
+ 
+button:hover{
+ 
+    transform:scale(1.08);
+ 
+    background:#b81f6b;
+ 
 }
-
-
-/* =========================================================
-   MAIN LETTERS / ARYAN PAGE
-========================================================= */
-
-#lettersPage,
-#aryanPage {
-    position: relative;
-    width: 100vw;
-    min-height: 100vh;
-    overflow: hidden;
-
-    color: white;
-    background: #111;
+ 
+/* ==========================
+   LETTER PAGE
+========================== */
+ 
+#lettersPage{
+ 
+    display:none;
+ 
+    position:relative;
+ 
+    width:100%;
+ 
+    min-height:100vh;
+ 
+    overflow:hidden;
+ 
 }
-
-#lettersPage {
-    display: none;
-}
-
-#aryanPage {
-    display: none;
-}
-
-
-/* =========================================================
-   BACKGROUND SLIDESHOW
-========================================================= */
-
-#slideshow,
-#slideshowAryan {
-    position: fixed;
-    inset: 0;
-
-    width: 100vw;
-    height: 100vh;
-
-    z-index: 0;
-
-    background-color: #222;
-    background-position: center center;
+ 
+/* Background Slideshow */
+ 
+#slideshow{
+ 
+    position:fixed;
+ 
+    inset:0;
+ 
+ 
+    background-size: contain;
     background-repeat: no-repeat;
+    background-position: center;
+    background-color: black;
+ 
+ 
+    transition:background-image 1s ease;
+ 
+    z-index:-2;
+ 
+}
+ 
+/* ==========================
+   ARYAN'S LETTERS PAGE
+========================== */
+ 
+#aryanPage{
+ 
+    display:none;
+ 
+    position:relative;
+ 
+    width:100%;
+ 
+    min-height:100vh;
+ 
+    overflow:hidden;
+ 
+}
+ 
+/* Background Slideshow */
+ 
+#slideshowAryan{
+ 
+    position:fixed;
+ 
+    inset:0;
+ 
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: black;
+ 
+    transition:background-image 1s ease;
+ 
+    z-index:-2;
+ 
+}
+ 
+/* Fade transitions between pages */
+ 
+#intro,
+#lettersPage,
+#aryanPage{
+ 
+    transition: opacity .8s ease;
+ 
+}
+ 
+/* Dark Overlay */
+ 
+.overlay{
+ 
+    min-height:100vh;
+ 
+    background:rgba(0,0,0,.55);
+ 
+    color:white;
+ 
+    display:flex;
+ 
+    flex-direction:column;
+ 
+    justify-content:center;
+ 
+    align-items:center;
+ 
+    padding:60px;
+ 
+}
+ 
+.overlay h1{
+ 
+    font-size:50px;
+ 
+}
+ 
+.subtitle{
+ 
+    margin-top:15px;
+ 
+    font-size:20px;
+ 
+    color:#ffe3ef;
+ 
+}
+ 
+/* ==========================
+   GALLERY
+========================== */
+ 
+.gallery{
+ 
+    margin-top:60px;
+ 
+    display:flex;
 
-    /* Keeps the photo filling the entire background */
-    background-size: cover;
+    flex-direction:column;
 
-    transition:
-        opacity 1.2s ease,
-        background-image 1.2s ease;
-
-    filter: brightness(0.72);
+    align-items:center;
+ 
+    gap:35px;
+ 
+    width:80%;
+ 
 }
 
-#slideshowAryan {
-    background-size: cover;
+
+/* ==========================
+   SINGLE LETTER CARD (inline, with Prev / Next)
+========================== */
+
+.letterCardWrap{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:20px;
+
+    width:100%;
+
 }
 
+.cardArrow{
 
-/* =========================================================
-   MAIN OVERLAY
-========================================================= */
+    /* override the global button{} defaults (margin-top, wide padding, etc.) */
+    margin:0;
 
-#lettersPage .overlay,
-#aryanPage .overlay {
-    position: relative;
-    z-index: 2;
+    width:56px;
+    height:56px;
+    padding:0;
+    flex-shrink:0;
 
-    width: 100%;
-    min-height: 100vh;
+    border-radius:50%;
 
-    padding: 70px 20px 50px;
+    background:rgba(255,255,255,.15);
+    backdrop-filter:blur(12px);
+    border:1px solid rgba(255,255,255,.3);
+    color:white;
 
+    font-size:30px;
+    line-height:1;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.cardArrow:hover:not(:disabled){
+
+    transform:translateY(-4px);
+
+    background:rgba(255,255,255,.25);
+
+}
+
+.cardArrow:disabled{
+
+    opacity:.3;
+
+    cursor:not-allowed;
+
+    transform:none;
+
+}
+
+.cardArrow:disabled:hover{
+
+    transform:none;
+
+    background:rgba(255,255,255,.15);
+
+}
+
+.letterCard{
+
+    width:600px;
+    max-width:100%;
+
+    max-height:65vh;
+    overflow-y:auto;
+
+    background:#fffdf7;
+    color:#3d2d1e;
+
+    border-radius:20px;
+
+    padding:40px;
+
+    text-align:left;
+
+    box-shadow:0 15px 40px rgba(0,0,0,.4);
+
+}
+
+.letterCardEmoji{
+
+    font-size:40px;
+
+    text-align:center;
+
+    margin-bottom:10px;
+
+}
+
+.letterCard h2{
+
+    text-align:center;
+
+    margin-bottom:6px;
+
+}
+
+.letterCard h6{
+
+    text-align:center;
+
+    opacity:.6;
+
+    font-weight:normal;
+
+    margin-bottom:20px;
+
+}
+
+.letterCardBody{
+
+    display:none;
+
+}
+
+.letterCardToggle{
+
+    display:block;
+
+    margin:15px auto 0;
+
+    padding:10px 22px;
+
+    font-size:15px;
+
+    border-radius:20px;
+
+    background:rgba(214,51,132,.12);
+
+    color:#d63384;
+
+    border:1px solid rgba(214,51,132,.35);
+
+    box-shadow:none;
+
+}
+
+.letterCardToggle:hover{
+
+    transform:none;
+
+    background:rgba(214,51,132,.2);
+
+}
+
+.letterCardBody p{
+
+    font-size:19px;
+
+    line-height:1.8;
+
+    margin-bottom:18px;
+
+}
+
+.letterCardBody p:first-child{
+
+    margin-top:20px;
+
+}
+
+.letterCardPosition{
+
+    display:block;
+
+    text-align:center;
+
+    margin-top:15px;
+
+    font-size:14px;
+
+    opacity:.6;
+
+}
+
+.actionRow{
+
+    display:flex;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+
+    justify-content:center;
+
+}
+
+.actionRow button{
+
+    margin-top:0;
+
+    padding:14px 28px;
+
+    font-size:17px;
+
+}
+
+@media(max-width:768px){
+
+    .letterCardWrap{
+
+        gap:10px;
+
+    }
+
+    .letterCard{
+
+        padding:26px;
+
+        max-height:55vh;
+
+    }
+
+    .cardArrow{
+
+        width:44px;
+        height:44px;
+        font-size:24px;
+
+    }
+
+}
+ 
+/* ==========================
+   LETTER POPUP
+========================== */
+ 
+.letterPopup{
+ 
+    display:none;
+ 
+    position:fixed;
+ 
+    inset:0;
+ 
+    background:rgba(0,0,0,.65);
+ 
+    justify-content:center;
+ 
+    align-items:center;
+ 
+    z-index:100;
+ 
+}
+ 
+.letterContent{
+ 
+    width:700px;
+ 
+    max-width:90%;
+ 
+    max-height:85vh;
+ 
+    overflow-y:auto;
+ 
+    background:#fffdf7;
+ 
+    color:#3d2d1e;
+ 
+    border-radius:20px;
+ 
+    padding:45px;
+ 
+    box-shadow:0 15px 40px rgba(0,0,0,.4);
+ 
+}
+ 
+.letterContent h1{
+ 
+    text-align:center;
+ 
+    margin-bottom:30px;
+ 
+}
+ 
+.letterContent p{
+ 
+    font-size:20px;
+ 
+    line-height:1.9;
+ 
+    margin-bottom:20px;
+ 
+}
+ 
+/* Close Button */
+ 
+.close{
+ 
+    float:right;
+ 
+    font-size:35px;
+ 
+    cursor:pointer;
+ 
+    color:#444;
+ 
+}
+ 
+.close:hover{
+ 
+    color:red;
+ 
+}
+ 
+/* ==========================
+   RESPONSIVE
+========================== */
+ 
+@media(max-width:768px){
+ 
+    .content h1{
+ 
+        font-size:36px;
+ 
+        width:90%;
+ 
+    }
+ 
+    .content p{
+ 
+        font-size:18px;
+ 
+    }
+ 
+    .gallery{
+ 
+        width:95%;
+ 
+    }
+ 
+    .letterContent{
+ 
+        padding:30px;
+ 
+    }
+ 
+}
+#musicBox{
+    position:fixed;
+    bottom:25px;
+    right:25px;
+    z-index:999;
+}
+ 
+#musicBoxAryan{
+    position:fixed;
+    bottom:25px;
+    right:25px;
+    z-index:999;
+}
+ 
+ 
+#musicToggle,
+#musicToggleAryan{
+ 
+    width:65px;
+    height:65px;
+ 
+    border-radius:50%;
+ 
+    background:linear-gradient(135deg,#ff7aa8,#d63384);
+ 
+    border:none;
+ 
+    color:white;
+ 
+    font-size:28px;
+ 
+    cursor:pointer;
+ 
+    box-shadow:0 0 25px rgba(255,120,170,.8);
+ 
+    animation:pulse 2s infinite;
+ 
+}
+ 
+ 
+@keyframes pulse{
+ 
+    0%{
+        transform:scale(1);
+    }
+ 
+    50%{
+        transform:scale(1.1);
+    }
+ 
+    100%{
+        transform:scale(1);
+    }
+ 
+}
+ 
+ 
+ 
+#musicMenu,
+#musicMenuAryan{
+ 
+    position:absolute;
+ 
+    bottom:80px;
+    right:0;
+ 
+    width:230px;
+ 
+    padding:15px;
+ 
+    border-radius:20px;
+ 
+    background:rgba(255,255,255,.15);
+ 
+    backdrop-filter:blur(15px);
+ 
+    display:none;
+ 
+    flex-direction:column;
+ 
+    gap:10px;
+
+    /* Scroll instead of growing past the screen once every song is listed */
+    max-height:min(320px, 55vh);
+    overflow-y:auto;
+    overflow-x:hidden;
+ 
+}
+ 
+ 
+#musicMenu.show,
+#musicMenuAryan.show{
+ 
+    display:flex;
+ 
+}
+
+/* Slim, on-brand scrollbar for the song list (webkit browsers) */
+#musicMenu::-webkit-scrollbar,
+#musicMenuAryan::-webkit-scrollbar{
+    width:6px;
+}
+
+#musicMenu::-webkit-scrollbar-track,
+#musicMenuAryan::-webkit-scrollbar-track{
+    background:transparent;
+}
+
+#musicMenu::-webkit-scrollbar-thumb,
+#musicMenuAryan::-webkit-scrollbar-thumb{
+    background:rgba(255,255,255,.45);
+    border-radius:10px;
+}
+ 
+ 
+ 
+.song-btn,
+#shuffleBtn,
+#shuffleBtnAryan{
+ 
+    margin:0;
+ 
+    padding:12px;
+ 
+    border-radius:20px;
+ 
+    background:rgba(255,255,255,.2);
+ 
+    color:white;
+ 
+    border:1px solid rgba(255,255,255,.3);
+ 
+    font-size:14px;
+
+    flex-shrink:0;
+ 
+}
+ 
+ 
+ 
+.song-btn:hover,
+#shuffleBtn:hover,
+#shuffleBtnAryan:hover{
+ 
+    background:#ff5c8a;
+ 
+}
+ 
+ 
+ 
+.song-btn.active{
+ 
+    background:#ff5c8a;
+ 
+    box-shadow:0 0 15px #ff5c8a;
+ 
+}
+/* Hide everything initially */
+
+#mainTitle,
+#mainSubtitle,
+#mainSubtitle2,
+.gallery{
+
+    opacity:0;
+    transition:1.5s ease;
+
+}
+
+/* Journey Screen */
+
+#journeyIntro{
+    position: fixed;
+    inset: 0;
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    opacity: 0;              /* keep your existing fade-in behavior */
+    z-index: 100;
+    pointer-events: none;    /* so it doesn't block clicks while invisible */
+}
+
+#journeyTitle{
+
+    font-size:2.8rem;
+
+    font-family:'Times New Roman', Times, serif, serif;
+
+    opacity:0;
+
+    transition:1.5s;
+
+}
+
+#loveCounter{
+
+    margin-top:35px;
+
+    opacity:0;
+
+    transition:1.5s;
+
+}
+
+#loveCounter h1{
+
+    font-size:3rem;
+
+    margin-bottom:15px;
+
+}
+
+#loveCounter h3{
+
+    margin-bottom:20px;
+
+    font-weight:300;
+
+}
+
+#counter{
+    font-size:2rem;
+    line-height:1.8;
+    display:block;
+    width:100%;
+    text-align:center;
+}
+
+.journeyQuote{
+
+    margin-top:25px;
+
+    font-style:italic;
+
+    opacity:.85;
+
+}
+/* =====================================================
+   REUSABLE ONE-TIME QUIZ
+   ===================================================== */
+
+.quiz-overlay {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 99999;
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(255, 220, 225, 0.25),
+            rgba(0, 0, 0, 0.88)
+        );
+
+    backdrop-filter: blur(8px);
+
+    padding: 20px;
+}
+
+
+/* Quiz box */
+
+.quiz-box {
+
+    width: min(520px, 92vw);
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    padding: 45px 35px;
 
     text-align: center;
 
-    background:
-        linear-gradient(
-            rgba(0, 0, 0, 0.18),
-            rgba(0, 0, 0, 0.32)
-        );
+    background: rgba(255, 248, 240, 0.97);
 
-    transition:
-        opacity 0.8s ease,
-        visibility 0.8s ease;
+    border: 2px solid rgba(130, 80, 60, 0.35);
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.45);
+
+    animation: quizAppear 0.7s ease;
 }
 
 
-/* =========================================================
-   JOURNEY INTRO / COUNTER
-========================================================= */
+@keyframes quizAppear {
 
-#journeyIntro {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    from {
+
+        opacity: 0;
+
+        transform:
+            scale(0.85)
+            translateY(30px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            scale(1)
+            translateY(0);
+
+    }
+
+}
+
+
+/* Heart */
+
+.quiz-heart {
+
+    font-size: 55px;
+
+    animation:
+        heartbeat 1.5s infinite;
+}
+
+
+@keyframes heartbeat {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.15);
+    }
+
+}
+
+
+/* Text */
+
+.quiz-box h1 {
+
+    margin-top: 15px;
 
     margin-bottom: 20px;
 }
 
-#journeyTitle {
-    margin-bottom: 22px;
 
-    font-size: clamp(1.5rem, 4vw, 2.4rem);
+.quiz-box h2 {
 
-    text-shadow:
-        0 2px 10px rgba(0, 0, 0, 0.9);
+    margin-bottom: 25px;
 }
 
-#loveCounter {
-    width: min(700px, 92%);
 
-    padding: 25px 20px;
+.quiz-box p {
 
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    border-radius: 22px;
-
-    /*
-       Transparent enough for the slideshow
-       to remain visible behind it.
-    */
-    background: rgba(0, 0, 0, 0.32);
-
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
-
-    box-shadow:
-        0 15px 45px rgba(0, 0, 0, 0.35);
-
-    text-shadow:
-        0 2px 8px rgba(0, 0, 0, 0.8);
+    line-height: 1.7;
 }
 
-#loveCounter h1 {
-    font-size: clamp(1.5rem, 4vw, 2.2rem);
-    margin-bottom: 10px;
-}
 
-#counter {
-    font-size: clamp(1.5rem, 5vw, 2.8rem);
-    font-weight: bold;
-    letter-spacing: 1px;
+.quiz-small-text {
 
-    margin: 10px 0 15px;
-}
-
-#loveCounter h3 {
-    font-size: clamp(1rem, 2.5vw, 1.3rem);
-    margin-bottom: 15px;
-}
-
-.quote {
-    font-size: clamp(0.9rem, 2vw, 1.05rem);
-    line-height: 1.6;
     font-style: italic;
+
+    opacity: 0.75;
 }
 
 
-/* =========================================================
-   MAIN TITLES
-========================================================= */
+/* Buttons */
 
-#mainTitle,
-#aryanPage .overlay > h1 {
-    font-size: clamp(1.8rem, 5vw, 3rem);
-    margin-bottom: 8px;
+.quiz-box button {
 
-    text-shadow:
-        0 3px 12px rgba(0, 0, 0, 0.9);
-}
-
-.subtitle {
-    font-size: clamp(0.95rem, 2.5vw, 1.15rem);
-    margin-bottom: 8px;
-
-    text-shadow:
-        0 2px 8px rgba(0, 0, 0, 0.9);
-}
-
-
-/* =========================================================
-   GALLERY
-========================================================= */
-
-.gallery {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    margin-top: 25px;
-}
-
-.letterCardWrap {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
-
-/* =========================================================
-   LETTER CARD
-========================================================= */
-
-.letterCard {
-    position: relative;
-
-    width: min(320px, 88vw);
-    min-height: 220px;
-
-    padding: 24px 20px 30px;
-
-    border-radius: 18px;
-    border: 1px solid rgba(255, 255, 255, 0.4);
-
-    background: rgba(255, 255, 255, 0.13);
-
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-
-    box-shadow:
-        0 15px 40px rgba(0, 0, 0, 0.4);
-
-    color: white;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    overflow: hidden;
-
-    transition:
-        width 0.45s ease,
-        min-height 0.45s ease,
-        background 0.45s ease,
-        color 0.45s ease,
-        transform 0.35s ease;
-}
-
-.letterCard:hover {
-    transform: translateY(-3px);
-}
-
-
-/* Open letter */
-
-.letterCard.open {
-    width: min(520px, 92vw);
-    min-height: 350px;
-
-    background: rgba(255, 255, 255, 0.96);
-    color: #2b1b1b;
-
-    justify-content: flex-start;
-
-    overflow-y: auto;
-}
-
-.letterCardEmoji {
-    font-size: 2rem;
-    margin-bottom: 10px;
-}
-
-.letterCard h2 {
-    font-size: 1.4rem;
-    margin-bottom: 5px;
-}
-
-.letterCard h6 {
-    font-size: 0.8rem;
-    opacity: 0.8;
-    margin-bottom: 15px;
-}
-
-.letterCardToggle {
-    border: 1px solid rgba(255, 255, 255, 0.65);
-    border-radius: 20px;
-
-    padding: 9px 17px;
-
-    background: rgba(255, 255, 255, 0.14);
-    color: inherit;
-
-    font-size: 0.85rem;
-
-    transition:
-        background 0.25s ease,
-        transform 0.25s ease;
-}
-
-.letterCardToggle:hover {
-    background: rgba(255, 255, 255, 0.25);
-    transform: scale(1.03);
-}
-
-.letterCard.open .letterCardToggle {
-    border-color: #c9a36a;
-    background: #f7eee1;
-    color: #4a3020;
-}
-
-.letterCardBody {
-    width: 100%;
     margin-top: 20px;
 
-    text-align: left;
+    padding: 12px 25px;
 
-    font-size: 1rem;
-    line-height: 1.7;
+    border: none;
 
-    display: none;
-}
-
-.letterCard.open .letterCardBody {
-    display: block;
-}
-
-.letterCardPosition {
-    position: absolute;
-    bottom: 8px;
-    right: 12px;
-
-    font-size: 0.7rem;
-    opacity: 0.6;
-}
-
-
-/* =========================================================
-   ACTION BUTTONS
-========================================================= */
-
-.actionRow {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 12px;
-
-    margin-top: 25px;
-}
-
-.actionRow button,
-#backFromAryanBtn {
-    border: 1px solid rgba(255, 255, 255, 0.65);
     border-radius: 25px;
 
-    padding: 11px 18px;
+    background: #7b3f3f;
 
-    background: rgba(255, 255, 255, 0.13);
     color: white;
 
-    font-size: 0.9rem;
+    font-size: 16px;
 
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-
-    box-shadow:
-        0 7px 20px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
 
     transition:
-        transform 0.25s ease,
-        background 0.25s ease;
-}
-
-.actionRow button:hover,
-#backFromAryanBtn:hover {
-    transform: translateY(-2px);
-    background: rgba(255, 255, 255, 0.23);
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
 
-/* =========================================================
-   ONE PIECE ENTRY BUTTON
-========================================================= */
+.quiz-box button:hover {
 
-.one-piece-entry-button {
-    border-color: rgba(245, 196, 81, 0.7) !important;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(82, 48, 19, 0.9),
-            rgba(35, 23, 12, 0.9)
-        ) !important;
-
-    color: #f9e6b0 !important;
-}
-
-
-/* =========================================================
-   MUSIC BOXES
-========================================================= */
-
-#musicBox,
-#musicBoxAryan {
-    position: fixed;
-
-    right: 20px;
-    bottom: 20px;
-
-    z-index: 5000;
-}
-
-#musicToggle,
-#musicToggleAryan {
-    width: 50px;
-    height: 50px;
-
-    border-radius: 50%;
-
-    border: 1px solid rgba(255, 255, 255, 0.7);
-
-    background: rgba(0, 0, 0, 0.45);
-    color: white;
-
-    font-size: 1.25rem;
-
-    backdrop-filter: blur(7px);
-    -webkit-backdrop-filter: blur(7px);
+    transform:
+        translateY(-2px);
 
     box-shadow:
-        0 8px 25px rgba(0, 0, 0, 0.35);
-
-    transition:
-        transform 0.25s ease,
-        background 0.25s ease;
-}
-
-#musicToggle:hover,
-#musicToggleAryan:hover {
-    transform: scale(1.08);
-    background: rgba(0, 0, 0, 0.65);
+        0 8px 20px
+        rgba(80, 30, 30, 0.3);
 }
 
 
-/* =========================================================
-   MUSIC MENUS
-========================================================= */
+/* Progress */
 
-#musicMenu,
-#musicMenuAryan {
-    position: absolute;
+.quiz-progress {
 
-    right: 0;
-    bottom: 62px;
+    margin-bottom: 25px;
 
-    width: 245px;
-    max-height: 60vh;
+    font-size: 14px;
 
-    overflow-y: auto;
-
-    padding: 10px;
-
-    border-radius: 15px;
-    border: 1px solid rgba(255, 255, 255, 0.35);
-
-    background: rgba(20, 20, 20, 0.9);
-
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-
-    box-shadow:
-        0 15px 40px rgba(0, 0, 0, 0.5);
-
-    display: none;
+    opacity: 0.65;
 }
 
-#musicMenu.show,
-#musicMenuAryan.show {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-}
 
-.song-btn,
-#shuffleBtn,
-#shuffleBtnAryan {
+/* Answer options */
+
+.quiz-option {
+
+    display: block;
+
     width: 100%;
 
-    padding: 9px 11px;
+    margin: 12px 0;
 
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 8px;
+    padding: 14px 18px;
 
-    background: rgba(255, 255, 255, 0.08);
-    color: white;
+    box-sizing: border-box;
 
-    text-align: left;
-    font-size: 0.82rem;
+    border: 1px solid
+        rgba(100, 60, 50, 0.25);
+
+    border-radius: 12px;
+
+    background:
+        rgba(255, 255, 255, 0.7);
+
+    color: #4b2929;
+
+    cursor: pointer;
+
+    font-size: 15px;
 
     transition:
         background 0.2s ease,
         transform 0.2s ease;
 }
 
-.song-btn:hover,
-#shuffleBtn:hover,
-#shuffleBtnAryan:hover {
-    background: rgba(255, 255, 255, 0.18);
-    transform: translateX(2px);
+
+.quiz-option:hover {
+
+    transform:
+        translateY(-2px);
 }
 
 
-/* =========================================================
-   WRITE LETTER POPUP
-========================================================= */
+/* Correct */
 
-.letterPopup {
-    position: fixed;
-    inset: 0;
+.quiz-option.correct {
 
-    z-index: 8000;
+    background: #d9f2df;
 
-    display: none;
-    align-items: center;
-    justify-content: center;
-
-    padding: 20px;
-
-    background: rgba(0, 0, 0, 0.7);
-
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-}
-
-.letterContent {
-    position: relative;
-
-    width: min(600px, 94vw);
-    max-height: 90vh;
-
-    overflow-y: auto;
-
-    padding: 30px;
-
-    border-radius: 18px;
-
-    background: #fffaf3;
-    color: #2b1b1b;
-
-    box-shadow:
-        0 20px 60px rgba(0, 0, 0, 0.5);
-}
-
-.letterContent h1 {
-    margin-bottom: 20px;
-    font-size: 1.6rem;
-}
-
-.close {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-
-    font-size: 2rem;
-    cursor: pointer;
-
-    color: #555;
-}
-
-.letterContent form {
-    display: flex;
-    flex-direction: column;
+    border-color: #6ba77a;
 }
 
 
-/* =========================================================
-   QUIZ
-========================================================= */
+/* Wrong */
 
-.quiz-overlay {
-    position: fixed;
-    inset: 0;
+.quiz-option.wrong {
 
-    z-index: 8500;
+    background: #f6d8d8;
 
-    display: none;
-    align-items: center;
-    justify-content: center;
-
-    padding: 20px;
-
-    background: rgba(0, 0, 0, 0.75);
-
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    border-color: #c47777;
 }
 
-.quiz-box {
-    width: min(550px, 94vw);
-    max-height: 90vh;
 
-    overflow-y: auto;
+/* Disable after answer */
 
-    padding: 35px 25px;
+.quiz-option.disabled {
 
-    border-radius: 22px;
-
-    background:
-        linear-gradient(
-            145deg,
-            #fffaf5,
-            #f8e8df
-        );
-
-    color: #3a2222;
-
-    text-align: center;
-
-    box-shadow:
-        0 25px 70px rgba(0, 0, 0, 0.5);
+    pointer-events: none;
 }
 
-.quiz-heart {
-    font-size: 3rem;
-    margin-bottom: 10px;
-}
 
-.quiz-box h1 {
-    margin-bottom: 15px;
-}
-
-.quiz-box h2 {
-    margin: 20px 0;
-    font-size: 1.25rem;
-}
-
-.quiz-small-text {
-    margin-top: 10px;
-    opacity: 0.75;
-}
-
-.quiz-box button {
-    margin-top: 18px;
-
-    padding: 10px 20px;
-
-    border: none;
-    border-radius: 22px;
-
-    background: #6d4438;
-    color: white;
-
-    font-size: 0.95rem;
-}
-
-.quiz-progress {
-    font-size: 0.85rem;
-    opacity: 0.7;
-}
-
-#quizOptions {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-#quizOptions button {
-    width: 100%;
-    margin: 0;
-
-    background: #ead7ca;
-    color: #3a2222;
-
-    border: 1px solid #c9ab99;
-}
-
-#quizOptions button:hover {
-    background: #dec3b3;
-}
+/* Feedback */
 
 #quizFeedback {
-    min-height: 25px;
-    margin-top: 15px;
-    font-weight: bold;
+
+    min-height: 30px;
+
+    margin-top: 18px;
+
+    font-weight: 500;
 }
 
+
+/* Result */
+
 #quizResultEmoji {
-    font-size: 3rem;
+
+    font-size: 65px;
+
     margin-bottom: 10px;
 }
 
-#quizFinalLine {
-    margin-top: 20px;
-}
 
+#quizScore {
 
-/* =========================================================
-   ONE PIECE PAGE
-========================================================= */
+    font-size: 20px;
 
-.one-piece-page {
-    position: fixed;
-    inset: 0;
-
-    z-index: 10000;
-
-    width: 100vw;
-    height: 100vh;
-
-    overflow: hidden;
-
-    display: none;
-
-    color: #f7e5b2;
-
-    background:
-        linear-gradient(
-            rgba(35, 22, 10, 0.45),
-            rgba(20, 13, 7, 0.65)
-        ),
-        url("images/sunny.png");
-
-    background-size: cover;
-    background-position: center;
-
-    font-family: "Times New Roman", Times, serif;
-}
-
-.one-piece-page.one-piece-active {
-    display: block;
-}
-
-
-/* =========================================================
-   ONE PIECE OPENING
-========================================================= */
-
-.op-opening {
-    position: absolute;
-    inset: 0;
-
-    z-index: 5;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    background:
-        linear-gradient(
-            rgba(0, 0, 0, 0.25),
-            rgba(0, 0, 0, 0.65)
-        );
-
-    transition:
-        opacity 0.8s ease,
-        visibility 0.8s ease,
-        transform 0.8s ease;
-}
-
-.op-opening-content {
-    width: min(700px, 90%);
-
-    text-align: center;
-
-    padding: 30px;
-}
-
-.op-compass {
-    font-size: 4rem;
-    margin-bottom: 15px;
-
-    animation: compassSpin 8s linear infinite;
-}
-
-@keyframes compassSpin {
-    from {
-        transform: rotate(0deg);
-    }
-
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-.op-small-text {
-    font-size: 0.8rem;
-    letter-spacing: 0.25em;
-    opacity: 0.85;
-    margin-bottom: 15px;
-}
-
-.op-opening h1,
-.op-hero h1 {
-    font-size: clamp(2.5rem, 8vw, 5rem);
-
-    letter-spacing: 0.08em;
-
-    text-shadow:
-        3px 3px 0 rgba(0, 0, 0, 0.5),
-        0 8px 25px rgba(0, 0, 0, 0.6);
-}
-
-.op-crossed {
-    margin: 12px 0;
-    font-size: 2rem;
-}
-
-.op-couple-name {
-    font-size: 1rem;
-    letter-spacing: 0.3em;
-    margin-bottom: 30px;
-}
-
-.op-couple-name span {
-    color: #d8a83e;
-}
-
-
-/* =========================================================
-   ONE PIECE MAIN CONTENT
-========================================================= */
-
-.grand-line-content {
-    position: absolute;
-    inset: 0;
-
-    opacity: 0;
-    visibility: hidden;
-
-    transform: scale(1.03);
-
-    transition:
-        opacity 0.9s ease,
-        visibility 0.9s ease,
-        transform 0.9s ease;
-}
-
-.grand-line-content.op-grand-line-visible {
-    opacity: 1;
-    visibility: visible;
-    transform: scale(1);
-}
-
-.op-opening.op-opening-hidden {
-    opacity: 0;
-    visibility: hidden;
-    transform: scale(1.05);
-}
-
-
-/* =========================================================
-   ONE PIECE HEADER
-========================================================= */
-
-.op-header {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    right: 20px;
-
-    z-index: 20;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.op-back-button,
-.op-music-button {
-    border: 2px solid rgba(245, 196, 81, 0.7);
-    border-radius: 10px;
-
-    background:
-        rgba(48, 30, 15, 0.88);
-
-    color: #f9e6b0;
-
-    padding: 10px 15px;
-
-    box-shadow:
-        0 6px 18px rgba(0, 0, 0, 0.4);
-
-    transition:
-        transform 0.2s ease,
-        background 0.2s ease;
-}
-
-.op-back-button:hover,
-.op-music-button:hover {
-    transform: translateY(-2px);
-
-    background:
-        rgba(92, 56, 20, 0.95);
-}
-
-.op-music-wrap {
-    position: relative;
-}
-
-.op-music-button {
-    width: 48px;
-    height: 48px;
-
-    padding: 0;
-
-    border-radius: 50%;
-
-    font-size: 1.15rem;
-}
-
-.op-music-menu {
-    position: absolute;
-
-    top: 58px;
-    right: 0;
-
-    width: 245px;
-
-    padding: 10px;
-
-    display: none;
-    flex-direction: column;
-    gap: 6px;
-
-    border-radius: 12px;
-
-    background:
-        rgba(36, 23, 11, 0.95);
-
-    border: 1px solid rgba(245, 196, 81, 0.5);
-
-    box-shadow:
-        0 15px 40px rgba(0, 0, 0, 0.5);
-}
-
-.op-music-menu.show {
-    display: flex;
-}
-
-.op-music-menu-title {
-    padding: 7px;
-
-    font-size: 0.8rem;
-    letter-spacing: 0.08em;
-
-    color: #f5c451;
-}
-
-.op-song-btn {
-    border: 1px solid rgba(245, 196, 81, 0.2);
-    border-radius: 7px;
-
-    padding: 9px;
-
-    background: rgba(255, 255, 255, 0.06);
-    color: #f9e6b0;
-
-    text-align: left;
-}
-
-.op-song-btn:hover {
-    background: rgba(245, 196, 81, 0.15);
-}
-
-
-/* =========================================================
-   ONE PIECE HERO
-========================================================= */
-
-.op-hero {
-    width: 100%;
-    height: 100%;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    text-align: center;
-
-    padding: 80px 20px 30px;
-}
-
-.op-hero-content {
-    max-width: 800px;
-}
-
-.op-hero-content > p:not(.op-small-text) {
-    max-width: 650px;
-
-    margin: 0 auto 35px;
-
-    font-size: clamp(0.95rem, 2vw, 1.15rem);
-
-    line-height: 1.6;
-
-    color: #f4e3bd;
-}
-
-
-/* =========================================================
-   GRAND LINE DESTINATION BUTTONS
-========================================================= */
-
-.op-grand-line-menu {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    gap: 16px;
-
-    width: min(430px, 90%);
-}
-
-.op-destination-button {
-    position: relative;
-
-    width: 100%;
-    min-height: 58px;
-
-    padding: 14px 22px;
-
-    border: 2px solid rgba(245, 196, 81, 0.75);
-    border-radius: 12px;
-
-    /*
-       Warm pirate-map style
-    */
-    background:
-        linear-gradient(
-            135deg,
-            rgba(82, 48, 19, 0.88),
-            rgba(35, 23, 12, 0.88)
-        );
-
-    color: #f9e6b0;
-
-    font-size: 1rem;
     font-weight: bold;
 
-    letter-spacing: 0.08em;
+    margin: 20px 0;
+}
 
-    text-shadow:
-        1px 1px 2px rgba(0, 0, 0, 0.8);
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    .quiz-box {
+
+        padding: 35px 22px;
+
+    }
+
+    .quiz-box h1 {
+
+        font-size: 27px;
+
+    }
+
+    .quiz-box h2 {
+
+        font-size: 21px;
+
+    }
+
+}
+/* =====================================================
+   TRANSPARENT MAIN PAGE BUTTONS
+   ===================================================== */
+
+.mainLetterButtons{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:18px;
+    width:100%;
+    max-width:650px;
+}
+
+
+/* Letter preview itself */
+
+.letterPreviewButton{
+    width:100%;
+    display:flex;
+    justify-content:center;
+}
+
+
+/* Transparent / glass buttons */
+
+.transparentActionButton{
+
+    margin:0;
+
+    width:280px;
+
+    padding:15px 25px;
+
+    border-radius:40px;
+
+    background:rgba(255,255,255,0.10);
+
+    border:1px solid rgba(255,255,255,0.45);
+
+    backdrop-filter:blur(5px);
+    -webkit-backdrop-filter:blur(5px);
+
+    color:white;
+
+    font-family:'Times New Roman', Times, serif;
+
+    font-size:18px;
 
     box-shadow:
-        0 7px 18px rgba(0, 0, 0, 0.4),
-        inset 0 1px 0 rgba(255, 255, 255, 0.12);
+        0 8px 25px rgba(0,0,0,0.15);
+
+    transition:
+        background .3s ease,
+        transform .3s ease,
+        border-color .3s ease;
+
+}
+
+
+/* Hover */
+
+.transparentActionButton:hover{
+
+    transform:translateY(-3px);
+
+    background:rgba(255,255,255,0.20);
+
+    border-color:rgba(255,255,255,0.7);
+
+}
+
+
+/* Letter card */
+
+.letterPreviewButton .letterCard{
+
+    width:600px;
+    max-width:90vw;
+
+    background:rgba(255,253,247,0.92);
+
+}
+
+
+/* Tap to read */
+
+.letterPreviewButton .letterCardToggle{
+
+    background:rgba(214,51,132,0.12);
+
+    border:1px solid rgba(214,51,132,0.35);
+
+}
+
+
+/* Mobile */
+
+@media(max-width:768px){
+
+    .mainLetterButtons{
+
+        width:95%;
+
+        gap:14px;
+
+    }
+
+
+    .transparentActionButton{
+
+        width:90%;
+
+        max-width:300px;
+
+        font-size:16px;
+
+        padding:13px 20px;
+
+    }
+
+
+    .letterPreviewButton .letterCard{
+
+        width:100%;
+
+        max-width:100%;
+
+        padding:25px 20px;
+
+    }
+
+}
+/* =====================================================
+   MAIN LETTER CARD
+   ===================================================== */
+
+/* The whole letter area */
+#gallery {
+    width: 100%;
+}
+
+
+/* Letter + arrows */
+#gallery .letterCardWrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+}
+
+
+/* =====================================================
+   COLLAPSED LETTER PREVIEW
+   ===================================================== */
+
+#mainLetterCard {
+
+    width: 600px;
+    max-width: 75vw;
+
+    /* TRANSPARENT */
+    background: rgba(255, 255, 255, 0.08);
+
+    border: 1px solid rgba(255, 255, 255, 0.55);
+
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+
+    color: white;
+
+    transition:
+        background 0.4s ease,
+        color 0.4s ease,
+        box-shadow 0.4s ease,
+        transform 0.4s ease;
+
+}
+
+
+/* =====================================================
+   WHEN LETTER IS OPEN
+   ===================================================== */
+
+#mainLetterCard.letter-open {
+
+    background: rgba(255, 255, 255, 0.97);
+
+    color: #4a2a35;
+
+    box-shadow:
+        0 15px 45px rgba(0, 0, 0, 0.30);
+
+}
+
+
+/* =====================================================
+   PREVIEW TEXT
+   ===================================================== */
+
+#mainLetterCard .letterCardEmoji {
+
+    font-size: 45px;
+
+}
+
+
+#mainLetterCard #viewerTitle {
+
+    color: white;
+
+    transition: color 0.4s ease;
+
+}
+
+
+#mainLetterCard #viewerDate {
+
+    color: rgba(255, 255, 255, 0.85);
+
+    transition: color 0.4s ease;
+
+}
+
+
+/* When opened */
+#mainLetterCard.letter-open #viewerTitle {
+
+    color: #4a2a35;
+
+}
+
+
+#mainLetterCard.letter-open #viewerDate {
+
+    color: #777;
+
+}
+
+
+/* =====================================================
+   TAP TO READ BUTTON
+   ===================================================== */
+
+#mainLetterCard .letterCardToggle {
+
+    background: rgba(255, 255, 255, 0.18);
+
+    color: white;
+
+    border: 1px solid rgba(255, 255, 255, 0.6);
+
+    transition:
+        background 0.3s ease,
+        color 0.3s ease;
+
+}
+
+
+/* When letter is open */
+#mainLetterCard.letter-open .letterCardToggle {
+
+    background: #d63384;
+
+    color: white;
+
+    border-color: #d63384;
+
+}
+
+
+/* =====================================================
+   LETTER BODY
+   ===================================================== */
+
+#mainLetterCard .letterCardBody {
+
+    color: #4a2a35;
+
+}
+
+
+/* =====================================================
+   ARROWS
+   ===================================================== */
+
+#gallery .cardArrow {
+
+    background: rgba(255, 255, 255, 0.12);
+
+    border: 1px solid rgba(255, 255, 255, 0.55);
+
+    color: white;
 
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
 
     transition:
-        transform 0.25s ease,
-        background 0.25s ease,
-        border-color 0.25s ease,
-        box-shadow 0.25s ease;
-}
+        background 0.3s ease,
+        transform 0.3s ease;
 
-.op-destination-button::before {
-    content: "⚓";
-
-    position: absolute;
-    left: 15px;
-
-    opacity: 0.8;
-
-    font-size: 1rem;
-}
-
-.op-destination-button:hover {
-    transform: translateY(-3px) scale(1.015);
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(115, 69, 25, 0.95),
-            rgba(53, 32, 15, 0.95)
-        );
-
-    border-color: #f5c451;
-
-    box-shadow:
-        0 12px 28px rgba(0, 0, 0, 0.5),
-        0 0 15px rgba(245, 196, 81, 0.18);
-}
-
-.op-destination-button:active {
-    transform: scale(0.98);
 }
 
 
-/* =========================================================
-   DESTINATION PANELS
-========================================================= */
+#gallery .cardArrow:hover {
 
-.op-destination-panel {
-    position: absolute;
-    inset: 0;
+    background: rgba(255, 255, 255, 0.28);
 
-    z-index: 10;
+    transform: scale(1.08);
+
+}
+
+
+#gallery .cardArrow:disabled {
+
+    opacity: 0.3;
+
+    cursor: not-allowed;
+
+}
+
+
+/* =====================================================
+   ACTION BUTTONS
+   ===================================================== */
+
+#gallery .actionRow {
 
     display: flex;
-    flex-direction: column;
-    align-items: center;
+
     justify-content: center;
 
-    padding: 90px 20px 40px;
+    gap: 15px;
 
-    opacity: 0;
-    visibility: hidden;
+    margin-top: 25px;
 
-    transform: translateY(25px);
+    flex-wrap: wrap;
+
+}
+
+
+#gallery .actionRow button {
+
+    background: rgba(255, 255, 255, 0.10);
+
+    border: 1px solid rgba(255, 255, 255, 0.55);
+
+    color: white;
+
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+
+    transition:
+        background 0.3s ease,
+        transform 0.3s ease;
+
+}
+
+
+#gallery .actionRow button:hover {
+
+    background: rgba(255, 255, 255, 0.22);
+
+    transform: translateY(-2px);
+
+}
+
+
+/* =====================================================
+   MOBILE
+   ===================================================== */
+
+@media (max-width: 768px) {
+
+    #gallery .letterCardWrap {
+
+        gap: 8px;
+
+    }
+
+
+    #mainLetterCard {
+
+        width: 100%;
+
+        max-width: 75vw;
+
+    }
+
+
+    #gallery .cardArrow {
+
+        flex-shrink: 0;
+
+    }
+
+
+    #gallery .actionRow {
+
+        flex-direction: column;
+
+        align-items: center;
+
+    }
+
+
+    #gallery .actionRow button {
+
+        width: 85%;
+
+        max-width: 300px;
+
+    }
+
+}
+/* =====================================================
+   COMPACT LETTER PREVIEW
+   Applies to DESKTOP + MOBILE
+   ===================================================== */
+
+#mainLetterCard,
+#aryanLetterCard {
+
+    /* Compact size */
+    width: 320px;
+    max-width: 320px;
+
+    min-height: unset;
+
+    padding: 22px 18px;
+
+    box-sizing: border-box;
+
+    background: rgba(255, 255, 255, 0.08);
+
+    border: 1px solid rgba(255, 255, 255, 0.55);
+
+    border-radius: 16px;
+
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+
+    color: white;
+
+    transition:
+        background 0.4s ease,
+        color 0.4s ease,
+        box-shadow 0.4s ease,
+        width 0.4s ease;
+}
+
+
+/* =====================================================
+   COMPACT PREVIEW CONTENT
+   ===================================================== */
+
+#mainLetterCard .letterCardEmoji,
+#aryanLetterCard .letterCardEmoji {
+
+    font-size: 36px;
+
+    margin-bottom: 6px;
+
+}
+
+
+#mainLetterCard #viewerTitle,
+#aryanLetterCard #viewerTitleAryan {
+
+    font-size: 21px;
+
+    line-height: 1.25;
+
+    margin: 5px 0;
+
+}
+
+
+#mainLetterCard #viewerDate,
+#aryanLetterCard #viewerDateAryan {
+
+    font-size: 12px;
+
+    margin: 4px 0 12px;
+
+}
+
+
+#mainLetterCard .letterCardToggle,
+#aryanLetterCard .letterCardToggle {
+
+    font-size: 13px;
+
+    padding: 9px 14px;
+
+}
+
+
+/* Position number */
+
+#mainLetterCard .letterCardPosition,
+#aryanLetterCard .letterCardPosition {
+
+    font-size: 11px;
+
+    margin-top: 10px;
+
+}
+
+
+/* =====================================================
+   ARROWS
+   ===================================================== */
+
+#gallery .letterCardWrap,
+#aryanPage .letterCardWrap {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 15px;
+
+}
+
+
+#gallery .cardArrow,
+#aryanPage .cardArrow {
+
+    width: 42px;
+
+    min-width: 42px;
+
+    height: 52px;
+
+    padding: 0;
+
+    font-size: 32px;
+
+    flex-shrink: 0;
+
+}
+
+
+/* =====================================================
+   WHEN LETTER IS OPEN
+   Make it larger only when reading
+   ===================================================== */
+
+#mainLetterCard.letter-open,
+#aryanLetterCard.letter-open {
+
+    width: 520px;
+
+    max-width: 85vw;
+
+    padding: 30px 28px;
+
+    background: rgba(255, 255, 255, 0.97);
+
+    color: #4a2a35;
+
+    box-shadow:
+        0 15px 45px rgba(0, 0, 0, 0.30);
+
+}
+
+
+/* Letter body */
+
+#mainLetterCard.letter-open .letterCardBody,
+#aryanLetterCard.letter-open .letterCardBody {
+
+    font-size: 15px;
+
+    line-height: 1.7;
+
+    max-height: 55vh;
 
     overflow-y: auto;
 
+}
+
+
+/* =====================================================
+   MOBILE
+   ===================================================== */
+
+@media (max-width: 768px) {
+
+    #mainLetterCard,
+    #aryanLetterCard {
+
+        width: 280px;
+
+        max-width: calc(100vw - 105px);
+
+        padding: 18px 13px;
+
+    }
+
+
+    #mainLetterCard .letterCardEmoji,
+    #aryanLetterCard .letterCardEmoji {
+
+        font-size: 32px;
+
+    }
+
+
+    #mainLetterCard #viewerTitle,
+    #aryanLetterCard #viewerTitleAryan {
+
+        font-size: 18px;
+
+    }
+
+
+    #gallery .letterCardWrap,
+    #aryanPage .letterCardWrap {
+
+        gap: 6px;
+
+    }
+
+
+    #gallery .cardArrow,
+    #aryanPage .cardArrow {
+
+        width: 38px;
+
+        min-width: 38px;
+
+        height: 48px;
+
+        font-size: 29px;
+
+    }
+
+
+    /* Opened letter */
+    #mainLetterCard.letter-open,
+    #aryanLetterCard.letter-open {
+
+        width: 90vw;
+
+        max-width: 420px;
+
+        padding: 24px 18px;
+
+    }
+
+}
+/* =====================================================
+   CINEMATIC IDLE MODE
+   ===================================================== */
+
+/*
+   The slideshow and music continue running.
+   Everything else gently disappears.
+*/
+
+#lettersPage,
+#aryanPage {
+    position: relative;
+}
+
+
+/* Smoothly hide the interface */
+
+#lettersPage .overlay,
+#lettersPage #musicBox,
+#aryanPage .overlay,
+#aryanPage #musicBoxAryan {
+
     transition:
-        opacity 0.5s ease,
-        visibility 0.5s ease,
-        transform 0.5s ease;
+        opacity 1.2s ease,
+        visibility 1.2s ease;
 
-    background:
-        linear-gradient(
-            rgba(30, 19, 9, 0.62),
-            rgba(18, 12, 6, 0.78)
-        );
 }
 
-.op-destination-panel.op-panel-active {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
+/* =====================================================
+   CINEMATIC IDLE MODE
+   Music box intentionally stays visible
+   ===================================================== */
+
+#lettersPage .overlay,
+#aryanPage .overlay {
+
+    transition:
+        opacity 1.2s ease,
+        visibility 1.2s ease;
+
 }
 
-.grand-line-content.op-destination-open .op-hero {
+
+/* Hide ONLY the main page content */
+
+#lettersPage.idle-mode .overlay,
+#aryanPage.idle-mode .overlay {
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+
+}
+
+
+/* Music boxes NEVER fade */
+
+#lettersPage #musicBox,
+#aryanPage #musicBoxAryan {
+
+    opacity: 1 !important;
+
+    visibility: visible !important;
+
+    pointer-events: auto !important;
+
+}
+
+
+/* =====================================================
+   MAKE SURE SLIDESHOW STAYS VISIBLE
+   ===================================================== */
+
+#lettersPage #slideshow,
+#aryanPage #slideshowAryan {
+
+    opacity: 1 !important;
+
+}
+
+
+/* =====================================================
+   OPTIONAL: DARKEN THE SLIDESHOW SLIGHTLY IN IDLE MODE
+   ===================================================== */
+
+#lettersPage.idle-mode .overlay,
+#aryanPage.idle-mode .overlay {
     opacity: 0;
     pointer-events: none;
 }
 
-.op-panel-back {
-    position: absolute;
 
-    top: 25px;
-    left: 25px;
+/* =====================================================
+   MOBILE
+   ===================================================== */
 
-    border: 2px solid rgba(245, 196, 81, 0.65);
-    border-radius: 9px;
+@media (max-width: 768px) {
 
-    padding: 9px 15px;
+    #lettersPage .overlay,
+    #lettersPage #musicBox,
+    #aryanPage .overlay,
+    #aryanPage #musicBoxAryan {
 
-    background: rgba(53, 32, 15, 0.9);
-    color: #f9e6b0;
+        transition:
+            opacity 0.9s ease,
+            visibility 0.9s ease;
 
-    font-weight: bold;
+    }
+
+}
+/* ==========================
+   ARYAN TAP TO READ BUTTON
+   Same glass style as Letters Page
+   ========================== */
+/* Collapsed (glass/white) */
+#aryanLetterCard .letterCardToggle {
+    background: rgba(255,255,255,0.18);
+    color: white;
+    border: 1px solid rgba(255,255,255,0.6);
+    box-shadow: none;
 }
 
-.op-panel-back:hover {
-    background: rgba(105, 63, 22, 0.95);
+#aryanLetterCard .letterCardToggle:hover {
+    background: rgba(255,255,255,0.28);
+    color: white;
+    border-color: rgba(255,255,255,0.8);
+    transform: none;
+}
+
+/* When letter is open — pink, same as main */
+#aryanLetterCard.letter-open .letterCardToggle {
+    background: #d63384;
+    color: white;
+    border-color: #d63384;
+}
+
+#aryanLetterCard.letter-open .letterCardToggle:hover {
+    background: #b81f6b;
+    border-color: #b81f6b;
+    transform: none;
+}
+/* =====================================================
+   SLIDE TRANSITION FOR LETTER CARDS
+   ===================================================== */
+
+#mainLetterCard,
+#aryanLetterCard {
+    touch-action: pan-y;   /* let vertical scroll pass through, we handle horizontal */
+    cursor: grab;
+    will-change: transform, opacity;
+}
+
+#mainLetterCard:active,
+#aryanLetterCard:active {
+    cursor: grabbing;
+}
+
+@keyframes slideOutLeft {
+    to { transform: translateX(-60px); opacity: 0; }
+}
+
+@keyframes slideOutRight {
+    to { transform: translateX(60px); opacity: 0; }
+}
+
+@keyframes slideInFromRight {
+    from { transform: translateX(60px); opacity: 0; }
+    to   { transform: translateX(0);    opacity: 1; }
+}
+
+@keyframes slideInFromLeft {
+    from { transform: translateX(-60px); opacity: 0; }
+    to   { transform: translateX(0);     opacity: 1; }
+}
+
+.slide-out-left  { animation: slideOutLeft 0.22s ease forwards; }
+.slide-out-right { animation: slideOutRight 0.22s ease forwards; }
+.slide-in-right   { animation: slideInFromRight 0.28s ease forwards; }
+.slide-in-left    { animation: slideInFromLeft 0.28s ease forwards; }
+#prevLetterBtn,
+#nextLetterBtn {
+    display: none !important;
+}
+
+/* =====================================================
+   ONE PIECE — SUNNY + OCEAN DESIGN
+   =====================================================
+
+/* The Grand Line header contains only Back (left) and Music (right). */
+.one-piece-page .op-header-title {
+    display: none !important;
+}
+
+@font-face {
+    font-family: "One Piece";
+    src: url("onepiecefont.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+:root {
+    --op-blue: #0879c9;
+    --op-deep-blue: #034f91;
+    --op-sky: #7ed8ff;
+    --op-gold: #f4c35b;
+    --op-paper: #ead39a;
+    --op-paper-dark: #b88b45;
+    --op-ink: #20170f;
+    --op-red: #b93427;
+    --op-white: #fffdf2;
+    --op-shadow: rgba(0, 33, 65, .42);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100%;
+    background: #0879c9;
+}
+
+button {
+    font: inherit;
+}
+
+.one-piece-page,
+.one-piece-page *,
+.one-piece-page *::before,
+.one-piece-page *::after,
+.one-piece-page button,
+.one-piece-page input,
+.one-piece-page textarea,
+.one-piece-page select {
+    font-family: "One Piece", Georgia, serif !important;
+}
+
+.one-piece-page {
+    position: relative;
+    min-height: 100vh;
+    overflow-x: hidden;
+    color: var(--op-ink);
+    isolation: isolate;
+    background: #0879c9;
+}
+
+.one-piece-page::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -3;
+    background:
+        linear-gradient(to bottom, rgba(0, 55, 105, .04), rgba(0, 31, 75, .24)),
+        url("images/sunny.png") center center / cover no-repeat;
+    transform: translateZ(0);
+}
+
+.one-piece-page::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    pointer-events: none;
+    background:
+        linear-gradient(to bottom, rgba(255, 255, 255, .03), rgba(0, 0, 0, .16)),
+        radial-gradient(circle at 50% 25%, transparent 0 32%, rgba(0, 29, 65, .18) 100%);
+}
+
+.grand-line-content {
+    min-height: 100vh;
+    background: linear-gradient(
+        to bottom,
+        rgba(255,255,255,.02) 0%,
+        rgba(255,255,255,.05) 45%,
+        rgba(0,38,75,.18) 100%
+    );
+}
+
+/* Opening */
+.op-opening {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: grid;
+    place-items: center;
+    padding: 24px;
+    text-align: center;
+    background:
+        linear-gradient(rgba(1, 43, 82, .42), rgba(1, 36, 70, .64)),
+        url("images/sunny.png") center / cover no-repeat;
+    transition: opacity .8s ease, visibility .8s ease, transform .8s ease;
+}
+
+.op-opening.hidden {
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(1.04);
+    pointer-events: none;
+}
+
+.op-opening-content {
+    width: min(680px, 94vw);
+    padding: clamp(28px, 5vw, 58px);
+    color: var(--op-white);
+    text-shadow: 0 4px 18px rgba(0, 0, 0, .5);
+}
+
+.op-compass {
+    font-size: clamp(44px, 8vw, 76px);
+    margin-bottom: 8px;
+    animation: spinCompass 12s linear infinite;
+}
+
+.op-small-text,
+.op-kicker,
+.op-chapter {
+    letter-spacing: .16em;
+    font-size: clamp(11px, 1.5vw, 15px);
+}
+
+.op-opening h1 {
+    margin: 12px 0;
+    font-size: clamp(48px, 10vw, 112px);
+    line-height: .9;
+    letter-spacing: .05em;
+    color: #fff3bd;
+}
+
+.op-crossed {
+    font-size: 36px;
+    margin: 12px 0;
+}
+
+.op-couple-name {
+    font-size: clamp(22px, 4vw, 34px);
+    letter-spacing: .12em;
+}
+
+.op-couple-name span {
+    color: #ffb2aa;
+    margin: 0 8px;
+}
+
+/* Buttons */
+.op-main-button,
+.op-scroll-button {
+    border: 0;
+    cursor: pointer;
+    color: #20170f;
+    background: linear-gradient(#ffe7a0, #dca94f);
+    border: 3px solid #5f3d16;
+    box-shadow:
+        0 7px 0 #4c3217,
+        0 12px 24px rgba(0,0,0,.28);
+    transition: transform .2s ease, filter .2s ease, box-shadow .2s ease;
+}
+
+.op-main-button {
+    margin-top: 28px;
+    padding: 14px 32px;
+    border-radius: 10px;
+    font-size: clamp(18px, 2.5vw, 25px);
+}
+
+.op-main-button:hover,
+.op-scroll-button:hover {
+    transform: translateY(-3px);
+    filter: brightness(1.06);
+    box-shadow: 0 10px 0 #4c3217, 0 16px 28px rgba(0,0,0,.3);
+}
+
+.op-main-button:active,
+.op-scroll-button:active {
+    transform: translateY(3px);
+    box-shadow: 0 3px 0 #4c3217, 0 7px 14px rgba(0,0,0,.22);
+}
+
+/* =========================================================
+   GRAND LINE HEADER — BACK LEFT / MUSIC RIGHT
+   ========================================================= */
+.op-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 76px;
+    z-index: 10050;
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    padding: 16px 22px;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    backdrop-filter: none;
+    pointer-events: none;
+}
+
+.op-header .op-back-button,
+.op-header .op-music-wrap {
+    pointer-events: auto;
+}
+
+.op-back-button,
+.op-music-button {
+    border: 2px solid rgba(255, 235, 167, .85);
+    background: rgba(0, 34, 67, .48);
+    color: white;
+    cursor: pointer;
+    border-radius: 9px;
+    min-height: 44px;
+    transition: .2s ease;
+}
+
+.op-back-button {
+    padding: 8px 16px;
+    font-size: 17px;
+    letter-spacing: .08em;
+}
+
+.op-music-button {
+    width: 48px;
+    font-size: 22px;
+}
+
+.op-back-button:hover,
+.op-music-button:hover {
+    background: rgba(255, 226, 128, .18);
+    transform: translateY(-2px);
+}
+
+/* Hero */
+.op-hero {
+    position: relative;
+    min-height: min(92vh, 880px);
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    padding: 100px 20px 80px;
+}
+
+.op-sun-glow {
+    position: absolute;
+    width: min(50vw, 580px);
+    aspect-ratio: 1;
+    left: 14%;
+    top: 30%;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,238,158,.34), rgba(255,238,158,0) 68%);
+    pointer-events: none;
+}
+
+.op-hero-content {
+    position: relative;
+    z-index: 2;
+    width: min(700px, 94vw);
+    margin-right: auto;
+    margin-left: clamp(3vw, 8vw, 12vw);
+    padding: clamp(28px, 5vw, 52px);
+    color: white;
+    text-align: left;
+    text-shadow: 0 4px 15px rgba(0,0,0,.58);
+}
+
+.op-kicker {
+    color: #fff1ae;
+    margin-bottom: 15px;
+}
+
+.op-hero h2 {
+    font-size: clamp(42px, 7vw, 84px);
+    line-height: .94;
+    letter-spacing: .02em;
+}
+
+.op-hero h2 span {
+    color: #ffe083;
+}
+
+.op-hero p:not(.op-kicker) {
+    margin-top: 22px;
+    font-family: Georgia, serif;
+    font-size: clamp(15px, 2vw, 20px);
+    line-height: 1.7;
+    letter-spacing: .01em;
+}
+
+.op-scroll-button {
+    margin-top: 28px;
+    padding: 11px 18px;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+.op-cloud {
+    position: absolute;
+    width: 180px;
+    height: 65px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.28);
+    filter: blur(2px);
+    pointer-events: none;
+}
+
+.cloud-one {
+    left: -190px;
+    top: 18%;
+    animation: cloudMove 30s linear infinite;
+}
+
+.cloud-two {
+    left: -280px;
+    top: 35%;
+    transform: scale(.7);
+    animation: cloudMove 40s linear infinite 8s;
+}
+
+/* Sections */
+.op-section {
+    position: relative;
+    width: min(1180px, 92vw);
+    margin: 45px auto;
+    padding: clamp(28px, 5vw, 58px);
+    border: 4px solid #704b1f;
+    border-radius: 18px;
+    background:
+        radial-gradient(circle at 10% 15%, rgba(96, 57, 15, .1) 0 2px, transparent 3px),
+        radial-gradient(circle at 88% 70%, rgba(96, 57, 15, .12) 0 2px, transparent 3px),
+        linear-gradient(rgba(246,225,164,.94), rgba(221,193,123,.93));
+    background-size: auto, auto, auto;
+    box-shadow: 0 18px 45px var(--op-shadow), inset 0 0 35px rgba(91,55,12,.12);
+}
+
+.op-section::before,
+.op-section::after {
+    content: "✦";
+    position: absolute;
+    color: rgba(92, 57, 20, .65);
+    font-size: 25px;
+}
+
+.op-section::before {
+    top: 12px;
+    left: 18px;
+}
+
+.op-section::after {
+    right: 18px;
+    bottom: 12px;
 }
 
 .op-section-title {
-    margin-bottom: 20px;
-
-    font-size: clamp(1.8rem, 5vw, 3rem);
-
-    letter-spacing: 0.08em;
-
     text-align: center;
-
-    text-shadow:
-        2px 3px 0 rgba(0, 0, 0, 0.5);
+    color: #24170e;
+    font-size: clamp(26px, 4vw, 48px);
+    letter-spacing: .07em;
+    text-shadow: 1px 2px 0 rgba(255,255,255,.28);
 }
 
+.op-section-title span {
+    color: #6b241d;
+}
 
-/* =========================================================
-   WANTED POSTERS
-========================================================= */
+.section-subtitle,
+.map-intro,
+.counter-intro,
+.treasure-intro,
+.treasure-section > p {
+    text-align: center;
+    font-family: Georgia, serif;
+}
 
-.wanted-posters {
-    width: min(850px, 95%);
+.section-subtitle,
+.map-intro {
+    margin-top: 10px;
+    font-size: 17px;
+}
 
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-
-    gap: 30px;
+/* Wanted posters */
+.wanted-container {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(230px, 1fr));
+    gap: clamp(20px, 5vw, 55px);
+    width: min(820px, 100%);
+    margin: 35px auto 0;
 }
 
 .wanted-poster {
-    width: min(300px, 80vw);
-
-    padding: 18px;
-
+    padding: 17px 17px 24px;
     text-align: center;
-
+    color: #21160d;
     background:
-        linear-gradient(
-            145deg,
-            #d9bd7d,
-            #b99555
-        );
-
-    color: #2c1a0d;
-
-    border: 4px solid #5b3a18;
-
-    box-shadow:
-        0 15px 35px rgba(0, 0, 0, 0.55);
-
-    transform: rotate(-1deg);
+        linear-gradient(rgba(235,207,139,.92), rgba(210,174,98,.95));
+    border: 4px solid #805820;
+    box-shadow: 0 13px 25px rgba(72,42,9,.35);
+    transform: rotate(-1.2deg);
 }
 
 .wanted-poster:nth-child(2) {
-    transform: rotate(1deg);
+    transform: rotate(1.2deg);
 }
 
 .wanted-top {
-    font-size: 2.2rem;
-    font-weight: bold;
-
-    letter-spacing: 0.15em;
-
-    margin-bottom: 10px;
+    font-size: clamp(34px, 5vw, 58px);
+    letter-spacing: .08em;
+    border-bottom: 3px solid #5e3b17;
+    padding-bottom: 5px;
 }
 
-.wanted-image {
-    height: 170px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    margin-bottom: 12px;
-
-    border: 3px solid #5b3a18;
-
-    background: rgba(255, 255, 255, 0.2);
-
-    font-size: 5rem;
+.wanted-photo {
+    height: 230px;
+    margin: 16px auto;
+    display: grid;
+    place-items: center;
+    border: 4px solid #5e3b17;
+    background: linear-gradient(135deg, #7ec4d8, #e9d79e);
+    overflow: hidden;
 }
 
-.wanted-name {
-    font-size: 1.35rem;
-    font-weight: bold;
-
-    margin-bottom: 8px;
+.wanted-photo span {
+    font-size: 70px;
+    filter: drop-shadow(0 4px 5px rgba(0,0,0,.2));
 }
 
-.wanted-reward {
-    font-size: 0.78rem;
-    font-weight: bold;
-
-    line-height: 1.4;
+.wanted-poster h3 {
+    font-size: clamp(26px, 4vw, 42px);
 }
 
+.wanted-subtitle {
+    margin-top: 3px;
+    font-size: 13px;
+    letter-spacing: .1em;
+}
 
-/* =========================================================
-   GRAND LINE MAP
-========================================================= */
+.bounty {
+    margin-top: 14px;
+    font-size: 21px;
+}
 
-.map-intro {
-    margin-bottom: 20px;
+.crime {
+    margin-top: 12px;
+    font-family: Georgia, serif;
+    line-height: 1.5;
+}
 
-    text-align: center;
-
-    font-size: 1rem;
+/* Map */
+.map-section {
+    overflow: hidden;
 }
 
 .grand-line-map {
     position: relative;
-
-    width: min(850px, 95vw);
-    height: min(500px, 62vh);
-
-    border-radius: 25px;
-
+    min-height: 520px;
+    margin-top: 25px;
+    border: 4px solid #6f4a20;
+    border-radius: 15px;
     overflow: hidden;
-
-    border: 4px solid #65421f;
-
     background:
-        radial-gradient(
-            circle at center,
-            rgba(227, 202, 139, 0.95),
-            rgba(180, 143, 75, 0.9)
-        );
-
-    box-shadow:
-        inset 0 0 50px rgba(74, 42, 13, 0.35),
-        0 20px 50px rgba(0, 0, 0, 0.45);
+        radial-gradient(circle at 25% 25%, rgba(255,255,255,.32) 0 4px, transparent 5px),
+        linear-gradient(145deg, rgba(93,178,194,.78), rgba(221,194,119,.82));
+    box-shadow: inset 0 0 50px rgba(70,43,9,.18);
 }
 
 .map-route {
     position: absolute;
-
     left: 10%;
     right: 10%;
     top: 50%;
-
-    height: 3px;
-
-    background:
-        repeating-linear-gradient(
-            90deg,
-            #69441b 0 15px,
-            transparent 15px 25px
-        );
-
-    transform: rotate(-12deg);
-    opacity: 0.7;
+    height: 5px;
+    border-top: 5px dashed #8a4e22;
+    transform: rotate(-7deg);
+    opacity: .8;
 }
 
 .memory-island {
     position: absolute;
 
-    padding: 12px 15px;
-
-    border-radius: 50%;
-
-    border: 3px solid #68431b;
-
-    background:
-        radial-gradient(
-            circle,
-            #e4c986,
-            #b8914d
-        );
-
-    color: #39220e;
-
-    font-weight: bold;
-    font-size: 0.8rem;
-
-    box-shadow:
-        0 7px 15px rgba(0, 0, 0, 0.3);
-
-    transition:
-        transform 0.25s ease,
-        box-shadow 0.25s ease;
+    /* Override global button spacing so the map coordinates are reliable. */
+    margin: 0 !important;
+    padding: 12px !important;
+    z-index: 3;
+    width: 130px;
+    min-height: 105px;
+    border: 3px solid #5f3b16;
+    border-radius: 48% 52% 45% 55%;
+    color: #25170d;
+    background: linear-gradient(#f6d97d, #c9933f);
+    box-shadow: 0 9px 0 #704516, 0 15px 22px rgba(50,33,10,.28);
+    cursor: pointer;
+    transition: transform .22s ease, filter .22s ease;
 }
 
 .memory-island:hover {
-    transform: scale(1.08);
-
-    box-shadow:
-        0 12px 25px rgba(0, 0, 0, 0.4);
+    transform: translateY(-8px) scale(1.06);
+    filter: brightness(1.08);
 }
 
-.island-one {
-    top: 15%;
-    left: 8%;
+.island-icon {
+    display: block;
+    font-size: 31px;
+    margin-bottom: 5px;
 }
 
-.island-two {
-    top: 25%;
-    right: 12%;
+.memory-island strong {
+    font-size: 15px;
+    letter-spacing: .04em;
 }
 
-.island-three {
-    bottom: 15%;
-    left: 18%;
-}
-
-.island-four {
-    bottom: 10%;
-    right: 28%;
-}
-
-.island-five {
-    top: 48%;
-    left: 42%;
-}
+.island-one { left: 7%; top: 11%; }
+.island-two { left: 31%; top: 30%; }
+.island-three { left: 59%; top: 10%; }
+.island-four { left: 76%; top: 39%; }
+.island-five { left: 41%; top: 63%; }
+.island-six { left: 8%; top: 70%; }
 
 .map-ship {
     position: absolute;
-
-    top: 44%;
-    left: 51%;
-
-    font-size: 2.5rem;
-
-    animation: shipFloat 2.5s ease-in-out infinite;
+    z-index: 4;
+    font-size: 70px;
+    filter: drop-shadow(0 8px 4px rgba(0,0,0,.3));
+    animation: shipBob 2.8s ease-in-out infinite;
 }
 
-@keyframes shipFloat {
-    0%,
-    100% {
-        transform: translateY(0) rotate(-3deg);
+/* Memory modal */
+/* Keep island memory pop-ups above the map destination panel and its buttons. */
+.memory-modal,
+.treasure-message {
+    position: fixed;
+    inset: 0;
+    z-index: 1200;
+    display: grid;
+    place-items: center;
+    padding: 20px;
+    background: rgba(0, 31, 60, .74);
+    backdrop-filter: blur(7px);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: .3s ease;
+}
+
+.memory-modal.open,
+.treasure-message.open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.memory-modal-box,
+.treasure-message-box {
+    position: relative;
+    width: min(620px, 94vw);
+    padding: clamp(28px, 5vw, 55px);
+    text-align: center;
+    border: 5px solid #704b1f;
+    border-radius: 17px;
+    background: linear-gradient(#f5df9e, #d7b96f);
+    box-shadow: 0 25px 70px rgba(0,0,0,.45);
+    transform: translateY(25px) scale(.96);
+    transition: .35s ease;
+}
+
+.memory-modal.open .memory-modal-box,
+.treasure-message.open .treasure-message-box {
+    transform: translateY(0) scale(1);
+}
+
+.close-memory {
+    position: absolute;
+    right: 12px;
+    top: 8px;
+    border: 0;
+    background: transparent;
+    color: #38220f;
+    font-size: 35px;
+    cursor: pointer;
+}
+
+.memory-modal-icon {
+    font-size: 58px;
+}
+
+.memory-chapter {
+    margin-top: 8px;
+    font-size: 14px;
+    letter-spacing: .14em;
+    color: #74471b;
+}
+
+.memory-modal-box h2 {
+    margin-top: 7px;
+    font-size: clamp(30px, 6vw, 50px);
+}
+
+.memory-line {
+    width: 120px;
+    height: 4px;
+    margin: 15px auto;
+    background: #74471b;
+}
+
+.memory-modal-box > p:last-child {
+    font-family: Georgia, serif;
+    font-size: 18px;
+    line-height: 1.7;
+}
+
+/* Counter */
+.counter-section {
+    text-align: center;
+}
+
+.counter-section h3 {
+    margin-top: 7px;
+    font-size: 18px;
+    letter-spacing: .13em;
+}
+
+.op-counter {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin: 30px auto 20px;
+    width: min(820px, 100%);
+}
+
+.counter-box {
+    padding: 18px 10px;
+    border: 3px solid #5d3914;
+    border-radius: 11px;
+    background: linear-gradient(#4b2e15, #291a0c);
+    color: #ffe7a1;
+    box-shadow: 0 7px 0 #211407;
+}
+
+.counter-box span {
+    display: block;
+    font-size: clamp(30px, 5vw, 54px);
+}
+
+.counter-box small {
+    display: block;
+    margin-top: 4px;
+    color: #fff4c5;
+    font-size: 12px;
+    letter-spacing: .12em;
+}
+
+.counter-quote {
+    width: min(720px, 100%);
+    margin: 0 auto;
+    font-family: Georgia, serif;
+    font-size: 17px;
+    line-height: 1.6;
+}
+
+/* Treasure */
+.treasure-section {
+    text-align: center;
+}
+
+.treasure-section > p {
+    margin-top: 8px;
+    font-size: 17px;
+}
+
+.treasure-area {
+    margin-top: 30px;
+}
+
+.treasure-chest {
+    position: relative;
+    width: 180px;
+    height: 150px;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    transition: transform .2s ease;
+}
+
+.treasure-chest:hover {
+    transform: translateY(-7px) rotate(-2deg);
+}
+
+.chest-body {
+    position: absolute;
+    left: 15px;
+    right: 15px;
+    bottom: 10px;
+    height: 92px;
+    display: grid;
+    place-items: center;
+    border: 7px solid #5a3513;
+    border-radius: 0 0 18px 18px;
+    background: linear-gradient(#bd7b25, #73410e);
+    font-size: 46px;
+    box-shadow: 0 10px 0 #4a2c12;
+}
+
+.chest-lid {
+    position: absolute;
+    z-index: 2;
+    left: 10px;
+    right: 10px;
+    top: 25px;
+    height: 55px;
+    border: 7px solid #5a3513;
+    border-bottom: 0;
+    border-radius: 70px 70px 0 0;
+    background: linear-gradient(#e2a443, #945716);
+    transform-origin: bottom center;
+    transition: transform .6s ease;
+}
+
+.treasure-chest.open .chest-lid {
+    transform: rotateX(-55deg) translateY(-10px);
+}
+
+.chest-lock {
+    position: absolute;
+    z-index: 4;
+    left: 50%;
+    top: 66px;
+    transform: translateX(-50%);
+    font-size: 28px;
+    transition: .4s ease;
+}
+
+.treasure-chest.open .chest-lock {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-20px);
+}
+
+.chest-hint {
+    margin-top: 9px;
+    font-size: 14px;
+    letter-spacing: .12em;
+}
+
+/* Treasure popup */
+.treasure-heart {
+    font-size: 58px;
+    animation: heartBeat 1.2s ease-in-out infinite;
+}
+
+.treasure-message-box > p {
+    margin-top: 8px;
+    font-size: 17px;
+}
+
+.treasure-message-box h2 {
+    margin-top: 12px;
+    font-size: clamp(36px, 7vw, 64px);
+    color: #9e3028;
+    line-height: 1;
+}
+
+.treasure-sign {
+    margin-top: 18px;
+    font-family: Georgia, serif;
+    font-size: 18px;
+}
+
+/* Footer */
+.op-footer {
+    padding: 75px 20px 90px;
+    text-align: center;
+    color: white;
+    background: rgba(3, 38, 70, .76);
+    border-top: 4px solid rgba(255,223,137,.7);
+    box-shadow: 0 -10px 35px rgba(0,0,0,.2);
+}
+
+.footer-skull {
+    font-size: 44px;
+    color: #ffe28d;
+}
+
+.op-footer h3 {
+    margin-top: 10px;
+    font-size: clamp(26px, 5vw, 46px);
+    color: #fff1b5;
+}
+
+.op-footer p {
+    margin-top: 10px;
+    font-family: Georgia, serif;
+    font-size: 16px;
+}
+
+.footer-couple {
+    margin-top: 25px;
+    font-size: 23px;
+    letter-spacing: .1em;
+    color: #ffd878;
+}
+
+/* Animations */
+@keyframes spinCompass {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes cloudMove {
+    from { transform: translateX(0) scale(1); }
+    to { transform: translateX(calc(100vw + 450px)) scale(1.15); }
+}
+
+@keyframes shipBob {
+    0%, 100% { transform: translateY(0) rotate(-2deg); }
+    50% { transform: translateY(-13px) rotate(3deg); }
+}
+
+@keyframes heartBeat {
+    0%, 100% { transform: scale(1); }
+    20% { transform: scale(1.12); }
+    40% { transform: scale(1); }
+}
+
+/* Mobile */
+@media (max-width: 850px) {
+    .op-header {
+        padding: 10px 12px;
     }
 
-    50% {
-        transform: translateY(-8px) rotate(3deg);
+    .op-back-button {
+        font-size: 14px;
+        padding: 7px 12px;
     }
+
+    .op-hero {
+        min-height: 760px;
+        align-items: end;
+        padding-bottom: 70px;
+    }
+
+    .op-hero-content {
+        margin: 0;
+        text-align: center;
+        padding: 22px;
+    }
+
+    .op-hero p:not(.op-kicker) br {
+        display: none;
+    }
+
+    .wanted-container {
+        grid-template-columns: 1fr;
+        width: min(430px, 100%);
+    }
+
+    .grand-line-map {
+        min-height: 680px;
+    }
+
+    .memory-island {
+        width: 112px;
+        min-height: 92px;
+    }
+
+    .island-one { left: 4%; top: 8%; }
+    .island-two { left: 39%; top: 18%; }
+    .island-three { left: 63%; top: 8%; }
+    .island-four { left: 67%; top: 43%; }
+    .island-five { left: 36%; top: 61%; }
+    .island-six { left: 5%; top: 70%; }
+
+    .map-ship {
+        left: 44%;
+        top: 42%;
+        font-size: 58px;
+    }
+
+
+
+    .op-counter {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 520px) {
+    .op-section {
+        width: 95vw;
+        padding: 27px 17px 35px;
+        margin: 28px auto;
+    }
+
+    .op-back-button {
+        font-size: 12px;
+        padding: 7px 9px;
+    }
+
+    .op-music-button {
+        width: 42px;
+    }
+
+    .op-header-title {
+        font-size: 14px;
+    }
+
+    .op-opening h1 {
+        font-size: 49px;
+    }
+
+    .op-hero h2 {
+        font-size: 39px;
+    }
+
+    .grand-line-map {
+        min-height: 700px;
+    }
+
+    .memory-island {
+        width: 100px;
+        min-height: 84px;
+    }
+
+    .memory-island strong {
+        font-size: 12px;
+    }
+
+    .island-one { left: 2%; }
+    .island-two { left: 36%; }
+    .island-three { left: 64%; }
+    .island-four { left: 64%; top: 42%; }
+    .island-five { left: 34%; top: 62%; }
+    .island-six { left: 2%; top: 72%; }
+
+
+
+    .op-polaroid {
+        padding: 7px 7px 15px;
+    }
+
+    .op-polaroid figcaption {
+        font-size: 11px;
+    }
+
+    .counter-box {
+        padding: 13px 7px;
+    }
+
+    .counter-box span {
+        font-size: 28px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: .001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .001ms !important;
+    }
+}
+
+
+/* Current One Piece HTML uses .op-scroll */
+.one-piece-page .op-scroll {
+    margin-top: 28px;
+    display: inline-block;
+    padding: 11px 18px;
+    border-radius: 8px;
+    color: #20170f;
+    background: linear-gradient(#ffe7a0, #dca94f);
+    border: 3px solid #5f3d16;
+    box-shadow: 0 7px 0 #4c3217, 0 12px 24px rgba(0,0,0,.28);
+    cursor: default;
+    font-size: 16px;
+    letter-spacing: .04em;
+}
+
+#gallery .one-piece-entry-button {
+    margin-top: 0;
+    background: rgba(255,255,255,.10);
+    border: 1px solid rgba(255,255,255,.55);
+    color: white;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+}
+
+#gallery .one-piece-entry-button:hover {
+    background: rgba(255,255,255,.22);
+    transform: translateY(-2px);
+}
+
+
+/* =====================================================
+   ONE PIECE — INTEGRATION OVERRIDES
+   ===================================================== */
+/* Our Grand Line is a completely separate full-screen landing page.
+   It must never become a normal section in the main page flow.
+   IMPORTANT: give the overlay its OWN opaque background so the normal
+   website can never show through it. */
+.one-piece-page {
+    display: none;
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    min-height: 100vh;
+    z-index: 10000;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    isolation: isolate;
+    background:
+        linear-gradient(rgba(2, 48, 88, .24), rgba(1, 27, 58, .40)),
+        url("images/sunny.png") center center / cover no-repeat;
+    color: var(--op-white);
+}
+
+.one-piece-page .op-opening.hide {
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(1.04);
+    pointer-events: none;
+}
+
+.one-piece-page .grand-line-content {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    background: linear-gradient(
+        to bottom,
+        rgba(3, 54, 96, .12),
+        rgba(0, 27, 57, .28)
+    );
+
+    /* Keep the Voyage completely hidden behind the opening screen.
+       It appears only after the opening screen has finished fading out. */
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .15s ease, visibility 0s linear .15s;
+}
+
+.one-piece-page .grand-line-content.op-grand-line-visible {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    transition: opacity .25s ease;
+}
+
+.one-piece-page .op-opening {
+    position: fixed;
+}
+
+.one-piece-page .op-header {
+    z-index: 1200;
+}
+
+/* Keep the Grand Line music control locked to the top-right even when
+   WANTED / MAP / FINAL TREASURE opens as a full-screen panel. */
+.one-piece-page .op-header {
+    box-sizing: border-box;
+    width: 100vw;
+    right: 0;
+}
+
+.one-piece-page .op-header .op-music-wrap {
+    position: absolute;
+    top: 16px;
+    right: 22px;
+    left: auto;
+    margin: 0;
+}
+
+@font-face {
+    font-family: "One Piece";
+    src: url("onepiecefont.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+.one-piece-page,
+.one-piece-page *,
+.one-piece-page button,
+.one-piece-page input,
+.one-piece-page textarea,
+.one-piece-page select {
+    font-family: "One Piece", Georgia, serif !important;
 }
 
 
 /* =========================================================
-   MEMORY MODAL
+   GRAND LINE DESTINATION MENU
+   ========================================================= */
+.one-piece-page .op-grand-line-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 20px;
+    width: min(360px, 86vw);
+    margin: 32px 0 0;
+}
+
+.one-piece-page .op-destination-button {
+    width: 100%;
+    min-height: 72px;
+    padding: 14px 18px;
+    border: 3px solid #5e3b17;
+    border-radius: 12px;
+    background: linear-gradient(#f7d982, #bd8735);
+    color: #24170e;
+    box-shadow: 0 6px 0 #6e4518, 0 12px 22px rgba(0,0,0,.25);
+    cursor: pointer;
+    font-size: clamp(16px, 2.2vw, 23px);
+    letter-spacing: .05em;
+    transition: transform .2s ease, filter .2s ease;
+}
+
+.one-piece-page .op-destination-button:hover {
+    transform: translateY(-5px) scale(1.02);
+    filter: brightness(1.08);
+}
+
+.one-piece-page .op-menu-hint {
+    margin-top: 16px;
+    font-size: 14px;
+    letter-spacing: .15em;
+    color: #fff1bd;
+    text-shadow: 1px 2px 2px rgba(0,0,0,.45);
+}
+
+.one-piece-page .op-destination-panel {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1100;
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    box-sizing: border-box;
+    padding: 82px clamp(18px, 5vw, 70px) 50px;
+    /* Keep the Thousand Sunny ocean scene visible behind EVERY destination. */
+    background:
+        linear-gradient(135deg, rgba(4,30,52,.52), rgba(8,65,91,.42)),
+        url("images/sunny.png") center center / cover no-repeat;
+    background-attachment: fixed;
+    backdrop-filter: blur(1.5px);
+}
+
+.one-piece-page .op-destination-panel.op-panel-active {
+    display: block;
+    animation: opPanelPop .48s cubic-bezier(.2,.85,.25,1) both;
+}
+
+/* When a destination popup is open, hide the global BACK button so the
+   popup has only its single GRAND LINE button on the top-left. */
+.one-piece-page .grand-line-content.op-destination-open .op-header .op-back-button {
+    display: none;
+}
+
+/* Hide the three destination buttons while their selected destination is open. */
+.one-piece-page .grand-line-content.op-destination-open .op-grand-line-menu,
+.one-piece-page .grand-line-content.op-destination-open .op-menu-hint {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.one-piece-page .op-panel-back {
+    position: absolute;
+    top: 22px;
+    left: 22px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 16px;
+    border: 2px solid #5e3b17;
+    border-radius: 9px;
+    background: linear-gradient(#f7d982, #bd8735);
+    color: #2b1a0d;
+    box-shadow: 0 4px 0 #6e4518, 0 8px 16px rgba(0,0,0,.25);
+    cursor: pointer;
+    font-size: 14px;
+    letter-spacing: .06em;
+    transition: transform .16s ease, filter .16s ease;
+}
+
+.one-piece-page .op-panel-back:hover {
+    filter: brightness(1.08);
+    transform: translateY(-2px);
+}
+
+@keyframes opPanelPop {
+    0% { opacity: 0; transform: scale(.82) translateY(35px); }
+    55% { opacity: 1; transform: scale(1.025) translateY(-4px); }
+    78% { transform: scale(.99) translateY(1px); }
+    100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@media (max-width: 700px) {
+    .one-piece-page .op-grand-line-menu {
+        width: min(340px, 86vw);
+        margin-left: 0;
+        margin-right: 0;
+        gap: 16px;
+        align-items: stretch;
+    }
+
+    .one-piece-page .op-destination-button {
+        width: 100%;
+        min-height: 62px;
+    }
+}
+
+/* The Grand Line no longer contains a journey timer. */
+.one-piece-page .counter-section {
+    display: none !important;
+}
+
+
+/* =========================================================
+   GRAND LINE MUSIC — DEDICATED ONLY
+   ========================================================= */
+body.one-piece-active #musicBox,
+body.one-piece-active #musicBoxAryan {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
+
+.one-piece-page .op-music-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.one-piece-page .op-music-menu {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    width: min(260px, 78vw);
+    padding: 12px;
+    border: 2px solid #e8c86b;
+    border-radius: 12px;
+    background: rgba(7, 26, 44, .97);
+    box-shadow: 0 12px 30px rgba(0,0,0,.45);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-6px);
+    transition: opacity .2s ease, transform .2s ease, visibility .2s ease;
+    z-index: 1001;
+}
+
+.one-piece-page .op-music-menu.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.one-piece-page .op-music-menu-title {
+    padding: 4px 6px 10px;
+    color: #f8d979;
+    font-size: 13px;
+    letter-spacing: .08em;
+    text-align: center;
+}
+
+.one-piece-page .op-song-btn {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid rgba(248,217,121,.65);
+    border-radius: 8px;
+    background: rgba(255,255,255,.08);
+    color: #fff7dc;
+    cursor: pointer;
+    text-align: left;
+    font-size: 13px;
+}
+
+.one-piece-page .op-song-btn:hover {
+    background: rgba(248,217,121,.18);
+}
+
+@media (max-width: 700px) {
+    .one-piece-page .op-music-menu {
+        right: -8px;
+    }
+}
+
+/* Grand Line destination buttons: press-to-pop animation */
+.one-piece-page .op-destination-button.button-pop {
+    animation: grandLineButtonPop .42s cubic-bezier(.2,.85,.25,1) both;
+}
+
+@keyframes grandLineButtonPop {
+    0%   { transform: translateX(0) scale(1); }
+    38%  { transform: translateX(16px) scale(1.12); }
+    68%  { transform: translateX(7px) scale(1.04); }
+    100% { transform: translateX(0) scale(1); }
+}
+
+@media (max-width: 700px) {
+    .one-piece-page .op-destination-panel {
+        padding: 76px 16px 38px;
+    }
+
+    .one-piece-page .op-panel-back {
+        top: 16px;
+        left: 16px;
+        padding: 9px 13px;
+        font-size: 12px;
+    }
+}
+/* =========================================================
+   MEMORY POLAROID SLIDESHOW
 ========================================================= */
 
 .memory-modal {
     position: fixed;
     inset: 0;
 
-    z-index: 50;
+    z-index: 7000;
 
-    display: none;
+    display: flex;
     align-items: center;
     justify-content: center;
 
-    padding: 20px;
+    padding: 12px;
 
     background:
-        rgba(12, 7, 3, 0.82);
+        radial-gradient(
+            circle at center,
+            rgba(255,255,255,0.15),
+            rgba(0,0,0,0.72)
+        );
 
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(6px);
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transition:
+        opacity 0.35s ease,
+        visibility 0.35s ease;
 }
+
+
+/* OPEN */
 
 .memory-modal.active {
-    display: flex;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
 }
+
+
+/* =========================================================
+   POPUP BOX
+========================================================= */
 
 .memory-modal-box {
     position: relative;
 
-    width: min(700px, 94vw);
-    max-height: 90vh;
+    width: min(96vw, 1400px);
+    max-width: 96vw;
+    max-height: 96vh;
 
     overflow-y: auto;
 
-    padding: 30px 25px;
-
-    border: 2px solid rgba(245, 196, 81, 0.65);
-    border-radius: 18px;
-
-    background:
-        linear-gradient(
-            145deg,
-            #f0dfb1,
-            #d2b77b
-        );
-
-    color: #34200e;
+    padding: 35px 30px 30px;
 
     text-align: center;
 
+    background:
+        linear-gradient(135deg, rgba(4,30,52,.72), rgba(8,65,91,.62)),
+        url("images/sunny.png") center center / cover no-repeat;
+    background-attachment: fixed;
+
+    border: 4px solid #151515;
+
     box-shadow:
-        0 25px 70px rgba(0, 0, 0, 0.65);
+        0 20px 60px rgba(0,0,0,0.55),
+        8px 8px 0 rgba(0,0,0,0.2);
+
+    transform: scale(0.85) translateY(25px);
+
+    transition: transform 0.4s cubic-bezier(.2,.8,.2,1);
 }
+
+
+.memory-modal.active .memory-modal-box {
+    transform: scale(1) translateY(0);
+}
+
+
+/* =========================================================
+   CLOSE BUTTON
+========================================================= */
 
 .close-memory {
     position: absolute;
 
     top: 8px;
-    right: 13px;
+    right: 12px;
 
-    border: none;
+    width: 42px;
+    height: 42px;
 
-    background: transparent;
-
-    color: #3b230f;
-
-    font-size: 2rem;
-}
-
-.memory-modal-icon {
-    font-size: 2.5rem;
-    margin-bottom: 8px;
-}
-
-.memory-chapter {
-    font-size: 0.8rem;
-    letter-spacing: 0.15em;
-    opacity: 0.7;
-}
-
-.memory-modal-box h2 {
-    margin: 8px 0;
-    font-size: 1.8rem;
-}
-
-.memory-line {
-    width: 80px;
-    height: 2px;
-
-    margin: 12px auto 18px;
-
-    background: #69441b;
-}
-
-#memoryText {
-    line-height: 1.6;
-    margin-bottom: 20px;
-}
-
-
-/* =========================================================
-   MEMORY POLAROID
-========================================================= */
-
-.memory-polaroid {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    gap: 12px;
-}
-
-.memory-polaroid-frame {
-    position: relative;
-
-    width: min(360px, 68vw);
-
-    padding: 12px 12px 45px;
-
-    background: #f9f5eb;
-
-    box-shadow:
-        0 15px 30px rgba(0, 0, 0, 0.35);
-
-    transform: rotate(-1deg);
-}
-
-.memory-polaroid-frame img {
-    display: block;
-
-    width: 100%;
-    aspect-ratio: 4 / 5;
-
-    object-fit: cover;
-
-    background: #ddd;
-}
-
-#memoryPhotoCaption {
-    position: absolute;
-
-    bottom: 12px;
-    left: 10px;
-    right: 10px;
-
-    font-size: 0.9rem;
-
-    color: #33251c;
-}
-
-.polaroid-pin {
-    position: absolute;
-
-    top: -7px;
-    left: 50%;
-
-    width: 14px;
-    height: 14px;
-
+    border: 2px solid #111;
     border-radius: 50%;
 
-    background: #a33;
-    border: 2px solid #702;
+    background: rgba(255,255,255,0.9);
 
-    transform: translateX(-50%);
+    color: #111;
 
-    z-index: 2;
-}
+    font-size: 30px;
+    line-height: 35px;
 
-.memory-photo-nav {
-    width: 40px;
-    height: 40px;
+    cursor: pointer;
 
-    flex-shrink: 0;
-
-    border: 2px solid #6a451c;
-    border-radius: 50%;
-
-    background: #e4ca91;
-    color: #39220e;
-
-    font-size: 1.7rem;
+    z-index: 5;
 
     transition:
         transform 0.2s ease,
         background 0.2s ease;
 }
 
-.memory-photo-nav:hover {
-    transform: scale(1.08);
-    background: #efdba9;
+
+.close-memory:hover {
+    transform: rotate(90deg) scale(1.08);
 }
 
-.memory-photo-counter {
-    margin-top: 12px;
 
-    font-size: 0.8rem;
+/* =========================================================
+   MEMORY TEXT
+========================================================= */
+
+.memory-modal-icon {
+    font-size: 42px;
+    margin-bottom: 5px;
+}
+
+
+.memory-chapter {
+    margin: 0 0 5px;
+
+    font-size: 14px;
+    letter-spacing: 3px;
+
     opacity: 0.7;
 }
 
 
-/* =========================================================
-   TREASURE SECTION
-========================================================= */
+.memory-modal-box h2 {
+    margin: 5px 0 10px;
 
-.treasure-section {
-    text-align: center;
+    font-size: clamp(28px, 5vw, 46px);
 }
 
-.treasure-chest-wrapper {
+
+.memory-line {
+    width: 100px;
+    height: 3px;
+
+    margin: 12px auto 15px;
+
+    background: #111;
+}
+
+
+.memory-modal-box #memoryText {
+    max-width: 650px;
+
+    margin: 0 auto 25px;
+
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   POLAROID AREA
+========================================================= */
+
+.memory-polaroid-area,
+.memory-polaroid {
+
+    position: relative;
+
     display: flex;
-    flex-direction: column;
-    align-items: center;
 
-    gap: 20px;
-}
-
-.treasure-chest {
-    width: 130px;
-    height: 100px;
-
-    border: 3px solid #5d3917;
-    border-radius: 15px;
-
-    background:
-        linear-gradient(
-            145deg,
-            #a8732e,
-            #674016
-        );
-
-    font-size: 4rem;
-
-    box-shadow:
-        0 15px 35px rgba(0, 0, 0, 0.5);
-
-    transition:
-        transform 0.3s ease,
-        box-shadow 0.3s ease;
-}
-
-.treasure-chest:hover {
-    transform: scale(1.08) rotate(-2deg);
-
-    box-shadow:
-        0 20px 45px rgba(0, 0, 0, 0.6);
-}
-
-.treasure-chest-wrapper p {
-    font-size: 1rem;
-}
-
-
-/* =========================================================
-   TREASURE MESSAGE
-========================================================= */
-
-.treasure-message {
-    position: fixed;
-    inset: 0;
-
-    z-index: 100;
-
-    display: none;
     align-items: center;
     justify-content: center;
 
-    padding: 20px;
+    gap: 20px;
 
-    background:
-        rgba(0, 0, 0, 0.8);
+    width: 100%;
 
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-}
-
-.treasure-message.open,
-.treasure-message.active {
-    display: flex;
-}
-
-#closeTreasure {
-    position: absolute;
-
-    top: 20px;
-    right: 25px;
-
-    border: none;
-
-    background: transparent;
-
-    color: white;
-
-    font-size: 2.5rem;
-}
-
-.treasure-message-content {
-    width: min(600px, 92vw);
-
-    padding: 45px 30px;
-
-    border: 3px solid #e0b44f;
-    border-radius: 20px;
-
-    background:
-        linear-gradient(
-            145deg,
-            #f0d58f,
-            #b88c42
-        );
-
-    color: #39220e;
-
-    text-align: center;
-
-    box-shadow:
-        0 25px 70px rgba(0, 0, 0, 0.65);
-}
-
-.treasure-icon {
-    font-size: 3rem;
-    margin-bottom: 10px;
-}
-
-.treasure-message-content h2 {
-    font-size: clamp(1.5rem, 5vw, 2.5rem);
-    margin-bottom: 20px;
-}
-
-.treasure-message-content p {
-    margin-bottom: 10px;
-    font-size: 1.05rem;
-}
-
-.treasure-final {
-    margin-top: 25px;
-
-    font-size: 1.3rem !important;
-    font-weight: bold;
-
-    letter-spacing: 0.08em;
+    margin: 10px auto 5px;
 }
 
 
 /* =========================================================
-   IDLE MODE
+   POLAROID FRAME
 ========================================================= */
 
-#lettersPage .overlay.idle,
-#aryanPage .overlay.idle {
+.memory-polaroid-frame {
+
+    position: relative;
+
+    width: min(1100px, 88vw);
+    max-width: 88vw;
+    max-height: 82vh;
+
+    padding: 16px 16px 58px;
+
+    background: #fff;
+
+    box-shadow:
+        0 12px 25px rgba(0,0,0,0.28),
+        3px 4px 0 rgba(0,0,0,0.12);
+
+    transform: rotate(-1.5deg);
+
+    transition:
+        transform 0.3s ease,
+        opacity 0.25s ease;
+}
+
+
+.memory-polaroid-frame:hover {
+    transform: rotate(0deg) scale(1.015);
+}
+
+
+/* =========================================================
+   PHOTO
+========================================================= */
+
+.memory-polaroid-frame img {
+
+    display: block;
+
+    width: 100%;
+    height: auto;
+    max-height: 72vh;
+
+    /* Keep the complete photo visible instead of cropping it. */
+    aspect-ratio: auto;
+    object-fit: contain;
+
+    background: #eee;
+
+    border: 1px solid #ddd;
+
+    opacity: 1;
+
+    transition: opacity 0.25s ease;
+}
+
+
+.memory-polaroid-frame img.photo-changing {
     opacity: 0;
+}
+
+
+/* =========================================================
+   CAPTION
+========================================================= */
+
+.memory-photo-caption,
+#memoryPhotoCaption {
+
+    position: absolute;
+
+    left: 14px;
+    right: 14px;
+    bottom: 10px;
+
+    margin: 0;
+
+    min-height: 30px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-family:
+        "Comic Sans MS",
+        "Bradley Hand",
+        cursive;
+
+    font-size: 18px;
+
+    color: #222;
+
+    line-height: 1.2;
+}
+
+
+/* =========================================================
+   POLAROID PIN
+========================================================= */
+
+.memory-polaroid-pin,
+.polaroid-pin {
+
+    position: absolute;
+
+    width: 18px;
+    height: 18px;
+
+    top: -9px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    border-radius: 50%;
+
+    background: #333;
+
+    box-shadow:
+        0 2px 4px rgba(0,0,0,0.35);
+
+    z-index: 3;
+}
+
+
+.memory-polaroid-pin::after,
+.polaroid-pin::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 7px;
+    height: 7px;
+
+    top: 3px;
+    left: 3px;
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,0.5);
+}
+
+
+/* =========================================================
+   PREVIOUS / NEXT BUTTONS
+========================================================= */
+
+.memory-photo-nav {
+
+    flex-shrink: 0;
+
+    width: 56px;
+    min-width: 56px;
+    height: 56px;
+
+    border-radius: 50%;
+
+    border: 2px solid #111;
+
+    background: rgba(255,255,255,0.9);
+
+    color: #111;
+
+    font-family: Georgia, serif;
+
+    font-size: 40px;
+
+    line-height: 35px;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+}
+
+
+.memory-photo-nav:hover {
+
+    transform: scale(1.12);
+
+    background: #fff;
+}
+
+
+.memory-photo-nav:active {
+    transform: scale(0.95);
+}
+
+
+/* =========================================================
+   PHOTO COUNTER
+========================================================= */
+
+.memory-photo-counter {
+
+    margin: 10px 0 0;
+
+    font-size: 13px;
+
+    letter-spacing: 2px;
+
+    opacity: 0.65;
+}
+
+
+/* =========================================================
+   LOADING / MISSING PHOTO
+========================================================= */
+
+.memory-polaroid-frame img[src=""] {
     visibility: hidden;
 }
 
@@ -1896,319 +3797,118 @@ button {
    MOBILE
 ========================================================= */
 
-@media (max-width: 700px) {
+@media (max-width: 600px) {
 
-    #intro .content {
-        padding: 25px 18px;
-    }
-
-    #intro p {
-        line-height: 1.5;
-    }
-
-    #openButton {
-        margin-top: 22px;
-    }
-
-    #lettersPage .overlay,
-    #aryanPage .overlay {
-        padding:
-            80px
-            15px
-            35px;
-    }
-
-    #loveCounter {
-        width: 94%;
-        padding: 20px 15px;
-    }
-
-    #counter {
-        font-size: 1.7rem;
-    }
-
-    .letterCard {
-        width: min(310px, 88vw);
-    }
-
-    .letterCard.open {
-        width: 94vw;
-        min-height: 340px;
-    }
-
-    .actionRow {
-        width: 100%;
-        gap: 8px;
-    }
-
-    .actionRow button {
-        font-size: 0.8rem;
-        padding: 9px 13px;
-    }
-
-    #musicBox,
-    #musicBoxAryan {
-        right: 12px;
-        bottom: 12px;
-    }
-
-    #musicMenu,
-    #musicMenuAryan {
-        width: min(250px, 82vw);
-        right: -2px;
-    }
-
-
-    /* ONE PIECE MOBILE */
-
-    .op-header {
-        top: 12px;
-        left: 12px;
-        right: 12px;
-    }
-
-    .op-back-button {
-        padding: 8px 11px;
-        font-size: 0.75rem;
-    }
-
-    .op-music-button {
-        width: 43px;
-        height: 43px;
-    }
-
-    .op-hero {
-        padding:
-            65px
-            15px
-            25px;
-    }
-
-    .op-small-text {
-        font-size: 0.65rem;
-        letter-spacing: 0.16em;
-    }
-
-    .op-hero-content > p:not(.op-small-text) {
-        font-size: 0.9rem;
-        margin-bottom: 25px;
-    }
-
-    .op-grand-line-menu {
-        width: min(360px, 92vw);
-        gap: 12px;
-    }
-
-    .op-destination-button {
-        min-height: 53px;
-        padding: 12px 16px;
-
-        font-size: 0.82rem;
-    }
-
-    .op-destination-button::before {
-        left: 10px;
-    }
-
-    .op-section-title {
-        font-size: 1.7rem;
-    }
-
-    .op-panel-back {
-        top: 12px;
-        left: 12px;
-
-        padding: 8px 11px;
-
-        font-size: 0.75rem;
-    }
-
-    .wanted-posters {
-        gap: 18px;
-    }
-
-    .wanted-poster {
-        width: min(270px, 82vw);
-    }
-
-    .wanted-image {
-        height: 135px;
-    }
-
-    .grand-line-map {
-        height: 430px;
-    }
-
-    .memory-island {
-        padding: 8px 10px;
-
-        font-size: 0.62rem;
-
-        border-width: 2px;
-    }
-
-    .island-one {
-        top: 10%;
-        left: 5%;
-    }
-
-    .island-two {
-        top: 23%;
-        right: 5%;
-    }
-
-    .island-three {
-        bottom: 15%;
-        left: 5%;
-    }
-
-    .island-four {
-        bottom: 8%;
-        right: 5%;
-    }
-
-    .island-five {
-        top: 47%;
-        left: 34%;
-    }
-
-    .map-ship {
-        font-size: 2rem;
+    .memory-modal {
+        padding: 6px;
     }
 
     .memory-modal-box {
-        padding: 25px 15px;
+        width: 99vw;
+        max-width: 99vw;
+        max-height: 98vh;
+        padding: 42px 8px 12px;
+    }
+
+    .memory-modal-icon {
+        font-size: 34px;
+    }
+
+    .memory-modal-box h2 {
+        font-size: 27px;
+    }
+
+    .memory-modal-box #memoryText {
+        font-size: 14px;
+        line-height: 1.55;
+        margin-bottom: 18px;
+    }
+
+    .memory-polaroid-area,
+    .memory-polaroid {
+        gap: 8px;
+        width: 100%;
     }
 
     .memory-polaroid-frame {
-        width: min(290px, 65vw);
+        width: min(92vw, 900px);
+        max-width: 92vw;
+        max-height: 82vh;
+        padding: 10px 10px 48px;
+    }
+
+    .memory-polaroid-frame img {
+        width: 100%;
+        max-height: 70vh;
+        aspect-ratio: auto;
+        object-fit: contain;
+    }
+
+    .memory-photo-caption,
+    #memoryPhotoCaption {
+        left: 9px;
+        right: 9px;
+        bottom: 7px;
+        font-size: 14px;
     }
 
     .memory-photo-nav {
-        width: 35px;
-        height: 35px;
-
-        font-size: 1.4rem;
+        width: 44px;
+        min-width: 44px;
+        height: 44px;
+        margin: 0 !important;
+        padding: 0 !important;
+        font-size: 32px;
+        line-height: 1;
     }
 
-    .treasure-message-content {
-        padding: 35px 20px;
-    }
-}
-
-
-/* =========================================================
-   SMALL PHONES
-========================================================= */
-
-@media (max-width: 430px) {
-
-    #intro h1 {
-        font-size: 1.45rem;
+    .memory-polaroid-pin,
+    .polaroid-pin {
+        width: 14px;
+        height: 14px;
+        top: -7px;
     }
 
-    #intro h3 {
-        font-size: 1rem;
-    }
-
-    #intro p {
-        font-size: 0.85rem;
-    }
-
-    #openButton {
-        padding: 11px 20px;
-        font-size: 0.85rem;
-    }
-
-    #journeyTitle {
-        font-size: 1.3rem;
-    }
-
-    #loveCounter h1 {
-        font-size: 1.35rem;
-    }
-
-    #counter {
-        font-size: 1.45rem;
-    }
-
-    #loveCounter h3 {
-        font-size: 0.9rem;
-    }
-
-    .quote {
-        font-size: 0.8rem;
-    }
-
-    .letterCard {
-        min-height: 200px;
-    }
-
-    .letterCard.open {
-        min-height: 300px;
-    }
-
-    .letterCardBody {
-        font-size: 0.9rem;
-    }
-
-    .actionRow button {
-        width: 90%;
-    }
-
-    .op-opening h1 {
-        font-size: 2.3rem;
-    }
-
-    .op-couple-name {
-        font-size: 0.8rem;
-    }
-
-    .op-destination-button {
-        min-height: 50px;
-    }
-
-    .grand-line-map {
-        height: 390px;
+    .memory-polaroid-pin::after,
+    .polaroid-pin::after {
+        width: 5px;
+        height: 5px;
+        top: 2px;
+        left: 2px;
     }
 }
 
 
 /* =========================================================
-   LANDSCAPE MOBILE
+   VERY SMALL PHONES
 ========================================================= */
 
-@media (max-height: 550px) and (orientation: landscape) {
+@media (max-width: 380px) {
 
-    #intro .content {
-        justify-content: flex-start;
-        padding-top: 25px;
-        overflow-y: auto;
+    .memory-modal-box {
+        padding-left: 8px;
+        padding-right: 8px;
     }
 
-    #intro p {
-        max-width: 700px;
-        font-size: 0.85rem;
+
+    .memory-polaroid-frame {
+
+        width: 63vw;
+
+        padding-bottom: 38px;
     }
 
-    #openButton {
-        margin-top: 15px;
+
+    .memory-photo-nav {
+
+        width: 34px;
+        height: 34px;
+
+        font-size: 27px;
     }
 
-    #lettersPage .overlay,
-    #aryanPage .overlay {
-        padding-top: 70px;
-    }
 
-    .op-hero {
-        padding-top: 70px;
-    }
-
-    .op-hero h1 {
-        font-size: 2.5rem;
-    }
-
-    .grand-line-map {
-        height: 330px;
+    .memory-photo-caption {
+        font-size: 12px;
     }
 }
