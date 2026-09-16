@@ -1866,6 +1866,10 @@ document.addEventListener(
             );
 
 
+        let previousPageBeforeOnePiece =
+            null;
+
+
         // =====================================================
         // ONE PIECE PLAYLIST
         // =====================================================
@@ -2048,6 +2052,35 @@ document.addEventListener(
 
                         musicToggleAryan.innerHTML =
                             "🎵❤️";
+
+                    }
+
+
+                                        // -----------------------------------------
+                    // REMEMBER + HIDE THE PAGE BEHIND US
+                    // -----------------------------------------
+
+                    previousPageBeforeOnePiece =
+                        (
+                            aryanPage &&
+                            aryanPage.style.display === "block"
+                        )
+                            ? aryanPage
+                            : lettersPage;
+
+
+                    if (lettersPage) {
+
+                        lettersPage.style.display =
+                            "none";
+
+                    }
+
+
+                    if (aryanPage) {
+
+                        aryanPage.style.display =
+                            "none";
 
                     }
 
@@ -2301,10 +2334,18 @@ document.addEventListener(
                     // HIDE ONE PIECE PAGE
                     // -----------------------------------------
 
-                    if (onePiecePage) {
+                  if (onePiecePage) {
 
                         onePiecePage.style.display =
                             "none";
+
+                    }
+
+
+                    if (previousPageBeforeOnePiece) {
+
+                        previousPageBeforeOnePiece.style.display =
+                            "block";
 
                     }
 
