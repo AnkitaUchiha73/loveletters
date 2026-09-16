@@ -1,13 +1,6 @@
 /* =========================================================
-   ANKITA & ARYAN — LOVE LETTERS
-   CLEAN MASTER STYLESHEET
-   Matches current HTML + JS
-   ========================================================= */
-
-
-/* =========================================================
-   1. GLOBAL RESET
-   ========================================================= */
+   GLOBAL RESET
+========================================================= */
 
 * {
     margin: 0;
@@ -15,15 +8,16 @@
     box-sizing: border-box;
 }
 
-html {
-    scroll-behavior: smooth;
+html,
+body {
+    width: 100%;
+    min-height: 100%;
 }
 
 body {
     font-family: "Times New Roman", Times, serif;
-    background: #000;
-    color: #fff;
     overflow-x: hidden;
+    background: #000;
 }
 
 button,
@@ -36,15 +30,10 @@ button {
     cursor: pointer;
 }
 
-img {
-    max-width: 100%;
-    display: block;
-}
-
 
 /* =========================================================
-   2. INTRO PAGE
-   ========================================================= */
+   INTRO PAGE
+========================================================= */
 
 #intro {
     position: fixed;
@@ -53,99 +42,94 @@ img {
     height: 100vh;
     overflow: hidden;
     background: #000;
-    z-index: 5000;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    transition:
-        opacity 1s ease,
-        visibility 1s ease;
-}
-
-#intro.hidden {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-}
-
-#intro .cover {
-    position: absolute;
-    inset: 0;
-
-    width: 100%;
-    height: 100%;
-
-    object-fit: cover;
-    object-position: center;
-
-    filter: brightness(0.55);
+    z-index: 9000;
+    transition: opacity 1.2s ease, visibility 1.2s ease;
 }
 
 #intro::after {
     content: "";
     position: absolute;
     inset: 0;
-
     background:
         linear-gradient(
-            180deg,
-            rgba(0, 0, 0, 0.35),
-            rgba(0, 0, 0, 0.68)
+            to bottom,
+            rgba(0, 0, 0, 0.25),
+            rgba(0, 0, 0, 0.55)
         );
-
     z-index: 1;
+    pointer-events: none;
+}
+
+#intro .cover {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 #intro .content {
     position: relative;
     z-index: 2;
-
     width: min(900px, 90%);
-    text-align: center;
+    height: 100%;
+    margin: auto;
 
-    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+    color: white;
+
+    padding: 30px 20px;
 }
 
 #intro h1 {
-    font-size: clamp(1.7rem, 4vw, 3.2rem);
-    line-height: 1.35;
-    margin-bottom: 22px;
+    max-width: 850px;
+    font-size: clamp(1.7rem, 4vw, 3rem);
+    line-height: 1.25;
+    margin-bottom: 18px;
 
     text-shadow:
-        0 3px 12px rgba(0, 0, 0, 0.9);
+        0 2px 10px rgba(0, 0, 0, 0.8),
+        0 0 25px rgba(0, 0, 0, 0.5);
 }
 
 #intro h3 {
-    font-size: clamp(1.15rem, 2.5vw, 1.7rem);
-    margin-bottom: 24px;
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    margin-bottom: 25px;
 
-    text-shadow:
-        0 2px 8px rgba(0, 0, 0, 0.9);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
 }
 
 #intro p {
-    font-size: clamp(0.95rem, 2vw, 1.2rem);
-    line-height: 1.8;
-    margin-bottom: 30px;
+    max-width: 720px;
+    font-size: clamp(0.95rem, 2vw, 1.15rem);
+    line-height: 1.7;
 
-    text-shadow:
-        0 2px 8px rgba(0, 0, 0, 0.9);
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
 }
 
 #openButton {
-    border: 1px solid rgba(255, 255, 255, 0.7);
-    background: rgba(255, 255, 255, 0.12);
-    color: #fff;
+    margin-top: 30px;
+    padding: 13px 28px;
 
-    padding: 13px 25px;
+    border: 1px solid rgba(255, 255, 255, 0.8);
     border-radius: 30px;
 
-    font-size: 1rem;
+    background: rgba(255, 255, 255, 0.12);
+    color: white;
 
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    font-size: 1rem;
+    font-weight: bold;
+
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.35);
 
     transition:
         transform 0.25s ease,
@@ -155,58 +139,82 @@ img {
 
 #openButton:hover {
     transform: translateY(-2px);
-    background: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+    background: rgba(255, 255, 255, 0.22);
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.45);
 }
 
 
 /* =========================================================
-   3. MAIN LETTERS PAGE
-   ========================================================= */
+   MAIN LETTERS / ARYAN PAGE
+========================================================= */
 
-#lettersPage {
+#lettersPage,
+#aryanPage {
     position: relative;
-
-    width: 100%;
+    width: 100vw;
     min-height: 100vh;
-
     overflow: hidden;
 
-    background: #000;
+    color: white;
+    background: #111;
+}
 
+#lettersPage {
     display: none;
 }
 
-#slideshow {
+#aryanPage {
+    display: none;
+}
+
+
+/* =========================================================
+   BACKGROUND SLIDESHOW
+========================================================= */
+
+#slideshow,
+#slideshowAryan {
     position: fixed;
     inset: 0;
 
     width: 100vw;
     height: 100vh;
 
-    background-color: #000;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: contain;
-
     z-index: 0;
+
+    background-color: #222;
+    background-position: center center;
+    background-repeat: no-repeat;
+
+    /* Keeps the photo filling the entire background */
+    background-size: cover;
 
     transition:
         opacity 1.2s ease,
         background-image 1.2s ease;
+
+    filter: brightness(0.72);
 }
 
-#lettersPage .overlay {
+#slideshowAryan {
+    background-size: cover;
+}
+
+
+/* =========================================================
+   MAIN OVERLAY
+========================================================= */
+
+#lettersPage .overlay,
+#aryanPage .overlay {
     position: relative;
     z-index: 2;
 
     width: 100%;
     min-height: 100vh;
 
-    padding:
-        70px
-        20px
-        50px;
+    padding: 70px 20px 50px;
 
     display: flex;
     flex-direction: column;
@@ -216,7 +224,10 @@ img {
     text-align: center;
 
     background:
-        rgba(0, 0, 0, 0.28);
+        linear-gradient(
+            rgba(0, 0, 0, 0.18),
+            rgba(0, 0, 0, 0.32)
+        );
 
     transition:
         opacity 0.8s ease,
@@ -225,241 +236,204 @@ img {
 
 
 /* =========================================================
-   4. JOURNEY INTRO / COUNTER
-   ========================================================= */
+   JOURNEY INTRO / COUNTER
+========================================================= */
 
 #journeyIntro {
-    width: min(700px, 92%);
-    margin-bottom: 30px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 
-    transition:
-        opacity 0.8s ease,
-        visibility 0.8s ease;
+    margin-bottom: 20px;
 }
 
 #journeyTitle {
-    font-size: clamp(1.5rem, 4vw, 2.7rem);
-    margin-bottom: 25px;
+    margin-bottom: 22px;
 
-    text-shadow:
-        0 3px 15px rgba(0, 0, 0, 0.9);
-}
-
-#loveCounter {
-    padding: 25px 20px;
-
-    border: 1px solid rgba(255, 255, 255, 0.35);
-    border-radius: 22px;
-
-    background:
-        rgba(0, 0, 0, 0.42);
-
-    backdrop-filter: blur(9px);
-    -webkit-backdrop-filter: blur(9px);
-
-    box-shadow:
-        0 15px 45px rgba(0, 0, 0, 0.35);
-}
-
-#loveCounter h1 {
-    font-size: clamp(1.4rem, 4vw, 2.3rem);
-    margin-bottom: 12px;
-}
-
-#counter {
-    font-size: clamp(1.5rem, 5vw, 2.8rem);
-    font-weight: bold;
-
-    margin-bottom: 10px;
-}
-
-#loveCounter h3 {
-    font-size: clamp(0.9rem, 2vw, 1.2rem);
-    margin-bottom: 16px;
-}
-
-.quote {
-    font-style: italic;
-    font-size: 0.95rem;
-    line-height: 1.6;
-}
-
-
-/* =========================================================
-   5. MAIN PAGE TITLES
-   ========================================================= */
-
-#mainTitle {
-    font-size: clamp(1.8rem, 5vw, 3.2rem);
-    margin-bottom: 8px;
-
-    text-shadow:
-        0 3px 14px rgba(0, 0, 0, 0.9);
-}
-
-.subtitle {
-    font-size: clamp(0.9rem, 2vw, 1.15rem);
-    margin-bottom: 8px;
+    font-size: clamp(1.5rem, 4vw, 2.4rem);
 
     text-shadow:
         0 2px 10px rgba(0, 0, 0, 0.9);
 }
 
+#loveCounter {
+    width: min(700px, 92%);
+
+    padding: 25px 20px;
+
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 22px;
+
+    /*
+       Transparent enough for the slideshow
+       to remain visible behind it.
+    */
+    background: rgba(0, 0, 0, 0.32);
+
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+
+    box-shadow:
+        0 15px 45px rgba(0, 0, 0, 0.35);
+
+    text-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.8);
+}
+
+#loveCounter h1 {
+    font-size: clamp(1.5rem, 4vw, 2.2rem);
+    margin-bottom: 10px;
+}
+
+#counter {
+    font-size: clamp(1.5rem, 5vw, 2.8rem);
+    font-weight: bold;
+    letter-spacing: 1px;
+
+    margin: 10px 0 15px;
+}
+
+#loveCounter h3 {
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    margin-bottom: 15px;
+}
+
+.quote {
+    font-size: clamp(0.9rem, 2vw, 1.05rem);
+    line-height: 1.6;
+    font-style: italic;
+}
+
 
 /* =========================================================
-   6. LETTER GALLERY
-   ========================================================= */
+   MAIN TITLES
+========================================================= */
+
+#mainTitle,
+#aryanPage .overlay > h1 {
+    font-size: clamp(1.8rem, 5vw, 3rem);
+    margin-bottom: 8px;
+
+    text-shadow:
+        0 3px 12px rgba(0, 0, 0, 0.9);
+}
+
+.subtitle {
+    font-size: clamp(0.95rem, 2.5vw, 1.15rem);
+    margin-bottom: 8px;
+
+    text-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.9);
+}
+
+
+/* =========================================================
+   GALLERY
+========================================================= */
 
 .gallery {
     width: 100%;
-
     display: flex;
     flex-direction: column;
     align-items: center;
 
-    margin-top: 22px;
+    margin-top: 25px;
 }
 
 .letterCardWrap {
     width: 100%;
-
     display: flex;
-    align-items: center;
     justify-content: center;
-
-    gap: 14px;
 }
 
 
 /* =========================================================
-   7. LETTER CARD
-   ========================================================= */
+   LETTER CARD
+========================================================= */
 
 .letterCard {
     position: relative;
 
     width: min(320px, 88vw);
-    height: auto;
+    min-height: 220px;
 
-    min-height: 210px;
-    max-height: 65vh;
+    padding: 24px 20px 30px;
 
-    padding: 22px 20px;
-
-    overflow-y: auto;
-    overflow-x: hidden;
-
+    border-radius: 18px;
     border: 1px solid rgba(255, 255, 255, 0.4);
-    border-radius: 22px;
 
-    background:
-        rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.13);
 
-    color: #fff;
-
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
 
     box-shadow:
-        0 12px 40px rgba(0, 0, 0, 0.35);
+        0 15px 40px rgba(0, 0, 0, 0.4);
+
+    color: white;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
 
     transition:
-        width 0.5s ease,
-        min-height 0.5s ease,
-        max-height 0.5s ease,
-        background 0.5s ease,
-        color 0.5s ease,
-        box-shadow 0.5s ease,
-        transform 0.3s ease;
-
-    scrollbar-width: thin;
-
-    touch-action: pan-y;
-    user-select: none;
+        width 0.45s ease,
+        min-height 0.45s ease,
+        background 0.45s ease,
+        color 0.45s ease,
+        transform 0.35s ease;
 }
 
-.letterCard::-webkit-scrollbar {
-    width: 5px;
-}
-
-.letterCard::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.35);
-    border-radius: 10px;
+.letterCard:hover {
+    transform: translateY(-3px);
 }
 
 
-/* OPEN LETTER */
+/* Open letter */
 
 .letterCard.open {
     width: min(520px, 92vw);
-    min-height: 300px;
-    max-height: 70vh;
+    min-height: 350px;
 
     background: rgba(255, 255, 255, 0.96);
-    color: #222;
+    color: #2b1b1b;
 
-    box-shadow:
-        0 20px 60px rgba(0, 0, 0, 0.5);
+    justify-content: flex-start;
 
-    user-select: text;
+    overflow-y: auto;
 }
 
 .letterCardEmoji {
-    font-size: 2.2rem;
-    margin-bottom: 8px;
+    font-size: 2rem;
+    margin-bottom: 10px;
 }
 
 .letterCard h2 {
-    font-size: clamp(1.15rem, 3vw, 1.6rem);
+    font-size: 1.4rem;
     margin-bottom: 5px;
 }
 
 .letterCard h6 {
-    font-size: 0.75rem;
-    opacity: 0.75;
+    font-size: 0.8rem;
+    opacity: 0.8;
     margin-bottom: 15px;
 }
 
-
-/* LETTER BODY */
-
-.letterCardBody {
-    display: none;
-
-    text-align: left;
-
-    font-size: 1rem;
-    line-height: 1.8;
-
-    white-space: pre-wrap;
-
-    margin-top: 18px;
-}
-
-.letterCard.open .letterCardBody {
-    display: block;
-}
-
-
-/* TAP BUTTON */
-
 .letterCardToggle {
-    display: inline-block;
-
-    border: 1px solid rgba(255, 255, 255, 0.55);
+    border: 1px solid rgba(255, 255, 255, 0.65);
     border-radius: 20px;
 
-    padding: 8px 16px;
+    padding: 9px 17px;
 
-    background:
-        rgba(255, 255, 255, 0.1);
-
+    background: rgba(255, 255, 255, 0.14);
     color: inherit;
 
     font-size: 0.85rem;
-
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
 
     transition:
         background 0.25s ease,
@@ -467,104 +441,72 @@ img {
 }
 
 .letterCardToggle:hover {
-    transform: translateY(-1px);
-    background: rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.25);
+    transform: scale(1.03);
 }
 
 .letterCard.open .letterCardToggle {
-    background: rgba(0, 0, 0, 0.06);
-    border-color: rgba(0, 0, 0, 0.15);
+    border-color: #c9a36a;
+    background: #f7eee1;
+    color: #4a3020;
 }
 
+.letterCardBody {
+    width: 100%;
+    margin-top: 20px;
 
-/* CARD POSITION */
+    text-align: left;
+
+    font-size: 1rem;
+    line-height: 1.7;
+
+    display: none;
+}
+
+.letterCard.open .letterCardBody {
+    display: block;
+}
 
 .letterCardPosition {
-    display: block;
+    position: absolute;
+    bottom: 8px;
+    right: 12px;
 
-    margin-top: 15px;
-
-    font-size: 0.75rem;
-    opacity: 0.65;
+    font-size: 0.7rem;
+    opacity: 0.6;
 }
 
 
 /* =========================================================
-   8. OPTIONAL LETTER ARROWS
-   ========================================================= */
-
-.cardArrow {
-    width: 42px;
-    height: 42px;
-
-    flex-shrink: 0;
-
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    border-radius: 50%;
-
-    background: rgba(255, 255, 255, 0.1);
-    color: #fff;
-
-    font-size: 1.4rem;
-
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-
-    transition:
-        transform 0.25s ease,
-        background 0.25s ease;
-}
-
-.cardArrow:hover {
-    transform: scale(1.08);
-    background: rgba(255, 255, 255, 0.2);
-}
-
-
-/* Your current HTML/JS does not require these,
-   so hidden if they are ever added accidentally. */
-
-#prevLetterBtn,
-#nextLetterBtn {
-    display: none !important;
-}
-
-
-/* =========================================================
-   9. ACTION BUTTONS
-   ========================================================= */
+   ACTION BUTTONS
+========================================================= */
 
 .actionRow {
     display: flex;
-
     flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
+    gap: 12px;
 
-    gap: 10px;
-
-    margin-top: 22px;
-
-    width: min(750px, 95%);
+    margin-top: 25px;
 }
 
 .actionRow button,
 #backFromAryanBtn {
-    border: 1px solid rgba(255, 255, 255, 0.4);
-
-    background:
-        rgba(255, 255, 255, 0.1);
-
-    color: #fff;
-
-    padding: 10px 16px;
-
+    border: 1px solid rgba(255, 255, 255, 0.65);
     border-radius: 25px;
+
+    padding: 11px 18px;
+
+    background: rgba(255, 255, 255, 0.13);
+    color: white;
 
     font-size: 0.9rem;
 
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+
+    box-shadow:
+        0 7px 20px rgba(0, 0, 0, 0.25);
 
     transition:
         transform 0.25s ease,
@@ -574,13 +516,31 @@ img {
 .actionRow button:hover,
 #backFromAryanBtn:hover {
     transform: translateY(-2px);
-    background: rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.23);
 }
 
 
 /* =========================================================
-   10. MUSIC BOX
-   ========================================================= */
+   ONE PIECE ENTRY BUTTON
+========================================================= */
+
+.one-piece-entry-button {
+    border-color: rgba(245, 196, 81, 0.7) !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(82, 48, 19, 0.9),
+            rgba(35, 23, 12, 0.9)
+        ) !important;
+
+    color: #f9e6b0 !important;
+}
+
+
+/* =========================================================
+   MUSIC BOXES
+========================================================= */
 
 #musicBox,
 #musicBoxAryan {
@@ -589,27 +549,25 @@ img {
     right: 20px;
     bottom: 20px;
 
-    z-index: 6000;
+    z-index: 5000;
 }
 
 #musicToggle,
 #musicToggleAryan {
-    width: 52px;
-    height: 52px;
+    width: 50px;
+    height: 50px;
 
     border-radius: 50%;
 
-    border: 1px solid rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.7);
 
-    background:
-        rgba(0, 0, 0, 0.48);
+    background: rgba(0, 0, 0, 0.45);
+    color: white;
 
-    color: #fff;
+    font-size: 1.25rem;
 
-    font-size: 1.3rem;
-
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
 
     box-shadow:
         0 8px 25px rgba(0, 0, 0, 0.35);
@@ -627,8 +585,8 @@ img {
 
 
 /* =========================================================
-   11. MUSIC MENUS
-   ========================================================= */
+   MUSIC MENUS
+========================================================= */
 
 #musicMenu,
 #musicMenuAryan {
@@ -637,35 +595,32 @@ img {
     right: 0;
     bottom: 62px;
 
-    width: min(280px, 82vw);
-    max-height: 55vh;
+    width: 245px;
+    max-height: 60vh;
 
     overflow-y: auto;
 
     padding: 10px;
 
-    display: none;
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.35);
 
-    flex-direction: column;
+    background: rgba(20, 20, 20, 0.9);
 
-    gap: 6px;
-
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    border-radius: 18px;
-
-    background:
-        rgba(0, 0, 0, 0.82);
-
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
 
     box-shadow:
-        0 15px 45px rgba(0, 0, 0, 0.5);
+        0 15px 40px rgba(0, 0, 0, 0.5);
+
+    display: none;
 }
 
 #musicMenu.show,
 #musicMenuAryan.show {
     display: flex;
+    flex-direction: column;
+    gap: 6px;
 }
 
 .song-btn,
@@ -673,17 +628,16 @@ img {
 #shuffleBtnAryan {
     width: 100%;
 
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    border-radius: 12px;
-
     padding: 9px 11px;
 
-    background: rgba(255, 255, 255, 0.07);
-    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+
+    background: rgba(255, 255, 255, 0.08);
+    color: white;
 
     text-align: left;
-
-    font-size: 0.85rem;
+    font-size: 0.82rem;
 
     transition:
         background 0.2s ease,
@@ -693,86 +647,14 @@ img {
 .song-btn:hover,
 #shuffleBtn:hover,
 #shuffleBtnAryan:hover {
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.18);
     transform: translateX(2px);
 }
 
 
 /* =========================================================
-   12. ARYAN PAGE
-   ========================================================= */
-
-#aryanPage {
-    position: relative;
-
-    width: 100%;
-    min-height: 100vh;
-
-    overflow: hidden;
-
-    background: #000;
-
-    display: none;
-}
-
-#slideshowAryan {
-    position: fixed;
-    inset: 0;
-
-    width: 100vw;
-    height: 100vh;
-
-    background-color: #000;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: contain;
-
-    z-index: 0;
-
-    transition:
-        opacity 1.2s ease,
-        background-image 1.2s ease;
-}
-
-#aryanPage .overlay {
-    position: relative;
-    z-index: 2;
-
-    min-height: 100vh;
-
-    padding:
-        70px
-        20px
-        50px;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    text-align: center;
-
-    background:
-        rgba(0, 0, 0, 0.28);
-}
-
-#aryanPage .letterCard {
-    width: min(320px, 88vw);
-}
-
-#aryanPage .letterCard.open {
-    width: min(520px, 92vw);
-}
-
-#aryanPage .letterCardToggle {
-    background: rgba(255, 255, 255, 0.1);
-    color: #fff;
-}
-
-
-/* =========================================================
-   13. WRITE LETTER POPUP
-   ========================================================= */
+   WRITE LETTER POPUP
+========================================================= */
 
 .letterPopup {
     position: fixed;
@@ -781,22 +663,15 @@ img {
     z-index: 8000;
 
     display: none;
-
     align-items: center;
     justify-content: center;
 
     padding: 20px;
 
-    background:
-        rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.7);
 
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
-}
-
-.letterPopup.active,
-.letterPopup.show {
-    display: flex;
 }
 
 .letterContent {
@@ -809,79 +684,57 @@ img {
 
     padding: 30px;
 
-    border-radius: 22px;
+    border-radius: 18px;
 
-    background: #fff;
-    color: #222;
+    background: #fffaf3;
+    color: #2b1b1b;
 
     box-shadow:
-        0 20px 70px rgba(0, 0, 0, 0.6);
+        0 20px 60px rgba(0, 0, 0, 0.5);
 }
 
 .letterContent h1 {
     margin-bottom: 20px;
-
-    font-size: clamp(1.4rem, 4vw, 2rem);
+    font-size: 1.6rem;
 }
 
 .close {
     position: absolute;
-
-    top: 12px;
-    right: 17px;
+    top: 10px;
+    right: 15px;
 
     font-size: 2rem;
-    line-height: 1;
-
-    color: #444;
-
     cursor: pointer;
+
+    color: #555;
 }
 
-.letterContent input,
-.letterContent textarea {
-    font-size: 1rem;
-}
-
-.letterContent form button {
-    border: none;
-
-    padding: 10px 18px;
-
-    border-radius: 20px;
-
-    background: #222;
-    color: #fff;
+.letterContent form {
+    display: flex;
+    flex-direction: column;
 }
 
 
 /* =========================================================
-   14. QUIZ
-   ========================================================= */
+   QUIZ
+========================================================= */
 
 .quiz-overlay {
     position: fixed;
     inset: 0;
 
-    z-index: 9000;
+    z-index: 8500;
 
     display: none;
-
     align-items: center;
     justify-content: center;
 
     padding: 20px;
 
-    background:
-        rgba(0, 0, 0, 0.78);
+    background: rgba(0, 0, 0, 0.75);
 
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
-}
-
-.quiz-overlay.active,
-.quiz-overlay.show {
-    display: flex;
 }
 
 .quiz-box {
@@ -890,20 +743,23 @@ img {
 
     overflow-y: auto;
 
-    padding: 32px 25px;
+    padding: 35px 25px;
 
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    border-radius: 25px;
+    border-radius: 22px;
 
     background:
-        rgba(255, 255, 255, 0.95);
+        linear-gradient(
+            145deg,
+            #fffaf5,
+            #f8e8df
+        );
 
-    color: #222;
+    color: #3a2222;
 
     text-align: center;
 
     box-shadow:
-        0 20px 70px rgba(0, 0, 0, 0.6);
+        0 25px 70px rgba(0, 0, 0, 0.5);
 }
 
 .quiz-heart {
@@ -912,23 +768,31 @@ img {
 }
 
 .quiz-box h1 {
-    font-size: clamp(1.5rem, 5vw, 2.2rem);
     margin-bottom: 15px;
 }
 
 .quiz-box h2 {
-    font-size: clamp(1.1rem, 4vw, 1.5rem);
-    line-height: 1.5;
     margin: 20px 0;
-}
-
-.quiz-box p {
-    line-height: 1.6;
+    font-size: 1.25rem;
 }
 
 .quiz-small-text {
-    margin: 15px 0 20px;
-    font-style: italic;
+    margin-top: 10px;
+    opacity: 0.75;
+}
+
+.quiz-box button {
+    margin-top: 18px;
+
+    padding: 10px 20px;
+
+    border: none;
+    border-radius: 22px;
+
+    background: #6d4438;
+    color: white;
+
+    font-size: 0.95rem;
 }
 
 .quiz-progress {
@@ -939,71 +803,27 @@ img {
 #quizOptions {
     display: flex;
     flex-direction: column;
-
     gap: 10px;
-
-    margin-top: 20px;
 }
 
 #quizOptions button {
     width: 100%;
+    margin: 0;
 
-    padding: 12px 15px;
+    background: #ead7ca;
+    color: #3a2222;
 
-    border: 1px solid #ccc;
-    border-radius: 15px;
-
-    background: #fff;
-    color: #222;
-
-    transition:
-        background 0.2s ease,
-        transform 0.2s ease;
+    border: 1px solid #c9ab99;
 }
 
 #quizOptions button:hover {
-    background: #f2f2f2;
-    transform: translateY(-1px);
-}
-
-#quizOptions button.correct {
-    background: #dff5df;
-}
-
-#quizOptions button.wrong {
-    background: #f8dddd;
+    background: #dec3b3;
 }
 
 #quizFeedback {
     min-height: 25px;
-    margin-top: 12px;
-
-    font-weight: bold;
-}
-
-#nextQuestionBtn,
-#beginQuizBtn,
-#enterOurStoryBtn {
-    border: none;
-
-    padding: 11px 20px;
-
-    border-radius: 25px;
-
-    background: #222;
-    color: #fff;
-
     margin-top: 15px;
-
-    transition:
-        transform 0.2s ease,
-        opacity 0.2s ease;
-}
-
-#nextQuestionBtn:hover,
-#beginQuizBtn:hover,
-#enterOurStoryBtn:hover {
-    transform: translateY(-2px);
+    font-weight: bold;
 }
 
 #quizResultEmoji {
@@ -1012,73 +832,40 @@ img {
 }
 
 #quizFinalLine {
-    margin-top: 18px;
+    margin-top: 20px;
 }
 
 
 /* =========================================================
-   15. IDLE MODE
-   ========================================================= */
-
-body.idle-mode .overlay {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-}
-
-body.idle-mode #musicBox,
-body.idle-mode #musicBoxAryan {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-}
-
-
-/* =========================================================
-   16. ONE PIECE — GLOBAL
-   ========================================================= */
-
-:root {
-    --op-gold: #f5c451;
-    --op-dark: #071522;
-    --op-blue: #083d63;
-    --op-deep-blue: #021d35;
-    --op-red: #b52b2b;
-    --op-white: #fff;
-    --op-paper: #f5e5b8;
-}
-
-
-/* =========================================================
-   17. ONE PIECE PAGE
-   ========================================================= */
+   ONE PIECE PAGE
+========================================================= */
 
 .one-piece-page {
     position: fixed;
     inset: 0;
 
+    z-index: 10000;
+
     width: 100vw;
     height: 100vh;
 
+    overflow: hidden;
+
     display: none;
 
-    z-index: 10000;
-
-    overflow-x: hidden;
-    overflow-y: auto;
-
-    isolation: isolate;
-
-    color: var(--op-white);
+    color: #f7e5b2;
 
     background:
         linear-gradient(
-            rgba(2, 48, 88, 0.25),
-            rgba(1, 27, 58, 0.55)
+            rgba(35, 22, 10, 0.45),
+            rgba(20, 13, 7, 0.65)
         ),
-        url("images/sunny.png")
-        center center /
-        cover no-repeat;
+        url("images/sunny.png");
+
+    background-size: cover;
+    background-position: center;
+
+    font-family: "Times New Roman", Times, serif;
 }
 
 .one-piece-page.one-piece-active {
@@ -1086,263 +873,167 @@ body.idle-mode #musicBoxAryan {
 }
 
 
-/* ocean overlay */
-
-.one-piece-page::before {
-    content: "";
-
-    position: fixed;
-    inset: 0;
-
-    z-index: -2;
-
-    background:
-        linear-gradient(
-            180deg,
-            rgba(0, 25, 55, 0.12),
-            rgba(0, 10, 25, 0.35)
-        );
-
-    pointer-events: none;
-}
-
-.one-piece-page::after {
-    content: "";
-
-    position: fixed;
-    inset: 0;
-
-    z-index: -1;
-
-    background:
-        radial-gradient(
-            circle at 50% 35%,
-            rgba(255, 255, 255, 0.1),
-            transparent 45%
-        );
-
-    pointer-events: none;
-}
-
-
 /* =========================================================
-   18. ONE PIECE OPENING
-   ========================================================= */
+   ONE PIECE OPENING
+========================================================= */
 
 .op-opening {
-    position: fixed;
+    position: absolute;
     inset: 0;
 
-    z-index: 10020;
+    z-index: 5;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    text-align: center;
-
     background:
         linear-gradient(
-            rgba(1, 21, 38, 0.55),
-            rgba(0, 14, 29, 0.72)
-        ),
-        url("images/sunny.png")
-        center /
-        cover no-repeat;
-
-    opacity: 1;
-    visibility: visible;
+            rgba(0, 0, 0, 0.25),
+            rgba(0, 0, 0, 0.65)
+        );
 
     transition:
         opacity 0.8s ease,
-        visibility 0.8s ease;
-}
-
-.op-opening.hidden,
-.op-opening.hide {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
+        visibility 0.8s ease,
+        transform 0.8s ease;
 }
 
 .op-opening-content {
     width: min(700px, 90%);
+
+    text-align: center;
+
+    padding: 30px;
 }
 
 .op-compass {
-    font-size: clamp(3rem, 10vw, 6rem);
-
+    font-size: 4rem;
     margin-bottom: 15px;
 
-    animation:
-        opCompassSpin 12s linear infinite;
+    animation: compassSpin 8s linear infinite;
+}
+
+@keyframes compassSpin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 .op-small-text {
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     letter-spacing: 0.25em;
-
-    margin-bottom: 14px;
-
-    opacity: 0.9;
+    opacity: 0.85;
+    margin-bottom: 15px;
 }
 
 .op-opening h1,
 .op-hero h1 {
-    font-family: "Times New Roman", Times, serif;
-
-    font-size: clamp(2.5rem, 9vw, 6rem);
-    line-height: 1;
+    font-size: clamp(2.5rem, 8vw, 5rem);
 
     letter-spacing: 0.08em;
 
-    color: #fff;
-
     text-shadow:
-        3px 4px 0 rgba(0, 0, 0, 0.5),
-        0 10px 35px rgba(0, 0, 0, 0.7);
+        3px 3px 0 rgba(0, 0, 0, 0.5),
+        0 8px 25px rgba(0, 0, 0, 0.6);
 }
 
 .op-crossed {
-    font-size: clamp(2rem, 6vw, 4rem);
-    margin: 15px 0;
+    margin: 12px 0;
+    font-size: 2rem;
 }
 
 .op-couple-name {
-    font-size: clamp(0.9rem, 3vw, 1.3rem);
-
-    letter-spacing: 0.35em;
-
+    font-size: 1rem;
+    letter-spacing: 0.3em;
     margin-bottom: 30px;
 }
 
 .op-couple-name span {
-    color: var(--op-gold);
-    margin: 0 8px;
-}
-
-.op-main-button {
-    border: 2px solid rgba(255, 255, 255, 0.75);
-
-    border-radius: 30px;
-
-    padding: 13px 25px;
-
-    background:
-        rgba(255, 255, 255, 0.1);
-
-    color: #fff;
-
-    font-size: 1rem;
-    letter-spacing: 0.08em;
-
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-
-    transition:
-        transform 0.25s ease,
-        background 0.25s ease;
-}
-
-.op-main-button:hover {
-    transform: translateY(-3px) scale(1.03);
-    background: rgba(255, 255, 255, 0.2);
+    color: #d8a83e;
 }
 
 
 /* =========================================================
-   19. GRAND LINE CONTENT
-   ========================================================= */
+   ONE PIECE MAIN CONTENT
+========================================================= */
 
 .grand-line-content {
-    position: relative;
-
-    min-height: 100vh;
-
-    padding-top: 80px;
+    position: absolute;
+    inset: 0;
 
     opacity: 0;
     visibility: hidden;
-    pointer-events: none;
+
+    transform: scale(1.03);
 
     transition:
-        opacity 0.8s ease,
-        visibility 0.8s ease;
+        opacity 0.9s ease,
+        visibility 0.9s ease,
+        transform 0.9s ease;
 }
 
 .grand-line-content.op-grand-line-visible {
     opacity: 1;
     visibility: visible;
-    pointer-events: auto;
+    transform: scale(1);
+}
+
+.op-opening.op-opening-hidden {
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(1.05);
 }
 
 
 /* =========================================================
-   20. ONE PIECE HEADER
-   ========================================================= */
+   ONE PIECE HEADER
+========================================================= */
 
 .op-header {
-    position: fixed;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 20px;
 
-    top: 0;
-    left: 0;
-    right: 0;
-
-    height: 70px;
-
-    z-index: 10050;
+    z-index: 20;
 
     display: flex;
-
     align-items: center;
     justify-content: space-between;
-
-    padding: 12px 18px;
-
-    background:
-        linear-gradient(
-            rgba(0, 20, 40, 0.75),
-            rgba(0, 20, 40, 0.15)
-        );
-
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
 }
 
 .op-back-button,
-.op-panel-back {
-    border: 1px solid rgba(255, 255, 255, 0.4);
-
-    border-radius: 22px;
-
-    padding: 9px 16px;
+.op-music-button {
+    border: 2px solid rgba(245, 196, 81, 0.7);
+    border-radius: 10px;
 
     background:
-        rgba(0, 0, 0, 0.35);
+        rgba(48, 30, 15, 0.88);
 
-    color: #fff;
+    color: #f9e6b0;
 
-    font-size: 0.8rem;
-    letter-spacing: 0.08em;
+    padding: 10px 15px;
 
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    box-shadow:
+        0 6px 18px rgba(0, 0, 0, 0.4);
 
     transition:
-        background 0.25s ease,
-        transform 0.25s ease;
+        transform 0.2s ease,
+        background 0.2s ease;
 }
 
 .op-back-button:hover,
-.op-panel-back:hover {
-    background: rgba(0, 0, 0, 0.55);
-    transform: translateY(-1px);
+.op-music-button:hover {
+    transform: translateY(-2px);
+
+    background:
+        rgba(92, 56, 20, 0.95);
 }
-
-
-/* =========================================================
-   21. ONE PIECE MUSIC
-   ========================================================= */
 
 .op-music-wrap {
     position: relative;
@@ -1352,28 +1043,11 @@ body.idle-mode #musicBoxAryan {
     width: 48px;
     height: 48px;
 
+    padding: 0;
+
     border-radius: 50%;
 
-    border: 1px solid rgba(255, 255, 255, 0.5);
-
-    background:
-        rgba(0, 0, 0, 0.45);
-
-    color: #fff;
-
-    font-size: 1.2rem;
-
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-
-    transition:
-        transform 0.25s ease,
-        background 0.25s ease;
-}
-
-.op-music-button:hover {
-    transform: scale(1.08);
-    background: rgba(0, 0, 0, 0.65);
+    font-size: 1.15rem;
 }
 
 .op-music-menu {
@@ -1382,717 +1056,619 @@ body.idle-mode #musicBoxAryan {
     top: 58px;
     right: 0;
 
-    width: min(300px, 82vw);
+    width: 245px;
+
+    padding: 10px;
 
     display: none;
-
     flex-direction: column;
-
     gap: 6px;
 
-    padding: 12px;
-
-    border:
-        1px solid rgba(255, 255, 255, 0.25);
-
-    border-radius: 18px;
+    border-radius: 12px;
 
     background:
-        rgba(0, 20, 40, 0.9);
+        rgba(36, 23, 11, 0.95);
 
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(245, 196, 81, 0.5);
 
     box-shadow:
-        0 15px 45px rgba(0, 0, 0, 0.5);
+        0 15px 40px rgba(0, 0, 0, 0.5);
 }
 
-.op-music-menu.open,
 .op-music-menu.show {
     display: flex;
 }
 
 .op-music-menu-title {
-    padding: 6px 8px 10px;
+    padding: 7px;
 
-    font-size: 0.75rem;
-    letter-spacing: 0.12em;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
 
-    color: var(--op-gold);
+    color: #f5c451;
 }
 
 .op-song-btn {
-    width: 100%;
+    border: 1px solid rgba(245, 196, 81, 0.2);
+    border-radius: 7px;
 
-    border:
-        1px solid rgba(255, 255, 255, 0.15);
+    padding: 9px;
 
-    border-radius: 10px;
-
-    padding: 9px 10px;
-
-    background:
-        rgba(255, 255, 255, 0.07);
-
-    color: #fff;
+    background: rgba(255, 255, 255, 0.06);
+    color: #f9e6b0;
 
     text-align: left;
-
-    font-size: 0.82rem;
-
-    transition:
-        background 0.2s ease,
-        transform 0.2s ease;
 }
 
 .op-song-btn:hover {
-    background: rgba(255, 255, 255, 0.15);
-    transform: translateX(2px);
+    background: rgba(245, 196, 81, 0.15);
 }
 
 
 /* =========================================================
-   22. GRAND LINE HERO
-   ========================================================= */
+   ONE PIECE HERO
+========================================================= */
 
 .op-hero {
-    min-height: calc(100vh - 70px);
-
     width: 100%;
-
-    padding:
-        70px
-        25px
-        60px;
+    height: 100%;
 
     display: flex;
     flex-direction: column;
-
-    align-items: center;
     justify-content: center;
+    align-items: center;
 
     text-align: center;
+
+    padding: 80px 20px 30px;
 }
 
 .op-hero-content {
-    width: min(850px, 94%);
-
-    margin-bottom: 45px;
+    max-width: 800px;
 }
 
 .op-hero-content > p:not(.op-small-text) {
-    width: min(700px, 94%);
+    max-width: 650px;
 
-    margin:
-        20px
-        auto
-        0;
+    margin: 0 auto 35px;
 
-    font-size: clamp(0.95rem, 2.3vw, 1.2rem);
+    font-size: clamp(0.95rem, 2vw, 1.15rem);
 
-    line-height: 1.7;
+    line-height: 1.6;
 
-    text-shadow:
-        0 2px 10px rgba(0, 0, 0, 0.8);
+    color: #f4e3bd;
 }
+
+
+/* =========================================================
+   GRAND LINE DESTINATION BUTTONS
+========================================================= */
 
 .op-grand-line-menu {
     display: flex;
-
     flex-direction: column;
-
     align-items: center;
 
-    gap: 13px;
+    gap: 16px;
 
-    width: min(400px, 90%);
+    width: min(430px, 90%);
 }
 
 .op-destination-button {
+    position: relative;
+
     width: 100%;
+    min-height: 58px;
 
-    border: 2px solid rgba(255, 255, 255, 0.5);
+    padding: 14px 22px;
 
-    border-radius: 15px;
+    border: 2px solid rgba(245, 196, 81, 0.75);
+    border-radius: 12px;
 
-    padding: 14px 20px;
-
+    /*
+       Warm pirate-map style
+    */
     background:
-        rgba(0, 32, 65, 0.55);
+        linear-gradient(
+            135deg,
+            rgba(82, 48, 19, 0.88),
+            rgba(35, 23, 12, 0.88)
+        );
 
-    color: #fff;
+    color: #f9e6b0;
 
-    font-size: 0.95rem;
+    font-size: 1rem;
+    font-weight: bold;
 
-    letter-spacing: 0.06em;
+    letter-spacing: 0.08em;
 
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    text-shadow:
+        1px 1px 2px rgba(0, 0, 0, 0.8);
 
     box-shadow:
-        0 8px 25px rgba(0, 0, 0, 0.25);
+        0 7px 18px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.12);
+
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
 
     transition:
         transform 0.25s ease,
         background 0.25s ease,
-        border-color 0.25s ease;
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.op-destination-button::before {
+    content: "⚓";
+
+    position: absolute;
+    left: 15px;
+
+    opacity: 0.8;
+
+    font-size: 1rem;
 }
 
 .op-destination-button:hover {
-    transform: translateY(-3px);
-
-    background:
-        rgba(0, 70, 120, 0.7);
-
-    border-color:
-        rgba(255, 255, 255, 0.8);
-}
-
-
-/* =========================================================
-   23. DESTINATION PANELS
-   ========================================================= */
-
-.op-destination-panel {
-    display: none;
-
-    position: fixed;
-
-    inset: 0;
-
-    z-index: 1100;
-
-    width: 100%;
-    height: 100%;
-
-    overflow-x: hidden;
-    overflow-y: auto;
-
-    padding:
-        90px
-        clamp(18px, 5vw, 70px)
-        50px;
-
-    background:
-        linear-gradient(
-            rgba(2, 48, 88, 0.5),
-            rgba(1, 27, 58, 0.75)
-        ),
-        url("images/sunny.png")
-        center /
-        cover
-        no-repeat;
-
-    backdrop-filter: blur(2px);
-    -webkit-backdrop-filter: blur(2px);
-}
-
-.op-destination-panel.op-panel-active {
-    display: block;
-
-    animation:
-        opPanelPop 0.45s ease;
-}
-
-.op-destination-open .op-header .op-back-button {
-    display: none;
-}
-
-.op-destination-open .op-grand-line-menu {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-}
-
-.op-section-title {
-    text-align: center;
-
-    font-size: clamp(1.7rem, 6vw, 3.3rem);
-
-    letter-spacing: 0.08em;
-
-    margin:
-        0
-        auto
-        15px;
-
-    text-shadow:
-        3px 3px 0 rgba(0, 0, 0, 0.4),
-        0 8px 25px rgba(0, 0, 0, 0.5);
-}
-
-.op-panel-back {
-    display: block;
-
-    margin:
-        0
-        auto
-        25px;
-}
-
-
-/* =========================================================
-   24. WANTED SECTION
-   ========================================================= */
-
-.wanted-section {
-    text-align: center;
-}
-
-.wanted-posters {
-    width: min(950px, 100%);
-
-    margin: 25px auto 0;
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(2, minmax(0, 1fr));
-
-    gap: 30px;
-
-    justify-items: center;
-}
-
-.wanted-poster {
-    width: min(370px, 100%);
-
-    padding: 18px;
-
-    border:
-        5px solid #5a3d22;
+    transform: translateY(-3px) scale(1.015);
 
     background:
         linear-gradient(
             135deg,
-            #e8d09b,
-            #d8b979
+            rgba(115, 69, 25, 0.95),
+            rgba(53, 32, 15, 0.95)
         );
 
-    color: #21170d;
+    border-color: #f5c451;
 
     box-shadow:
-        0 18px 40px rgba(0, 0, 0, 0.5);
+        0 12px 28px rgba(0, 0, 0, 0.5),
+        0 0 15px rgba(245, 196, 81, 0.18);
+}
 
-    transform: rotate(-1deg);
+.op-destination-button:active {
+    transform: scale(0.98);
+}
+
+
+/* =========================================================
+   DESTINATION PANELS
+========================================================= */
+
+.op-destination-panel {
+    position: absolute;
+    inset: 0;
+
+    z-index: 10;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 90px 20px 40px;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform: translateY(25px);
+
+    overflow-y: auto;
 
     transition:
-        transform 0.3s ease;
+        opacity 0.5s ease,
+        visibility 0.5s ease,
+        transform 0.5s ease;
+
+    background:
+        linear-gradient(
+            rgba(30, 19, 9, 0.62),
+            rgba(18, 12, 6, 0.78)
+        );
+}
+
+.op-destination-panel.op-panel-active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.grand-line-content.op-destination-open .op-hero {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.op-panel-back {
+    position: absolute;
+
+    top: 25px;
+    left: 25px;
+
+    border: 2px solid rgba(245, 196, 81, 0.65);
+    border-radius: 9px;
+
+    padding: 9px 15px;
+
+    background: rgba(53, 32, 15, 0.9);
+    color: #f9e6b0;
+
+    font-weight: bold;
+}
+
+.op-panel-back:hover {
+    background: rgba(105, 63, 22, 0.95);
+}
+
+.op-section-title {
+    margin-bottom: 20px;
+
+    font-size: clamp(1.8rem, 5vw, 3rem);
+
+    letter-spacing: 0.08em;
+
+    text-align: center;
+
+    text-shadow:
+        2px 3px 0 rgba(0, 0, 0, 0.5);
+}
+
+
+/* =========================================================
+   WANTED POSTERS
+========================================================= */
+
+.wanted-posters {
+    width: min(850px, 95%);
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    gap: 30px;
+}
+
+.wanted-poster {
+    width: min(300px, 80vw);
+
+    padding: 18px;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            145deg,
+            #d9bd7d,
+            #b99555
+        );
+
+    color: #2c1a0d;
+
+    border: 4px solid #5b3a18;
+
+    box-shadow:
+        0 15px 35px rgba(0, 0, 0, 0.55);
+
+    transform: rotate(-1deg);
 }
 
 .wanted-poster:nth-child(2) {
     transform: rotate(1deg);
 }
 
-.wanted-poster:hover {
-    transform:
-        translateY(-5px)
-        rotate(0deg);
-}
-
 .wanted-top {
-    font-size: clamp(2rem, 6vw, 3.2rem);
-
+    font-size: 2.2rem;
     font-weight: bold;
 
-    letter-spacing: 0.08em;
-
-    margin-bottom: 12px;
-}
-
-.wanted-image {
-    width: 100%;
-    aspect-ratio: 1 / 1.05;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    border:
-        3px solid rgba(50, 30, 15, 0.55);
-
-    background:
-        rgba(255, 255, 255, 0.16);
-
-    font-size: clamp(4rem, 12vw, 7rem);
-
-    margin-bottom: 15px;
-}
-
-.wanted-name {
-    font-size: clamp(1.3rem, 4vw, 2rem);
-
-    font-weight: bold;
+    letter-spacing: 0.15em;
 
     margin-bottom: 10px;
 }
 
-.wanted-reward {
-    font-size: 0.8rem;
+.wanted-image {
+    height: 170px;
 
-    line-height: 1.5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
+    margin-bottom: 12px;
+
+    border: 3px solid #5b3a18;
+
+    background: rgba(255, 255, 255, 0.2);
+
+    font-size: 5rem;
+}
+
+.wanted-name {
+    font-size: 1.35rem;
     font-weight: bold;
 
-    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+}
+
+.wanted-reward {
+    font-size: 0.78rem;
+    font-weight: bold;
+
+    line-height: 1.4;
 }
 
 
 /* =========================================================
-   25. MAP
-   ========================================================= */
-
-.map-section {
-    text-align: center;
-}
+   GRAND LINE MAP
+========================================================= */
 
 .map-intro {
+    margin-bottom: 20px;
+
     text-align: center;
 
     font-size: 1rem;
-
-    margin-bottom: 25px;
 }
 
 .grand-line-map {
     position: relative;
 
-    width: min(1000px, 96%);
+    width: min(850px, 95vw);
+    height: min(500px, 62vh);
 
-    min-height: 600px;
-
-    margin:
-        0
-        auto;
-
-    border:
-        4px solid rgba(245, 196, 81, 0.65);
-
-    border-radius: 30px;
+    border-radius: 25px;
 
     overflow: hidden;
 
+    border: 4px solid #65421f;
+
     background:
-        linear-gradient(
-            rgba(0, 70, 110, 0.2),
-            rgba(0, 15, 40, 0.25)
+        radial-gradient(
+            circle at center,
+            rgba(227, 202, 139, 0.95),
+            rgba(180, 143, 75, 0.9)
         );
 
     box-shadow:
-        inset 0 0 60px rgba(0, 0, 0, 0.25),
-        0 20px 50px rgba(0, 0, 0, 0.4);
+        inset 0 0 50px rgba(74, 42, 13, 0.35),
+        0 20px 50px rgba(0, 0, 0, 0.45);
 }
 
 .map-route {
     position: absolute;
 
-    left: 12%;
-    right: 12%;
-
+    left: 10%;
+    right: 10%;
     top: 50%;
 
-    height: 5px;
-
-    border-radius: 10px;
+    height: 3px;
 
     background:
-        rgba(245, 196, 81, 0.8);
+        repeating-linear-gradient(
+            90deg,
+            #69441b 0 15px,
+            transparent 15px 25px
+        );
 
-    transform:
-        rotate(-5deg);
-
-    box-shadow:
-        0 0 12px rgba(245, 196, 81, 0.35);
+    transform: rotate(-12deg);
+    opacity: 0.7;
 }
 
 .memory-island {
     position: absolute;
 
-    z-index: 2;
-
-    min-width: 135px;
-
-    padding: 15px 13px;
-
-    border:
-        2px solid rgba(255, 255, 255, 0.65);
+    padding: 12px 15px;
 
     border-radius: 50%;
 
+    border: 3px solid #68431b;
+
     background:
-        rgba(5, 45, 70, 0.8);
+        radial-gradient(
+            circle,
+            #e4c986,
+            #b8914d
+        );
 
-    color: #fff;
+    color: #39220e;
 
-    font-size: 0.75rem;
     font-weight: bold;
+    font-size: 0.8rem;
 
     box-shadow:
-        0 10px 25px rgba(0, 0, 0, 0.4);
-
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
+        0 7px 15px rgba(0, 0, 0, 0.3);
 
     transition:
-        transform 0.3s ease,
-        background 0.3s ease;
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
 }
 
 .memory-island:hover {
     transform: scale(1.08);
 
-    background:
-        rgba(8, 77, 112, 0.9);
+    box-shadow:
+        0 12px 25px rgba(0, 0, 0, 0.4);
 }
 
 .island-one {
+    top: 15%;
     left: 8%;
-    top: 18%;
 }
 
 .island-two {
-    left: 35%;
-    top: 35%;
+    top: 25%;
+    right: 12%;
 }
 
 .island-three {
-    right: 7%;
-    top: 15%;
+    bottom: 15%;
+    left: 18%;
 }
 
 .island-four {
-    left: 17%;
-    bottom: 13%;
+    bottom: 10%;
+    right: 28%;
 }
 
 .island-five {
-    right: 15%;
-    bottom: 17%;
+    top: 48%;
+    left: 42%;
 }
 
 .map-ship {
     position: absolute;
 
-    left: 48%;
-    top: 53%;
+    top: 44%;
+    left: 51%;
 
-    z-index: 3;
+    font-size: 2.5rem;
 
-    font-size: 2.8rem;
+    animation: shipFloat 2.5s ease-in-out infinite;
+}
 
-    transform:
-        rotate(-8deg);
+@keyframes shipFloat {
+    0%,
+    100% {
+        transform: translateY(0) rotate(-3deg);
+    }
 
-    filter:
-        drop-shadow(
-            0 7px 5px rgba(0, 0, 0, 0.4)
-        );
-
-    animation:
-        shipFloat 2.5s ease-in-out infinite;
+    50% {
+        transform: translateY(-8px) rotate(3deg);
+    }
 }
 
 
 /* =========================================================
-   26. MEMORY MODAL
-   ========================================================= */
+   MEMORY MODAL
+========================================================= */
 
 .memory-modal {
     position: fixed;
-
     inset: 0;
 
-    z-index: 7000;
+    z-index: 50;
 
-    display: flex;
-
+    display: none;
     align-items: center;
     justify-content: center;
 
     padding: 20px;
 
     background:
-        rgba(0, 0, 0, 0.78);
+        rgba(12, 7, 3, 0.82);
 
-    backdrop-filter: blur(7px);
-    -webkit-backdrop-filter: blur(7px);
-
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-
-    transition:
-        opacity 0.35s ease,
-        visibility 0.35s ease;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
 }
 
-.memory-modal.active,
-.memory-modal.open {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
+.memory-modal.active {
+    display: flex;
+}
+
+.memory-modal-box {
+    position: relative;
+
+    width: min(700px, 94vw);
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    padding: 30px 25px;
+
+    border: 2px solid rgba(245, 196, 81, 0.65);
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #f0dfb1,
+            #d2b77b
+        );
+
+    color: #34200e;
+
+    text-align: center;
+
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.65);
 }
 
 .close-memory {
     position: absolute;
 
-    top: 18px;
-    right: 22px;
+    top: 8px;
+    right: 13px;
 
-    width: 45px;
-    height: 45px;
+    border: none;
 
-    border:
-        1px solid rgba(255, 255, 255, 0.45);
+    background: transparent;
 
-    border-radius: 50%;
+    color: #3b230f;
 
-    background:
-        rgba(0, 0, 0, 0.4);
-
-    color: #fff;
-
-    font-size: 1.8rem;
-
-    z-index: 2;
-}
-
-.memory-modal-box {
-    width: min(650px, 94vw);
-    max-height: 92vh;
-
-    overflow-y: auto;
-
-    padding:
-        28px
-        24px
-        30px;
-
-    border:
-        1px solid rgba(255, 255, 255, 0.25);
-
-    border-radius: 25px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(5, 54, 82, 0.97),
-            rgba(2, 25, 45, 0.97)
-        );
-
-    color: #fff;
-
-    text-align: center;
-
-    box-shadow:
-        0 25px 80px rgba(0, 0, 0, 0.65);
-
-    transform:
-        translateY(25px)
-        scale(0.96);
-
-    transition:
-        transform 0.4s ease;
-}
-
-.memory-modal.active .memory-modal-box,
-.memory-modal.open .memory-modal-box {
-    transform:
-        translateY(0)
-        scale(1);
+    font-size: 2rem;
 }
 
 .memory-modal-icon {
-    font-size: 3rem;
-
+    font-size: 2.5rem;
     margin-bottom: 8px;
 }
 
 .memory-chapter {
-    color: var(--op-gold);
-
-    font-size: 0.75rem;
-
-    letter-spacing: 0.18em;
-
-    margin-bottom: 8px;
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    opacity: 0.7;
 }
 
 .memory-modal-box h2 {
-    font-size: clamp(1.4rem, 5vw, 2.2rem);
-
-    margin-bottom: 10px;
+    margin: 8px 0;
+    font-size: 1.8rem;
 }
 
 .memory-line {
-    width: 70px;
+    width: 80px;
     height: 2px;
 
-    margin:
-        0
-        auto
-        15px;
+    margin: 12px auto 18px;
 
-    background:
-        var(--op-gold);
+    background: #69441b;
 }
 
 #memoryText {
-    line-height: 1.7;
-
-    font-size: 0.95rem;
-
-    margin-bottom: 22px;
+    line-height: 1.6;
+    margin-bottom: 20px;
 }
 
 
 /* =========================================================
-   27. MEMORY POLAROID
-   ========================================================= */
+   MEMORY POLAROID
+========================================================= */
 
 .memory-polaroid {
-    position: relative;
-
     display: flex;
-
     align-items: center;
     justify-content: center;
 
     gap: 12px;
-
-    width: 100%;
 }
 
 .memory-polaroid-frame {
     position: relative;
 
-    width: min(370px, 70vw);
+    width: min(360px, 68vw);
 
-    padding:
-        12px
-        12px
-        45px;
+    padding: 12px 12px 45px;
 
-    background:
-        #f8f4e9;
-
-    color: #222;
+    background: #f9f5eb;
 
     box-shadow:
-        0 15px 35px rgba(0, 0, 0, 0.5);
+        0 15px 30px rgba(0, 0, 0, 0.35);
 
-    transform:
-        rotate(-1deg);
-
-    transition:
-        transform 0.3s ease;
+    transform: rotate(-1deg);
 }
 
 .memory-polaroid-frame img {
-    width: 100%;
+    display: block;
 
-    aspect-ratio: 1 / 1;
+    width: 100%;
+    aspect-ratio: 4 / 5;
 
     object-fit: cover;
 
@@ -2102,41 +1678,30 @@ body.idle-mode #musicBoxAryan {
 #memoryPhotoCaption {
     position: absolute;
 
+    bottom: 12px;
     left: 10px;
     right: 10px;
-    bottom: 10px;
-
-    min-height: 24px;
-
-    font-family:
-        "Comic Sans MS",
-        "Bradley Hand",
-        cursive;
 
     font-size: 0.9rem;
 
-    line-height: 1.2;
+    color: #33251c;
 }
 
 .polaroid-pin {
     position: absolute;
 
-    top: -9px;
+    top: -7px;
     left: 50%;
 
-    width: 17px;
-    height: 17px;
+    width: 14px;
+    height: 14px;
 
     border-radius: 50%;
 
-    background:
-        var(--op-red);
+    background: #a33;
+    border: 2px solid #702;
 
-    transform:
-        translateX(-50%);
-
-    box-shadow:
-        0 3px 7px rgba(0, 0, 0, 0.4);
+    transform: translateX(-50%);
 
     z-index: 2;
 }
@@ -2147,117 +1712,95 @@ body.idle-mode #musicBoxAryan {
 
     flex-shrink: 0;
 
-    border:
-        1px solid rgba(255, 255, 255, 0.45);
-
+    border: 2px solid #6a451c;
     border-radius: 50%;
 
-    background:
-        rgba(0, 0, 0, 0.4);
+    background: #e4ca91;
+    color: #39220e;
 
-    color: #fff;
-
-    font-size: 1.8rem;
+    font-size: 1.7rem;
 
     transition:
-        transform 0.25s ease,
-        background 0.25s ease;
+        transform 0.2s ease,
+        background 0.2s ease;
 }
 
 .memory-photo-nav:hover {
-    transform: scale(1.1);
-
-    background:
-        rgba(0, 0, 0, 0.65);
+    transform: scale(1.08);
+    background: #efdba9;
 }
 
 .memory-photo-counter {
     margin-top: 12px;
 
-    font-size: 0.75rem;
-
+    font-size: 0.8rem;
     opacity: 0.7;
 }
 
 
 /* =========================================================
-   28. TREASURE SECTION
-   ========================================================= */
+   TREASURE SECTION
+========================================================= */
 
 .treasure-section {
     text-align: center;
 }
 
 .treasure-chest-wrapper {
-    width: min(600px, 94%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-    margin:
-        70px
-        auto
-        0;
-
-    padding:
-        45px
-        20px;
-
-    border:
-        1px solid rgba(255, 255, 255, 0.25);
-
-    border-radius: 25px;
-
-    background:
-        rgba(0, 20, 40, 0.45);
-
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    gap: 20px;
 }
 
 .treasure-chest {
-    border: none;
+    width: 130px;
+    height: 100px;
 
-    background: transparent;
+    border: 3px solid #5d3917;
+    border-radius: 15px;
 
-    font-size: clamp(5rem, 18vw, 9rem);
-
-    line-height: 1;
-
-    filter:
-        drop-shadow(
-            0 15px 15px rgba(0, 0, 0, 0.45)
+    background:
+        linear-gradient(
+            145deg,
+            #a8732e,
+            #674016
         );
 
+    font-size: 4rem;
+
+    box-shadow:
+        0 15px 35px rgba(0, 0, 0, 0.5);
+
     transition:
-        transform 0.3s ease;
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
 }
 
 .treasure-chest:hover {
-    transform:
-        scale(1.08)
-        rotate(-3deg);
+    transform: scale(1.08) rotate(-2deg);
+
+    box-shadow:
+        0 20px 45px rgba(0, 0, 0, 0.6);
 }
 
 .treasure-chest-wrapper p {
-    margin-top: 20px;
-
     font-size: 1rem;
-
-    font-style: italic;
 }
 
 
 /* =========================================================
-   29. TREASURE MESSAGE
-   ========================================================= */
+   TREASURE MESSAGE
+========================================================= */
 
 .treasure-message {
     position: fixed;
-
     inset: 0;
 
-    z-index: 8000;
+    z-index: 100;
 
-    display: flex;
-
+    display: none;
     align-items: center;
     justify-content: center;
 
@@ -2266,256 +1809,141 @@ body.idle-mode #musicBoxAryan {
     background:
         rgba(0, 0, 0, 0.8);
 
-    backdrop-filter: blur(7px);
-    -webkit-backdrop-filter: blur(7px);
-
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-
-    transition:
-        opacity 0.35s ease,
-        visibility 0.35s ease;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
 }
 
 .treasure-message.open,
 .treasure-message.active {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
+    display: flex;
 }
 
 #closeTreasure {
     position: absolute;
 
-    top: 18px;
-    right: 22px;
+    top: 20px;
+    right: 25px;
 
-    width: 45px;
-    height: 45px;
+    border: none;
 
-    border:
-        1px solid rgba(255, 255, 255, 0.45);
+    background: transparent;
 
-    border-radius: 50%;
+    color: white;
 
-    background:
-        rgba(0, 0, 0, 0.4);
-
-    color: #fff;
-
-    font-size: 1.8rem;
+    font-size: 2.5rem;
 }
 
 .treasure-message-content {
-    width: min(600px, 94vw);
+    width: min(600px, 92vw);
 
-    padding:
-        40px
-        25px;
+    padding: 45px 30px;
 
-    border:
-        2px solid var(--op-gold);
-
-    border-radius: 25px;
+    border: 3px solid #e0b44f;
+    border-radius: 20px;
 
     background:
         linear-gradient(
             145deg,
-            #06395d,
-            #021d35
+            #f0d58f,
+            #b88c42
         );
 
-    color: #fff;
+    color: #39220e;
 
     text-align: center;
 
     box-shadow:
-        0 25px 80px rgba(0, 0, 0, 0.7);
-
-    animation:
-        treasurePop 0.5s ease;
+        0 25px 70px rgba(0, 0, 0, 0.65);
 }
 
 .treasure-icon {
-    font-size: 4rem;
-
-    margin-bottom: 15px;
+    font-size: 3rem;
+    margin-bottom: 10px;
 }
 
 .treasure-message-content h2 {
-    font-size: clamp(1.5rem, 6vw, 2.6rem);
-
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
     margin-bottom: 20px;
-
-    color: var(--op-gold);
 }
 
 .treasure-message-content p {
-    font-size: 1rem;
-
-    line-height: 1.7;
-
-    margin-bottom: 8px;
+    margin-bottom: 10px;
+    font-size: 1.05rem;
 }
 
 .treasure-final {
-    margin-top: 20px;
+    margin-top: 25px;
 
-    font-size: 1.25rem !important;
-
+    font-size: 1.3rem !important;
     font-weight: bold;
 
-    color: var(--op-gold);
+    letter-spacing: 0.08em;
 }
 
 
 /* =========================================================
-   30. ONE PIECE DESTINATION STATE
-   ========================================================= */
+   IDLE MODE
+========================================================= */
 
-.grand-line-content.op-destination-open .op-hero {
+#lettersPage .overlay.idle,
+#aryanPage .overlay.idle {
     opacity: 0;
     visibility: hidden;
-    pointer-events: none;
 }
 
 
 /* =========================================================
-   31. ANIMATIONS
-   ========================================================= */
+   MOBILE
+========================================================= */
 
-@keyframes opCompassSpin {
-    from {
-        transform: rotate(0deg);
-    }
-
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-@keyframes opPanelPop {
-    from {
-        opacity: 0;
-        transform: scale(0.98);
-    }
-
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-@keyframes shipFloat {
-    0%,
-    100% {
-        transform:
-            translateY(0)
-            rotate(-8deg);
-    }
-
-    50% {
-        transform:
-            translateY(-8px)
-            rotate(-4deg);
-    }
-}
-
-@keyframes treasurePop {
-    from {
-        opacity: 0;
-        transform:
-            scale(0.8)
-            translateY(20px);
-    }
-
-    to {
-        opacity: 1;
-        transform:
-            scale(1)
-            translateY(0);
-    }
-}
-
-
-/* =========================================================
-   32. MOBILE — MAIN SITE
-   ========================================================= */
-
-@media (max-width: 600px) {
+@media (max-width: 700px) {
 
     #intro .content {
-        padding: 20px;
-    }
-
-    #intro h1 {
-        font-size: 1.45rem;
-    }
-
-    #intro h3 {
-        font-size: 1.05rem;
+        padding: 25px 18px;
     }
 
     #intro p {
-        font-size: 0.85rem;
-        line-height: 1.65;
+        line-height: 1.5;
     }
 
-    #intro .content {
-        width: 94%;
+    #openButton {
+        margin-top: 22px;
     }
 
     #lettersPage .overlay,
     #aryanPage .overlay {
         padding:
-            65px
-            12px
+            80px
+            15px
             35px;
     }
 
-    #mainTitle {
-        font-size: 1.8rem;
+    #loveCounter {
+        width: 94%;
+        padding: 20px 15px;
     }
 
-    .subtitle {
-        font-size: 0.85rem;
+    #counter {
+        font-size: 1.7rem;
     }
 
     .letterCard {
-        width: 280px;
-
-        min-height: 190px;
-
-        padding:
-            18px
-            16px;
+        width: min(310px, 88vw);
     }
 
     .letterCard.open {
-        width: 92vw;
-
-        min-height: 280px;
-        max-height: 72vh;
-    }
-
-    .letterCardBody {
-        font-size: 0.9rem;
-        line-height: 1.7;
+        width: 94vw;
+        min-height: 340px;
     }
 
     .actionRow {
-        width: 95%;
-
+        width: 100%;
         gap: 8px;
     }
 
     .actionRow button {
-        font-size: 0.78rem;
-
-        padding:
-            9px
-            12px;
+        font-size: 0.8rem;
+        padding: 9px 13px;
     }
 
     #musicBox,
@@ -2524,308 +1952,263 @@ body.idle-mode #musicBoxAryan {
         bottom: 12px;
     }
 
-    #musicToggle,
-    #musicToggleAryan {
-        width: 47px;
-        height: 47px;
-    }
-
     #musicMenu,
     #musicMenuAryan {
-        right: -4px;
-        bottom: 57px;
-
-        width: 250px;
+        width: min(250px, 82vw);
+        right: -2px;
     }
 
-    .quiz-box {
-        padding:
-            25px
-            17px;
-    }
 
-    .letterContent {
-        padding:
-            25px
-            18px;
-    }
-}
-
-
-/* =========================================================
-   33. MOBILE — ONE PIECE
-   ========================================================= */
-
-@media (max-width: 700px) {
+    /* ONE PIECE MOBILE */
 
     .op-header {
-        height: 62px;
-
-        padding:
-            8px
-            10px;
+        top: 12px;
+        left: 12px;
+        right: 12px;
     }
 
-    .op-back-button,
-    .op-panel-back {
-        font-size: 0.7rem;
-
-        padding:
-            8px
-            12px;
+    .op-back-button {
+        padding: 8px 11px;
+        font-size: 0.75rem;
     }
 
     .op-music-button {
-        width: 44px;
-        height: 44px;
-    }
-
-    .op-music-menu {
-        top: 52px;
-
-        width: 250px;
+        width: 43px;
+        height: 43px;
     }
 
     .op-hero {
-        min-height: 100vh;
-
         padding:
-            80px
+            65px
             15px
-            40px;
-    }
-
-    .op-hero h1,
-    .op-opening h1 {
-        font-size: clamp(2.1rem, 12vw, 4rem);
-
-        letter-spacing: 0.04em;
+            25px;
     }
 
     .op-small-text {
-        font-size: 0.58rem;
-
-        letter-spacing: 0.15em;
+        font-size: 0.65rem;
+        letter-spacing: 0.16em;
     }
 
-    .op-couple-name {
-        font-size: 0.8rem;
-
-        letter-spacing: 0.2em;
+    .op-hero-content > p:not(.op-small-text) {
+        font-size: 0.9rem;
+        margin-bottom: 25px;
     }
 
     .op-grand-line-menu {
-        width: 92%;
-
-        gap: 10px;
+        width: min(360px, 92vw);
+        gap: 12px;
     }
 
     .op-destination-button {
-        padding:
-            12px
-            14px;
+        min-height: 53px;
+        padding: 12px 16px;
 
-        font-size: 0.78rem;
+        font-size: 0.82rem;
     }
 
-    .op-destination-panel {
-        padding:
-            75px
-            12px
-            35px;
+    .op-destination-button::before {
+        left: 10px;
     }
 
     .op-section-title {
         font-size: 1.7rem;
     }
 
-    /* Wanted */
+    .op-panel-back {
+        top: 12px;
+        left: 12px;
+
+        padding: 8px 11px;
+
+        font-size: 0.75rem;
+    }
 
     .wanted-posters {
-        grid-template-columns: 1fr;
-
-        gap: 25px;
+        gap: 18px;
     }
 
     .wanted-poster {
-        width: min(330px, 92vw);
+        width: min(270px, 82vw);
     }
 
-    /* Map */
+    .wanted-image {
+        height: 135px;
+    }
 
     .grand-line-map {
-        min-height: 580px;
-
-        border-radius: 20px;
+        height: 430px;
     }
 
     .memory-island {
-        min-width: 105px;
-
-        padding:
-            11px
-            8px;
+        padding: 8px 10px;
 
         font-size: 0.62rem;
+
+        border-width: 2px;
     }
 
     .island-one {
-        left: 4%;
-        top: 12%;
+        top: 10%;
+        left: 5%;
     }
 
     .island-two {
-        left: 27%;
-        top: 34%;
+        top: 23%;
+        right: 5%;
     }
 
     .island-three {
-        right: 2%;
-        top: 11%;
+        bottom: 15%;
+        left: 5%;
     }
 
     .island-four {
-        left: 5%;
-        bottom: 13%;
+        bottom: 8%;
+        right: 5%;
     }
 
     .island-five {
-        right: 5%;
-        bottom: 17%;
-    }
-
-    .map-route {
-        left: 13%;
-        right: 13%;
-
-        top: 50%;
+        top: 47%;
+        left: 34%;
     }
 
     .map-ship {
-        left: 43%;
-
-        font-size: 2.2rem;
-    }
-
-    /* Memory */
-
-    .memory-modal {
-        padding:
-            10px;
+        font-size: 2rem;
     }
 
     .memory-modal-box {
-        max-height: 92vh;
-
-        padding:
-            25px
-            12px
-            20px;
-    }
-
-    .memory-polaroid {
-        gap: 6px;
+        padding: 25px 15px;
     }
 
     .memory-polaroid-frame {
-        width: min(280px, 70vw);
-
-        padding:
-            8px
-            8px
-            38px;
+        width: min(290px, 65vw);
     }
 
     .memory-photo-nav {
-        width: 34px;
-        height: 34px;
+        width: 35px;
+        height: 35px;
 
         font-size: 1.4rem;
     }
 
-    #memoryPhotoCaption {
-        font-size: 0.72rem;
-    }
-
-    /* Treasure */
-
-    .treasure-chest-wrapper {
-        margin-top: 40px;
-
-        padding:
-            35px
-            15px;
-    }
-
     .treasure-message-content {
-        padding:
-            30px
-            18px;
-    }
-
-    .treasure-message-content h2 {
-        font-size: 1.55rem;
-    }
-
-    .treasure-message-content p {
-        font-size: 0.9rem;
+        padding: 35px 20px;
     }
 }
 
 
 /* =========================================================
-   34. VERY SMALL PHONES
-   ========================================================= */
+   SMALL PHONES
+========================================================= */
 
-@media (max-width: 380px) {
+@media (max-width: 430px) {
 
     #intro h1 {
-        font-size: 1.25rem;
+        font-size: 1.45rem;
+    }
+
+    #intro h3 {
+        font-size: 1rem;
     }
 
     #intro p {
-        font-size: 0.78rem;
+        font-size: 0.85rem;
+    }
+
+    #openButton {
+        padding: 11px 20px;
+        font-size: 0.85rem;
+    }
+
+    #journeyTitle {
+        font-size: 1.3rem;
+    }
+
+    #loveCounter h1 {
+        font-size: 1.35rem;
+    }
+
+    #counter {
+        font-size: 1.45rem;
+    }
+
+    #loveCounter h3 {
+        font-size: 0.9rem;
+    }
+
+    .quote {
+        font-size: 0.8rem;
     }
 
     .letterCard {
-        width: 265px;
+        min-height: 200px;
+    }
+
+    .letterCard.open {
+        min-height: 300px;
+    }
+
+    .letterCardBody {
+        font-size: 0.9rem;
     }
 
     .actionRow button {
-        width: 100%;
+        width: 90%;
     }
 
-    .memory-island {
-        min-width: 90px;
+    .op-opening h1 {
+        font-size: 2.3rem;
+    }
 
-        font-size: 0.55rem;
+    .op-couple-name {
+        font-size: 0.8rem;
+    }
+
+    .op-destination-button {
+        min-height: 50px;
     }
 
     .grand-line-map {
-        min-height: 520px;
-    }
-
-    .wanted-poster {
-        padding: 12px;
+        height: 390px;
     }
 }
 
 
 /* =========================================================
-   35. ACCESSIBILITY
-   ========================================================= */
+   LANDSCAPE MOBILE
+========================================================= */
 
-button:focus-visible,
-input:focus-visible,
-textarea:focus-visible {
-    outline:
-        2px solid
-        var(--op-gold);
+@media (max-height: 550px) and (orientation: landscape) {
 
-    outline-offset: 3px;
+    #intro .content {
+        justify-content: flex-start;
+        padding-top: 25px;
+        overflow-y: auto;
+    }
+
+    #intro p {
+        max-width: 700px;
+        font-size: 0.85rem;
+    }
+
+    #openButton {
+        margin-top: 15px;
+    }
+
+    #lettersPage .overlay,
+    #aryanPage .overlay {
+        padding-top: 70px;
+    }
+
+    .op-hero {
+        padding-top: 70px;
+    }
+
+    .op-hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .grand-line-map {
+        height: 330px;
+    }
 }
-
-
-/* =========================================================
-   END
-   ========================================================= */
