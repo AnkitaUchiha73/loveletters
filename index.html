@@ -1,594 +1,427 @@
+
+
+Index · HTML
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ankita & Aryan</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+ 
+<!-- =========================================================
+     INTRO
+     ========================================================= -->
+<div id="intro">
+    <div class="intro-content">
+        <h1>Ankita &amp; Aryan</h1>
+        <p>A little corner of the internet, made just for us.</p>
+        <button id="openButton" class="back-button">Open ❤️</button>
+    </div>
+</div>
+ 
+<!-- =========================================================
+     JOURNEY INTRO (plays once, right after opening)
+     ========================================================= -->
+<div id="journeyIntro">
+    <h1 id="journeyTitle">Every day, together.</h1>
+    <div id="loveCounter">
+        <p class="love-counter-label">We've been on this journey for</p>
+        <p id="counter">0d 0h 0m 0s</p>
+    </div>
+</div>
+ 
+<!-- =========================================================
+     MAIN LETTERS PAGE (Ankita's page)
+     ========================================================= -->
+<div id="lettersPage">
+ 
+    <div class="slideshow" id="slideshow"></div>
+ 
+    <div class="page-title">
+        <h1 id="mainTitle">For Aryan</h1>
+        <p id="mainSubtitle">Every letter here is a piece of my heart.</p>
+        <p id="mainSubtitle2">Tap the card below to start reading.</p>
+    </div>
+ 
+    <div class="letters-container" id="gallery">
+        <div class="letter-card" id="mainLetterCard">
+            <span id="viewerEmoji" class="viewer-emoji"></span>
+            <h2 id="viewerTitle"></h2>
+            <p class="letter-date" id="viewerDate"></p>
+            <p class="letter-position" id="letterPosition"></p>
+            <div id="viewerBody" class="viewer-body"></div>
+            <button id="letterToggle" class="tap-text" type="button">Tap to read ❤️</button>
+        </div>
+    </div>
+ 
+    <div class="page-actions">
+        <button id="toAryanBtn" class="back-button" type="button">To Aryan's Letters →</button>
+        <button id="onePieceButton" class="back-button" type="button">🏴‍☠️ A Secret Map</button>
+    </div>
+ 
+    <!-- ============================
+         WRITE A LETTER
+         ============================ -->
+    <div id="writeLetter" class="letter-popup-wrap">
+        <div class="write-letter-box">
+            <h2>Write me a letter</h2>
+            <form id="letterForm">
+                <input type="text" name="name" placeholder="Your name" required>
+                <textarea name="message" rows="6" placeholder="Write from the heart..." required></textarea>
+                <button type="submit" class="back-button">Send ❤️</button>
+                <p id="submitStatus"></p>
+            </form>
+        </div>
+    </div>
+ 
+    <!-- ============================
+         MUSIC
+         ============================ -->
+    <div id="musicBox">
+        <button id="musicToggle" type="button" aria-label="Music">🎵❤️</button>
+        <div id="musicMenu" class="music-menu">
+            <div class="music-menu-title">🎵 Playlist</div>
+            <button class="song-btn" id="shuffleBtn" type="button">🔀 Shuffle</button>
+            <button class="song-btn" type="button" data-song="music/GehraHua.mp3">Gehra Hua</button>
+            <button class="song-btn" type="button" data-song="music/AajkalTereMerePyarKeCharche.mp3">Aajkal Tere Mere Pyar Ke Charche</button>
+            <button class="song-btn" type="button" data-song="music/BadheAcheLagteHai.mp3">Badhe Ache Lagte Hai</button>
+            <button class="song-btn" type="button" data-song="music/Barbaad.mp3">Barbaad</button>
+            <button class="song-btn" type="button" data-song="music/Dhun.mp3">Dhun</button>
+            <button class="song-btn" type="button" data-song="music/KyaMujhePyaarHai.mp3">Kya Mujhe Pyaar Hai</button>
+            <button class="song-btn" type="button" data-song="music/LikheJoKhatTujhe.mp3">Likhe Jo Khat Tujhe</button>
+            <button class="song-btn" type="button" data-song="music/PalPalDilKePass.mp3">Pal Pal Dil Ke Paas</button>
+            <button class="song-btn" type="button" data-song="music/TumSeHi.mp3">Tum Se Hi</button>
+            <button class="song-btn" type="button" data-song="music/YehTuneKya.mp3">Yeh Tune Kya</button>
+            <button class="song-btn" type="button" data-song="music/YehRatein.mp3">Yeh Ratein</button>
+        </div>
+    </div>
+ 
+</div>
+ 
+<!-- =========================================================
+     ARYAN'S PAGE
+     ========================================================= -->
+<div id="aryanPage">
+ 
+    <div class="slideshowAryan" id="slideshowAryan"></div>
+ 
+    <div class="page-title">
+        <h1>For Ankita</h1>
+        <p>My words, back to you.</p>
+    </div>
+ 
+    <div class="aryan-container gallery">
+        <div class="aryan-card" id="aryanLetterCard">
+            <span id="viewerEmojiAryan" class="viewer-emoji"></span>
+            <h2 id="viewerTitleAryan"></h2>
+            <p class="letter-date" id="viewerDateAryan"></p>
+            <p class="letter-position" id="letterPositionAryan"></p>
+            <div id="viewerBodyAryan" class="viewer-body"></div>
+            <button id="letterToggleAryan" class="tap-text" type="button">Tap to read ❤️</button>
+        </div>
+    </div>
+ 
+    <button id="backFromAryanBtn" type="button">← Back to Ankita's Letters</button>
+ 
+    <div id="musicBoxAryan">
+        <button id="musicToggleAryan" type="button" aria-label="Music">🎵❤️</button>
+        <div id="musicMenuAryan" class="music-menu">
+            <div class="music-menu-title">🎵 Playlist</div>
+            <button class="song-btn" id="shuffleBtnAryan" type="button">🔀 Shuffle</button>
+            <button class="song-btn" type="button" data-song="music/TujhMeinRabDikhta.mp3">Tujh Mein Rab Dikhta</button>
+            <button class="song-btn" type="button" data-song="music/AaoNaa.mp3">Aao Naa</button>
+            <button class="song-btn" type="button" data-song="music/Aayat.mp3">Aayat</button>
+            <button class="song-btn" type="button" data-song="music/Afeemi.mp3">Afeemi</button>
+            <button class="song-btn" type="button" data-song="music/AyeUdiUdiUdi.mp3">Aye Udi Udi Udi</button>
+            <button class="song-btn" type="button" data-song="music/Birdsoffeather.mp3">Birds of a Feather</button>
+            <button class="song-btn" type="button" data-song="music/DilKyunYehMera.mp3">Dil Kyun Yeh Mera</button>
+            <button class="song-btn" type="button" data-song="music/FalakTak.mp3">Falak Tak</button>
+            <button class="song-btn" type="button" data-song="music/FinallyFoundyou.mp3">Finally Found You</button>
+            <button class="song-btn" type="button" data-song="music/Guzarish.mp3">Guzarish</button>
+            <button class="song-btn" type="button" data-song="music/ILoveYou.mp3">I Love You</button>
+            <button class="song-btn" type="button" data-song="music/IThinkTheyCallThisLove.mp3">I Think They Call This Love</button>
+            <button class="song-btn" type="button" data-song="music/IWannaBeYours.mp3">I Wanna Be Yours</button>
+            <button class="song-btn" type="button" data-song="music/IshqBina.mp3">Ishq Bina</button>
+            <button class="song-btn" type="button" data-song="music/JagGhoomeya.mp3">Jag Ghoomeya</button>
+            <button class="song-btn" type="button" data-song="music/MainYahaanHoon.mp3">Main Yahaan Hoon</button>
+            <button class="song-btn" type="button" data-song="music/MeriChunarUddUddJaye.mp3">Meri Chunar Udd Udd Jaye</button>
+            <button class="song-btn" type="button" data-song="music/Mitwa.mp3">Mitwa</button>
+            <button class="song-btn" type="button" data-song="music/NahiSamneTu.mp3">Nahi Samne Tu</button>
+            <button class="song-btn" type="button" data-song="music/OReyChhori.mp3">O Rey Chhori</button>
+            <button class="song-btn" type="button" data-song="music/TeraHoneLagaHoon.mp3">Tera Hone Laga Hoon</button>
+            <button class="song-btn" type="button" data-song="music/Teriore.mp3">Teri Ore</button>
+            <button class="song-btn" type="button" data-song="music/TumJoAayeJindagi.mp3">Tum Jo Aaye Zindagi</button>
+            <button class="song-btn" type="button" data-song="music/UffTeriAdaa.mp3">Uff Teri Adaa</button>
+            <button class="song-btn" type="button" data-song="music/saazni.mp3">Saazni</button>
+        </div>
+    </div>
+ 
+</div>
+ 
+<audio id="bgMusic" preload="auto"></audio>
+ 
 <!-- =========================================================
      ONE PIECE — OUR GRAND LINE
      ========================================================= -->
-
+ 
 <section id="onePiecePage" class="one-piece-page">
-
+ 
     <!-- =====================================================
          GRAND LINE OPENING
          ===================================================== -->
-
+ 
     <div id="opOpening" class="op-opening">
-
+ 
         <div class="op-opening-content">
-
-            <div class="op-compass">
-                ☸
-            </div>
-
-            <p class="op-small-text">
-                EVERY ADVENTURE NEEDS A BEGINNING...
-            </p>
-
-            <h1>
-                OUR GRAND LINE
-            </h1>
-
-            <div class="op-crossed">
-                ☠
-            </div>
-
-            <p class="op-couple-name">
-                ANKITA <span>X</span> ARYAN
-            </p>
-
-            <button
-                id="startGrandLine"
-                class="op-main-button"
-                type="button">
-                SET SAIL ⚓
-            </button>
-
+ 
+            <div class="op-compass">☸</div>
+ 
+            <p class="op-small-text">EVERY ADVENTURE NEEDS A BEGINNING...</p>
+ 
+            <h1>OUR GRAND LINE</h1>
+ 
+            <div class="op-crossed">☠</div>
+ 
+            <p class="op-couple-name">ANKITA <span>X</span> ARYAN</p>
+ 
+            <button id="startGrandLine" class="op-main-button" type="button">SET SAIL ⚓</button>
+ 
         </div>
-
+ 
     </div>
-
-
+ 
+ 
     <!-- =====================================================
          GRAND LINE CONTENT
          ===================================================== -->
-
+ 
     <div id="grandLineContent" class="grand-line-content">
-
-
+ 
         <!-- =================================================
              HEADER
              ================================================= -->
-
+ 
         <header class="op-header">
-
-            <button
-                id="backFromOnePiece"
-                class="op-back-button"
-                type="button">
-                ← BACK
-            </button>
-
-
+ 
+            <button id="backFromOnePiece" class="op-back-button" type="button">← BACK</button>
+ 
             <!-- =============================================
                  GRAND LINE MUSIC
                  ============================================= -->
-
+ 
             <div class="op-music-wrap">
-
-                <button
-                    id="opMusicButton"
-                    class="op-music-button"
-                    type="button"
-                    aria-label="Grand Line music">
-                    🎵
-                </button>
-
-
-                <div
-                    id="opMusicMenu"
-                    class="op-music-menu">
-
-                    <div class="op-music-menu-title">
-                        ☠ GRAND LINE PLAYLIST
-                    </div>
-
-
-                    <button
-                        class="op-song-btn"
-                        type="button"
-                        data-op-song="music/one_piece.mp3">
-
-                        🎵 One Piece Theme
-
-                    </button>
-
-
-                    <button
-                        class="op-song-btn"
-                        type="button"
-                        data-op-song="music/BinksSake.mp3">
-
-                        🍶 Binks' Sake
-
-                    </button>
-
-
-                    <button
-                        class="op-song-btn"
-                        type="button"
-                        data-op-song="music/BrandNewWorld.mp3">
-
-                        🌊 Brand New World
-
-                    </button>
-
-
-                    <button
-                        class="op-song-btn"
-                        type="button"
-                        data-op-song="music/FightTogether.mp3">
-
-                        ⚔️ Fight Together
-
-                    </button>
-
-
-                    <button
-                        class="op-song-btn"
-                        type="button"
-                        data-op-song="music/MarvelousBattle.mp3">
-
-                        ☠️ Marvelous Battle
-
-                    </button>
-
+ 
+                <button id="opMusicButton" class="op-music-button" type="button" aria-label="Grand Line music">🎵</button>
+ 
+                <div id="opMusicMenu" class="op-music-menu">
+ 
+                    <div class="op-music-menu-title">☠ GRAND LINE PLAYLIST</div>
+ 
+                    <button class="op-song-btn" type="button" data-op-song="music/one_piece.mp3">🎵 One Piece Theme</button>
+                    <button class="op-song-btn" type="button" data-op-song="music/BinksSake.mp3">🍶 Binks' Sake</button>
+                    <button class="op-song-btn" type="button" data-op-song="music/BrandNewWorld.mp3">🌊 Brand New World</button>
+                    <button class="op-song-btn" type="button" data-op-song="music/FightTogether.mp3">⚔️ Fight Together</button>
+                    <button class="op-song-btn" type="button" data-op-song="music/MarvelousBattle.mp3">☠️ Marvelous Battle</button>
+ 
                 </div>
-
+ 
             </div>
-
+ 
         </header>
-
-
+ 
         <!-- =================================================
              GRAND LINE HOME
              ================================================= -->
-
+ 
         <section class="op-hero">
-
+ 
             <div class="op-hero-content">
-
-                <p class="op-small-text">
-                    THE ADVENTURE CONTINUES...
-                </p>
-
-                <h1>
-                    OUR GRAND LINE
-                </h1>
-
-                <div class="op-crossed">
-                    ☠
-                </div>
-
-                <p>
-                    Every adventure has a story.
-                    Ours has islands, memories,
-                    laughter and a little bit of chaos.
-                </p>
-
+ 
+                <p class="op-small-text">THE ADVENTURE CONTINUES...</p>
+ 
+                <h1>OUR GRAND LINE</h1>
+ 
+                <div class="op-crossed">☠</div>
+ 
+                <p>Every adventure has a story. Ours has islands, memories, laughter and a little bit of chaos.</p>
+ 
             </div>
-
-
+ 
             <!-- =============================================
                  DESTINATION MENU
                  ============================================= -->
-
+ 
             <div class="op-grand-line-menu">
-
-                <button
-                    class="op-destination-button"
-                    data-op-section="wantedSection"
-                    type="button">
-
-                    ☠ WANTED
-
-                </button>
-
-
-                <button
-                    class="op-destination-button"
-                    data-op-section="mapSection"
-                    type="button">
-
-                    🗺 OUR WORLD MAP
-
-                </button>
-
-
-                <button
-                    class="op-destination-button"
-                    data-op-section="treasureSection"
-                    type="button">
-
-                    💎 ONE PIECE
-
-                </button>
-
+ 
+                <button class="op-destination-button" data-op-section="wantedSection" type="button">☠ WANTED</button>
+                <button class="op-destination-button" data-op-section="mapSection" type="button">🗺 OUR WORLD MAP</button>
+                <button class="op-destination-button" data-op-section="treasureSection" type="button">💎 ONE PIECE</button>
+ 
             </div>
-
+ 
         </section>
-
-
+ 
         <!-- =================================================
              WANTED SECTION
              ================================================= -->
-
-        <section
-            id="wantedSection"
-            class="op-section wanted-section op-destination-panel">
-
-            <button
-                class="op-panel-back"
-                type="button"
-                data-op-home>
-
-                GRAND LINE
-
-            </button>
-
-
-            <div class="op-section-title">
-                ☠ WANTED ☠
-            </div>
-
-
+ 
+        <section id="wantedSection" class="op-section wanted-section op-destination-panel">
+ 
+            <button class="op-panel-back" type="button" data-op-home>GRAND LINE</button>
+ 
+            <div class="op-section-title">☠ WANTED ☠</div>
+ 
             <div class="wanted-posters">
-
-
+ 
                 <div class="wanted-poster">
-
-                    <div class="wanted-top">
-                        WANTED
-                    </div>
-
-                    <div class="wanted-image">
-                        ❤️
-                    </div>
-
-                    <div class="wanted-name">
-                        ARYAN GOYAL
-                    </div>
-
-                    <div class="wanted-reward">
-                        FOR STEALING ANKITA'S HEART
-                    </div>
-
+                    <div class="wanted-top">WANTED</div>
+                    <div class="wanted-image">❤️</div>
+                    <div class="wanted-name">ARYAN GOYAL</div>
+                    <div class="wanted-reward">FOR STEALING ANKITA'S HEART</div>
                 </div>
-
-
+ 
                 <div class="wanted-poster">
-
-                    <div class="wanted-top">
-                        WANTED
-                    </div>
-
-                    <div class="wanted-image">
-                        ❤️
-                    </div>
-
-                    <div class="wanted-name">
-                        ANKITA
-                    </div>
-
-                    <div class="wanted-reward">
-                        FOR STEALING ARYAN'S HEART
-                    </div>
-
+                    <div class="wanted-top">WANTED</div>
+                    <div class="wanted-image">❤️</div>
+                    <div class="wanted-name">ANKITA</div>
+                    <div class="wanted-reward">FOR STEALING ARYAN'S HEART</div>
                 </div>
-
-
+ 
             </div>
-
+ 
         </section>
-
-
+ 
         <!-- =================================================
              WORLD MAP
              ================================================= -->
-
-        <section
-            id="mapSection"
-            class="op-section map-section op-destination-panel">
-
-            <button
-                class="op-panel-back"
-                type="button"
-                data-op-home>
-
-                GRAND LINE
-
-            </button>
-
-
-            <div class="op-section-title">
-                🗺️ OUR GRAND LINE 🗺️
-            </div>
-
-
-            <p class="map-intro">
-                Every island holds a piece of our story.
-            </p>
-
-
+ 
+        <section id="mapSection" class="op-section map-section op-destination-panel">
+ 
+            <button class="op-panel-back" type="button" data-op-home>GRAND LINE</button>
+ 
+            <div class="op-section-title">🗺️ OUR GRAND LINE 🗺️</div>
+ 
+            <p class="map-intro">Every island holds a piece of our story.</p>
+ 
             <div class="grand-line-map">
-
+ 
                 <div class="map-route"></div>
-
-
-                <button
-                    class="memory-island island-one"
-                    data-memory="codm"
-                    type="button">
-
-                    🎮 CODM ISLAND
-
-                </button>
-
-
-                <button
-                    class="memory-island island-two"
-                    data-memory="videocall"
-                    type="button">
-
-                    📞 VIDEO CALLS
-
-                </button>
-
-
-                <button
-                    class="memory-island island-three"
-                    data-memory="Mysore"
-                    type="button">
-
-                    🏰✨ MYSORE ISLAND
-
-                </button>
-
-
-                <button
-                    class="memory-island island-four"
-                    data-memory="Banglore"
-                    type="button">
-
-                    🏰 BANGLORE ISLAND
-
-                </button>
-
-
-                <button
-                    class="memory-island island-five"
-                    data-memory="Mumbai"
-                    type="button">
-
-                    🌊 MUMBAI ISLAND
-
-                </button>
-
-
-                <div class="map-ship">
-                    ⛵
-                </div>
-
+ 
+                <button class="memory-island island-one" data-memory="codm" type="button">🎮 CODM ISLAND</button>
+                <button class="memory-island island-two" data-memory="videocall" type="button">📞 VIDEO CALLS</button>
+                <button class="memory-island island-three" data-memory="Mysore" type="button">🏰✨ MYSORE ISLAND</button>
+                <button class="memory-island island-four" data-memory="Banglore" type="button">🏰 BANGLORE ISLAND</button>
+                <button class="memory-island island-five" data-memory="Mumbai" type="button">🌊 MUMBAI ISLAND</button>
+ 
+                <div class="map-ship">⛵</div>
+ 
             </div>
-
+ 
         </section>
-
-
+ 
         <!-- =================================================
              MEMORY POLAROID MODAL
              ================================================= -->
-
-        <div
-            id="memoryModal"
-            class="memory-modal">
-
-            <button
-                id="closeMemory"
-                class="close-memory"
-                type="button"
-                aria-label="Close memory">
-
-                ×
-
-            </button>
-
-
+ 
+        <div id="memoryModal" class="memory-modal">
+ 
+            <button id="closeMemory" class="close-memory" type="button" aria-label="Close memory">×</button>
+ 
             <div class="memory-modal-box">
-
-                <div
-                    id="memoryIcon"
-                    class="memory-modal-icon">
-                    ❤️
-                </div>
-
-
-                <p
-                    id="memoryChapter"
-                    class="memory-chapter">
-
-                    CHAPTER I
-
-                </p>
-
-
-                <h2 id="memoryTitle">
-                    Our Beginning
-                </h2>
-
-
+ 
+                <div id="memoryIcon" class="memory-modal-icon">❤️</div>
+ 
+                <p id="memoryChapter" class="memory-chapter">CHAPTER I</p>
+ 
+                <h2 id="memoryTitle">Our Beginning</h2>
+ 
                 <div class="memory-line"></div>
-
-
-                <p id="memoryText">
-                    Our story begins here.
-                </p>
-
-
+ 
+                <p id="memoryText">Our story begins here.</p>
+ 
                 <!-- =========================================
                      MEMORY POLAROID
                      ========================================= -->
-
+ 
                 <div class="memory-polaroid">
-
-                    <button
-                        id="memoryPhotoPrev"
-                        class="memory-photo-nav memory-photo-prev"
-                        type="button"
-                        aria-label="Previous photo">
-
-                        ‹
-
-                    </button>
-
-
+ 
+                    <button id="memoryPhotoPrev" class="memory-photo-nav memory-photo-prev" type="button" aria-label="Previous photo">‹</button>
+ 
                     <div class="memory-polaroid-frame">
-
                         <span class="polaroid-pin"></span>
-
-
-                        <img
-                            id="memoryPhoto"
-                            src=""
-                            alt="Our memory">
-
-
+                        <img id="memoryPhoto" src="" alt="Our memory">
                         <p id="memoryPhotoCaption"></p>
-
                     </div>
-
-
-                    <button
-                        id="memoryPhotoNext"
-                        class="memory-photo-nav memory-photo-next"
-                        type="button"
-                        aria-label="Next photo">
-
-                        ›
-
-                    </button>
-
+ 
+                    <button id="memoryPhotoNext" class="memory-photo-nav memory-photo-next" type="button" aria-label="Next photo">›</button>
+ 
                 </div>
-
-
-                <p
-                    id="memoryPhotoCounter"
-                    class="memory-photo-counter">
-
-                    1 / 1
-
-                </p>
-
+ 
+                <p id="memoryPhotoCounter" class="memory-photo-counter">1 / 1</p>
+ 
             </div>
-
+ 
         </div>
-
-
+ 
         <!-- =================================================
              TREASURE SECTION
              ================================================= -->
-
-        <section
-            id="treasureSection"
-            class="op-section treasure-section op-destination-panel">
-
-            <button
-                type="button"
-                class="op-panel-back"
-                data-op-home>
-
-                GRAND LINE
-
-            </button>
-
-
-            <div class="op-section-title">
-                💎 THE ONE PIECE 💎
-            </div>
-
-
+ 
+        <section id="treasureSection" class="op-section treasure-section op-destination-panel">
+ 
+            <button type="button" class="op-panel-back" data-op-home>GRAND LINE</button>
+ 
+            <div class="op-section-title">💎 THE ONE PIECE 💎</div>
+ 
             <div class="treasure-chest-wrapper">
-
-                <button
-                    id="treasureChest"
-                    class="treasure-chest"
-                    type="button">
-
-                    🧰
-
-                </button>
-
-                <p>
-                    There is one treasure waiting for you...
-                </p>
-
+ 
+                <button id="treasureChest" class="treasure-chest" type="button">🧰</button>
+ 
+                <p>There is one treasure waiting for you...</p>
+ 
             </div>
-
+ 
         </section>
-
-
+ 
         <!-- =================================================
              TREASURE MESSAGE
              ================================================= -->
-
-        <div
-            id="treasureMessage"
-            class="treasure-message">
-
-            <button
-                id="closeTreasure"
-                type="button"
-                aria-label="Close treasure">
-                ×
-            </button>
-
+ 
+        <div id="treasureMessage" class="treasure-message">
+ 
+            <button id="closeTreasure" type="button" aria-label="Close treasure">×</button>
+ 
             <div class="treasure-message-content">
-
-                <div class="treasure-icon">
-                    ❤️
-                </div>
-
-                <h2>
-                    YOU FOUND THE ONE PIECE
-                </h2>
-
-                <p>
-                    The greatest treasure wasn't hidden
-                    on an island.
-                </p>
-
-                <p>
-                    It was us finding each other.
-                </p>
-
-                <p class="treasure-final">
-                    WE ARE HOME. ❤️
-                </p>
-
+ 
+                <div class="treasure-icon">❤️</div>
+ 
+                <h2>YOU FOUND THE ONE PIECE</h2>
+ 
+                <p>The greatest treasure wasn't hidden on an island.</p>
+ 
+                <p>It was us finding each other.</p>
+ 
+                <p class="treasure-final">WE ARE HOME. ❤️</p>
+ 
             </div>
-
+ 
         </div>
-
-
+ 
     </div>
-
+ 
 </section>
-
-
+ 
 <!-- =========================================================
      ONE PIECE AUDIO
      ========================================================= -->
-
-<audio
-    id="onePieceMusic"
-    preload="auto">
-
-    <source
-        src="music/one_piece.mp3"
-        type="audio/mpeg">
-
+ 
+<audio id="onePieceMusic" preload="auto">
+    <source src="music/one_piece.mp3" type="audio/mpeg">
 </audio>
+ 
+<script src="script.js"></script>
+</body>
+</html>
