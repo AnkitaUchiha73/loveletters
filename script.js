@@ -2749,9 +2749,26 @@ document.addEventListener(
                     "Another chapter, another place, and another collection of memories that became ours.",
 
                 photos: [
-                    "images/Mysore1.jpeg",
-                    "images/Mysore2.jpeg",
-                    "images/Mysore3.jpeg"
+                    "images/aryan1.jpeg",
+                    "images/aryan16.jpeg",
+                    "images/aryan17.jpeg",
+                    "images/aryan4.jpeg",
+                    "images/aryan5.jpeg",
+                    "images/image1.jpg",
+                    "images/image2.jpg",
+                    "images/image22.jpeg",
+                    "images/image24.jpeg",
+                    "images/image25.jpeg",
+                    "images/image26.jpeg",
+                    "images/image27.jpeg",
+                    "images/image28.jpeg",
+                    "images/image29.jpeg",
+                    "images/image3.jpg",
+                    "images/image30.jpeg",
+                    "images/image31.jpeg",
+                    "images/image32.jpeg",
+                    "images/image33.jpeg",
+                    "images/image34.jpeg",
                 ],
 
                 captions: [
