@@ -1,427 +1,867 @@
-
-
-Index · HTML
 <!DOCTYPE html>
 <html lang="en">
+ 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ankita & Aryan</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To, Dr. Aryan Goyal ❤️</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+ 
 <body>
- 
-<!-- =========================================================
-     INTRO
-     ========================================================= -->
-<div id="intro">
-    <div class="intro-content">
-        <h1>Ankita &amp; Aryan</h1>
-        <p>A little corner of the internet, made just for us.</p>
-        <button id="openButton" class="back-button">Open ❤️</button>
-    </div>
-</div>
- 
-<!-- =========================================================
-     JOURNEY INTRO (plays once, right after opening)
-     ========================================================= -->
-<div id="journeyIntro">
-    <h1 id="journeyTitle">Every day, together.</h1>
-    <div id="loveCounter">
-        <p class="love-counter-label">We've been on this journey for</p>
-        <p id="counter">0d 0h 0m 0s</p>
-    </div>
-</div>
- 
-<!-- =========================================================
-     MAIN LETTERS PAGE (Ankita's page)
-     ========================================================= -->
-<div id="lettersPage">
- 
-    <div class="slideshow" id="slideshow"></div>
- 
-    <div class="page-title">
-        <h1 id="mainTitle">For Aryan</h1>
-        <p id="mainSubtitle">Every letter here is a piece of my heart.</p>
-        <p id="mainSubtitle2">Tap the card below to start reading.</p>
-    </div>
- 
-    <div class="letters-container" id="gallery">
-        <div class="letter-card" id="mainLetterCard">
-            <span id="viewerEmoji" class="viewer-emoji"></span>
-            <h2 id="viewerTitle"></h2>
-            <p class="letter-date" id="viewerDate"></p>
-            <p class="letter-position" id="letterPosition"></p>
-            <div id="viewerBody" class="viewer-body"></div>
-            <button id="letterToggle" class="tap-text" type="button">Tap to read ❤️</button>
-        </div>
-    </div>
- 
-    <div class="page-actions">
-        <button id="toAryanBtn" class="back-button" type="button">To Aryan's Letters →</button>
-        <button id="onePieceButton" class="back-button" type="button">🏴‍☠️ A Secret Map</button>
-    </div>
- 
-    <!-- ============================
-         WRITE A LETTER
-         ============================ -->
-    <div id="writeLetter" class="letter-popup-wrap">
-        <div class="write-letter-box">
-            <h2>Write me a letter</h2>
-            <form id="letterForm">
-                <input type="text" name="name" placeholder="Your name" required>
-                <textarea name="message" rows="6" placeholder="Write from the heart..." required></textarea>
-                <button type="submit" class="back-button">Send ❤️</button>
-                <p id="submitStatus"></p>
-            </form>
-        </div>
-    </div>
- 
-    <!-- ============================
-         MUSIC
-         ============================ -->
-    <div id="musicBox">
-        <button id="musicToggle" type="button" aria-label="Music">🎵❤️</button>
-        <div id="musicMenu" class="music-menu">
-            <div class="music-menu-title">🎵 Playlist</div>
-            <button class="song-btn" id="shuffleBtn" type="button">🔀 Shuffle</button>
-            <button class="song-btn" type="button" data-song="music/GehraHua.mp3">Gehra Hua</button>
-            <button class="song-btn" type="button" data-song="music/AajkalTereMerePyarKeCharche.mp3">Aajkal Tere Mere Pyar Ke Charche</button>
-            <button class="song-btn" type="button" data-song="music/BadheAcheLagteHai.mp3">Badhe Ache Lagte Hai</button>
-            <button class="song-btn" type="button" data-song="music/Barbaad.mp3">Barbaad</button>
-            <button class="song-btn" type="button" data-song="music/Dhun.mp3">Dhun</button>
-            <button class="song-btn" type="button" data-song="music/KyaMujhePyaarHai.mp3">Kya Mujhe Pyaar Hai</button>
-            <button class="song-btn" type="button" data-song="music/LikheJoKhatTujhe.mp3">Likhe Jo Khat Tujhe</button>
-            <button class="song-btn" type="button" data-song="music/PalPalDilKePass.mp3">Pal Pal Dil Ke Paas</button>
-            <button class="song-btn" type="button" data-song="music/TumSeHi.mp3">Tum Se Hi</button>
-            <button class="song-btn" type="button" data-song="music/YehTuneKya.mp3">Yeh Tune Kya</button>
-            <button class="song-btn" type="button" data-song="music/YehRatein.mp3">Yeh Ratein</button>
-        </div>
-    </div>
- 
-</div>
- 
-<!-- =========================================================
-     ARYAN'S PAGE
-     ========================================================= -->
-<div id="aryanPage">
- 
-    <div class="slideshowAryan" id="slideshowAryan"></div>
- 
-    <div class="page-title">
-        <h1>For Ankita</h1>
-        <p>My words, back to you.</p>
-    </div>
- 
-    <div class="aryan-container gallery">
-        <div class="aryan-card" id="aryanLetterCard">
-            <span id="viewerEmojiAryan" class="viewer-emoji"></span>
-            <h2 id="viewerTitleAryan"></h2>
-            <p class="letter-date" id="viewerDateAryan"></p>
-            <p class="letter-position" id="letterPositionAryan"></p>
-            <div id="viewerBodyAryan" class="viewer-body"></div>
-            <button id="letterToggleAryan" class="tap-text" type="button">Tap to read ❤️</button>
-        </div>
-    </div>
- 
-    <button id="backFromAryanBtn" type="button">← Back to Ankita's Letters</button>
- 
-    <div id="musicBoxAryan">
-        <button id="musicToggleAryan" type="button" aria-label="Music">🎵❤️</button>
-        <div id="musicMenuAryan" class="music-menu">
-            <div class="music-menu-title">🎵 Playlist</div>
-            <button class="song-btn" id="shuffleBtnAryan" type="button">🔀 Shuffle</button>
-            <button class="song-btn" type="button" data-song="music/TujhMeinRabDikhta.mp3">Tujh Mein Rab Dikhta</button>
-            <button class="song-btn" type="button" data-song="music/AaoNaa.mp3">Aao Naa</button>
-            <button class="song-btn" type="button" data-song="music/Aayat.mp3">Aayat</button>
-            <button class="song-btn" type="button" data-song="music/Afeemi.mp3">Afeemi</button>
-            <button class="song-btn" type="button" data-song="music/AyeUdiUdiUdi.mp3">Aye Udi Udi Udi</button>
-            <button class="song-btn" type="button" data-song="music/Birdsoffeather.mp3">Birds of a Feather</button>
-            <button class="song-btn" type="button" data-song="music/DilKyunYehMera.mp3">Dil Kyun Yeh Mera</button>
-            <button class="song-btn" type="button" data-song="music/FalakTak.mp3">Falak Tak</button>
-            <button class="song-btn" type="button" data-song="music/FinallyFoundyou.mp3">Finally Found You</button>
-            <button class="song-btn" type="button" data-song="music/Guzarish.mp3">Guzarish</button>
-            <button class="song-btn" type="button" data-song="music/ILoveYou.mp3">I Love You</button>
-            <button class="song-btn" type="button" data-song="music/IThinkTheyCallThisLove.mp3">I Think They Call This Love</button>
-            <button class="song-btn" type="button" data-song="music/IWannaBeYours.mp3">I Wanna Be Yours</button>
-            <button class="song-btn" type="button" data-song="music/IshqBina.mp3">Ishq Bina</button>
-            <button class="song-btn" type="button" data-song="music/JagGhoomeya.mp3">Jag Ghoomeya</button>
-            <button class="song-btn" type="button" data-song="music/MainYahaanHoon.mp3">Main Yahaan Hoon</button>
-            <button class="song-btn" type="button" data-song="music/MeriChunarUddUddJaye.mp3">Meri Chunar Udd Udd Jaye</button>
-            <button class="song-btn" type="button" data-song="music/Mitwa.mp3">Mitwa</button>
-            <button class="song-btn" type="button" data-song="music/NahiSamneTu.mp3">Nahi Samne Tu</button>
-            <button class="song-btn" type="button" data-song="music/OReyChhori.mp3">O Rey Chhori</button>
-            <button class="song-btn" type="button" data-song="music/TeraHoneLagaHoon.mp3">Tera Hone Laga Hoon</button>
-            <button class="song-btn" type="button" data-song="music/Teriore.mp3">Teri Ore</button>
-            <button class="song-btn" type="button" data-song="music/TumJoAayeJindagi.mp3">Tum Jo Aaye Zindagi</button>
-            <button class="song-btn" type="button" data-song="music/UffTeriAdaa.mp3">Uff Teri Adaa</button>
-            <button class="song-btn" type="button" data-song="music/saazni.mp3">Saazni</button>
-        </div>
-    </div>
- 
-</div>
- 
-<audio id="bgMusic" preload="auto"></audio>
- 
-<!-- =========================================================
+ <!-- =========================================================
      ONE PIECE — OUR GRAND LINE
-     ========================================================= -->
- 
-<section id="onePiecePage" class="one-piece-page">
- 
-    <!-- =====================================================
-         GRAND LINE OPENING
-         ===================================================== -->
- 
+ ========================================================= -->
+
+ <section id="onePiecePage" class="one-piece-page">
+
+    <!-- Opening Screen -->
     <div id="opOpening" class="op-opening">
- 
+
         <div class="op-opening-content">
- 
+
             <div class="op-compass">☸</div>
- 
-            <p class="op-small-text">EVERY ADVENTURE NEEDS A BEGINNING...</p>
- 
+
+            <p class="op-small-text">
+                EVERY ADVENTURE NEEDS A BEGINNING...
+            </p>
+
             <h1>OUR GRAND LINE</h1>
- 
+
             <div class="op-crossed">☠</div>
- 
-            <p class="op-couple-name">ANKITA <span>X</span> ARYAN</p>
- 
-            <button id="startGrandLine" class="op-main-button" type="button">SET SAIL ⚓</button>
- 
+
+            <p class="op-couple-name">
+                ANKITA <span>X</span> ARYAN
+            </p>
+
+            <button id="startGrandLine" class="op-main-button">
+                SET SAIL ⚓
+            </button>
+
         </div>
- 
+
     </div>
- 
- 
-    <!-- =====================================================
-         GRAND LINE CONTENT
-         ===================================================== -->
- 
+
+
+    <!-- Main Grand Line -->
     <div id="grandLineContent" class="grand-line-content">
- 
-        <!-- =================================================
-             HEADER
-             ================================================= -->
- 
+
+        <!-- Grand Line header: back on the left, music on the right -->
         <header class="op-header">
- 
-            <button id="backFromOnePiece" class="op-back-button" type="button">← BACK</button>
- 
-            <!-- =============================================
-                 GRAND LINE MUSIC
-                 ============================================= -->
- 
+            <button id="backFromOnePiece" class="op-back-button" type="button" aria-label="Back to main website">
+                ← BACK
+            </button>
+
             <div class="op-music-wrap">
- 
-                <button id="opMusicButton" class="op-music-button" type="button" aria-label="Grand Line music">🎵</button>
- 
-                <div id="opMusicMenu" class="op-music-menu">
- 
+                <button id="opMusicButton" class="op-music-button" type="button" aria-label="Grand Line music">
+                    🎵
+                </button>
+                <div id="opMusicMenu" class="op-music-menu" aria-label="Grand Line playlist">
                     <div class="op-music-menu-title">☠ GRAND LINE PLAYLIST</div>
- 
-                    <button class="op-song-btn" type="button" data-op-song="music/one_piece.mp3">🎵 One Piece Theme</button>
-                    <button class="op-song-btn" type="button" data-op-song="music/BinksSake.mp3">🍶 Binks' Sake</button>
-                    <button class="op-song-btn" type="button" data-op-song="music/BrandNewWorld.mp3">🌊 Brand New World</button>
-                    <button class="op-song-btn" type="button" data-op-song="music/FightTogether.mp3">⚔️ Fight Together</button>
-                    <button class="op-song-btn" type="button" data-op-song="music/MarvelousBattle.mp3">☠️ Marvelous Battle</button>
- 
+                    <button type="button" class="op-song-btn" data-op-song="music/onepiece.mp3">
+                        🎵 One Piece Theme
+                    </button>
                 </div>
- 
             </div>
- 
+
         </header>
- 
-        <!-- =================================================
-             GRAND LINE HOME
-             ================================================= -->
- 
+
+
+        <!-- Hero -->
         <section class="op-hero">
- 
+
+            <div class="op-cloud cloud-one"></div>
+            <div class="op-cloud cloud-two"></div>
+
             <div class="op-hero-content">
- 
-                <p class="op-small-text">THE ADVENTURE CONTINUES...</p>
- 
-                <h1>OUR GRAND LINE</h1>
- 
-                <div class="op-crossed">☠</div>
- 
-                <p>Every adventure has a story. Ours has islands, memories, laughter and a little bit of chaos.</p>
- 
+
+                <p class="op-kicker">
+                    TWO STRANGERS. ONE ADVENTURE.
+                </p>
+
+                <h2>
+                    THE VOYAGE OF<br>
+                    <span>ANKITA & ARYAN</span>
+                </h2>
+
+                <p>
+                    Somewhere between one match of CODM
+                    and a thousand memories,
+                    our adventure began.
+                </p>
+
+                <div class="op-grand-line-menu" aria-label="Grand Line destinations">
+                    <button type="button" class="op-destination-button" data-op-section="wantedSection">☠ WANTED</button>
+                    <button type="button" class="op-destination-button" data-op-section="mapSection">🗺 OUR WORLD MAP</button>
+                    <button type="button" class="op-destination-button" data-op-section="treasureSection">ONE PIECE</button>
+                </div>
+
+                
             </div>
- 
-            <!-- =============================================
-                 DESTINATION MENU
-                 ============================================= -->
- 
-            <div class="op-grand-line-menu">
- 
-                <button class="op-destination-button" data-op-section="wantedSection" type="button">☠ WANTED</button>
-                <button class="op-destination-button" data-op-section="mapSection" type="button">🗺 OUR WORLD MAP</button>
-                <button class="op-destination-button" data-op-section="treasureSection" type="button">💎 ONE PIECE</button>
- 
-            </div>
- 
+
         </section>
- 
-        <!-- =================================================
-             WANTED SECTION
-             ================================================= -->
- 
+
+
+        <!-- Wanted Posters -->
         <section id="wantedSection" class="op-section wanted-section op-destination-panel">
- 
-            <button class="op-panel-back" type="button" data-op-home>GRAND LINE</button>
- 
-            <div class="op-section-title">☠ WANTED ☠</div>
- 
-            <div class="wanted-posters">
- 
-                <div class="wanted-poster">
-                    <div class="wanted-top">WANTED</div>
-                    <div class="wanted-image">❤️</div>
-                    <div class="wanted-name">ARYAN GOYAL</div>
-                    <div class="wanted-reward">FOR STEALING ANKITA'S HEART</div>
-                </div>
- 
-                <div class="wanted-poster">
-                    <div class="wanted-top">WANTED</div>
-                    <div class="wanted-image">❤️</div>
-                    <div class="wanted-name">ANKITA</div>
-                    <div class="wanted-reward">FOR STEALING ARYAN'S HEART</div>
-                </div>
- 
+
+            <button type="button" class="op-panel-back" data-op-home>GRAND LINE</button>
+
+            <div class="op-section-title">
+                <span>☠</span>
+                WANTED
+                <span>☠</span>
             </div>
- 
-        </section>
- 
-        <!-- =================================================
-             WORLD MAP
-             ================================================= -->
- 
-        <section id="mapSection" class="op-section map-section op-destination-panel">
- 
-            <button class="op-panel-back" type="button" data-op-home>GRAND LINE</button>
- 
-            <div class="op-section-title">🗺️ OUR GRAND LINE 🗺️</div>
- 
-            <p class="map-intro">Every island holds a piece of our story.</p>
- 
-            <div class="grand-line-map">
- 
-                <div class="map-route"></div>
- 
-                <button class="memory-island island-one" data-memory="codm" type="button">🎮 CODM ISLAND</button>
-                <button class="memory-island island-two" data-memory="videocall" type="button">📞 VIDEO CALLS</button>
-                <button class="memory-island island-three" data-memory="Mysore" type="button">🏰✨ MYSORE ISLAND</button>
-                <button class="memory-island island-four" data-memory="Banglore" type="button">🏰 BANGLORE ISLAND</button>
-                <button class="memory-island island-five" data-memory="Mumbai" type="button">🌊 MUMBAI ISLAND</button>
- 
-                <div class="map-ship">⛵</div>
- 
-            </div>
- 
-        </section>
- 
-        <!-- =================================================
-             MEMORY POLAROID MODAL
-             ================================================= -->
- 
-        <div id="memoryModal" class="memory-modal">
- 
-            <button id="closeMemory" class="close-memory" type="button" aria-label="Close memory">×</button>
- 
-            <div class="memory-modal-box">
- 
-                <div id="memoryIcon" class="memory-modal-icon">❤️</div>
- 
-                <p id="memoryChapter" class="memory-chapter">CHAPTER I</p>
- 
-                <h2 id="memoryTitle">Our Beginning</h2>
- 
-                <div class="memory-line"></div>
- 
-                <p id="memoryText">Our story begins here.</p>
- 
-                <!-- =========================================
-                     MEMORY POLAROID
-                     ========================================= -->
- 
-                <div class="memory-polaroid">
- 
-                    <button id="memoryPhotoPrev" class="memory-photo-nav memory-photo-prev" type="button" aria-label="Previous photo">‹</button>
- 
-                    <div class="memory-polaroid-frame">
-                        <span class="polaroid-pin"></span>
-                        <img id="memoryPhoto" src="" alt="Our memory">
-                        <p id="memoryPhotoCaption"></p>
+
+            <div class="wanted-container">
+
+                <div class="wanted-poster">
+
+                    <div class="wanted-top">
+                        WANTED
                     </div>
- 
-                    <button id="memoryPhotoNext" class="memory-photo-nav memory-photo-next" type="button" aria-label="Next photo">›</button>
- 
+
+                    <div class="wanted-photo">
+                        <span>❤️</span>
+                    </div>
+
+                    <h3>ARYAN GOYAL</h3>
+
+                    <p class="wanted-subtitle">
+                        DEAD OR ALIVE
+                    </p>
+
+                    <p class="bounty">
+                        BOUNTY: ∞ ❤️
+                    </p>
+
+                    <p class="crime">
+                        Crime:<br>
+                        Stealing Ankita's heart.
+                    </p>
+
                 </div>
+
+
+                <div class="wanted-poster">
+
+                    <div class="wanted-top">
+                        WANTED
+                    </div>
+
+                    <div class="wanted-photo">
+                        <span>🌸</span>
+                    </div>
+
+                    <h3>ANKITA</h3>
+
+                    <p class="wanted-subtitle">
+                        DEAD OR ALIVE
+                    </p>
+
+                    <p class="bounty">
+                        BOUNTY: ∞ ❤️
+                    </p>
+
+                    <p class="crime">
+                        Crime:<br>
+                        Making Aryan fall in love.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Grand Line Map -->
+        <section id="mapSection" class="op-section map-section op-destination-panel">
+
+            <button type="button" class="op-panel-back" data-op-home>GRAND LINE</button>
+
+            <div class="op-section-title">
+                <span>🗺️</span>
+                OUR GRAND LINE
+                <span>🗺️</span>
+            </div>
+
+            <p class="map-intro">
+                Every island holds a piece of our story.
+            </p>
+
+            <div class="grand-line-map">
+
+                <div class="map-route"></div>
+
+                <!-- Island 1 -->
+                <button class="memory-island island-one"
+                        data-memory="codm">
+                    <span class="island-icon">🎮</span>
+                    <strong>CODM<br>ISLAND</strong>
+                </button>
+
+                <!-- Island 2 -->
+                <button class="memory-island island-two"
+                        data-memory="videocall">
+                    <span class="island-icon">📞</span>
+                    <strong>VIDEO<br>CALLS</strong>
+                </button>
+
+                <!-- Island 3 -->
+                <button class="memory-island island-three"
+                        data-memory="Mysore">
+                    <span class="island-icon">🏰✨</span>
+                    <strong>MYSORE<br>ISLAND</strong>
+                </button>
+
+                <!-- Island 4 -->
+                <button class="memory-island island-four"
+                        data-memory="Banglore">
+                    <span class="island-icon">🏰</span>
+                    <strong>BANGLORE<br>ISLAND</strong>
+                </button>
+
+                <!-- Island 5 -->
+                <button class="memory-island island-five"
+                        data-memory="Mumbai">
+                    <span class="island-icon">🌊</span>
+                    <strong>MUMBAI<br>ISLAND</strong>
+                </button>
+
+            
+
+                <div class="map-ship">
+                    ⛵
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+     MEMORY / POLAROID POPUP
+========================= -->
+
+<div id="memoryModal" class="memory-modal">
+
+    <div class="memory-modal-box">
+
+        <button
+            id="closeMemory"
+            class="close-memory"
+            type="button"
+            aria-label="Close memory">
+            ×
+        </button>
+
+        <div id="memoryIcon" class="memory-modal-icon">❤️</div>
+
+        <p id="memoryChapter" class="memory-chapter">
+            CHAPTER I
+        </p>
+
+        <h2 id="memoryTitle">Our Beginning</h2>
+
+        <div class="memory-line"></div>
+
+        <p id="memoryText">
+            Our story begins here.
+        </p>
+
+        <div class="memory-polaroid">
+
+            <button
+                id="memoryPhotoPrev"
+                class="memory-photo-nav memory-photo-prev"
+                type="button">
+                ‹
+            </button>
+
+            <div class="memory-polaroid-frame">
+
+                <span class="polaroid-pin"></span>
+
+                <img
+                    id="memoryPhoto"
+                    src=""
+                    alt="Our memory">
+
+                <p id="memoryPhotoCaption"></p>
+
+            </div>
+
+            <button
+                id="memoryPhotoNext"
+                class="memory-photo-nav memory-photo-next"
+                type="button">
+                ›
+            </button>
+
+        </div>
+
+        <p
+            id="memoryPhotoCounter"
+            class="memory-photo-counter">
+            1 / 1
+        </p>
+
+    </div>
+
+</div>
+
+        <!-- Treasure -->
+        <section id="treasureSection" class="op-section treasure-section op-destination-panel">
+
+            <button type="button" class="op-panel-back" data-op-home>GRAND LINE</button>
+
+            <div class="op-section-title">
+                ☠ THE FINAL ISLAND ☠
+            </div>
+
+            <p class="treasure-intro">
+                You've reached the end of the Grand Line.
+            </p>
+
+            <p>
+                But every great adventure has one final treasure...
+            </p>
+
+            <div class="treasure-area">
+
+                <button id="treasureChest"
+                        class="treasure-chest">
+
+                    <div class="chest-lock">
+                        🔒
+                    </div>
+
+                    <div class="chest-lid"></div>
+
+                    <div class="chest-body">
+                        💎
+                    </div>
+
+                </button>
+
+                <p class="chest-hint">
+                    TAP THE CHEST
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- Treasure Message -->
+        <div id="treasureMessage"
+             class="treasure-message">
+
+            <div class="treasure-message-box">
+
+                <div class="treasure-heart">
+                    ❤️
+                </div>
+
+                <p>
+                    IF THIS JOURNEY<br>
+                    HAD A TREASURE...
+                </p>
+
+                <h2>
+                    IT WOULD BE YOU.
+                </h2>
+
+                <div class="treasure-sign">
+                    — Ankita ❤️
+                </div>
+
+                <button id="closeTreasure"
+                        class="op-main-button">
+                    KEEP SAILING ⚓
+                </button>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+ </section>
+
+
+ <!-- One Piece Music -->
+ <audio id="onePieceMusic"
+       preload="auto">
+
+    <source src="music/onepiece.mp3" type="audio/mpeg">
+
+ </audio>
  
-                <p id="memoryPhotoCounter" class="memory-photo-counter">1 / 1</p>
+    <!-- Background Music -->
+    <audio id="bgMusic" preload="auto"></audio>
+<!-- ================= INTRO PAGE ================= -->
+ 
+    <section id="intro">
+ 
+        <img src="images/image24.jpeg" class="cover" alt="Cover Image">
+ 
+        <div class="content">
+ 
+            <h1>"We are mortals, but our love will remain immortal in these letters."</h1>
+ 
+            <h3>From Ankita & Aryan❤️</h3>
+ 
+            <p>
+                Welcome to our little corner of the internet.
+                <br>
+                Every letter here was written with love.
+                <br>
+                Every letter tells a story.
+                <br>
+                Every letter carries emotions we never want to forget.
+                <br>
+                Whenever we miss each other, whenever we feel light or heavy.
+                <br>
+                I hope we both come here and feel close to each other.
+                <br>
+                This page here would carry all our emotions and memories.
+            </p>
+ 
+            <button id="openButton">
+                Start Our Story ❤️
+            </button>
+ 
+        </div>
+ 
+    </section>
+ 
+    <!-- ================= LETTERS PAGE ================= -->
+     <section id="lettersPage">
+        <div id="musicBox">
+ 
+    <button id="musicToggle">
+        🎵❤️
+    </button>
+ 
+    <div id="musicMenu">
+ 
+        <button class="song-btn" data-song="music/GehraHua.mp3">
+            🌙 Gehra Hua
+        </button>
+        <button class="song-btn" data-song="music/AajkalTereMerePyarKeCharche.mp3">
+            😗 Aaj Kal Tere Mere Pyar Ke Charche
+        </button>
+        <button class="song-btn" data-song="music/BadheAcheLagteHai.mp3">
+            💕 Bade Ache Lagte Hai
+        </button>
+        <button class="song-btn" data-song="music/Barbaad.mp3">
+            🫶🏻 Barbaad
+        </button>
+        <button class="song-btn" data-song="music/Dhun.mp3">
+            🎶 Dhun
+        </button>
+        <button class="song-btn" data-song="music/KyaMujhePyaarHai.mp3">
+            ❤️ Kya Mujhe Pyaar Hai
+        </button>
+        <button class="song-btn" data-song="music/LikheJoKhatTujhe.mp3">
+            ✍🏻 Likhe Jo Khat Tujhe 
+        </button>
+        <button class="song-btn" data-song="music/PalPalDilKePaas.mp3">
+            💌 Pal Pal Dil Ke Paas
+        </button>
+        <button class="song-btn" data-song="music/TumSeHi.mp3">
+            💜 Tum Se Hi
+        </button>
+        <button class="song-btn" data-song="music/YeTuneKyaKiya.mp3">
+            ❔ Ye Tune Kya Kiya
+        </button>
+        <button class="song-btn" data-song="music/YehRatein.mp3">
+            ✨ Yeh Ratein
+        </button>
+        <button id="shuffleBtn">
+            🎲 Surprise Song
+        </button>
+    </div>
+ 
+</div>
+    
+ 
+        <!-- Background Slideshow -->
+        <div id="slideshow"></div>
+ 
+        <!-- Dark Overlay -->
+        <div class="overlay">
+            <div id="journeyIntro">
+ 
+             <h2 id="journeyTitle">
+             Every story has a beginning...
+             </h2>
+ 
+         <div id="loveCounter">
+ 
+         <h1>❤️ It's been  ❤️</h1>
+         <p id="counter"></p>
+         <h3>Since we have said "Hiii"</h3>
+ 
+           <p class="quote">
+            "Every second with you has become my favourite memory and we got so many more to make"
+            </p>
+ 
+        </div>
+ 
+</div>
+ 
+            <h1 id="mainTitle">To, Dr. Aryan Goyal</h1>
+ 
+            <p class="subtitle" id="mainSubtitle">
+                From, Ankita.
+            </p>
+            <p class="subtitle" id="mainSubtitle2">
+                Every envelope here hides a piece of my heart
+            </p>
+ 
+            <div class="gallery" id="gallery">
+
+    <div class="letterCardWrap">
+
+        <!-- Letter Preview -->
+        <div class="letterCard" id="mainLetterCard">
+
+            <div
+                class="letterCardEmoji"
+                id="viewerEmoji">
+            </div>
+
+            <h2 id="viewerTitle"></h2>
+
+            <h6 id="viewerDate"></h6>
+
+            <button
+                type="button"
+                class="letterCardToggle"
+                id="letterToggle">
+                Tap to read ❤️
+            </button>
+
+            <div
+                class="letterCardBody"
+                id="viewerBody">
+            </div>
+
+            <span
+                class="letterCardPosition"
+                id="letterPosition">
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- Only two action buttons -->
+    <div class="actionRow">
+
+        <button
+            type="button"
+            onclick="openLetter('writeLetter')">
+            ✍️ Write a Letter
+        </button>
+
+        <button
+            type="button"
+            id="toAryanBtn">
+            💌 His Letters
+        </button>
+
+        <button
+            type="button"
+            id="onePieceButton"
+            class="one-piece-entry-button">
+            🏴‍☠️ Our Grand Line
+        </button>
+
+    </div>
+</div>
+
+            </div>
+ 
+        </div>
+ 
+    </section>
+ 
+    <!-- ================= ARYAN'S LETTERS PAGE ================= -->
+     <section id="aryanPage">
+ 
+        <div id="musicBoxAryan">
+ 
+            <button id="musicToggleAryan">
+                🎵❤️
+            </button>
+ 
+            <div id="musicMenuAryan">
+ 
+                <button class="song-btn" data-song="music/TujhMeinRabDikhta.mp3">
+                 😇 Tujh Mein Rab Dikhta Hai
+                </button>
+                 <button class="song-btn" data-song="music/AaoNaa.mp3">
+                  ☀️ Aao Naa
+                </button>
+                 <button class="song-btn" data-song="music/Aayat.mp3">
+                  ✨ Aayat
+                </button>
+               <button class="song-btn" data-song="music/Afeemi.mp3">
+                  😼 Afeemi
+                </button>
+               <button class="song-btn" data-song="music/AyeUdiUdiUdi.mp3">
+                  😸 Aye Udi Udi
+                </button>
+               <button class="song-btn" data-song="music/Birdsoffeather.mp3">
+                  🪶 Birds of feather
+                </button>
+                <button class="song-btn" data-song="music/DilKyunYehMera.mp3">
+                  🫀 Dil Kyun Yeh Mera
+                </button>
+                <button class="song-btn" data-song="music/FalakTak.mp3">
+                   🌝 Falak Tak 
+                </button>
+                <button class="song-btn" data-song="music/FinallyFoundyou.mp3">
+                    😊 Finally Found You
+                </button>
+                <button class="song-btn" data-song="music/Guzarish.mp3">
+                   😇 Guzarish
+                </button>
+                <button class="song-btn" data-song="music/ILoveYou.mp3">
+                  🫶🏻 I Love You
+                 </button>
+                <button class="song-btn" data-song="music/IThinkTheyCallThisLove.mp3">
+                   ❤️ I Think They Call This Love 
+                </button>
+                 <button class="song-btn" data-song="music/IWannaBeYours.mp3">
+                  😌 I Wanna Be Yours
+                 </button>
+                  <button class="song-btn" data-song="music/IshqBina.mp3">
+                  😌 Ishq Bina
+                 </button>
+                 <button class="song-btn" data-song="music/JagGhoomeya.mp3">
+                  🌏 Jag Ghoomeya
+                 </button>
+                <button class="song-btn" data-song="music/MainYahaanHoon.mp3">
+                   🫶🏻 Main Yahaan Hoon
+                </button>
+                <button class="song-btn" data-song="music/MeriChunarUddUddJaye.mp3">
+                   🫶🏻 Meri Chunar Udd Udd Jaye
+                </button>
+                <button class="song-btn" data-song="music/Mitwaa.mp3">
+                  😘 Mitwaa
+                 </button>
+                <button class="song-btn" data-song="music/NahiSamneTu.mp3">
+                  😘 Nahi Samne Tu 
+                 </button>
+                <button class="song-btn" data-song="music/OReyChhori.mp3">
+                  😘 O Rey Chhori
+                 </button>
+                 <button class="song-btn" data-song="music/TeraHoneLagaHoon.mp3">
+                   😚 Tera Hone Laga Hoon
+                </button>
+                <button class="song-btn" data-song="music/Teriore.mp3">
+                   😌 Teri Ore
+                </button>
+                <button class="song-btn" data-song="music/TumJoAayeJindagi.mp3">
+                   😌 Tum Jo Aaye Jindagi Mein
+                </button>
+                <button class="song-btn" data-song="music/UffTeriAdaa.mp3">
+                  💜 Uff Teri Adaa
+                 </button>
+                <button class="song-btn" data-song="music/saazni.mp3">
+                  🌧️ Saazni
+                </button>
+                <button id="shuffleBtnAryan">
+                    🎲 Surprise Song
+                </button>
  
             </div>
  
         </div>
  
-        <!-- =================================================
-             TREASURE SECTION
-             ================================================= -->
+        <!-- Background Slideshow -->
+        <div id="slideshowAryan"></div>
  
-        <section id="treasureSection" class="op-section treasure-section op-destination-panel">
+        <!-- Dark Overlay -->
+        <div class="overlay">
  
-            <button type="button" class="op-panel-back" data-op-home>GRAND LINE</button>
+            <button id="backFromAryanBtn" style="margin-bottom:20px;">
+                ← Back
+            </button>
  
-            <div class="op-section-title">💎 THE ONE PIECE 💎</div>
- 
-            <div class="treasure-chest-wrapper">
- 
-                <button id="treasureChest" class="treasure-chest" type="button">🧰</button>
- 
-                <p>There is one treasure waiting for you...</p>
- 
+            <h1>To, Pandi</h1>
+            
+            <p class="subtitle">
+                From, Aryan.
+            </p>
+            <p class="subtitle">
+                You are and always will be, the home I belong to my love.
+            </p>
+
+            <div class="gallery">
+
+    <div class="letterCardWrap">
+
+        <div class="letterCard" id="aryanLetterCard">
+
+            <div
+                class="letterCardEmoji"
+                id="viewerEmojiAryan">
             </div>
- 
-        </section>
- 
-        <!-- =================================================
-             TREASURE MESSAGE
-             ================================================= -->
- 
-        <div id="treasureMessage" class="treasure-message">
- 
-            <button id="closeTreasure" type="button" aria-label="Close treasure">×</button>
- 
-            <div class="treasure-message-content">
- 
-                <div class="treasure-icon">❤️</div>
- 
-                <h2>YOU FOUND THE ONE PIECE</h2>
- 
-                <p>The greatest treasure wasn't hidden on an island.</p>
- 
-                <p>It was us finding each other.</p>
- 
-                <p class="treasure-final">WE ARE HOME. ❤️</p>
- 
+
+            <h2 id="viewerTitleAryan"></h2>
+
+            <h6 id="viewerDateAryan"></h6>
+
+            <button
+                type="button"
+                class="letterCardToggle"
+                id="letterToggleAryan">
+                Tap to read ❤️
+            </button>
+
+            <div
+                class="letterCardBody"
+                id="viewerBodyAryan">
             </div>
+
+            <span
+                class="letterCardPosition"
+                id="letterPositionAryan">
+            </span>
+
+        </div>
+
+    </div>
+
+</div>
+ 
+    </section>
+
+    <!-- Write a Letter Popup -->
+ 
+    <div id="writeLetter" class="letterPopup">
+ 
+        <div class="letterContent">
+ 
+            <span class="close" onclick="closeLetter('writeLetter')">&times;</span>
+ 
+            <h1>Write Ankita a Letter ✍️</h1>
+ 
+            <form id="letterForm">
+                <input type="text" name="title" placeholder="Give it a title..."
+                    style="width:100%; margin-bottom:10px; padding:8px; border-radius:6px; border:1px solid #ccc; box-sizing:border-box;">
+ 
+                <textarea name="message" placeholder="Write your heart out..." rows="10" required
+                    style="width:100%; padding:8px; border-radius:6px; border:1px solid #ccc; box-sizing:border-box;"></textarea>
+ 
+                <button type="submit" style="margin-top:15px;">Send this Letter ❤️</button>
+            </form>
+            <p id="submitStatus" style="margin-top:10px;"></p>
  
         </div>
  
     </div>
  
-</section>
+ <!-- =====================================================
+     REUSABLE ONE-TIME QUIZ
+     ===================================================== -->
+
+<div id="quizSurprise" class="quiz-overlay">
+
+    <div class="quiz-box">
+
+        <!-- ================= QUIZ INTRO ================= -->
+
+        <div id="quizWelcome">
+
+            <div class="quiz-heart">💌</div>
+
+            <h1 id="quizWelcomeTitle">
+                Wait, Pandu...
+            </h1>
+
+            <p id="quizWelcomeText">
+                Before you enter our little world,
+                I have one tiny surprise for you.
+            </p>
+
+            <p class="quiz-small-text">
+                Let's see how well you remember us. ❤️
+            </p>
+
+            <button id="beginQuizBtn">
+                I'm ready ❤️
+            </button>
+
+        </div>
+
+
+        <!-- ================= QUESTIONS ================= -->
+
+        <div id="quizQuestions" style="display:none;">
+
+            <div class="quiz-progress">
+                <span id="quizNumber">
+                    Question 1 of 8
+                </span>
+            </div>
+
+            <h2 id="quizQuestion"></h2>
+
+            <div id="quizOptions"></div>
+
+            <p id="quizFeedback"></p>
+
+            <button id="nextQuestionBtn" style="display:none;">
+                Next ❤️
+            </button>
+
+        </div>
+
+
+        <!-- ================= RESULT ================= -->
+
+        <div id="quizResult" style="display:none;">
+
+            <div id="quizResultEmoji">
+                ❤️
+            </div>
+
+            <h1 id="quizResultTitle">
+                You know us.
+            </h1>
+
+            <p id="quizScore"></p>
+
+            <p id="quizFinalMessage">
+                But there is one thing you will never
+                need to be tested on...
+            </p>
+
+            <h2 id="quizFinalLine">
+                We are home. ❤️
+            </h2>
+
+            <button id="enterOurStoryBtn">
+                Enter Our Story ❤️
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+    <script src="script.js"></script>
  
-<!-- =========================================================
-     ONE PIECE AUDIO
-     ========================================================= -->
- 
-<audio id="onePieceMusic" preload="auto">
-    <source src="music/one_piece.mp3" type="audio/mpeg">
-</audio>
- 
-<script src="script.js"></script>
 </body>
+ 
 </html>
+ 
