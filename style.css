@@ -2195,3 +2195,199 @@ body.one-piece-active #musicBoxAryan {
 /* =========================================================
    END OF STYLE.CSS
    ========================================================= */
+
+
+/* =========================================================
+   ADDITIONS — fills in pieces script.js/index.html need
+   that weren't styled yet
+   ========================================================= */
+
+/* ---- full-bleed slideshow backdrops ---- */
+.slideshow,
+.slideshowAryan {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-size: cover;
+    background-position: center;
+    transition: background-image 0.8s ease-in-out;
+}
+
+/* ---- journey intro (plays once after opening) ---- */
+#journeyIntro {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 5500;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.65);
+    padding: 20px;
+}
+
+#journeyTitle {
+    font-size: clamp(1.6rem, 5vw, 3rem);
+    opacity: 0;
+    transition: opacity 0.6s ease;
+}
+
+#loveCounter {
+    opacity: 0;
+    transition: opacity 0.6s ease;
+}
+
+.love-counter-label {
+    font-size: 1rem;
+    margin-bottom: 10px;
+    opacity: 0.85;
+}
+
+#counter {
+    font-size: clamp(1.4rem, 5vw, 2.4rem);
+    letter-spacing: 1px;
+}
+
+/* ---- letter viewer card internals ---- */
+.viewer-emoji {
+    display: block;
+    font-size: 1.6rem;
+    margin-bottom: 6px;
+}
+
+.letter-position {
+    font-size: 0.8rem;
+    opacity: 0.6;
+    margin-top: 4px;
+}
+
+.viewer-body {
+    margin-top: 14px;
+    line-height: 1.8;
+}
+
+.viewer-body p {
+    margin-bottom: 14px;
+}
+
+.tap-text {
+    background: transparent;
+    color: inherit;
+    text-decoration: underline;
+}
+
+/* ---- page action buttons row ---- */
+.page-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+    margin: 30px auto 0;
+    width: min(900px, 94%);
+}
+
+/* ---- write-a-letter card ---- */
+.write-letter-box {
+    width: min(700px, 92%);
+    margin: 40px auto 0;
+    padding: 25px;
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.75);
+    border-radius: 18px;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    text-align: center;
+}
+
+.write-letter-box h2 {
+    margin-bottom: 15px;
+}
+
+#letterForm {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+#letterForm input,
+#letterForm textarea {
+    font-family: inherit;
+    font-size: 1rem;
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    background: rgba(255, 255, 255, 0.8);
+    resize: vertical;
+}
+
+#submitStatus {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+/* ---- music dropdown menu (main + Aryan pages) ---- */
+.music-menu {
+    position: absolute;
+    bottom: calc(100% + 12px);
+    right: 0;
+    width: min(240px, 75vw);
+    max-height: 60vh;
+    overflow-y: auto;
+    padding: 10px;
+    border-radius: 12px;
+    background: rgba(30, 20, 15, 0.92);
+    color: #fff;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(6px);
+    transition: opacity 0.25s ease, visibility 0.25s ease, transform 0.25s ease;
+}
+
+.music-menu.show {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+.music-menu-title {
+    padding: 6px 4px 10px;
+    font-size: 0.85rem;
+    opacity: 0.75;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    margin-bottom: 6px;
+}
+
+.song-btn {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 9px 10px;
+    margin: 3px 0;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.06);
+    color: #fff;
+    font-size: 0.82rem;
+}
+
+.song-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.song-btn.active {
+    background: rgba(255, 200, 150, 0.25);
+}
+
+#musicBox,
+#musicBoxAryan {
+    /* keep existing fixed circle-button styles from above,
+       just make sure the dropdown has a positioned parent */
+    position: fixed;
+}
