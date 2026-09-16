@@ -1872,77 +1872,48 @@ document.addEventListener(
         const onePiecePlaylist = [
             {
                 name: "One Piece Theme",
-                src: "music/onepiece.mp3"
-            }
+                src: "music/one_piece.mp3"
+            },
+             {
+                name: "Binks Sake",
+                src: "music/BinksSake.mp3"
+            },
+             {
+                name: "Brand New World",
+                src: "music/BrandNewWorld.mp3"
+            },
+             {
+                name: "Fight Together",
+                src: "music/FightTogether.mp3"
+            },
+             {
+                name: "Marvelous Battle",
+                src: "music/MarvelousBattle.mp3"
+            },
         ];
 
         let opPlaylistIndex = 0;
         let opMusicPlaying = false;
+        let opCurrentIndex = 0;
 
 
-        function playOpSong(
-            index,
-            autoplay = true
-        ) {
+     function playOpSong(index) {
 
-            if (
-                !onePieceMusic ||
-                !onePiecePlaylist.length
-            ) {
-                return;
-            }
+    if (!onePiecePlaylist[index]) return;
 
+    opCurrentIndex = index;
 
-            opPlaylistIndex =
-                (
-                    index +
-                    onePiecePlaylist.length
-                ) %
-                onePiecePlaylist.length;
+    const song = onePiecePlaylist[index];
 
+    onePieceMusic.src = song.src;
+    onePieceMusic.load();
 
-            onePieceMusic.src =
-                onePiecePlaylist[
-                    opPlaylistIndex
-                ].src;
+    onePieceMusic.play().catch(error => {
+        console.log("Grand Line music could not autoplay:", error);
+    });
 
-            onePieceMusic.load();
-
-
-            if (autoplay) {
-
-                onePieceMusic
-                    .play()
-                    .then(() => {
-
-                        opMusicPlaying =
-                            true;
-
-                        if (musicButton) {
-
-                            musicButton.textContent =
-                                "🎶";
-
-                        }
-
-                    })
-                    .catch(() => {
-
-                        opMusicPlaying =
-                            false;
-
-                        if (musicButton) {
-
-                            musicButton.textContent =
-                                "🎵";
-
-                        }
-
-                    });
-
-            }
-
-        }
+    updateOpSongButton();
+}
 
 
         // =====================================================
@@ -2009,63 +1980,26 @@ document.addEventListener(
         }
 
 
-        // =====================================================
-        // START GRAND LINE
-        // =====================================================
+       /* =========================================================
+   START GRAND LINE
+   ========================================================= */
 
-        if (startButton) {
+startButton.addEventListener("click", () => {
 
-            startButton.addEventListener(
-                "click",
-                () => {
+    opening.style.display = "none";
 
-                    if (opening) {
+    setTimeout(() => {
+        grandLine.classList.add("op-grand-line-visible");
+    }, 850);
 
-                        opening.classList.add(
-                            "hide"
-                        );
+    // Always start Grand Line with its FIRST song
+    const firstGrandLineSong = onePiecePlaylist[0];
 
-                    }
+    if (firstGrandLineSong) {
+        playOpSong(0);
+    }
 
-
-                    setTimeout(() => {
-
-                        if (
-                            onePiecePage &&
-                            onePiecePage.style.display !==
-                                "none" &&
-                            grandLine
-                        ) {
-
-                            grandLine.classList.add(
-                                "op-grand-line-visible"
-                            );
-
-                        }
-
-                    }, 850);
-
-
-                    document.body.style.overflow =
-                        "hidden";
-
-
-                    if (onePieceMusic) {
-
-                        onePieceMusic.volume =
-                            0.35;
-
-                        playOpSong(
-                            opPlaylistIndex,
-                            true
-                        );
-
-                    }
-
-                }
-            );
-
-        }
+});
 
 
         // =====================================================
@@ -2690,20 +2624,16 @@ document.querySelectorAll(".memory-island").forEach(island => {
 
 
 /* =========================================================
-   CLOSE BUTTON
+   CLOSE MEMORY POLAROID
    ========================================================= */
 
 if (closeMemory) {
-
-    closeMemory.addEventListener("click", function (event) {
-
+    closeMemory.onclick = function (event) {
         event.preventDefault();
         event.stopPropagation();
 
         closeMemoryModal();
-
-    });
-
+    };
 }
 
 
@@ -2770,22 +2700,6 @@ if (memoryModal) {
 }
 
 
-/* =========================================================
-   ESCAPE KEY
-   ========================================================= */
-
-document.addEventListener("keydown", function (event) {
-
-    if (event.key !== "Escape") return;
-
-    if (
-        memoryModal &&
-        memoryModal.classList.contains("active")
-    ) {
-        closeMemoryModal();
-    }
-
-});
 
 
         // =========================================================
