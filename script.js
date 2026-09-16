@@ -2960,12 +2960,26 @@ document.addEventListener(
                 );
 
 
-                memoryPhoto.src =
+                                memoryPhoto.src =
                     photo;
+
+
+                memoryPhoto.onload =
+                    function () {
+
+                        memoryPhoto.classList.remove(
+                            "photo-changing"
+                        );
+
+                    };
 
 
                 memoryPhoto.onerror =
                     function () {
+
+                        memoryPhoto.classList.remove(
+                            "photo-changing"
+                        );
 
                         console.warn(
                             "Could not load memory photo:",
