@@ -3076,7 +3076,8 @@ button {
     isolation: isolate;
     background:
         linear-gradient(rgba(2, 48, 88, .24), rgba(1, 27, 58, .40)),
-        url("images/sunny.png") center center / cover no-repeat;
+        url("images/sunny.png") center center / cover no-repeat,
+        #0879c9;
     color: var(--op-white);
 }
 
