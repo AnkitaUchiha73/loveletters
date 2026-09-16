@@ -3309,7 +3309,10 @@ body.one-piece-active #musicBoxAryan {
     top: calc(100% + 10px);
     right: 0;
     width: min(260px, 78vw);
+    max-height:300px;
     padding: 12px;
+    overflow-y:auto;
+    overflow-x:hidden;
     border: 2px solid #e8c86b;
     border-radius: 12px;
     background: rgba(7, 26, 44, .97);
@@ -3337,7 +3340,9 @@ body.one-piece-active #musicBoxAryan {
 
 .one-piece-page .op-song-btn {
     width: 100%;
-    padding: 10px 12px;
+    padding: 6px 9px;
+    margin: 2px 0;
+    line-height:1.2;
     border: 1px solid rgba(248,217,121,.65);
     border-radius: 8px;
     background: rgba(255,255,255,.08);
