@@ -820,15 +820,23 @@ button:hover{
 #journeyIntro{
     position: fixed;
     inset: 0;
+
+    width: 100vw;
+    height: 100vh;
+
+    background: #000;
+
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
+
     color: white;
-    opacity: 0;              /* keep your existing fade-in behavior */
-    z-index: 100;
-    pointer-events: none;    /* so it doesn't block clicks while invisible */
+
+    opacity: 0;
+    z-index: 9999;
+    pointer-events: none;
 }
 
 #journeyTitle{
@@ -2048,14 +2056,6 @@ button:hover{
     display: none !important;
 }
 
-@font-face {
-    font-family: "One Piece";
-    src: url("onepiecefont.ttf") format("truetype");
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-}
-
 :root {
     --op-blue: #0879c9;
     --op-deep-blue: #034f91;
@@ -2069,11 +2069,6 @@ button:hover{
     --op-shadow: rgba(0, 33, 65, .42);
 }
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
 
 html {
     scroll-behavior: smooth;
@@ -2081,7 +2076,7 @@ html {
 
 body {
     min-height: 100%;
-    background: #0879c9;
+    background: black;
 }
 
 button {
