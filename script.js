@@ -16,7 +16,6 @@ const musicMenu = document.getElementById("musicMenu");
 const musicToggleAryan = document.getElementById("musicToggleAryan");
 const musicMenuAryan = document.getElementById("musicMenuAryan");
 
-
 // ============================
 // MUSIC TOGGLE
 // ============================
@@ -49,7 +48,6 @@ if (music) {
     });
 }
 
-
 // ============================
 // MUSIC PLAYLISTS
 // ============================
@@ -64,7 +62,7 @@ const songs = [
     "music/LikheJoKhatTujhe.mp3",
     "music/PalPalDilKePass.mp3",
     "music/TumSeHi.mp3",
-    "music/YehTuneKya.mp3",
+    "music/YeTuneKyaKiya.mp3",
     "music/YehRatein.mp3"
 ];
 
@@ -102,7 +100,6 @@ if (music) {
     music.src = currentSong;
 }
 
-
 // ============================
 // SONG SWITCHER
 // ============================
@@ -112,20 +109,15 @@ const shuffleBtn = document.getElementById("shuffleBtn");
 const shuffleBtnAryan = document.getElementById("shuffleBtnAryan");
 
 function updateActiveSongButton() {
-
     songButtons.forEach(btn => {
-
         btn.classList.toggle(
             "active",
             btn.dataset.song === currentSong
         );
-
     });
-
 }
 
 songButtons.forEach(btn => {
-
     btn.addEventListener("click", () => {
 
         if (
@@ -147,11 +139,8 @@ songButtons.forEach(btn => {
         });
 
         updateActiveSongButton();
-
     });
-
 });
-
 
 function playRandomFrom(playlist) {
 
@@ -179,34 +168,25 @@ function playRandomFrom(playlist) {
     });
 
     updateActiveSongButton();
-
 }
 
-
 if (shuffleBtn) {
-
     shuffleBtn.addEventListener("click", () => {
         playRandomFrom(songs);
     });
-
 }
 
-
 if (shuffleBtnAryan) {
-
     shuffleBtnAryan.addEventListener("click", () => {
         playRandomFrom(aryanSongs);
     });
-
 }
-
 
 // ============================
 // AUTO NEXT SONG
 // ============================
 
 if (music) {
-
     music.addEventListener("ended", () => {
 
         const activePlaylist =
@@ -216,11 +196,8 @@ if (music) {
                 : songs;
 
         playRandomFrom(activePlaylist);
-
     });
-
 }
-
 
 // ============================
 // BACKGROUND IMAGES
@@ -260,7 +237,6 @@ const images = [
     "images/image34.jpeg"
 ];
 
-
 const aryanImages = [
     "images/aryan1.jpeg",
     "images/aryan2.jpeg",
@@ -286,10 +262,8 @@ const aryanImages = [
     "images/aryan22.jpeg"
 ];
 
-
 let currentImage = 0;
 let currentAryanImage = 0;
-
 
 // ============================
 // JOURNEY INTRO + LIVE COUNTER
@@ -299,7 +273,6 @@ const startDate =
     new Date("2024-04-22T00:00:00");
 
 let counterInterval = null;
-
 
 function updateCounter() {
 
@@ -346,11 +319,8 @@ function updateCounter() {
 
         counterEl.textContent =
             `${days}d ${hours}h ${minutes}m ${seconds}s`;
-
     }
-
 }
-
 
 function runJourneyIntro() {
 
@@ -375,7 +345,6 @@ function runJourneyIntro() {
     const timer =
         document.getElementById("loveCounter");
 
-
     if (
         !journey ||
         !title ||
@@ -383,7 +352,6 @@ function runJourneyIntro() {
     ) {
         return;
     }
-
 
     if (mainTitle)
         mainTitle.style.opacity = "0";
@@ -397,10 +365,8 @@ function runJourneyIntro() {
     if (gallery)
         gallery.style.opacity = "0";
 
-
     journey.style.display = "flex";
     journey.style.opacity = "1";
-
 
     updateCounter();
 
@@ -412,13 +378,11 @@ function runJourneyIntro() {
             1000
         );
 
-
     setTimeout(() => {
 
         title.style.opacity = "1";
 
     }, 500);
-
 
     setTimeout(() => {
 
@@ -426,20 +390,17 @@ function runJourneyIntro() {
 
     }, 2500);
 
-
     setTimeout(() => {
 
         timer.style.opacity = "1";
 
     }, 3500);
 
-
     setTimeout(() => {
 
         timer.style.opacity = "0";
 
     }, 8500);
-
 
     setTimeout(() => {
 
@@ -460,9 +421,7 @@ function runJourneyIntro() {
             gallery.style.opacity = "1";
 
     }, 10000);
-
 }
-
 
 // ============================
 // OPEN WEBSITE
@@ -475,21 +434,20 @@ if (button) {
         if (music) {
 
             music.play().catch(error => {
+
                 console.log(
                     "Music couldn't start:",
                     error
                 );
+
             });
 
             updateActiveSongButton();
-
         }
-
 
         if (intro) {
             intro.style.opacity = "0";
         }
-
 
         setTimeout(() => {
 
@@ -499,7 +457,6 @@ if (button) {
             if (lettersPage)
                 lettersPage.style.display = "block";
 
-
             if (
                 slideshow &&
                 images.length
@@ -507,9 +464,7 @@ if (button) {
 
                 slideshow.style.backgroundImage =
                     `url('${images[0]}')`;
-
             }
-
 
             runJourneyIntro();
 
@@ -518,7 +473,6 @@ if (button) {
     });
 
 }
-
 
 // ============================
 // GO TO ARYAN'S PAGE
@@ -532,7 +486,6 @@ if (toAryanBtn) {
             lettersPage.style.opacity = "0";
         }
 
-
         setTimeout(() => {
 
             if (lettersPage) {
@@ -543,11 +496,8 @@ if (toAryanBtn) {
             }
 
             if (aryanPage) {
-
                 aryanPage.style.display = "block";
-
             }
-
 
             const aryanGallery =
                 aryanPage
@@ -558,7 +508,6 @@ if (toAryanBtn) {
                 aryanGallery.style.opacity = "1";
             }
 
-
             if (
                 slideshowAryan &&
                 aryanImages.length
@@ -566,27 +515,36 @@ if (toAryanBtn) {
 
                 slideshowAryan.style.backgroundImage =
                     `url('${aryanImages[currentAryanImage]}')`;
-
             }
 
+            // =====================================================
+            // IMPORTANT ARYAN MUSIC FIX
+            // =====================================================
+            // Start Aryan's playlist immediately from the user's click.
+            // Keeping play() inside the click handler avoids browser
+            // autoplay blocking caused by the old 800ms setTimeout.
 
-            currentSong =
-                aryanSongs[0];
+            currentSong = aryanSongs[0];
 
             if (music) {
 
-                music.src =
-                    currentSong;
-
+                music.src = currentSong;
                 music.load();
 
-                music.play().catch(error => {
+                music.play().then(() => {
+
+                    if (musicToggleAryan) {
+                        musicToggleAryan.innerHTML = "🎶❤️";
+                    }
+
+                }).catch(error => {
+
                     console.log(
-                        "Music couldn't start:",
+                        "Aryan music couldn't start:",
                         error
                     );
-                });
 
+                });
             }
 
             updateActiveSongButton();
@@ -596,7 +554,6 @@ if (toAryanBtn) {
     });
 
 }
-
 
 // ============================
 // BACK TO LETTERS PAGE
@@ -609,7 +566,6 @@ if (backFromAryanBtn) {
         if (aryanPage) {
             aryanPage.style.opacity = "0";
         }
-
 
         setTimeout(() => {
 
@@ -624,7 +580,6 @@ if (backFromAryanBtn) {
                 lettersPage.style.display = "block";
             }
 
-
             if (
                 slideshow &&
                 images.length
@@ -632,9 +587,7 @@ if (backFromAryanBtn) {
 
                 slideshow.style.backgroundImage =
                     `url('${images[currentImage]}')`;
-
             }
-
 
             currentSong =
                 songs[0];
@@ -647,10 +600,12 @@ if (backFromAryanBtn) {
                 music.load();
 
                 music.play().catch(error => {
+
                     console.log(
                         "Music couldn't start:",
                         error
                     );
+
                 });
 
             }
@@ -662,7 +617,6 @@ if (backFromAryanBtn) {
     });
 
 }
-
 
 // ============================
 // BACKGROUND SLIDESHOW
@@ -683,14 +637,13 @@ setInterval(() => {
             currentImage >=
             images.length
         ) {
+
             currentImage = 0;
         }
 
         slideshow.style.backgroundImage =
             `url('${images[currentImage]}')`;
-
     }
-
 
     if (
         aryanPage &&
@@ -705,343 +658,335 @@ setInterval(() => {
             currentAryanImage >=
             aryanImages.length
         ) {
+
             currentAryanImage = 0;
         }
 
         slideshowAryan.style.backgroundImage =
             `url('${aryanImages[currentAryanImage]}')`;
-
     }
 
 }, 4000);
-
-
 // ============================
-// LETTER CONTENT DATA
+// LETTER DATA
 // ============================
 
 const mainLetters = [
-
     {
-        id: "letter1",
-        emoji: "❤️",
-        title: "The Beginning ❤️",
-        date: "23-07-2026",
+        emoji: "💌",
+        title: "The Beginning",
+        date: "22 April 2024",
         body: `
-            <p>My dearest Aryan,</p>
-            <p>If you're reading this, you've officially opened the very first
-            letter in a collection that means more to me than words can explain.</p>
-            <p>I wanted to create something that would last.
-            Something that you could return to years from now and still feel
-            the same warmth.</p>
-            <p>This website isn't just made of HTML, CSS and JavaScript.
-            It's made from memories, dreams, hope, and every little piece
-            of my heart that I wanted to leave with you.
-            I still remember meeting you for the first time in CODM, hearing your voice for the first time , first call , first meet up.
-            There are 7 billion people in this world and still I found you in this lifetime. I have kissed you, held you and call me human but I wanna live it all with you.
-            I don't know what the future gonna be.
-            I don't care what it holds.
-            All I  care about is I have held you, known you, loved you and thats my lifetime.</p>
-            <p>Thank you for existing.
-            Thank you for loving me.
-            Thank you for becoming one of the most beautiful chapters of my life.</p>
-            <p>This is only the first letter.
-            There are many more waiting for you.</p>
-            <p>Love you always,<br>Ankita ❤️</p>
+            <p>Somewhere between a game of CODM and countless conversations,
+            something beautiful began.</p>
+
+            <p>I never knew that meeting you would become one of the
+            most important moments of my life.</p>
+
+            <p>And somehow, here we are. ❤️</p>
         `
     },
 
     {
-        id: "letter2",
-        emoji: "😊",
-        title: "These days 😊",
-        date: "28-07-2026",
-        body: `
-            <p>My dearest Aryan,</p>
-            <p>Let roll back time a little for this one. My parents are one big joke. Education and career wise
-            okay my life has been good there. Love life has been a roller coaster always. I have always been
-            this big sucker for love. I always wanted someone who could see me and hold me when I was broke. But lately I
-            realised it's wrong of me to totally depend on my partner to make it all okay for me. I mean come on we all have
-            our stories and struggle so yes me putting all my trauma out in open and asking it to be solved thats too much to ask for.</p>
-            <p>Back few days I was so low. I mean I wanted answers to questions like why I was given such set of parents
-            who didn't care. Why was I given this scenario where I had to be so much away from you. Who do I complain to
-            about my life so that maybe I can feel a little better? People just expect out right,left,front and center from me to
-            behave and magically bring out the cat out the bag but do they see that Ankita, man Ankita, is so deep in shit
-            yet her smile never fades. I am mature and calm with all of my life at this point because I know those are the
-            only parameter I can control that would give me a little breatheable space. If it was for me I would have never
-            choosen this misery. I feel like running away sometimes from all of this but I know that too wouldn't solve it.
-            I thought of whining out it all to you but at this point but I have become so self aware that I know I can't let you
-            get burden with these things because your shoulders are having a little space. Our relationship shouldn't handle this
-            shit because it is all insignificant. Uh god I wanna just sit and cry my heart out till I feel no emotion sometimes.
-            I mean sometimes I feel so helpless within me that "Dam what more do I do so that the heavens could see that this person
-            needs a little rest who do I talk to all about that I wanna be a stupid 25 year who does stupid stuff and take pride in it
-            hihi being mature and responsible sucksssssss". I was partially also mad at you that can't you see that I need you the most
-            at this point, my mind constantly kept asking me ' You sure it is this guy he isn't even here'. I was soooo soo sad. I wanted
-            so much more then love at that point . I mean I wanted a space to let out my heart, to be heard , to be be held , to feel that
-            its okay to feel all of this. In this chaos I was so blinded by the worldly things that I forgot that I had held you and kissed you
-            and that peace was right there in front of me.</p>
-            <p>It became so chaotic then all of sudden I realised that I am pinpointing it all to me. I mean about my parents it's there behaviour
-            that has caused all of this mess not me. My job as well I am not the one to be blamed as it was the other things. About us as well you
-            are already doing so much more then you can hihi you are also a 24 year old and you also have a life and family. I am so sad because of
-            my own expectations. I expect because I know I would have helped the other person if I ever had friend who was going through what I am going through.
-            I am bleeding myself over my own mind games. I know I had this dream that I would be all settled and happy by 25, have a great happy family, a guy
-            that would I want to marry and all of it but its okay life happens and I can't punish myself over my own expectations. I have bleed a lot and I don't want
-            myself to bleed more over the ghost of the past and future.</p>
-            <p>I wanna be living in this present where I have you. I know it's all so risky, that what if all of this still fails and what not but it would still be okay
-            because in this entire arc I still have held you and felt that its gonna be all okay. I know my life is mess but I also know, nobody but only me has the capacity
-            to live this all and nobody can fix this for me till I myself from within get up wear the armour and go out on my wars. The world has ruined love with shitty ass
-            expectations that the guy is always gonna come in the white horse and save the girl from the bad guy but lets change that and be a team who knocks the bad guys togethere.
-            Also I realised in situations like these we can easily be blinded by the sadness and think that the other person is not doing enough to get through this. But love isn't about
-            the other person solving your problems for you hihi if it was psychologist would never be divorced but no hihi they are also going to same shit. So what it is really about it is:
-            You gonna go through this life with all dark and whites but in all of this I am gonna be your constant point. A point that always gonna remind you of, that none of this matter and
-            all of this would pass with time whats gonna stay is this fraction where our heart where right next to each other beating in peace and rythm, this second were I was one with you. Hihi
-            I can take all of this misery right now because I know at the end when I close my eyes our memories are the only thing that I would play on repeat and relive all of those.</p>
-            <p>I didn't said any of this out front because I was scared that I would lose you but I am not afraid anymore. Our love makes me fierce and I have faith that no matter how bitter times
-            gonna be we would still be in it together. I am gonna live my all and not think about who should I talk to make it all okay. Following the Nike motto , 'Just do it!'. So this
-            entire arc has been lately happening with me these days. I hope you are okay and health and all smiling and dreaming about us these days.</p>
-            <p>Love you always,<br>Ankita Pi Pikaaa❤️</p>
-        `
-    },
-
-    {
-        id: "letter3",
-        emoji: "💜",
-        title: "You",
-        date: "31-07-2026",
-        body: `
-            <p>I still remember the first time I met you at the airport. You had this very handsome smile on your face. I didn't had any expectations from you to be honest.
-            As I was in my own world the least I expected was for you to not give me hope. But to my surprise you never said unrealistic things to win my heart over like
-            other stupid guys. I have had "I love you's" and what not. But this was something different.</p>
-            <p>You always held my hand when I wanted you to. You said things which you wanted and my heart needed. It was never fake but so real.I never asked you
-            for things because I was so disappointed in the world but you held me. I never expected us to be an us because seeing you I could see that you had
-            your MBBS, family and all of your life and I never thought I would fit in. So I geuinely felt ki Aryan you would move on as soon as I left which is why my heart
-            was prepared for worst. But you never left me. You held me because you could feel that Ankita wanted someone who was her home.</p>
-            <p>People always have used me, yes I know used is a brutually odd word but it is that. So I was actually prepared for anything but you let it soft and slow. You
-            took me in and showed me what you are. Initially you weren't that expressive but then as time passed you started speaking your heart and you weren't afraid to
-            hold my hand even when the world said you can't. You never gave me promises to bring me the moon but you made my life a moonland.</p>
-            <p>I didn't talk to you after I went back mumbai because I wanted to see if you make any effort. It was a test for our things from my side. I was walking away from you
-            . You were walking right behind me. You called me, texted me , took care of me. I wanted to end it all but you wanted to even go against the god to save it. I then
-            sat and saw you. You who genuiely wanted me irrespective of all odds and conditions. You weren't afraid to say out your heart and you trusted me with it. I could do
-            all of what I did because I always know you are gonna be right beside me. So yes I'd never question you, have faith in you, believe you and always be calling you pandu.
-            You are this warm person like the first sunrays which are warm coming out from the window uhhh the breeze that brushes across my cheeks makes me smile. You are all of I wanted
-            You are all of I prayed for. And all of your things no matter how normal all of it is important to me okay. Because you are my home and I'll fuck everything if anything was
-            to ever happen to you.</p>
-            <p>Each day with you no matter even if we are in long distance its so peaceful.I love taking care of you. I love you and I don't care about anything but you just be here.
-            Aryan panduuu you are my world kabhi bhi kisi bhi situation never think that what would I think as long as you are happy and want it I'll always be along with you.</p>
-            <p>The time when I am with you uhh only 5 days of my life but I remember each second of those 5 days..kissing, loving, fucking.. all of it.All of our memories have had all
-            of the shades happy, sad , roller coaster all of it. I am happy that I met you and I wish nothing more or nothing less. Whatever time fraction we will have together all
-            of it would be great no matter sad,happy I love you and thats simple and thats breathing.</p>
-            <p>Love you always,<br>Ankita ❤️</p>
-        `
-    },
-
-    {
-        id: "letter4",
-        emoji: "🔮",
-        title: "Future Letter",
+        emoji: "🎧",
+        title: "The First Voice",
         date: "",
-        body: `<p>Coming soon</p>`
-    }
-
-];
-
-
-const aryanLetters = [
-
-    {
-        id: "aryanLetter1",
-        emoji: "♥️",
-        title: "2 Cute souls ♥️",
-        date: "30-07-2026",
         body: `
-            <p>My Cutu ankita,</p>
-            <p>Hihi….my first time writing feelings…..thoda nervous ho….dont knw …..where to start…..</p>
-            <p>First of all yess<br>I miss u alot….. and I love that feeling of missing actually. And u know jab aapne first time hold kiya tha arm bus mei….
-            That was the first time I felt peace.</p>
-            <p>I felt something….mere chehre mei automatically smile aagyi …..<br>Hihi u always say ki tu mast smile krta rehta jab dekho jaisi situation hai….</p>
-            <p>I wanna say ….its all bcoz of u…<br>I just feel ki yess this is what life to be<br>Haan yahi hai zindagi….yahi chahiye….all perfect…wow heart beat mast chalti…..</p>
-            <p>Hihi….<br>Yes I know u…..not being overconfident but yes….I know the peace ur heart wants…(bolege kisi din)<br>Yaha pe love ka topic aata hai….
-            <br>Pyaar ….I say love bohat pandu cheez hai….koi logic nahi dekhta…….<br>With u i felt<br>Love can be calm peaceful…..crying is also love….sadness is also love….
-            <br>The all rollercoaster of diff emotions is love….choosing each other is love yess….we both choose each other…i say thats the best thing I literally wanna thank you and all the worldy forces which let this happen what we are today…..</p>
-            <p>Hihi i dont wanna be emotional….<br>Kyuki u will say now<br>Jaake padai krle 😂 hihi…true…</p>
-            <p>"Yes Wanna hug u…. Wanna kiss u…wanna hold u….now now now now….hogya wait this all" - my heart says this every second…..</p>
-            <p>Soo yahi end krte chotu sa letter and mera dil ka very tiny fraction…!!</p>
-            <p>Love u so much meri ankita<br>Muaah..!!</p>
+            <p>I still remember the first time I heard your voice.</p>
+
+            <p>It was such a simple moment, but somehow it stayed with me.
+            There was something about hearing you that made everything
+            feel a little more real.</p>
+
+            <p>And I think that's when I started getting attached to you. ❤️</p>
         `
     },
 
     {
-        id: "aryanLetter2",
-        emoji: "♥️",
-        title: "Meri Ankita♥️",
-        date: "01-08-2026",
+        emoji: "📞",
+        title: "Our First Call",
+        date: "",
         body: `
-            <p>Hi Ankita,</p>
-            <p>Hihi ek saal se zyada hogya hai hume saath mei ek doosre ko jaante huai…and ek doosre ko samjhte huai…..
-            <br>U know… I just talked…replied to ur story…. Nd talked with u without having any thought in my mind…..
-            <br>Hihi then we just start talking….. ek doosre ko dheere dheere…dekha smjha…. I wanna say its so natural….something seeing as a third person its really unrealistic ….hihi
-            <br>Yes when I see world describing love…..I got so disappointed —-Ki bhai yeh log kar kya rahe hai….
-            <br>Then I felt ur heart….bohat shaant dil hai aapka…like u know
-            <br>Jaise tanjiro ka soul and calmness jaisa sab…hihi
-            <br>When I learned about u….smjhaa apki side se …. Etna asaan nahi hai
-            Kisi mei trust krna…etni bekaar duniya hai…haye raam true….
-            <br>U know U r a very kind soul….u even wanna help the person even they r not doin justice with the connection…kyuki u understand their situation ….nd they fail to even try to understand ur things…
-            <br>Yes…we talked, build the things….nd then u asked do u like me…hihi
-            <br>If u really ask i never tried to see u in that way ….after u asked that ques na….
-            <br>My feelings got suddenly pumped…..my heart felt like a racing horse…its so so diff feeling….. felt wow
-            <br>And I just said yes….hihi….
-            <br>First I wanna say arigato for opening up ur heart for me…..
-            Which is a very very big thing in this bekar duniya
-            <br>But really I wanna know ki how did u decided to open ur heart for me…bcoz its so so tough nd maybe impossible after what u have seen in ur life till now….
-            <br>So
-            <br>Yes Iv been to practical in the beginning…..bcoz people dont
-            Value the feelings the other person sharing
-            They just listen and throw it out somewhere……people used my feelings too….world just wanna use the person and they will go when their work is done…
-            <br>But With u I opened up naturally…..we both have shared the space….we opened up….the best thing ki we didnt asked or like say ki bola
-            "Tell me more abt that or u didnt share abt ur things"
-            <br>We both naturally put our feelings to each other…
-            I really loved that….
-            Loved the pillars we r building in the intial phases of our love….
-            <br>Then
-            <br>When U said i will come to mysore….i felt so happy
-            Im with a big smile all day…going with flow of my heart….
-            <br>Srsly bolu mere mei itni himmat nahi thi
-            Ki I will goo and meet u in person….
-            <br>U have taken the step…thank you….Really…
-            <br>I just wanna say wow…..
-            <br>Many of the things in this letter u know… i hv said to u….already….
-            <br>Wanna say A lot ….i should control myself….hihi otherwise I will write a novel right now😂😂
-            <br>I love u alot ankita….And Im very proud of us what we have built ….. one day closer love…. My sweetest cutest and kind hearted soul…. Love and really reallly proud to say
-            <br>"Meri ankita" "we are home"
-            <br>Bcoz thats the truth….
-            Thats our love …
-            <br></p>
-            <p>Muaah..love u</p>
+            <p>Our first call became one of those little memories that
+            I never wanted to forget.</p>
+
+            <p>We talked, laughed, and somehow made hours disappear.</p>
+
+            <p>I could have stayed there listening to you forever.</p>
         `
     },
 
     {
-        id: "aryanLetter3",
-        emoji: "♥️",
-        title: "Pandi & Pandu ♥️",
-        date: "05-08-2026",
+        emoji: "🌹",
+        title: "Our First Meetup",
+        date: "",
         body: `
-            <p>Hi Ankita,
-            <br>This is ur Aryan….hihi thoda socha likhu……kabhi kabhi I love you se bohat zyada bolne ka mann krta hai…….</p>
-            <p>So Yes…..kehne ko toh 5 din mile hai…..what we have spent together in our long distance too…its so so beautiful….
-            <br>We learn to live each other a lot….communicating each other thoughts…..listening each other…. Every little moments itne special hai aapke saath…..</p>
-            <p>Hihi aapko Good morning bolna daily itself is so special…..
-            <br>Voh ek VIDEO CALL ek Voice call ….. The emotions we carry in each word is like explainable nahi hai….</p>
-            <p>U know……..
-            <br>When u smile laugh…..doo pandu expressions hihi….I love each and everything….. I love to be a cat for u…..love to be a pandu for u…..HIHI…
-            <br>WE ARE HOMEE♥️
-            <br>Yesss jald hi milege…..one day closerrr toh apna aa hi raha hai…
-            <br>Panduuuuu loveeeeeeeeeee uuu alotttttt…….
-            <br>Wifuuuuu….
-            <br>I love see us growing together in this…..our love our happiness….dono ka pandu pana…..
-            <br>Hihi U know today …..first time I felt my kid inside me is alive….
-            <br>I thought I lost that kid…..I felt so so happy ankita…..
-            <br>And I wanna say
-            <br>Hihi Im a good 4 finger claw player🫣😛</p>
-            <p>Meri Rasmalai meri Khushi…..
-            Love you…
-            Countless memories await us♥️</p>
+            <p>After all those messages and calls, finally seeing you
+            in front of me felt unreal.</p>
+
+            <p>It was the moment when everything we had built through
+            screens suddenly existed in the real world.</p>
+
+            <p>And I wouldn't trade that memory for anything.</p>
+        `
+    },
+
+    {
+        emoji: "🫶",
+        title: "Holding You",
+        date: "",
+        body: `
+            <p>There are moments that don't need words.</p>
+
+            <p>Holding you was one of them.</p>
+
+            <p>For a little while, everything else disappeared and
+            it was just us.</p>
+        `
+    },
+
+    {
+        emoji: "💋",
+        title: "That Kiss",
+        date: "",
+        body: `
+            <p>Some memories stay with you forever.</p>
+
+            <p>That moment was one of ours.</p>
+
+            <p>A tiny moment in time that somehow became a permanent
+            part of our story. ❤️</p>
+        `
+    },
+
+    {
+        emoji: "❤️",
+        title: "Us",
+        date: "",
+        body: `
+            <p>We have already collected so many memories together,
+            and somehow I still feel like our story is only beginning.</p>
+
+            <p>There are so many places to see, things to do,
+            conversations to have and memories to make.</p>
+
+            <p>And I want to experience them with you.</p>
+
+            <p>Always. ❤️</p>
         `
     }
-
 ];
 
 
 // ============================
-// SINGLE LETTER CARD
+// ARYAN LETTER DATA
+// ============================
+
+const aryanLetters = [
+    {
+        emoji: "❤️",
+        title: "To My Favourite Person",
+        date: "",
+        body: `
+            <p>Dear Aryan,</p>
+
+            <p>If I had to describe what you mean to me,
+            I don't think words would ever be enough.</p>
+
+            <p>You became a part of my everyday life without me
+            even realizing how important you had become.</p>
+
+            <p>And now I cannot imagine my story without you in it.</p>
+        `
+    },
+
+    {
+        emoji: "🌙",
+        title: "For The Nights We Talked",
+        date: "",
+        body: `
+            <p>Some nights became special simply because I got to
+            spend them talking to you.</p>
+
+            <p>It didn't matter what we were talking about.</p>
+
+            <p>As long as it was you on the other side,
+            I was happy.</p>
+        `
+    },
+
+    {
+        emoji: "💫",
+        title: "You Feel Like Home",
+        date: "",
+        body: `
+            <p>Home isn't always a place.</p>
+
+            <p>Sometimes it's a person.</p>
+
+            <p>And somehow, you became that person for me.</p>
+
+            <p>Being with you feels like being exactly where
+            I'm supposed to be.</p>
+        `
+    },
+
+    {
+        emoji: "🥺",
+        title: "Things I Don't Say Enough",
+        date: "",
+        body: `
+            <p>I don't always say it, but I appreciate you more
+            than you probably realize.</p>
+
+            <p>I appreciate your presence, your patience,
+            your silly moments, your serious moments,
+            and everything that makes you you.</p>
+
+            <p>Thank you for being part of my life.</p>
+        `
+    },
+
+    {
+        emoji: "💌",
+        title: "A Little Promise",
+        date: "",
+        body: `
+            <p>I can't promise that every day will be perfect.</p>
+
+            <p>But I can promise that I will keep choosing
+            the memories we create together.</p>
+
+            <p>I'll keep laughing with you, annoying you,
+            supporting you and loving you.</p>
+
+            <p>One day at a time. ❤️</p>
+        `
+    }
+];
+
+
+// ============================
+// LETTER CARD SYSTEM
 // ============================
 
 function makeLetterCard(letters, els) {
+
+    if (!letters || !letters.length) {
+        return;
+    }
 
     let index = 0;
     let expanded = false;
     let isAnimating = false;
 
 
+    // ============================
+    // RENDER EXPAND STATE
+    // ============================
+
     function renderExpandState() {
 
-        els.body.style.display =
-            expanded ? "block" : "none";
+        if (!els.card) {
+            return;
+        }
 
-        els.toggle.textContent =
+        els.card.classList.toggle(
+            "expanded",
             expanded
-                ? "▲ Collapse"
-                : "Tap to read ❤️";
+        );
 
-        if (els.card) {
+        if (els.toggle) {
 
-            els.card.classList.toggle(
-                "letter-open",
+            els.toggle.textContent =
                 expanded
-            );
+                    ? "Close letter"
+                    : "Tap to read";
 
         }
-
-        if (expanded) {
-            els.body.scrollTop = 0;
-        }
-
     }
 
+
+    // ============================
+    // RENDER LETTER
+    // ============================
 
     function renderContent() {
 
         const letter =
             letters[index];
 
-        els.emoji.textContent =
-            letter.emoji || "";
+        if (!letter) {
+            return;
+        }
 
-        els.title.textContent =
-            letter.title;
 
-        els.date.textContent =
-            letter.date;
+        if (els.emoji) {
+            els.emoji.textContent =
+                letter.emoji || "";
+        }
 
-        els.date.style.display =
-            letter.date
-                ? "block"
-                : "none";
 
-        els.body.innerHTML =
-            letter.body;
+        if (els.title) {
+            els.title.textContent =
+                letter.title || "";
+        }
+
+
+        if (els.date) {
+
+            els.date.textContent =
+                letter.date;
+
+            els.date.style.display =
+                letter.date
+                    ? "block"
+                    : "none";
+        }
+
+
+        if (els.body) {
+
+            els.body.innerHTML =
+                letter.body;
+        }
+
 
         if (els.position) {
 
             els.position.textContent =
                 `${index + 1} / ${letters.length}`;
-
         }
+
 
         if (els.prevBtn) {
 
             els.prevBtn.disabled =
                 index === 0;
-
         }
+
 
         if (els.nextBtn) {
 
             els.nextBtn.disabled =
                 index === letters.length - 1;
-
         }
+
 
         expanded = false;
 
         renderExpandState();
-
     }
 
+
+    // ============================
+    // LETTER SLIDE ANIMATION
+    // ============================
 
     function slideTo(newIndex, direction) {
 
         if (isAnimating) return;
+
 
         if (
             newIndex < 0 ||
@@ -1050,6 +995,7 @@ function makeLetterCard(letters, els) {
             return;
         }
 
+
         if (!els.card) {
 
             index = newIndex;
@@ -1057,16 +1003,17 @@ function makeLetterCard(letters, els) {
             renderContent();
 
             return;
-
         }
 
 
         isAnimating = true;
 
+
         const outClass =
             direction === "next"
                 ? "slide-out-left"
                 : "slide-out-right";
+
 
         const inClass =
             direction === "next"
@@ -1078,6 +1025,7 @@ function makeLetterCard(letters, els) {
             "slide-in-right",
             "slide-in-left"
         );
+
 
         els.card.classList.add(
             outClass
@@ -1091,13 +1039,16 @@ function makeLetterCard(letters, els) {
                 onOutEnd
             );
 
+
             els.card.classList.remove(
                 outClass
             );
 
+
             index = newIndex;
 
             renderContent();
+
 
             els.card.classList.add(
                 inClass
@@ -1111,12 +1062,13 @@ function makeLetterCard(letters, els) {
                     onInEnd
                 );
 
+
                 els.card.classList.remove(
                     inClass
                 );
 
-                isAnimating = false;
 
+                isAnimating = false;
             };
 
 
@@ -1136,6 +1088,10 @@ function makeLetterCard(letters, els) {
     }
 
 
+    // ============================
+    // NEXT
+    // ============================
+
     function goNext() {
 
         if (
@@ -1149,9 +1105,12 @@ function makeLetterCard(letters, els) {
             );
 
         }
-
     }
 
+
+    // ============================
+    // PREVIOUS
+    // ============================
 
     function goPrev() {
 
@@ -1163,9 +1122,12 @@ function makeLetterCard(letters, els) {
             );
 
         }
-
     }
 
+
+    // ============================
+    // TAP TO READ
+    // ============================
 
     if (els.toggle) {
 
@@ -1200,20 +1162,22 @@ function makeLetterCard(letters, els) {
         function onDragStart(x, y) {
 
             if (expanded) return;
+
             if (isAnimating) return;
+
 
             dragging = true;
             lockedAxis = null;
 
             startX = x;
             startY = y;
-
         }
 
 
         function onDragMove(x, y) {
 
             if (!dragging) return;
+
 
             const dx =
                 x - startX;
@@ -1256,10 +1220,13 @@ function makeLetterCard(letters, els) {
 
             if (!dragging) return;
 
+
             dragging = false;
+
 
             const dx =
                 x - startX;
+
 
             els.card.style.transform =
                 "";
@@ -1277,8 +1244,7 @@ function makeLetterCard(letters, els) {
                     goNext();
 
                 } else if (
-                    dx >=
-                    SWIPE_THRESHOLD
+                    dx >= SWIPE_THRESHOLD
                 ) {
 
                     goPrev();
@@ -1392,6 +1358,7 @@ function makeLetterCard(letters, els) {
 
     renderContent();
 
+
     return {
         render: renderContent
     };
@@ -1500,8 +1467,12 @@ function openLetter(letterID) {
             letterID
         );
 
+
     if (letter) {
-        letter.style.display = "flex";
+
+        letter.style.display =
+            "flex";
+
     }
 
 }
@@ -1514,8 +1485,12 @@ function closeLetter(letterID) {
             letterID
         );
 
+
     if (letter) {
-        letter.style.display = "none";
+
+        letter.style.display =
+            "none";
+
     }
 
 }
@@ -1533,6 +1508,7 @@ window.addEventListener(
             document.querySelectorAll(
                 ".letterPopup"
             );
+
 
         popups.forEach(
             popup => {
@@ -1571,14 +1547,18 @@ if (letterForm) {
 
             e.preventDefault();
 
+
             const status =
                 document.getElementById(
                     "submitStatus"
                 );
 
+
             if (status) {
+
                 status.textContent =
                     "Sending...";
+
             }
 
 
@@ -1612,6 +1592,7 @@ if (letterForm) {
 
                     }
 
+
                     letterForm.reset();
 
                 } else {
@@ -1642,24 +1623,27 @@ if (letterForm) {
 }
 
 
-// ============================
+// =========================================================
 // CINEMATIC IDLE MODE
-// ============================
+// =========================================================
 
 (function () {
 
     const IDLE_TIME =
         10000;
 
+
     const lettersPage =
         document.getElementById(
             "lettersPage"
         );
 
+
     const aryanPage =
         document.getElementById(
             "aryanPage"
         );
+
 
     let idleTimer = null;
 
@@ -1700,6 +1684,7 @@ if (letterForm) {
         const activePage =
             getActivePage();
 
+
         if (!activePage) return;
 
 
@@ -1707,6 +1692,7 @@ if (letterForm) {
             document.getElementById(
                 "writeLetter"
             );
+
 
         const quiz =
             document.getElementById(
@@ -1754,6 +1740,7 @@ if (letterForm) {
 
         }
 
+
         if (aryanPage) {
 
             aryanPage.classList.remove(
@@ -1769,9 +1756,11 @@ if (letterForm) {
 
         exitIdleMode();
 
+
         clearTimeout(
             idleTimer
         );
+
 
         idleTimer =
             setTimeout(
@@ -1809,6 +1798,8 @@ if (letterForm) {
     resetIdleTimer();
 
 })();
+
+
 // =========================================================
 // ONE PIECE — OUR GRAND LINE
 // =========================================================
@@ -1826,40 +1817,48 @@ document.addEventListener(
                 "onePiecePage"
             );
 
+
         const opening =
             document.getElementById(
                 "opOpening"
             );
+
 
         const grandLine =
             document.getElementById(
                 "grandLineContent"
             );
 
+
         const startButton =
             document.getElementById(
                 "startGrandLine"
             );
+
 
         const backButton =
             document.getElementById(
                 "backFromOnePiece"
             );
 
+
         const musicButton =
             document.getElementById(
                 "opMusicButton"
             );
+
 
         const opMusicMenu =
             document.getElementById(
                 "opMusicMenu"
             );
 
+
         const onePieceMusic =
             document.getElementById(
                 "onePieceMusic"
             );
+
 
         const onePieceButton =
             document.getElementById(
@@ -1971,6 +1970,7 @@ document.addEventListener(
             onePieceMusic.src =
                 song.src;
 
+
             onePieceMusic.load();
 
 
@@ -2028,6 +2028,7 @@ document.addEventListener(
                     if (music) {
 
                         music.pause();
+
                         music.currentTime = 0;
 
                     }
@@ -2077,6 +2078,7 @@ document.addEventListener(
                         opening.style.display =
                             "grid";
 
+
                         opening.classList.remove(
                             "hide"
                         );
@@ -2093,9 +2095,11 @@ document.addEventListener(
                         grandLine.style.display =
                             "block";
 
+
                         grandLine.classList.remove(
                             "op-grand-line-visible"
                         );
+
 
                         grandLine.classList.remove(
                             "op-destination-open"
@@ -2119,7 +2123,6 @@ document.addEventListener(
 
 
                     opPlaylistIndex = 0;
-
                     opMusicPlaying = false;
 
 
@@ -2142,6 +2145,7 @@ document.addEventListener(
                         0;
 
                 }
+
             );
 
         }
@@ -2229,6 +2233,7 @@ document.addEventListener(
                     playOpSong(0);
 
                 }
+
             );
 
         }
@@ -2310,6 +2315,7 @@ document.addEventListener(
                             "op-grand-line-visible"
                         );
 
+
                         grandLine.classList.remove(
                             "op-destination-open"
                         );
@@ -2338,6 +2344,7 @@ document.addEventListener(
                     }
 
                 }
+
             );
 
         }
@@ -2399,6 +2406,7 @@ document.addEventListener(
                     }
 
                 }
+
             );
 
         }
@@ -2479,6 +2487,7 @@ document.addEventListener(
 
 
                     // Keep menu open after selecting
+
                     opMusicMenu.classList.add(
                         "show"
                     );
@@ -2498,7 +2507,6 @@ document.addEventListener(
             onePieceMusic.addEventListener(
                 "ended",
                 () => {
-
 
                     const nextIndex =
                         (
@@ -2551,6 +2559,7 @@ document.addEventListener(
                 grandLine.classList.remove(
                     "op-destination-open"
                 );
+
 
                 grandLine.scrollTop =
                     0;
@@ -2610,7 +2619,6 @@ document.addEventListener(
                 destinationButton.addEventListener(
                     "click",
                     () => {
-
 
                         destinationButton.classList.remove(
                             "button-pop"
@@ -2818,50 +2826,60 @@ document.addEventListener(
                 "memoryModal"
             );
 
+
         const closeMemory =
             document.getElementById(
                 "closeMemory"
             );
+
 
         const memoryIcon =
             document.getElementById(
                 "memoryIcon"
             );
 
+
         const memoryChapter =
             document.getElementById(
                 "memoryChapter"
             );
+
 
         const memoryTitle =
             document.getElementById(
                 "memoryTitle"
             );
 
+
         const memoryText =
             document.getElementById(
                 "memoryText"
             );
+
 
         const memoryPhoto =
             document.getElementById(
                 "memoryPhoto"
             );
 
+
         const memoryPhotoCaption =
             document.getElementById(
                 "memoryPhotoCaption"
             );
+
 
         const memoryPhotoCounter =
             document.getElementById(
                 "memoryPhotoCounter"
             );
 
+
         const memoryPhotoPrev =
             document.getElementById(
                 "memoryPhotoPrev"
             );
+
 
         const memoryPhotoNext =
             document.getElementById(
@@ -3166,7 +3184,6 @@ document.addEventListener(
                         event => {
 
                             event.preventDefault();
-
                             event.stopPropagation();
 
 
@@ -3196,8 +3213,8 @@ document.addEventListener(
                 event => {
 
                     event.preventDefault();
-
                     event.stopPropagation();
+
 
                     closeMemoryModal();
 
@@ -3218,7 +3235,6 @@ document.addEventListener(
                 event => {
 
                     event.preventDefault();
-
                     event.stopPropagation();
 
 
@@ -3251,7 +3267,6 @@ document.addEventListener(
                 event => {
 
                     event.preventDefault();
-
                     event.stopPropagation();
 
 
@@ -3307,10 +3322,12 @@ document.addEventListener(
                 "treasureChest"
             );
 
+
         const treasureMessage =
             document.getElementById(
                 "treasureMessage"
             );
+
 
         const closeTreasure =
             document.getElementById(
