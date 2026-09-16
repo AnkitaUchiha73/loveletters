@@ -3918,3 +3918,25 @@ body.one-piece-active #musicBoxAryan {
         font-size: 12px;
     }
 }
+/* =========================================
+   GRAND LINE — TEXT SIZE & WEIGHT
+   ========================================= */
+
+.one-piece-page {
+    font-size: 17px;
+}
+
+.one-piece-page p,
+.one-piece-page li,
+.one-piece-page span,
+.one-piece-page label {
+    font-weight: 500;
+}
+
+.one-piece-page h1,
+.one-piece-page h2,
+.one-piece-page h3,
+.one-piece-page h4,
+.one-piece-page strong {
+    font-weight: 700;
+}
