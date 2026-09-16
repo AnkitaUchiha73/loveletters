@@ -1809,8 +1809,6 @@ if (letterForm) {
     resetIdleTimer();
 
 })();
-
-
 // =========================================================
 // ONE PIECE — OUR GRAND LINE
 // =========================================================
@@ -1818,6 +1816,10 @@ if (letterForm) {
 document.addEventListener(
     "DOMContentLoaded",
     () => {
+
+        // =====================================================
+        // ELEMENTS
+        // =====================================================
 
         const onePiecePage =
             document.getElementById(
@@ -1870,50 +1872,138 @@ document.addEventListener(
         // =====================================================
 
         const onePiecePlaylist = [
+
             {
                 name: "One Piece Theme",
                 src: "music/one_piece.mp3"
             },
-             {
-                name: "Binks Sake",
+
+            {
+                name: "Binks' Sake",
                 src: "music/BinksSake.mp3"
             },
-             {
+
+            {
                 name: "Brand New World",
                 src: "music/BrandNewWorld.mp3"
             },
-             {
+
+            {
                 name: "Fight Together",
                 src: "music/FightTogether.mp3"
             },
-             {
+
+            {
                 name: "Marvelous Battle",
                 src: "music/MarvelousBattle.mp3"
-            },
+            }
+
         ];
+
+
+        // =====================================================
+        // ONE PIECE MUSIC STATE
+        // =====================================================
 
         let opPlaylistIndex = 0;
         let opMusicPlaying = false;
-        let opCurrentIndex = 0;
 
 
-     function playOpSong(index) {
+        // =====================================================
+        // UPDATE ACTIVE PLAYLIST BUTTON
+        // =====================================================
 
-    if (!onePiecePlaylist[index]) return;
+        function updateOpSongButton() {
 
-    opCurrentIndex = index;
+            if (!opMusicMenu) return;
 
-    const song = onePiecePlaylist[index];
 
-    onePieceMusic.src = song.src;
-    onePieceMusic.load();
+            const buttons =
+                opMusicMenu.querySelectorAll(
+                    ".op-song-btn"
+                );
 
-    onePieceMusic.play().catch(error => {
-        console.log("Grand Line music could not autoplay:", error);
-    });
 
-    updateOpSongButton();
-}
+            buttons.forEach(button => {
+
+                const isActive =
+                    button.dataset.opSong ===
+                    onePiecePlaylist[
+                        opPlaylistIndex
+                    ]?.src;
+
+
+                button.classList.toggle(
+                    "active",
+                    isActive
+                );
+
+            });
+
+        }
+
+
+        // =====================================================
+        // PLAY ONE PIECE SONG
+        // =====================================================
+
+        function playOpSong(index) {
+
+            if (
+                !onePiecePlaylist[index] ||
+                !onePieceMusic
+            ) {
+                return;
+            }
+
+
+            // Keep playlist index synchronized
+            opPlaylistIndex = index;
+
+
+            const song =
+                onePiecePlaylist[
+                    opPlaylistIndex
+                ];
+
+
+            // Change audio source
+            onePieceMusic.src =
+                song.src;
+
+            onePieceMusic.load();
+
+
+            // Update active menu button
+            updateOpSongButton();
+
+
+            // Play
+            onePieceMusic
+                .play()
+                .then(() => {
+
+                    opMusicPlaying = true;
+
+
+                    if (musicButton) {
+
+                        musicButton.textContent =
+                            "🎶";
+
+                    }
+
+                })
+                .catch(error => {
+
+                    console.log(
+                        "Grand Line music could not autoplay:",
+                        error
+                    );
+
+                });
+
+        }
 
 
         // =====================================================
@@ -1926,21 +2016,66 @@ document.addEventListener(
                 "click",
                 () => {
 
-                    if (!onePiecePage) return;
+                    if (!onePiecePage) {
+                        return;
+                    }
 
+
+                    // -----------------------------------------
+                    // STOP NORMAL MUSIC
+                    // -----------------------------------------
+
+                    if (music) {
+
+                        music.pause();
+                        music.currentTime = 0;
+
+                    }
+
+
+                    // Reset normal music icons
+
+                    if (musicToggle) {
+
+                        musicToggle.innerHTML =
+                            "🎵❤️";
+
+                    }
+
+
+                    if (musicToggleAryan) {
+
+                        musicToggleAryan.innerHTML =
+                            "🎵❤️";
+
+                    }
+
+
+                    // -----------------------------------------
+                    // SHOW ONE PIECE PAGE
+                    // -----------------------------------------
 
                     onePiecePage.style.display =
                         "block";
+
 
                     document.body.classList.add(
                         "one-piece-active"
                     );
 
+
                     document.body.style.overflow =
                         "hidden";
 
 
+                    // -----------------------------------------
+                    // SHOW OPENING SCREEN
+                    // -----------------------------------------
+
                     if (opening) {
+
+                        opening.style.display =
+                            "grid";
 
                         opening.classList.remove(
                             "hide"
@@ -1948,6 +2083,10 @@ document.addEventListener(
 
                     }
 
+
+                    // -----------------------------------------
+                    // RESET GRAND LINE
+                    // -----------------------------------------
 
                     if (grandLine) {
 
@@ -1958,12 +2097,16 @@ document.addEventListener(
                             "op-grand-line-visible"
                         );
 
+                        grandLine.classList.remove(
+                            "op-destination-open"
+                        );
+
                     }
 
 
-                    onePiecePage.scrollTop =
-                        0;
-
+                    // -----------------------------------------
+                    // RESET ONE PIECE MUSIC
+                    // -----------------------------------------
 
                     if (onePieceMusic) {
 
@@ -1974,32 +2117,121 @@ document.addEventListener(
 
                     }
 
+
+                    opPlaylistIndex = 0;
+
+                    opMusicPlaying = false;
+
+
+                    if (musicButton) {
+
+                        musicButton.textContent =
+                            "🎵";
+
+                    }
+
+
+                    updateOpSongButton();
+
+
+                    // -----------------------------------------
+                    // RESET PAGE SCROLL
+                    // -----------------------------------------
+
+                    onePiecePage.scrollTop =
+                        0;
+
                 }
             );
 
         }
 
 
-       /* =========================================================
-   START GRAND LINE
-   ========================================================= */
+        // =====================================================
+        // START GRAND LINE
+        // =====================================================
 
-startButton.addEventListener("click", () => {
+        if (startButton) {
 
-    opening.style.display = "none";
+            startButton.addEventListener(
+                "click",
+                () => {
 
-    setTimeout(() => {
-        grandLine.classList.add("op-grand-line-visible");
-    }, 850);
 
-    // Always start Grand Line with its FIRST song
-    const firstGrandLineSong = onePiecePlaylist[0];
+                    // -----------------------------------------
+                    // STOP MAIN / ARYAN MUSIC
+                    // -----------------------------------------
 
-    if (firstGrandLineSong) {
-        playOpSong(0);
-    }
+                    if (music) {
 
-});
+                        music.pause();
+
+                        music.currentTime =
+                            0;
+
+                    }
+
+
+                    // Reset normal music icons
+
+                    if (musicToggle) {
+
+                        musicToggle.innerHTML =
+                            "🎵❤️";
+
+                    }
+
+
+                    if (musicToggleAryan) {
+
+                        musicToggleAryan.innerHTML =
+                            "🎵❤️";
+
+                    }
+
+
+                    // -----------------------------------------
+                    // HIDE OPENING
+                    // -----------------------------------------
+
+                    if (opening) {
+
+                        opening.style.display =
+                            "none";
+
+                    }
+
+
+                    // -----------------------------------------
+                    // SHOW GRAND LINE
+                    // -----------------------------------------
+
+                    setTimeout(
+                        () => {
+
+                            if (grandLine) {
+
+                                grandLine.classList.add(
+                                    "op-grand-line-visible"
+                                );
+
+                            }
+
+                        },
+                        850
+                    );
+
+
+                    // -----------------------------------------
+                    // START FIRST ONE PIECE SONG
+                    // -----------------------------------------
+
+                    playOpSong(0);
+
+                }
+            );
+
+        }
 
 
         // =====================================================
@@ -2012,30 +2244,10 @@ startButton.addEventListener("click", () => {
                 "click",
                 () => {
 
-                    if (onePiecePage) {
 
-                        onePiecePage.style.display =
-                            "none";
-
-                    }
-
-
-                    if (grandLine) {
-
-                        grandLine.classList.remove(
-                            "op-grand-line-visible"
-                        );
-
-                    }
-
-
-                    document.body.classList.remove(
-                        "one-piece-active"
-                    );
-
-                    document.body.style.overflow =
-                        "";
-
+                    // -----------------------------------------
+                    // STOP ONE PIECE MUSIC
+                    // -----------------------------------------
 
                     if (onePieceMusic) {
 
@@ -2051,6 +2263,14 @@ startButton.addEventListener("click", () => {
                         false;
 
 
+                    opPlaylistIndex =
+                        0;
+
+
+                    // -----------------------------------------
+                    // RESET MUSIC BUTTON
+                    // -----------------------------------------
+
                     if (musicButton) {
 
                         musicButton.textContent =
@@ -2058,6 +2278,10 @@ startButton.addEventListener("click", () => {
 
                     }
 
+
+                    // -----------------------------------------
+                    // CLOSE MUSIC MENU
+                    // -----------------------------------------
 
                     if (opMusicMenu) {
 
@@ -2068,15 +2292,47 @@ startButton.addEventListener("click", () => {
                     }
 
 
-                    const normalMusic =
-                        document.getElementById(
-                            "bgMusic"
+                    // -----------------------------------------
+                    // HIDE ONE PIECE PAGE
+                    // -----------------------------------------
+
+                    if (onePiecePage) {
+
+                        onePiecePage.style.display =
+                            "none";
+
+                    }
+
+
+                    if (grandLine) {
+
+                        grandLine.classList.remove(
+                            "op-grand-line-visible"
                         );
 
-                    if (normalMusic) {
+                        grandLine.classList.remove(
+                            "op-destination-open"
+                        );
 
-                        normalMusic
-                            .play()
+                    }
+
+
+                    document.body.classList.remove(
+                        "one-piece-active"
+                    );
+
+
+                    document.body.style.overflow =
+                        "";
+
+
+                    // -----------------------------------------
+                    // RESUME NORMAL MUSIC
+                    // -----------------------------------------
+
+                    if (music) {
+
+                        music.play()
                             .catch(() => {});
 
                     }
@@ -2097,10 +2353,18 @@ startButton.addEventListener("click", () => {
                 "click",
                 event => {
 
+                    event.preventDefault();
                     event.stopPropagation();
 
-                    if (!onePieceMusic) return;
 
+                    if (!onePieceMusic) {
+                        return;
+                    }
+
+
+                    // -----------------------------------------
+                    // PLAY / PAUSE
+                    // -----------------------------------------
 
                     if (opMusicPlaying) {
 
@@ -2109,18 +2373,22 @@ startButton.addEventListener("click", () => {
                         opMusicPlaying =
                             false;
 
+
                         musicButton.textContent =
                             "🎵";
 
                     } else {
 
                         playOpSong(
-                            opPlaylistIndex,
-                            true
+                            opPlaylistIndex
                         );
 
                     }
 
+
+                    // -----------------------------------------
+                    // OPEN / CLOSE PLAYLIST
+                    // -----------------------------------------
 
                     if (opMusicMenu) {
 
@@ -2137,6 +2405,40 @@ startButton.addEventListener("click", () => {
 
 
         // =====================================================
+        // CLOSE PLAYLIST WHEN CLICKING ELSEWHERE
+        // =====================================================
+
+        document.addEventListener(
+            "click",
+            event => {
+
+                if (
+                    !opMusicMenu ||
+                    !musicButton
+                ) {
+                    return;
+                }
+
+
+                if (
+                    !opMusicMenu.contains(
+                        event.target
+                    ) &&
+                    event.target !==
+                        musicButton
+                ) {
+
+                    opMusicMenu.classList.remove(
+                        "show"
+                    );
+
+                }
+
+            }
+        );
+
+
+        // =====================================================
         // ONE PIECE MUSIC MENU
         // =====================================================
 
@@ -2146,12 +2448,18 @@ startButton.addEventListener("click", () => {
                 "click",
                 event => {
 
+                    event.stopPropagation();
+
+
                     const songButton =
                         event.target.closest(
                             ".op-song-btn"
                         );
 
-                    if (!songButton) return;
+
+                    if (!songButton) {
+                        return;
+                    }
 
 
                     const index =
@@ -2162,14 +2470,18 @@ startButton.addEventListener("click", () => {
                         );
 
 
-                    if (index >= 0) {
-
-                        playOpSong(
-                            index,
-                            true
-                        );
-
+                    if (index === -1) {
+                        return;
                     }
+
+
+                    playOpSong(index);
+
+
+                    // Keep menu open after selecting
+                    opMusicMenu.classList.add(
+                        "show"
+                    );
 
                 }
             );
@@ -2178,7 +2490,7 @@ startButton.addEventListener("click", () => {
 
 
         // =====================================================
-        // AUTO LOOP ONE PIECE MUSIC
+        // AUTOMATIC NEXT ONE PIECE SONG
         // =====================================================
 
         if (onePieceMusic) {
@@ -2187,9 +2499,16 @@ startButton.addEventListener("click", () => {
                 "ended",
                 () => {
 
+
+                    const nextIndex =
+                        (
+                            opPlaylistIndex + 1
+                        ) %
+                        onePiecePlaylist.length;
+
+
                     playOpSong(
-                        opPlaylistIndex + 1,
-                        true
+                        nextIndex
                     );
 
                 }
@@ -2206,6 +2525,7 @@ startButton.addEventListener("click", () => {
             document.querySelectorAll(
                 ".op-destination-button"
             );
+
 
         const destinationPanels =
             document.querySelectorAll(
@@ -2247,7 +2567,10 @@ startButton.addEventListener("click", () => {
                     id
                 );
 
-            if (!panel) return;
+
+            if (!panel) {
+                return;
+            }
 
 
             destinationPanels.forEach(
@@ -2274,6 +2597,7 @@ startButton.addEventListener("click", () => {
                 "op-panel-active"
             );
 
+
             panel.scrollTop =
                 0;
 
@@ -2287,11 +2611,14 @@ startButton.addEventListener("click", () => {
                     "click",
                     () => {
 
+
                         destinationButton.classList.remove(
                             "button-pop"
                         );
 
+
                         void destinationButton.offsetWidth;
+
 
                         destinationButton.classList.add(
                             "button-pop"
@@ -2299,7 +2626,8 @@ startButton.addEventListener("click", () => {
 
 
                         const target =
-                            destinationButton.dataset.opSection;
+                            destinationButton.dataset
+                                .opSection;
 
 
                         if (target) {
@@ -2343,368 +2671,636 @@ startButton.addEventListener("click", () => {
         showGrandLineHome();
 
 
-        /* =========================================================
-   GRAND LINE MEMORY POLAROIDS
-   ========================================================= */
+        // =====================================================
+        // GRAND LINE MEMORY POLAROIDS
+        // =====================================================
 
-const memories = {
-    codm: {
-        icon: "🎮",
-        chapter: "CHAPTER I",
-        title: "Where It All Began",
-        text: "Our story began somewhere between a game of CODM and two people who had no idea what was coming next.",
-        photos: [
-            "images/codm1.jpeg",
-            "images/codm2.jpeg",
-            "images/codm3.jpeg"
-        ],
-        captions: [
-            "The beginning of our adventure 🎮",
-            "Two players. One story.",
-            "And somehow, we found each other ❤️"
-        ]
-    },
+        const memories = {
 
-    videocall: {
-        icon: "📞",
-        chapter: "CHAPTER II",
-        title: "Across The Distance",
-        text: "From messages to calls, somehow the distance never felt quite so far when you were on the other side.",
-        photos: [
-            "images/videocall1.jpeg",
-            "images/videocall2.jpeg",
-            "images/videocall3.jpeg"
-        ],
-        captions: [
-            "Hours that never felt long 📞",
-            "Your face became my favourite notification.",
-            "A little closer, every call ❤️"
-        ]
-    },
+            codm: {
 
-    Mysore: {
-        icon: "🏰✨",
-        chapter: "CHAPTER III",
-        title: "Mysore",
-        text: "Another chapter, another place, and another collection of memories that became ours.",
-        photos: [
-            "images/Mysore1.jpeg",
-            "images/Mysore2.jpeg",
-            "images/Mysore3.jpeg"
-        ],
-        captions: [
-            "A place became a memory.",
-            "One more adventure together ✨",
-            "Mysore, but make it ours ❤️"
-        ]
-    },
+                icon: "🎮",
 
-    Banglore: {
-        icon: "🏰",
-        chapter: "CHAPTER IV",
-        title: "Banglore",
-        text: "Some places are special because of where they are. Others become special because of who you were with.",
-        photos: [
-            "images/Banglore1.jpeg",
-            "images/Banglore2.jpeg",
-            "images/Banglore3.jpeg"
-        ],
-        captions: [
-            "Another stop on our Grand Line.",
-            "Another memory with you.",
-            "Another chapter of us ❤️"
-        ]
-    },
+                chapter: "CHAPTER I",
 
-    Mumbai: {
-        icon: "🌊",
-        chapter: "CHAPTER V",
-        title: "Mumbai",
-        text: "A city full of lights, chaos and endless stories — and somehow, one of my favourite stories here is ours.",
-        photos: [
-            "images/Mumbai1.jpeg",
-            "images/Mumbai2.jpeg",
-            "images/Mumbai3.jpeg"
-        ],
-        captions: [
-            "Mumbai nights 🌊",
-            "Our little adventure in the city.",
-            "A memory worth keeping forever ❤️"
-        ]
-    }
-};
+                title: "Where It All Began",
+
+                text:
+                    "Our story began somewhere between a game of CODM and two people who had no idea what was coming next.",
+
+                photos: [
+                    "images/codm1.jpeg",
+                    "images/codm2.jpeg",
+                    "images/codm3.jpeg"
+                ],
+
+                captions: [
+                    "The beginning of our adventure 🎮",
+                    "Two players. One story.",
+                    "And somehow, we found each other ❤️"
+                ]
+
+            },
 
 
-/* ---------- DOM ELEMENTS ---------- */
+            videocall: {
 
-const memoryModal = document.getElementById("memoryModal");
-const closeMemory = document.getElementById("closeMemory");
+                icon: "📞",
 
-const memoryIcon = document.getElementById("memoryIcon");
-const memoryChapter = document.getElementById("memoryChapter");
-const memoryTitle = document.getElementById("memoryTitle");
-const memoryText = document.getElementById("memoryText");
+                chapter: "CHAPTER II",
 
-const memoryPhoto = document.getElementById("memoryPhoto");
-const memoryPhotoCaption = document.getElementById("memoryPhotoCaption");
-const memoryPhotoCounter = document.getElementById("memoryPhotoCounter");
+                title: "Across The Distance",
 
-const memoryPhotoPrev = document.getElementById("memoryPhotoPrev");
-const memoryPhotoNext = document.getElementById("memoryPhotoNext");
+                text:
+                    "From messages to calls, somehow the distance never felt quite so far when you were on the other side.",
 
-let currentMemory = null;
-let currentPhotoIndex = 0;
-let memoryPhotoTimer = null;
+                photos: [
+                    "images/videocall1.jpeg",
+                    "images/videocall2.jpeg",
+                    "images/videocall3.jpeg"
+                ],
+
+                captions: [
+                    "Hours that never felt long 📞",
+                    "Your face became my favourite notification.",
+                    "A little closer, every call ❤️"
+                ]
+
+            },
 
 
-/* =========================================================
-   SHOW PHOTO
-   ========================================================= */
+            Mysore: {
 
-function showMemoryPhoto(index) {
+                icon: "🏰✨",
 
-    if (!currentMemory) return;
+                chapter: "CHAPTER III",
 
-    const photos = currentMemory.photos || [];
+                title: "Mysore",
 
-    if (!photos.length) return;
+                text:
+                    "Another chapter, another place, and another collection of memories that became ours.",
 
-    currentPhotoIndex =
-        (index + photos.length) % photos.length;
+                photos: [
+                    "images/Mysore1.jpeg",
+                    "images/Mysore2.jpeg",
+                    "images/Mysore3.jpeg"
+                ],
 
-    const photo = photos[currentPhotoIndex];
+                captions: [
+                    "A place became a memory.",
+                    "One more adventure together ✨",
+                    "Mysore, but make it ours ❤️"
+                ]
 
-    if (memoryPhoto) {
+            },
 
-        // Small fade animation
-        memoryPhoto.classList.remove("photo-changing");
 
-        void memoryPhoto.offsetWidth;
+            Banglore: {
 
-        memoryPhoto.classList.add("photo-changing");
+                icon: "🏰",
 
-        memoryPhoto.src = photo;
+                chapter: "CHAPTER IV",
 
-        memoryPhoto.onerror = function () {
-            console.warn("Could not load memory photo:", photo);
+                title: "Banglore",
+
+                text:
+                    "Some places are special because of where they are. Others become special because of who you were with.",
+
+                photos: [
+                    "images/Banglore1.jpeg",
+                    "images/Banglore2.jpeg",
+                    "images/Banglore3.jpeg"
+                ],
+
+                captions: [
+                    "Another stop on our Grand Line.",
+                    "Another memory with you.",
+                    "Another chapter of us ❤️"
+                ]
+
+            },
+
+
+            Mumbai: {
+
+                icon: "🌊",
+
+                chapter: "CHAPTER V",
+
+                title: "Mumbai",
+
+                text:
+                    "A city full of lights, chaos and endless stories — and somehow, one of my favourite stories here is ours.",
+
+                photos: [
+                    "images/Mumbai1.jpeg",
+                    "images/Mumbai2.jpeg",
+                    "images/Mumbai3.jpeg"
+                ],
+
+                captions: [
+                    "Mumbai nights 🌊",
+                    "Our little adventure in the city.",
+                    "A memory worth keeping forever ❤️"
+                ]
+
+            }
+
         };
-    }
 
-    if (memoryPhotoCaption) {
 
-        const captions = currentMemory.captions || [];
+        // =====================================================
+        // MEMORY DOM ELEMENTS
+        // =====================================================
 
-        memoryPhotoCaption.textContent =
-            captions[currentPhotoIndex] || "";
-    }
+        const memoryModal =
+            document.getElementById(
+                "memoryModal"
+            );
 
-    if (memoryPhotoCounter) {
+        const closeMemory =
+            document.getElementById(
+                "closeMemory"
+            );
 
-        memoryPhotoCounter.textContent =
-            `${currentPhotoIndex + 1} / ${photos.length}`;
-    }
+        const memoryIcon =
+            document.getElementById(
+                "memoryIcon"
+            );
 
-    // Hide navigation if there is only one photo
-    if (memoryPhotoPrev) {
-        memoryPhotoPrev.style.display =
-            photos.length > 1 ? "flex" : "none";
-    }
+        const memoryChapter =
+            document.getElementById(
+                "memoryChapter"
+            );
 
-    if (memoryPhotoNext) {
-        memoryPhotoNext.style.display =
-            photos.length > 1 ? "flex" : "none";
-    }
-}
+        const memoryTitle =
+            document.getElementById(
+                "memoryTitle"
+            );
 
+        const memoryText =
+            document.getElementById(
+                "memoryText"
+            );
 
-/* =========================================================
-   AUTOMATIC SLIDESHOW
-   ========================================================= */
+        const memoryPhoto =
+            document.getElementById(
+                "memoryPhoto"
+            );
 
-function startMemoryPhotoSlideshow() {
+        const memoryPhotoCaption =
+            document.getElementById(
+                "memoryPhotoCaption"
+            );
 
-    clearInterval(memoryPhotoTimer);
+        const memoryPhotoCounter =
+            document.getElementById(
+                "memoryPhotoCounter"
+            );
 
-    if (!currentMemory) return;
+        const memoryPhotoPrev =
+            document.getElementById(
+                "memoryPhotoPrev"
+            );
 
-    if (!currentMemory.photos || currentMemory.photos.length <= 1) {
-        return;
-    }
+        const memoryPhotoNext =
+            document.getElementById(
+                "memoryPhotoNext"
+            );
 
-    memoryPhotoTimer = setInterval(() => {
 
-        showMemoryPhoto(currentPhotoIndex + 1);
+        let currentMemory = null;
 
-    }, 5000);
-}
+        let currentPhotoIndex = 0;
 
+        let memoryPhotoTimer = null;
 
-/* =========================================================
-   OPEN MEMORY
-   ========================================================= */
 
-function openMemory(memoryKey) {
+        // =====================================================
+        // SHOW MEMORY PHOTO
+        // =====================================================
 
-    const memory = memories[memoryKey];
+        function showMemoryPhoto(index) {
 
-    if (!memory || !memoryModal) return;
+            if (!currentMemory) {
+                return;
+            }
 
-    currentMemory = memory;
-    currentPhotoIndex = 0;
 
-    if (memoryIcon) {
-        memoryIcon.textContent = memory.icon;
-    }
+            const photos =
+                currentMemory.photos || [];
 
-    if (memoryChapter) {
-        memoryChapter.textContent = memory.chapter;
-    }
 
-    if (memoryTitle) {
-        memoryTitle.textContent = memory.title;
-    }
+            if (!photos.length) {
+                return;
+            }
 
-    if (memoryText) {
-        memoryText.textContent = memory.text;
-    }
 
-    showMemoryPhoto(0);
+            currentPhotoIndex =
+                (
+                    index +
+                    photos.length
+                ) %
+                photos.length;
 
-    memoryModal.classList.add("active");
 
-    // Important: make sure the modal is actually above the map
-    memoryModal.style.display = "flex";
-    memoryModal.style.zIndex = "11000";
+            const photo =
+                photos[
+                    currentPhotoIndex
+                ];
 
-    document.body.classList.add("memory-open");
 
-    startMemoryPhotoSlideshow();
-}
+            if (memoryPhoto) {
 
+                memoryPhoto.classList.remove(
+                    "photo-changing"
+                );
 
-/* =========================================================
-   CLOSE MEMORY
-   ========================================================= */
 
-function closeMemoryModal() {
+                void memoryPhoto.offsetWidth;
 
-    clearInterval(memoryPhotoTimer);
-    memoryPhotoTimer = null;
 
-    currentMemory = null;
-    currentPhotoIndex = 0;
+                memoryPhoto.classList.add(
+                    "photo-changing"
+                );
 
-    if (!memoryModal) return;
 
-    memoryModal.classList.remove("active");
+                memoryPhoto.src =
+                    photo;
 
-    memoryModal.style.display = "none";
 
-    document.body.classList.remove("memory-open");
-}
+                memoryPhoto.onerror =
+                    function () {
 
+                        console.warn(
+                            "Could not load memory photo:",
+                            photo
+                        );
 
-/* =========================================================
-   ISLAND CLICK
-   ========================================================= */
+                    };
 
-document.querySelectorAll(".memory-island").forEach(island => {
+            }
 
-    island.addEventListener("click", function (event) {
 
-        event.preventDefault();
-        event.stopPropagation();
+            if (memoryPhotoCaption) {
 
-        const memoryKey = this.dataset.memory;
+                const captions =
+                    currentMemory.captions ||
+                    [];
 
-        openMemory(memoryKey);
-    });
 
-});
+                memoryPhotoCaption.textContent =
+                    captions[
+                        currentPhotoIndex
+                    ] || "";
 
+            }
 
-/* =========================================================
-   CLOSE MEMORY POLAROID
-   ========================================================= */
 
-if (closeMemory) {
-    closeMemory.onclick = function (event) {
-        event.preventDefault();
-        event.stopPropagation();
+            if (memoryPhotoCounter) {
 
-        closeMemoryModal();
-    };
-}
+                memoryPhotoCounter.textContent =
+                    `${currentPhotoIndex + 1} / ${photos.length}`;
 
+            }
 
-/* =========================================================
-   NEXT PHOTO
-   ========================================================= */
 
-if (memoryPhotoNext) {
+            if (memoryPhotoPrev) {
 
-    memoryPhotoNext.addEventListener("click", function (event) {
+                memoryPhotoPrev.style.display =
+                    photos.length > 1
+                        ? "flex"
+                        : "none";
 
-        event.preventDefault();
-        event.stopPropagation();
+            }
 
-        if (!currentMemory) return;
 
-        showMemoryPhoto(currentPhotoIndex + 1);
+            if (memoryPhotoNext) {
 
-        startMemoryPhotoSlideshow();
+                memoryPhotoNext.style.display =
+                    photos.length > 1
+                        ? "flex"
+                        : "none";
 
-    });
+            }
 
-}
-
-
-/* =========================================================
-   PREVIOUS PHOTO
-   ========================================================= */
-
-if (memoryPhotoPrev) {
-
-    memoryPhotoPrev.addEventListener("click", function (event) {
-
-        event.preventDefault();
-        event.stopPropagation();
-
-        if (!currentMemory) return;
-
-        showMemoryPhoto(currentPhotoIndex - 1);
-
-        startMemoryPhotoSlideshow();
-
-    });
-
-}
-
-
-/* =========================================================
-   CLICK OUTSIDE MODAL BOX TO CLOSE
-   ========================================================= */
-
-if (memoryModal) {
-
-    memoryModal.addEventListener("click", function (event) {
-
-        // Only close when clicking the dark area,
-        // NOT when clicking anything inside the modal box.
-        if (event.target === memoryModal) {
-            closeMemoryModal();
         }
 
-    });
 
-}
+        // =====================================================
+        // AUTOMATIC MEMORY SLIDESHOW
+        // =====================================================
+
+        function startMemoryPhotoSlideshow() {
+
+            clearInterval(
+                memoryPhotoTimer
+            );
 
 
+            if (!currentMemory) {
+                return;
+            }
 
 
-        // =========================================================
+            if (
+                !currentMemory.photos ||
+                currentMemory.photos.length <= 1
+            ) {
+                return;
+            }
+
+
+            memoryPhotoTimer =
+                setInterval(
+                    () => {
+
+                        showMemoryPhoto(
+                            currentPhotoIndex + 1
+                        );
+
+                    },
+                    5000
+                );
+
+        }
+
+
+        // =====================================================
+        // OPEN MEMORY
+        // =====================================================
+
+        function openMemory(memoryKey) {
+
+            const memory =
+                memories[memoryKey];
+
+
+            if (
+                !memory ||
+                !memoryModal
+            ) {
+                return;
+            }
+
+
+            currentMemory =
+                memory;
+
+
+            currentPhotoIndex =
+                0;
+
+
+            if (memoryIcon) {
+
+                memoryIcon.textContent =
+                    memory.icon;
+
+            }
+
+
+            if (memoryChapter) {
+
+                memoryChapter.textContent =
+                    memory.chapter;
+
+            }
+
+
+            if (memoryTitle) {
+
+                memoryTitle.textContent =
+                    memory.title;
+
+            }
+
+
+            if (memoryText) {
+
+                memoryText.textContent =
+                    memory.text;
+
+            }
+
+
+            showMemoryPhoto(0);
+
+
+            memoryModal.style.display =
+                "flex";
+
+
+            memoryModal.classList.add(
+                "active"
+            );
+
+
+            document.body.classList.add(
+                "memory-open"
+            );
+
+
+            startMemoryPhotoSlideshow();
+
+        }
+
+
+        // =====================================================
+        // CLOSE MEMORY
+        // =====================================================
+
+        function closeMemoryModal() {
+
+            clearInterval(
+                memoryPhotoTimer
+            );
+
+
+            memoryPhotoTimer =
+                null;
+
+
+            currentMemory =
+                null;
+
+
+            currentPhotoIndex =
+                0;
+
+
+            if (!memoryModal) {
+                return;
+            }
+
+
+            memoryModal.classList.remove(
+                "active"
+            );
+
+
+            memoryModal.style.display =
+                "none";
+
+
+            document.body.classList.remove(
+                "memory-open"
+            );
+
+        }
+
+
+        // =====================================================
+        // MEMORY ISLAND CLICK
+        // =====================================================
+
+        document
+            .querySelectorAll(
+                ".memory-island"
+            )
+            .forEach(
+                island => {
+
+                    island.addEventListener(
+                        "click",
+                        event => {
+
+                            event.preventDefault();
+
+                            event.stopPropagation();
+
+
+                            const memoryKey =
+                                island.dataset.memory;
+
+
+                            openMemory(
+                                memoryKey
+                            );
+
+                        }
+                    );
+
+                }
+            );
+
+
+        // =====================================================
+        // CLOSE MEMORY BUTTON
+        // =====================================================
+
+        if (closeMemory) {
+
+            closeMemory.addEventListener(
+                "click",
+                event => {
+
+                    event.preventDefault();
+
+                    event.stopPropagation();
+
+                    closeMemoryModal();
+
+                }
+            );
+
+        }
+
+
+        // =====================================================
+        // NEXT MEMORY PHOTO
+        // =====================================================
+
+        if (memoryPhotoNext) {
+
+            memoryPhotoNext.addEventListener(
+                "click",
+                event => {
+
+                    event.preventDefault();
+
+                    event.stopPropagation();
+
+
+                    if (!currentMemory) {
+                        return;
+                    }
+
+
+                    showMemoryPhoto(
+                        currentPhotoIndex + 1
+                    );
+
+
+                    startMemoryPhotoSlideshow();
+
+                }
+            );
+
+        }
+
+
+        // =====================================================
+        // PREVIOUS MEMORY PHOTO
+        // =====================================================
+
+        if (memoryPhotoPrev) {
+
+            memoryPhotoPrev.addEventListener(
+                "click",
+                event => {
+
+                    event.preventDefault();
+
+                    event.stopPropagation();
+
+
+                    if (!currentMemory) {
+                        return;
+                    }
+
+
+                    showMemoryPhoto(
+                        currentPhotoIndex - 1
+                    );
+
+
+                    startMemoryPhotoSlideshow();
+
+                }
+            );
+
+        }
+
+
+        // =====================================================
+        // CLICK OUTSIDE MEMORY MODAL
+        // =====================================================
+
+        if (memoryModal) {
+
+            memoryModal.addEventListener(
+                "click",
+                event => {
+
+                    if (
+                        event.target ===
+                        memoryModal
+                    ) {
+
+                        closeMemoryModal();
+
+                    }
+
+                }
+            );
+
+        }
+
+
+        // =====================================================
         // TREASURE CHEST
-        // =========================================================
+        // =====================================================
 
         const treasureChest =
             document.getElementById(
@@ -2783,9 +3379,9 @@ if (memoryModal) {
         }
 
 
-        // =========================================================
-        // ONE PIECE ESCAPE KEY
-        // =========================================================
+        // =====================================================
+        // ESCAPE KEY
+        // =====================================================
 
         document.addEventListener(
             "keydown",
@@ -2799,7 +3395,9 @@ if (memoryModal) {
                 }
 
 
-                // Close memory popup first
+                // -----------------------------------------
+                // MEMORY POPUP
+                // -----------------------------------------
 
                 if (
                     memoryModal &&
@@ -2815,7 +3413,9 @@ if (memoryModal) {
                 }
 
 
-                // Close treasure popup
+                // -----------------------------------------
+                // TREASURE POPUP
+                // -----------------------------------------
 
                 if (
                     treasureMessage &&
@@ -2839,16 +3439,21 @@ if (memoryModal) {
                 }
 
 
-                // Leave Grand Line
+                // -----------------------------------------
+                // LEAVE GRAND LINE
+                // -----------------------------------------
 
                 if (
                     onePiecePage &&
                     onePiecePage.style.display !==
-                        "none" &&
-                    backButton
+                        "none"
                 ) {
 
-                    backButton.click();
+                    if (backButton) {
+
+                        backButton.click();
+
+                    }
 
                 }
 
@@ -2856,9 +3461,9 @@ if (memoryModal) {
         );
 
 
-        // =========================================================
-        // STOP ONE PIECE MUSIC WHEN PAGE CLOSES
-        // =========================================================
+        // =====================================================
+        // STOP ONE PIECE MUSIC BEFORE PAGE UNLOAD
+        // =====================================================
 
         window.addEventListener(
             "beforeunload",
