@@ -1,862 +1,1347 @@
-/* ============================================================
-   ANKITA & ARYAN — CLEANED / CONSOLIDATED STYLESHEET
-   Generated from the supplied CSS.
-
-   - Duplicate selector blocks consolidated (last intended cascade kept).
-   - Repeated One Piece "fix" blocks consolidated.
-   - Interactive controls given explicit pointer-event/z-index behavior.
-   - Thousand Sunny remains the single Grand Line page background.
-   ============================================================ */
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+/* ==========================
+   GENERAL
+========================== */
+ 
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
-
-body {
-    font-family: "Times New Roman", Times, serif;
-    overflow-x: hidden;
-    min-height: 100%;
-    background: #000;
+ 
+body{
+    font-family:'Times New Roman', Times, serif;
+    overflow-x:hidden;
 }
-
-#intro {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    overflow: hidden;
+ 
+/* ==========================
+   INTRO PAGE
+========================== */
+ 
+#intro{
+ 
+    position:relative;
+ 
+    width:100%;
+ 
+    height:100vh;
+ 
+    overflow:hidden;
+ 
 }
-
-.cover {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+ 
+.cover{
+ 
+    position:absolute;
+ 
+    top:0;
+    left:0;
+ 
+    width:100%;
+    height:100%;
+ 
+    object-fit:cover;
+ 
 }
-
-#intro::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: rgba(0,0,0,.45);
+ 
+/* Dark Overlay */
+ 
+#intro::before{
+ 
+    content:"";
+ 
+    position:absolute;
+ 
+    inset:0;
+ 
+    background:rgba(0,0,0,.45);
+ 
 }
-
-.content {
-    position: relative;
-    z-index: 2;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    color: white;
-    padding: 30px;
+ 
+/* Center Content */
+ 
+.content{
+ 
+    position:relative;
+ 
+    z-index:2;
+ 
+    height:100%;
+ 
+    display:flex;
+ 
+    flex-direction:column;
+ 
+    justify-content:center;
+ 
+    align-items:center;
+ 
+    text-align:center;
+ 
+    color:white;
+ 
+    padding:30px;
+ 
 }
-
-.content h1 {
-    font-size: 55px;
-    width: 70%;
-    line-height: 1.3;
+ 
+.content h1{
+ 
+    font-size:55px;
+ 
+    width:70%;
+ 
+    line-height:1.3;
+ 
 }
-
-.content h3 {
-    margin-top: 25px;
-    font-size: 24px;
-    color: #ffd6e7;
+ 
+.content h3{
+ 
+    margin-top:25px;
+ 
+    font-size:24px;
+ 
+    color:#ffd6e7;
+ 
 }
-
-.content p {
-    width: 650px;
-    max-width: 90%;
-    margin-top: 35px;
-    font-size: 20px;
-    line-height: 1.8;
+ 
+.content p{
+ 
+    width:650px;
+ 
+    max-width:90%;
+ 
+    margin-top:35px;
+ 
+    font-size:20px;
+ 
+    line-height:1.8;
+ 
 }
-
-button {
-    margin-top: 45px;
-    padding: 18px 40px;
-    border: none;
-    border-radius: 50px;
-    background: #d63384;
-    color: white;
-    font-size: 20px;
-    cursor: pointer;
-    transition: .3s;
-    font: inherit;
+ 
+button{
+ 
+    margin-top:45px;
+ 
+    padding:18px 40px;
+ 
+    border:none;
+ 
+    border-radius:50px;
+ 
+    background:#d63384;
+ 
+    color:white;
+ 
+    font-size:20px;
+ 
+    cursor:pointer;
+ 
+    transition:.3s;
+ 
 }
-
-button:hover {
-    transform: scale(1.08);
-    background: #b81f6b;
+ 
+button:hover{
+ 
+    transform:scale(1.08);
+ 
+    background:#b81f6b;
+ 
 }
-
-#lettersPage {
-    display: none;
-    position: relative;
-    width: 100%;
-    min-height: 100vh;
-    overflow: hidden;
+ 
+/* ==========================
+   LETTER PAGE
+========================== */
+ 
+#lettersPage{
+ 
+    display:none;
+ 
+    position:relative;
+ 
+    width:100%;
+ 
+    min-height:100vh;
+ 
+    overflow:hidden;
+ 
 }
-
-#slideshow {
-    position: fixed;
-    inset: 0;
+ 
+/* Background Slideshow */
+ 
+#slideshow{
+ 
+    position:fixed;
+ 
+    inset:0;
+ 
+ 
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
     background-color: black;
-    transition: background-image 1s ease;
-    z-index: -2;
+ 
+ 
+    transition:background-image 1s ease;
+ 
+    z-index:-2;
+ 
 }
-
-#aryanPage {
-    display: none;
-    position: relative;
-    width: 100%;
-    min-height: 100vh;
-    overflow: hidden;
+ 
+/* ==========================
+   ARYAN'S LETTERS PAGE
+========================== */
+ 
+#aryanPage{
+ 
+    display:none;
+ 
+    position:relative;
+ 
+    width:100%;
+ 
+    min-height:100vh;
+ 
+    overflow:hidden;
+ 
 }
-
-#slideshowAryan {
-    position: fixed;
-    inset: 0;
+ 
+/* Background Slideshow */
+ 
+#slideshowAryan{
+ 
+    position:fixed;
+ 
+    inset:0;
+ 
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
     background-color: black;
-    transition: background-image 1s ease;
-    z-index: -2;
+ 
+    transition:background-image 1s ease;
+ 
+    z-index:-2;
+ 
 }
-
+ 
+/* Fade transitions between pages */
+ 
 #intro,
 #lettersPage,
-#aryanPage {
+#aryanPage{
+ 
     transition: opacity .8s ease;
+ 
+}
+ 
+/* Dark Overlay */
+ 
+.overlay{
+ 
+    min-height:100vh;
+ 
+    background:rgba(0,0,0,.55);
+ 
+    color:white;
+ 
+    display:flex;
+ 
+    flex-direction:column;
+ 
+    justify-content:center;
+ 
+    align-items:center;
+ 
+    padding:60px;
+ 
+}
+ 
+.overlay h1{
+ 
+    font-size:50px;
+ 
+}
+ 
+.subtitle{
+ 
+    margin-top:15px;
+ 
+    font-size:20px;
+ 
+    color:#ffe3ef;
+ 
+}
+ 
+/* ==========================
+   GALLERY
+========================== */
+ 
+.gallery{
+ 
+    margin-top:60px;
+ 
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+ 
+    gap:35px;
+ 
+    width:80%;
+ 
 }
 
-.overlay {
-    min-height: 100vh;
-    background: rgba(0,0,0,.55);
-    color: white;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 60px;
+
+/* ==========================
+   SINGLE LETTER CARD (inline, with Prev / Next)
+========================== */
+
+.letterCardWrap{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:20px;
+
+    width:100%;
+
 }
 
-.overlay h1 {
-    font-size: 50px;
+.cardArrow{
+
+    /* override the global button{} defaults (margin-top, wide padding, etc.) */
+    margin:0;
+
+    width:56px;
+    height:56px;
+    padding:0;
+    flex-shrink:0;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.15);
+    backdrop-filter:blur(12px);
+    border:1px solid rgba(255,255,255,.3);
+    color:white;
+
+    font-size:30px;
+    line-height:1;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    cursor:pointer;
+
+    transition:.3s;
+
 }
 
-.subtitle {
-    margin-top: 15px;
-    font-size: 20px;
-    color: #ffe3ef;
+.cardArrow:hover:not(:disabled){
+
+    transform:translateY(-4px);
+
+    background:rgba(255,255,255,.25);
+
 }
 
-.gallery {
-    margin-top: 60px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 35px;
-    width: 80%;
+.cardArrow:disabled{
+
+    opacity:.3;
+
+    cursor:not-allowed;
+
+    transform:none;
+
 }
 
-.letterCardWrap {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    width: 100%;
+.cardArrow:disabled:hover{
+
+    transform:none;
+
+    background:rgba(255,255,255,.15);
+
 }
 
-.cardArrow {
-    margin: 0;
-    width: 56px;
-    height: 56px;
-    padding: 0;
-    flex-shrink: 0;
-    border-radius: 50%;
-    background: rgba(255,255,255,.15);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(255,255,255,.3);
-    color: white;
-    font-size: 30px;
-    line-height: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: .3s;
+.letterCard{
+
+    width:600px;
+    max-width:100%;
+
+    max-height:65vh;
+    overflow-y:auto;
+
+    background:#fffdf7;
+    color:#3d2d1e;
+
+    border-radius:20px;
+
+    padding:40px;
+
+    text-align:left;
+
+    box-shadow:0 15px 40px rgba(0,0,0,.4);
+
 }
 
-.cardArrow:hover:not(:disabled) {
-    transform: translateY(-4px);
-    background: rgba(255,255,255,.25);
+.letterCardEmoji{
+
+    font-size:40px;
+
+    text-align:center;
+
+    margin-bottom:10px;
+
 }
 
-.cardArrow:disabled {
-    opacity: .3;
-    cursor: not-allowed;
-    transform: none;
+.letterCard h2{
+
+    text-align:center;
+
+    margin-bottom:6px;
+
 }
 
-.cardArrow:disabled:hover {
-    transform: none;
-    background: rgba(255,255,255,.15);
+.letterCard h6{
+
+    text-align:center;
+
+    opacity:.6;
+
+    font-weight:normal;
+
+    margin-bottom:20px;
+
 }
 
-.letterCard {
-    width: 600px;
-    max-width: 100%;
-    max-height: 65vh;
-    overflow-y: auto;
-    background: #fffdf7;
-    color: #3d2d1e;
-    border-radius: 20px;
-    padding: 40px;
-    text-align: left;
-    box-shadow: 0 15px 40px rgba(0,0,0,.4);
+.letterCardBody{
+
+    display:none;
+
 }
 
-.letterCardEmoji {
-    font-size: 40px;
-    text-align: center;
-    margin-bottom: 10px;
+.letterCardToggle{
+
+    display:block;
+
+    margin:15px auto 0;
+
+    padding:10px 22px;
+
+    font-size:15px;
+
+    border-radius:20px;
+
+    background:rgba(214,51,132,.12);
+
+    color:#d63384;
+
+    border:1px solid rgba(214,51,132,.35);
+
+    box-shadow:none;
+
 }
 
-.letterCard h2 {
-    text-align: center;
-    margin-bottom: 6px;
+.letterCardToggle:hover{
+
+    transform:none;
+
+    background:rgba(214,51,132,.2);
+
 }
 
-.letterCard h6 {
-    text-align: center;
-    opacity: .6;
-    font-weight: normal;
-    margin-bottom: 20px;
+.letterCardBody p{
+
+    font-size:19px;
+
+    line-height:1.8;
+
+    margin-bottom:18px;
+
 }
 
-.letterCardBody {
-    display: none;
+.letterCardBody p:first-child{
+
+    margin-top:20px;
+
 }
 
-.letterCardToggle {
-    display: block;
-    margin: 15px auto 0;
-    padding: 10px 22px;
-    font-size: 15px;
-    border-radius: 20px;
-    background: rgba(214,51,132,.12);
-    color: #d63384;
-    border: 1px solid rgba(214,51,132,.35);
-    box-shadow: none;
+.letterCardPosition{
+
+    display:block;
+
+    text-align:center;
+
+    margin-top:15px;
+
+    font-size:14px;
+
+    opacity:.6;
+
 }
 
-.letterCardToggle:hover {
-    transform: none;
-    background: rgba(214,51,132,.2);
+.actionRow{
+
+    display:flex;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+
+    justify-content:center;
+
 }
 
-.letterCardBody p {
-    font-size: 19px;
-    line-height: 1.8;
-    margin-bottom: 18px;
+.actionRow button{
+
+    margin-top:0;
+
+    padding:14px 28px;
+
+    font-size:17px;
+
 }
 
-.letterCardBody p:first-child {
-    margin-top: 20px;
-}
+@media(max-width:768px){
 
-.letterCardPosition {
-    display: block;
-    text-align: center;
-    margin-top: 15px;
-    font-size: 14px;
-    opacity: .6;
-}
+    .letterCardWrap{
 
-.actionRow {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
-}
+        gap:10px;
 
-.actionRow button {
-    margin-top: 0;
-    padding: 14px 28px;
-    font-size: 17px;
-}
-
-@media (max-width:768px) {
-    .letterCardWrap {
-        gap: 10px;
     }
 
-    .letterCard {
-        padding: 26px;
-        max-height: 55vh;
+    .letterCard{
+
+        padding:26px;
+
+        max-height:55vh;
+
     }
 
-    .cardArrow {
-        width: 44px;
-        height: 44px;
-        font-size: 24px;
+    .cardArrow{
+
+        width:44px;
+        height:44px;
+        font-size:24px;
+
     }
 
-    .content h1 {
-        font-size: 36px;
-        width: 90%;
+}
+ 
+/* ==========================
+   LETTER POPUP
+========================== */
+ 
+.letterPopup{
+ 
+    display:none;
+ 
+    position:fixed;
+ 
+    inset:0;
+ 
+    background:rgba(0,0,0,.65);
+ 
+    justify-content:center;
+ 
+    align-items:center;
+ 
+    z-index:100;
+ 
+}
+ 
+.letterContent{
+ 
+    width:700px;
+ 
+    max-width:90%;
+ 
+    max-height:85vh;
+ 
+    overflow-y:auto;
+ 
+    background:#fffdf7;
+ 
+    color:#3d2d1e;
+ 
+    border-radius:20px;
+ 
+    padding:45px;
+ 
+    box-shadow:0 15px 40px rgba(0,0,0,.4);
+ 
+}
+ 
+.letterContent h1{
+ 
+    text-align:center;
+ 
+    margin-bottom:30px;
+ 
+}
+ 
+.letterContent p{
+ 
+    font-size:20px;
+ 
+    line-height:1.9;
+ 
+    margin-bottom:20px;
+ 
+}
+ 
+/* Close Button */
+ 
+.close{
+ 
+    float:right;
+ 
+    font-size:35px;
+ 
+    cursor:pointer;
+ 
+    color:#444;
+ 
+}
+ 
+.close:hover{
+ 
+    color:red;
+ 
+}
+ 
+/* ==========================
+   RESPONSIVE
+========================== */
+ 
+@media(max-width:768px){
+ 
+    .content h1{
+ 
+        font-size:36px;
+ 
+        width:90%;
+ 
     }
-
-    .content p {
-        font-size: 18px;
+ 
+    .content p{
+ 
+        font-size:18px;
+ 
     }
-
-    .gallery {
-        width: 95%;
+ 
+    .gallery{
+ 
+        width:95%;
+ 
     }
-
-    .letterContent {
-        padding: 30px;
+ 
+    .letterContent{
+ 
+        padding:30px;
+ 
     }
-
-    .mainLetterButtons {
-        width: 95%;
-        gap: 14px;
-    }
-
-    .transparentActionButton {
-        width: 90%;
-        max-width: 300px;
-        font-size: 16px;
-        padding: 13px 20px;
-    }
-
-    .letterPreviewButton .letterCard {
-        width: 100%;
-        max-width: 100%;
-        padding: 25px 20px;
-    }
+ 
 }
-
-.letterPopup {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,.65);
-    justify-content: center;
-    align-items: center;
-    z-index: 100;
+#musicBox{
+    position:fixed;
+    bottom:25px;
+    right:25px;
+    z-index:999;
 }
-
-.letterContent {
-    width: 700px;
-    max-width: 90%;
-    max-height: 85vh;
-    overflow-y: auto;
-    background: #fffdf7;
-    color: #3d2d1e;
-    border-radius: 20px;
-    padding: 45px;
-    box-shadow: 0 15px 40px rgba(0,0,0,.4);
+ 
+#musicBoxAryan{
+    position:fixed;
+    bottom:25px;
+    right:25px;
+    z-index:999;
 }
-
-.letterContent h1 {
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-.letterContent p {
-    font-size: 20px;
-    line-height: 1.9;
-    margin-bottom: 20px;
-}
-
-.close {
-    float: right;
-    font-size: 35px;
-    cursor: pointer;
-    color: #444;
-}
-
-.close:hover {
-    color: red;
-}
-
-#musicBox {
-    position: fixed;
-    bottom: 25px;
-    right: 25px;
-    z-index: 999;
-}
-
-#musicBoxAryan {
-    position: fixed;
-    bottom: 25px;
-    right: 25px;
-    z-index: 999;
-}
-
+ 
+ 
 #musicToggle,
-#musicToggleAryan {
-    width: 65px;
-    height: 65px;
-    border-radius: 50%;
-    background: linear-gradient(135deg,#ff7aa8,#d63384);
-    border: none;
-    color: white;
-    font-size: 28px;
-    cursor: pointer;
-    box-shadow: 0 0 25px rgba(255,120,170,.8);
-    animation: pulse 2s infinite;
+#musicToggleAryan{
+ 
+    width:65px;
+    height:65px;
+ 
+    border-radius:50%;
+ 
+    background:linear-gradient(135deg,#ff7aa8,#d63384);
+ 
+    border:none;
+ 
+    color:white;
+ 
+    font-size:28px;
+ 
+    cursor:pointer;
+ 
+    box-shadow:0 0 25px rgba(255,120,170,.8);
+ 
+    animation:pulse 2s infinite;
+ 
 }
-
-@keyframes pulse {
-    0% {
-        transform: scale(1);
+ 
+ 
+@keyframes pulse{
+ 
+    0%{
+        transform:scale(1);
     }
-
-    50% {
-        transform: scale(1.1);
+ 
+    50%{
+        transform:scale(1.1);
     }
-
-    100% {
-        transform: scale(1);
+ 
+    100%{
+        transform:scale(1);
     }
+ 
 }
-
+ 
+ 
+ 
 #musicMenu,
-#musicMenuAryan {
-    position: absolute;
-    bottom: 80px;
-    right: 0;
-    width: 230px;
-    padding: 15px;
-    border-radius: 20px;
-    background: rgba(255,255,255,.15);
-    backdrop-filter: blur(15px);
-    display: none;
-    flex-direction: column;
-    gap: 10px;
-    max-height: min(320px, 55vh);
-    overflow-y: auto;
-    overflow-x: hidden;
-}
+#musicMenuAryan{
+ 
+    position:absolute;
+ 
+    bottom:80px;
+    right:0;
+ 
+    width:230px;
+ 
+    padding:15px;
+ 
+    border-radius:20px;
+ 
+    background:rgba(255,255,255,.15);
+ 
+    backdrop-filter:blur(15px);
+ 
+    display:none;
+ 
+    flex-direction:column;
+ 
+    gap:10px;
 
+    /* Scroll instead of growing past the screen once every song is listed */
+    max-height:min(320px, 55vh);
+    overflow-y:auto;
+    overflow-x:hidden;
+ 
+}
+ 
+ 
 #musicMenu.show,
-#musicMenuAryan.show {
-    display: flex;
+#musicMenuAryan.show{
+ 
+    display:flex;
+ 
 }
 
+/* Slim, on-brand scrollbar for the song list (webkit browsers) */
 #musicMenu::-webkit-scrollbar,
-#musicMenuAryan::-webkit-scrollbar {
-    width: 6px;
+#musicMenuAryan::-webkit-scrollbar{
+    width:6px;
 }
 
 #musicMenu::-webkit-scrollbar-track,
-#musicMenuAryan::-webkit-scrollbar-track {
-    background: transparent;
+#musicMenuAryan::-webkit-scrollbar-track{
+    background:transparent;
 }
 
 #musicMenu::-webkit-scrollbar-thumb,
-#musicMenuAryan::-webkit-scrollbar-thumb {
-    background: rgba(255,255,255,.45);
-    border-radius: 10px;
+#musicMenuAryan::-webkit-scrollbar-thumb{
+    background:rgba(255,255,255,.45);
+    border-radius:10px;
 }
-
+ 
+ 
+ 
 .song-btn,
 #shuffleBtn,
-#shuffleBtnAryan {
-    margin: 0;
-    padding: 12px;
-    border-radius: 20px;
-    background: rgba(255,255,255,.2);
-    color: white;
-    border: 1px solid rgba(255,255,255,.3);
-    font-size: 14px;
-    flex-shrink: 0;
-}
+#shuffleBtnAryan{
+ 
+    margin:0;
+ 
+    padding:12px;
+ 
+    border-radius:20px;
+ 
+    background:rgba(255,255,255,.2);
+ 
+    color:white;
+ 
+    border:1px solid rgba(255,255,255,.3);
+ 
+    font-size:14px;
 
+    flex-shrink:0;
+ 
+}
+ 
+ 
+ 
 .song-btn:hover,
 #shuffleBtn:hover,
-#shuffleBtnAryan:hover {
-    background: #ff5c8a;
+#shuffleBtnAryan:hover{
+ 
+    background:#ff5c8a;
+ 
 }
-
-.song-btn.active {
-    background: #ff5c8a;
-    box-shadow: 0 0 15px #ff5c8a;
+ 
+ 
+ 
+.song-btn.active{
+ 
+    background:#ff5c8a;
+ 
+    box-shadow:0 0 15px #ff5c8a;
+ 
 }
+/* Hide everything initially */
 
 #mainTitle,
 #mainSubtitle,
 #mainSubtitle2,
-.gallery {
-    opacity: 0;
-    transition: 1.5s ease;
+.gallery{
+
+    opacity:0;
+    transition:1.5s ease;
+
 }
 
-#journeyIntro {
+/* Journey Screen */
+
+#journeyIntro{
     position: fixed;
     inset: 0;
+    background: transparent;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
     color: white;
-    opacity: 0;
+    opacity: 0;              /* keep your existing fade-in behavior */
     z-index: 100;
-    pointer-events: none;
+    pointer-events: none;    /* so it doesn't block clicks while invisible */
 }
 
-#journeyTitle {
-    font-size: 2.8rem;
-    font-family: "Times New Roman", Times, serif, serif;
-    opacity: 0;
-    transition: 1.5s;
+#journeyTitle{
+
+    font-size:2.8rem;
+
+    font-family:'Times New Roman', Times, serif, serif;
+
+    opacity:0;
+
+    transition:1.5s;
+
 }
 
-#loveCounter {
-    margin-top: 35px;
-    opacity: 0;
-    transition: 1.5s;
+#loveCounter{
+
+    margin-top:35px;
+
+    opacity:0;
+
+    transition:1.5s;
+
 }
 
-#loveCounter h1 {
-    font-size: 3rem;
-    margin-bottom: 15px;
+#loveCounter h1{
+
+    font-size:3rem;
+
+    margin-bottom:15px;
+
 }
 
-#loveCounter h3 {
-    margin-bottom: 20px;
-    font-weight: 300;
+#loveCounter h3{
+
+    margin-bottom:20px;
+
+    font-weight:300;
+
 }
 
-#counter {
-    font-size: 2rem;
-    line-height: 1.8;
-    display: block;
-    width: 100%;
-    text-align: center;
+#counter{
+    font-size:2rem;
+    line-height:1.8;
+    display:block;
+    width:100%;
+    text-align:center;
 }
 
-.journeyQuote {
-    margin-top: 25px;
-    font-style: italic;
-    opacity: .85;
+.journeyQuote{
+
+    margin-top:25px;
+
+    font-style:italic;
+
+    opacity:.85;
+
 }
+/* =====================================================
+   REUSABLE ONE-TIME QUIZ
+   ===================================================== */
 
 .quiz-overlay {
+
     position: fixed;
+
     inset: 0;
+
     z-index: 99999;
+
     display: none;
+
     align-items: center;
+
     justify-content: center;
-    background: radial-gradient(
-                circle at center,
-                rgba(255, 220, 225, 0.25),
-                rgba(0, 0, 0, 0.88)
-            );
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(255, 220, 225, 0.25),
+            rgba(0, 0, 0, 0.88)
+        );
+
     backdrop-filter: blur(8px);
+
     padding: 20px;
 }
 
+
+/* Quiz box */
+
 .quiz-box {
+
     width: min(520px, 92vw);
+
     max-height: 90vh;
+
     overflow-y: auto;
+
     padding: 45px 35px;
+
     text-align: center;
+
     background: rgba(255, 248, 240, 0.97);
+
     border: 2px solid rgba(130, 80, 60, 0.35);
+
     border-radius: 18px;
-    box-shadow: 0 25px 70px rgba(0, 0, 0, 0.45);
+
+    box-shadow:
+        0 25px 70px rgba(0, 0, 0, 0.45);
+
     animation: quizAppear 0.7s ease;
 }
 
+
 @keyframes quizAppear {
+
     from {
+
         opacity: 0;
-        transform: scale(0.85)
-                translateY(30px);
+
+        transform:
+            scale(0.85)
+            translateY(30px);
+
     }
 
     to {
+
         opacity: 1;
-        transform: scale(1)
-                translateY(0);
+
+        transform:
+            scale(1)
+            translateY(0);
+
     }
+
 }
+
+
+/* Heart */
 
 .quiz-heart {
+
     font-size: 55px;
-    animation: heartbeat 1.5s infinite;
+
+    animation:
+        heartbeat 1.5s infinite;
 }
 
+
 @keyframes heartbeat {
+
     0%,
-        100% {
+    100% {
         transform: scale(1);
     }
 
     50% {
         transform: scale(1.15);
     }
+
 }
 
+
+/* Text */
+
 .quiz-box h1 {
+
     margin-top: 15px;
+
     margin-bottom: 20px;
 }
 
+
 .quiz-box h2 {
+
     margin-bottom: 25px;
 }
 
+
 .quiz-box p {
+
     line-height: 1.7;
 }
 
+
 .quiz-small-text {
+
     font-style: italic;
+
     opacity: 0.75;
 }
 
+
+/* Buttons */
+
 .quiz-box button {
+
     margin-top: 20px;
+
     padding: 12px 25px;
+
     border: none;
+
     border-radius: 25px;
+
     background: #7b3f3f;
+
     color: white;
+
     font-size: 16px;
+
     cursor: pointer;
-    transition: transform 0.2s ease,
-            box-shadow 0.2s ease;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
 }
+
 
 .quiz-box button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px
-            rgba(80, 30, 30, 0.3);
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 8px 20px
+        rgba(80, 30, 30, 0.3);
 }
 
+
+/* Progress */
+
 .quiz-progress {
+
     margin-bottom: 25px;
+
     font-size: 14px;
+
     opacity: 0.65;
 }
 
+
+/* Answer options */
+
 .quiz-option {
+
     display: block;
+
     width: 100%;
+
     margin: 12px 0;
+
     padding: 14px 18px;
+
     box-sizing: border-box;
+
     border: 1px solid
-            rgba(100, 60, 50, 0.25);
+        rgba(100, 60, 50, 0.25);
+
     border-radius: 12px;
-    background: rgba(255, 255, 255, 0.7);
+
+    background:
+        rgba(255, 255, 255, 0.7);
+
     color: #4b2929;
+
     cursor: pointer;
+
     font-size: 15px;
-    transition: background 0.2s ease,
-            transform 0.2s ease;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
 }
+
 
 .quiz-option:hover {
-    transform: translateY(-2px);
+
+    transform:
+        translateY(-2px);
 }
 
+
+/* Correct */
+
 .quiz-option.correct {
+
     background: #d9f2df;
+
     border-color: #6ba77a;
 }
 
+
+/* Wrong */
+
 .quiz-option.wrong {
+
     background: #f6d8d8;
+
     border-color: #c47777;
 }
 
+
+/* Disable after answer */
+
 .quiz-option.disabled {
+
     pointer-events: none;
 }
 
+
+/* Feedback */
+
 #quizFeedback {
+
     min-height: 30px;
+
     margin-top: 18px;
+
     font-weight: 500;
 }
 
+
+/* Result */
+
 #quizResultEmoji {
+
     font-size: 65px;
+
     margin-bottom: 10px;
 }
 
+
 #quizScore {
+
     font-size: 20px;
+
     font-weight: bold;
+
     margin: 20px 0;
 }
 
+
+/* Mobile */
+
 @media (max-width: 600px) {
+
     .quiz-box {
+
         padding: 35px 22px;
+
     }
 
     .quiz-box h1 {
+
         font-size: 27px;
+
     }
 
     .quiz-box h2 {
+
         font-size: 21px;
+
     }
 
-    .memory-modal {
-        padding: 6px;
-    }
+}
+/* =====================================================
+   TRANSPARENT MAIN PAGE BUTTONS
+   ===================================================== */
 
-    .memory-modal-box {
-        width: 99vw;
-        max-width: 99vw;
-        max-height: 98vh;
-        padding: 42px 8px 12px;
-    }
-
-    .memory-modal-icon {
-        font-size: 34px;
-    }
-
-    .memory-modal-box h2 {
-        font-size: 27px;
-    }
-
-    .memory-modal-box #memoryText {
-        font-size: 14px;
-        line-height: 1.55;
-        margin-bottom: 18px;
-    }
-
-    .memory-polaroid-area,
-    .memory-polaroid {
-        gap: 8px;
-        width: 100%;
-    }
-
-    .memory-polaroid-frame {
-        width: min(92vw, 900px);
-        max-width: 92vw;
-        max-height: 82vh;
-        padding: 10px 10px 48px;
-    }
-
-    .memory-polaroid-frame img {
-        width: 100%;
-        max-height: 70vh;
-        aspect-ratio: auto;
-        object-fit: contain;
-    }
-
-    .memory-photo-caption,
-    #memoryPhotoCaption {
-        left: 9px;
-        right: 9px;
-        bottom: 7px;
-        font-size: 14px;
-    }
-
-    .memory-photo-nav {
-        width: 44px;
-        min-width: 44px;
-        height: 44px;
-        margin: 0 !important;
-        padding: 0 !important;
-        font-size: 32px;
-        line-height: 1;
-    }
-
-    .memory-polaroid-pin,
-    .polaroid-pin {
-        width: 14px;
-        height: 14px;
-        top: -7px;
-    }
-
-    .memory-polaroid-pin::after,
-    .polaroid-pin::after {
-        width: 5px;
-        height: 5px;
-        top: 2px;
-        left: 2px;
-    }
+.mainLetterButtons{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:18px;
+    width:100%;
+    max-width:650px;
 }
 
-.mainLetterButtons {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 18px;
-    width: 100%;
-    max-width: 650px;
+
+/* Letter preview itself */
+
+.letterPreviewButton{
+    width:100%;
+    display:flex;
+    justify-content:center;
 }
 
-.letterPreviewButton {
-    width: 100%;
-    display: flex;
-    justify-content: center;
+
+/* Transparent / glass buttons */
+
+.transparentActionButton{
+
+    margin:0;
+
+    width:280px;
+
+    padding:15px 25px;
+
+    border-radius:40px;
+
+    background:rgba(255,255,255,0.10);
+
+    border:1px solid rgba(255,255,255,0.45);
+
+    backdrop-filter:blur(5px);
+    -webkit-backdrop-filter:blur(5px);
+
+    color:white;
+
+    font-family:'Times New Roman', Times, serif;
+
+    font-size:18px;
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,0.15);
+
+    transition:
+        background .3s ease,
+        transform .3s ease,
+        border-color .3s ease;
+
 }
 
-.transparentActionButton {
-    margin: 0;
-    width: 280px;
-    padding: 15px 25px;
-    border-radius: 40px;
-    background: rgba(255,255,255,0.10);
-    border: 1px solid rgba(255,255,255,0.45);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    color: white;
-    font-family: "Times New Roman", Times, serif;
-    font-size: 18px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-    transition: background .3s ease,
-            transform .3s ease,
-            border-color .3s ease;
+
+/* Hover */
+
+.transparentActionButton:hover{
+
+    transform:translateY(-3px);
+
+    background:rgba(255,255,255,0.20);
+
+    border-color:rgba(255,255,255,0.7);
+
 }
 
-.transparentActionButton:hover {
-    transform: translateY(-3px);
-    background: rgba(255,255,255,0.20);
-    border-color: rgba(255,255,255,0.7);
+
+/* Letter card */
+
+.letterPreviewButton .letterCard{
+
+    width:600px;
+    max-width:90vw;
+
+    background:rgba(255,253,247,0.92);
+
 }
 
-.letterPreviewButton .letterCard {
-    width: 600px;
-    max-width: 90vw;
-    background: rgba(255,253,247,0.92);
+
+/* Tap to read */
+
+.letterPreviewButton .letterCardToggle{
+
+    background:rgba(214,51,132,0.12);
+
+    border:1px solid rgba(214,51,132,0.35);
+
 }
 
-.letterPreviewButton .letterCardToggle {
-    background: rgba(214,51,132,0.12);
-    border: 1px solid rgba(214,51,132,0.35);
-}
 
+/* Mobile */
+
+@media(max-width:768px){
+
+    .mainLetterButtons{
+
+        width:95%;
+
+        gap:14px;
+
+    }
+
+
+    .transparentActionButton{
+
+        width:90%;
+
+        max-width:300px;
+
+        font-size:16px;
+
+        padding:13px 20px;
+
+    }
+
+
+    .letterPreviewButton .letterCard{
+
+        width:100%;
+
+        max-width:100%;
+
+        padding:25px 20px;
+
+    }
+
+}
+/* =====================================================
+   MAIN LETTER CARD
+   ===================================================== */
+
+/* The whole letter area */
 #gallery {
     width: 100%;
 }
 
+
+/* Letter + arrows */
 #gallery .letterCardWrap {
     display: flex;
     align-items: center;
@@ -865,306 +1350,627 @@ button:hover {
     width: 100%;
 }
 
+
+/* =====================================================
+   COLLAPSED LETTER PREVIEW
+   ===================================================== */
+
 #mainLetterCard {
+
     width: 600px;
     max-width: 75vw;
+
+    /* TRANSPARENT */
     background: rgba(255, 255, 255, 0.08);
+
     border: 1px solid rgba(255, 255, 255, 0.55);
+
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
+
     color: white;
-    transition: background 0.4s ease,
-            color 0.4s ease,
-            box-shadow 0.4s ease,
-            transform 0.4s ease;
+
+    transition:
+        background 0.4s ease,
+        color 0.4s ease,
+        box-shadow 0.4s ease,
+        transform 0.4s ease;
+
 }
+
+
+/* =====================================================
+   WHEN LETTER IS OPEN
+   ===================================================== */
 
 #mainLetterCard.letter-open {
+
     background: rgba(255, 255, 255, 0.97);
+
     color: #4a2a35;
-    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.30);
+
+    box-shadow:
+        0 15px 45px rgba(0, 0, 0, 0.30);
+
 }
+
+
+/* =====================================================
+   PREVIEW TEXT
+   ===================================================== */
 
 #mainLetterCard .letterCardEmoji {
+
     font-size: 45px;
+
 }
+
 
 #mainLetterCard #viewerTitle {
+
     color: white;
+
     transition: color 0.4s ease;
+
 }
+
 
 #mainLetterCard #viewerDate {
+
     color: rgba(255, 255, 255, 0.85);
+
     transition: color 0.4s ease;
+
 }
 
+
+/* When opened */
 #mainLetterCard.letter-open #viewerTitle {
+
     color: #4a2a35;
+
 }
+
 
 #mainLetterCard.letter-open #viewerDate {
+
     color: #777;
+
 }
+
+
+/* =====================================================
+   TAP TO READ BUTTON
+   ===================================================== */
 
 #mainLetterCard .letterCardToggle {
+
     background: rgba(255, 255, 255, 0.18);
+
     color: white;
+
     border: 1px solid rgba(255, 255, 255, 0.6);
-    transition: background 0.3s ease,
-            color 0.3s ease;
+
+    transition:
+        background 0.3s ease,
+        color 0.3s ease;
+
 }
 
+
+/* When letter is open */
 #mainLetterCard.letter-open .letterCardToggle {
+
     background: #d63384;
+
     color: white;
+
     border-color: #d63384;
+
 }
+
+
+/* =====================================================
+   LETTER BODY
+   ===================================================== */
 
 #mainLetterCard .letterCardBody {
+
     color: #4a2a35;
+
 }
+
+
+/* =====================================================
+   ARROWS
+   ===================================================== */
 
 #gallery .cardArrow {
+
     background: rgba(255, 255, 255, 0.12);
+
     border: 1px solid rgba(255, 255, 255, 0.55);
+
     color: white;
+
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
-    transition: background 0.3s ease,
-            transform 0.3s ease;
+
+    transition:
+        background 0.3s ease,
+        transform 0.3s ease;
+
 }
+
 
 #gallery .cardArrow:hover {
+
     background: rgba(255, 255, 255, 0.28);
+
     transform: scale(1.08);
+
 }
+
 
 #gallery .cardArrow:disabled {
+
     opacity: 0.3;
+
     cursor: not-allowed;
+
 }
+
+
+/* =====================================================
+   ACTION BUTTONS
+   ===================================================== */
 
 #gallery .actionRow {
+
     display: flex;
+
     justify-content: center;
+
     gap: 15px;
+
     margin-top: 25px;
+
     flex-wrap: wrap;
+
 }
+
 
 #gallery .actionRow button {
+
     background: rgba(255, 255, 255, 0.10);
+
     border: 1px solid rgba(255, 255, 255, 0.55);
+
     color: white;
+
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
-    transition: background 0.3s ease,
-            transform 0.3s ease;
+
+    transition:
+        background 0.3s ease,
+        transform 0.3s ease;
+
 }
+
 
 #gallery .actionRow button:hover {
+
     background: rgba(255, 255, 255, 0.22);
+
     transform: translateY(-2px);
+
 }
+
+
+/* =====================================================
+   MOBILE
+   ===================================================== */
 
 @media (max-width: 768px) {
+
     #gallery .letterCardWrap {
+
         gap: 8px;
+
     }
+
 
     #mainLetterCard {
+
         width: 100%;
+
         max-width: 75vw;
+
     }
+
 
     #gallery .cardArrow {
+
         flex-shrink: 0;
+
     }
+
 
     #gallery .actionRow {
+
         flex-direction: column;
+
         align-items: center;
+
     }
+
 
     #gallery .actionRow button {
+
         width: 85%;
+
         max-width: 300px;
+
     }
 
-    #mainLetterCard,
-    #aryanLetterCard {
-        width: 280px;
-        max-width: calc(100vw - 105px);
-        padding: 18px 13px;
-    }
-
-    #mainLetterCard .letterCardEmoji,
-    #aryanLetterCard .letterCardEmoji {
-        font-size: 32px;
-    }
-
-    #mainLetterCard #viewerTitle,
-    #aryanLetterCard #viewerTitleAryan {
-        font-size: 18px;
-    }
-
-    #gallery .letterCardWrap,
-    #aryanPage .letterCardWrap {
-        gap: 6px;
-    }
-
-    #gallery .cardArrow,
-    #aryanPage .cardArrow {
-        width: 38px;
-        min-width: 38px;
-        height: 48px;
-        font-size: 29px;
-    }
-
-    #mainLetterCard.letter-open,
-    #aryanLetterCard.letter-open {
-        width: 90vw;
-        max-width: 420px;
-        padding: 24px 18px;
-    }
-
-    #lettersPage .overlay,
-    #lettersPage #musicBox,
-    #aryanPage .overlay,
-    #aryanPage #musicBoxAryan {
-        transition: opacity 0.9s ease,
-                    visibility 0.9s ease;
-    }
 }
+/* =====================================================
+   COMPACT LETTER PREVIEW
+   Applies to DESKTOP + MOBILE
+   ===================================================== */
 
 #mainLetterCard,
 #aryanLetterCard {
+
+    /* Compact size */
     width: 320px;
     max-width: 320px;
+
     min-height: unset;
+
     padding: 22px 18px;
+
     box-sizing: border-box;
+
     background: rgba(255, 255, 255, 0.08);
+
     border: 1px solid rgba(255, 255, 255, 0.55);
+
     border-radius: 16px;
+
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
+
     color: white;
-    transition: background 0.4s ease,
-            color 0.4s ease,
-            box-shadow 0.4s ease,
-            width 0.4s ease;
-    touch-action: pan-y;
-    cursor: grab;
-    will-change: transform, opacity;
+
+    transition:
+        background 0.4s ease,
+        color 0.4s ease,
+        box-shadow 0.4s ease,
+        width 0.4s ease;
 }
+
+
+/* =====================================================
+   COMPACT PREVIEW CONTENT
+   ===================================================== */
 
 #mainLetterCard .letterCardEmoji,
 #aryanLetterCard .letterCardEmoji {
+
     font-size: 36px;
+
     margin-bottom: 6px;
+
 }
+
 
 #mainLetterCard #viewerTitle,
 #aryanLetterCard #viewerTitleAryan {
+
     font-size: 21px;
+
     line-height: 1.25;
+
     margin: 5px 0;
+
 }
+
 
 #mainLetterCard #viewerDate,
 #aryanLetterCard #viewerDateAryan {
+
     font-size: 12px;
+
     margin: 4px 0 12px;
+
 }
+
 
 #mainLetterCard .letterCardToggle,
 #aryanLetterCard .letterCardToggle {
+
     font-size: 13px;
+
     padding: 9px 14px;
+
 }
+
+
+/* Position number */
 
 #mainLetterCard .letterCardPosition,
 #aryanLetterCard .letterCardPosition {
+
     font-size: 11px;
+
     margin-top: 10px;
+
 }
+
+
+/* =====================================================
+   ARROWS
+   ===================================================== */
 
 #gallery .letterCardWrap,
 #aryanPage .letterCardWrap {
+
     display: flex;
+
     align-items: center;
+
     justify-content: center;
+
     gap: 15px;
+
 }
+
 
 #gallery .cardArrow,
 #aryanPage .cardArrow {
+
     width: 42px;
+
     min-width: 42px;
+
     height: 52px;
+
     padding: 0;
+
     font-size: 32px;
+
     flex-shrink: 0;
+
 }
+
+
+/* =====================================================
+   WHEN LETTER IS OPEN
+   Make it larger only when reading
+   ===================================================== */
 
 #mainLetterCard.letter-open,
 #aryanLetterCard.letter-open {
+
     width: 520px;
+
     max-width: 85vw;
+
     padding: 30px 28px;
+
     background: rgba(255, 255, 255, 0.97);
+
     color: #4a2a35;
-    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.30);
+
+    box-shadow:
+        0 15px 45px rgba(0, 0, 0, 0.30);
+
 }
+
+
+/* Letter body */
 
 #mainLetterCard.letter-open .letterCardBody,
 #aryanLetterCard.letter-open .letterCardBody {
+
     font-size: 15px;
+
     line-height: 1.7;
+
     max-height: 55vh;
+
     overflow-y: auto;
+
 }
+
+
+/* =====================================================
+   MOBILE
+   ===================================================== */
+
+@media (max-width: 768px) {
+
+    #mainLetterCard,
+    #aryanLetterCard {
+
+        width: 280px;
+
+        max-width: calc(100vw - 105px);
+
+        padding: 18px 13px;
+
+    }
+
+
+    #mainLetterCard .letterCardEmoji,
+    #aryanLetterCard .letterCardEmoji {
+
+        font-size: 32px;
+
+    }
+
+
+    #mainLetterCard #viewerTitle,
+    #aryanLetterCard #viewerTitleAryan {
+
+        font-size: 18px;
+
+    }
+
+
+    #gallery .letterCardWrap,
+    #aryanPage .letterCardWrap {
+
+        gap: 6px;
+
+    }
+
+
+    #gallery .cardArrow,
+    #aryanPage .cardArrow {
+
+        width: 38px;
+
+        min-width: 38px;
+
+        height: 48px;
+
+        font-size: 29px;
+
+    }
+
+
+    /* Opened letter */
+    #mainLetterCard.letter-open,
+    #aryanLetterCard.letter-open {
+
+        width: 90vw;
+
+        max-width: 420px;
+
+        padding: 24px 18px;
+
+    }
+
+}
+/* =====================================================
+   CINEMATIC IDLE MODE
+   ===================================================== */
+
+/*
+   The slideshow and music continue running.
+   Everything else gently disappears.
+*/
 
 #lettersPage,
 #aryanPage {
     position: relative;
 }
 
+
+/* Smoothly hide the interface */
+
 #lettersPage .overlay,
 #lettersPage #musicBox,
 #aryanPage .overlay,
 #aryanPage #musicBoxAryan {
-    transition: opacity 1.2s ease,
-            visibility 1.2s ease;
+
+    transition:
+        opacity 1.2s ease,
+        visibility 1.2s ease;
+
 }
+
+/* =====================================================
+   CINEMATIC IDLE MODE
+   Music box intentionally stays visible
+   ===================================================== */
 
 #lettersPage .overlay,
 #aryanPage .overlay {
-    transition: opacity 1.2s ease,
-            visibility 1.2s ease;
+
+    transition:
+        opacity 1.2s ease,
+        visibility 1.2s ease;
+
 }
+
+
+/* Hide ONLY the main page content */
 
 #lettersPage.idle-mode .overlay,
 #aryanPage.idle-mode .overlay {
+
+    opacity: 0;
+
     visibility: hidden;
+
+    pointer-events: none;
+
+}
+
+
+/* Music boxes NEVER fade */
+
+#lettersPage #musicBox,
+#aryanPage #musicBoxAryan {
+
+    opacity: 1 !important;
+
+    visibility: visible !important;
+
+    pointer-events: auto !important;
+
+}
+
+
+/* =====================================================
+   MAKE SURE SLIDESHOW STAYS VISIBLE
+   ===================================================== */
+
+#lettersPage #slideshow,
+#aryanPage #slideshowAryan {
+
+    opacity: 1 !important;
+
+}
+
+
+/* =====================================================
+   OPTIONAL: DARKEN THE SLIDESHOW SLIGHTLY IN IDLE MODE
+   ===================================================== */
+
+#lettersPage.idle-mode .overlay,
+#aryanPage.idle-mode .overlay {
     opacity: 0;
     pointer-events: none;
 }
 
-#lettersPage #musicBox,
-#aryanPage #musicBoxAryan {
-    opacity: 1 !important;
-    visibility: visible !important;
-    pointer-events: auto !important;
-}
 
-#lettersPage #slideshow,
-#aryanPage #slideshowAryan {
-    opacity: 1 !important;
-}
+/* =====================================================
+   MOBILE
+   ===================================================== */
 
+@media (max-width: 768px) {
+
+    #lettersPage .overlay,
+    #lettersPage #musicBox,
+    #aryanPage .overlay,
+    #aryanPage #musicBoxAryan {
+
+        transition:
+            opacity 0.9s ease,
+            visibility 0.9s ease;
+
+    }
+
+}
+/* ==========================
+   ARYAN TAP TO READ BUTTON
+   Same glass style as Letters Page
+   ========================== */
+/* Collapsed (glass/white) */
 #aryanLetterCard .letterCardToggle {
     background: rgba(255,255,255,0.18);
     color: white;
@@ -1179,6 +1985,7 @@ button:hover {
     transform: none;
 }
 
+/* When letter is open — pink, same as main */
 #aryanLetterCard.letter-open .letterCardToggle {
     background: #d63384;
     color: white;
@@ -1190,6 +1997,16 @@ button:hover {
     border-color: #b81f6b;
     transform: none;
 }
+/* =====================================================
+   SLIDE TRANSITION FOR LETTER CARDS
+   ===================================================== */
+
+#mainLetterCard,
+#aryanLetterCard {
+    touch-action: pan-y;   /* let vertical scroll pass through, we handle horizontal */
+    cursor: grab;
+    will-change: transform, opacity;
+}
 
 #mainLetterCard:active,
 #aryanLetterCard:active {
@@ -1197,64 +2014,37 @@ button:hover {
 }
 
 @keyframes slideOutLeft {
-    to {
-        transform: translateX(-60px);
-        opacity: 0;
-    }
+    to { transform: translateX(-60px); opacity: 0; }
 }
 
 @keyframes slideOutRight {
-    to {
-        transform: translateX(60px);
-        opacity: 0;
-    }
+    to { transform: translateX(60px); opacity: 0; }
 }
 
 @keyframes slideInFromRight {
-    from {
-        transform: translateX(60px);
-        opacity: 0;
-    }
-
-    to {
-        transform: translateX(0);
-        opacity: 1;
-    }
+    from { transform: translateX(60px); opacity: 0; }
+    to   { transform: translateX(0);    opacity: 1; }
 }
 
 @keyframes slideInFromLeft {
-    from {
-        transform: translateX(-60px);
-        opacity: 0;
-    }
-
-    to {
-        transform: translateX(0);
-        opacity: 1;
-    }
+    from { transform: translateX(-60px); opacity: 0; }
+    to   { transform: translateX(0);     opacity: 1; }
 }
 
-.slide-out-left {
-    animation: slideOutLeft 0.22s ease forwards;
-}
-
-.slide-out-right {
-    animation: slideOutRight 0.22s ease forwards;
-}
-
-.slide-in-right {
-    animation: slideInFromRight 0.28s ease forwards;
-}
-
-.slide-in-left {
-    animation: slideInFromLeft 0.28s ease forwards;
-}
-
+.slide-out-left  { animation: slideOutLeft 0.22s ease forwards; }
+.slide-out-right { animation: slideOutRight 0.22s ease forwards; }
+.slide-in-right   { animation: slideInFromRight 0.28s ease forwards; }
+.slide-in-left    { animation: slideInFromLeft 0.28s ease forwards; }
 #prevLetterBtn,
 #nextLetterBtn {
     display: none !important;
 }
 
+/* =====================================================
+   ONE PIECE — SUNNY + OCEAN DESIGN
+   =====================================================
+
+/* The Grand Line header contains only Back (left) and Music (right). */
 .one-piece-page .op-header-title {
     display: none !important;
 }
@@ -1280,8 +2070,22 @@ button:hover {
     --op-shadow: rgba(0, 33, 65, .42);
 }
 
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 html {
     scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100%;
+}
+
+button {
+    font: inherit;
 }
 
 .one-piece-page,
@@ -1296,78 +2100,59 @@ html {
 }
 
 .one-piece-page {
-    display: none;
-    position: fixed !important;
-    inset: 0 !important;
-    width: 100vw !important;
-    height: 100dvh !important;
-    min-height: 100dvh !important;
-    z-index: 10000 !important;
-    overflow: hidden !important;
-    overscroll-behavior: contain;
+    position: relative;
+    min-height: 100vh;
+    overflow-x: hidden;
+    color: var(--op-ink);
     isolation: isolate;
-    background: #0879c9 !important;
-    color: var(--op-white);
+    background: #0879c9;
 }
 
 .one-piece-page::before {
     content: "";
-    position: absolute !important;
-    inset: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-    z-index: 0 !important;
-    background: linear-gradient(
-            to bottom,
-            rgba(2, 48, 88, .18),
-            rgba(1, 27, 58, .38)
-        ),
-        url("images/sunny.png");
-    background-size: cover !important;
-    background-position: center center !important;
-    background-repeat: no-repeat !important;
-    pointer-events: none;
+    position: fixed;
+    inset: 0;
+    z-index: -3;
+    background:
+        linear-gradient(to bottom, rgba(0, 55, 105, .04), rgba(0, 31, 75, .24)),
+        url("images/sunny.png") center center / cover no-repeat;
+    transform: translateZ(0);
 }
 
 .one-piece-page::after {
     content: "";
-    position: absolute !important;
-    inset: 0 !important;
-    z-index: 1 !important;
+    position: fixed;
+    inset: 0;
+    z-index: -2;
     pointer-events: none;
+    background:
+        linear-gradient(to bottom, rgba(255, 255, 255, .03), rgba(0, 0, 0, .16)),
+        radial-gradient(circle at 50% 25%, transparent 0 32%, rgba(0, 29, 65, .18) 100%);
+}
+
+.grand-line-content {
+    min-height: 100vh;
     background: linear-gradient(
-            to bottom,
-            rgba(255,255,255,.02),
-            rgba(0,0,0,.16)
-        ),
-        radial-gradient(
-            circle at 50% 25%,
-            transparent 0 32%,
-            rgba(0,29,65,.18) 100%
-        );
+        to bottom,
+        rgba(255,255,255,.02) 0%,
+        rgba(255,255,255,.05) 45%,
+        rgba(0,38,75,.18) 100%
+    );
 }
 
-.one-piece-page
-.grand-line-content.op-grand-line-visible {
-    visibility: visible;
-    opacity: 1;
-    pointer-events: auto;
-    transition: opacity .25s ease;
-}
-
-.one-piece-page .op-opening.hidden,
-.one-piece-page .op-opening.hide {
-    opacity: 0;
-    visibility: hidden;
-    transform: scale(1.04);
-    pointer-events: none;
-}
-
-@media (max-width: 700px) {
-    .one-piece-page::before {
-        background-position: center center !important;
-        background-size: cover !important;
-    }
+/* Opening */
+.op-opening {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: grid;
+    place-items: center;
+    padding: 24px;
+    text-align: center;
+    background:
+        linear-gradient(rgba(1, 43, 82, .42), rgba(1, 36, 70, .64)),
+        url("images/sunny.png") center / cover no-repeat;
+    transition: opacity .8s ease, visibility .8s ease, transform .8s ease;
 }
 
 .op-opening.hidden {
@@ -1420,14 +2205,17 @@ html {
     margin: 0 8px;
 }
 
+/* Buttons */
 .op-main-button,
 .op-scroll-button {
+    border: 0;
     cursor: pointer;
     color: #20170f;
     background: linear-gradient(#ffe7a0, #dca94f);
     border: 3px solid #5f3d16;
-    box-shadow: 0 7px 0 #4c3217,
-            0 12px 24px rgba(0,0,0,.28);
+    box-shadow:
+        0 7px 0 #4c3217,
+        0 12px 24px rgba(0,0,0,.28);
     transition: transform .2s ease, filter .2s ease, box-shadow .2s ease;
 }
 
@@ -1451,6 +2239,9 @@ html {
     box-shadow: 0 3px 0 #4c3217, 0 7px 14px rgba(0,0,0,.22);
 }
 
+/* =========================================================
+   GRAND LINE HEADER — BACK LEFT / MUSIC RIGHT
+   ========================================================= */
 .op-header {
     position: fixed;
     top: 0;
@@ -1458,9 +2249,11 @@ html {
     width: 100%;
     min-height: 76px;
     z-index: 10050;
+
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
+
     padding: 16px 22px;
     background: transparent;
     border: 0;
@@ -1502,6 +2295,7 @@ html {
     transform: translateY(-2px);
 }
 
+/* Hero */
 .op-hero {
     position: relative;
     min-height: min(92vh, 880px);
@@ -1587,6 +2381,7 @@ html {
     animation: cloudMove 40s linear infinite 8s;
 }
 
+/* Sections */
 .op-section {
     position: relative;
     width: min(1180px, 92vw);
@@ -1594,9 +2389,10 @@ html {
     padding: clamp(28px, 5vw, 58px);
     border: 4px solid #704b1f;
     border-radius: 18px;
-    background: radial-gradient(circle at 10% 15%, rgba(96, 57, 15, .1) 0 2px, transparent 3px),
-            radial-gradient(circle at 88% 70%, rgba(96, 57, 15, .12) 0 2px, transparent 3px),
-            linear-gradient(rgba(246,225,164,.94), rgba(221,193,123,.93));
+    background:
+        radial-gradient(circle at 10% 15%, rgba(96, 57, 15, .1) 0 2px, transparent 3px),
+        radial-gradient(circle at 88% 70%, rgba(96, 57, 15, .12) 0 2px, transparent 3px),
+        linear-gradient(rgba(246,225,164,.94), rgba(221,193,123,.93));
     background-size: auto, auto, auto;
     box-shadow: 0 18px 45px var(--op-shadow), inset 0 0 35px rgba(91,55,12,.12);
 }
@@ -1646,6 +2442,7 @@ html {
     font-size: 17px;
 }
 
+/* Wanted posters */
 .wanted-container {
     display: grid;
     grid-template-columns: repeat(2, minmax(230px, 1fr));
@@ -1658,7 +2455,8 @@ html {
     padding: 17px 17px 24px;
     text-align: center;
     color: #21160d;
-    background: linear-gradient(rgba(235,207,139,.92), rgba(210,174,98,.95));
+    background:
+        linear-gradient(rgba(235,207,139,.92), rgba(210,174,98,.95));
     border: 4px solid #805820;
     box-shadow: 0 13px 25px rgba(72,42,9,.35);
     transform: rotate(-1.2deg);
@@ -1711,6 +2509,7 @@ html {
     line-height: 1.5;
 }
 
+/* Map */
 .map-section {
     overflow: hidden;
 }
@@ -1722,8 +2521,9 @@ html {
     border: 4px solid #6f4a20;
     border-radius: 15px;
     overflow: hidden;
-    background: radial-gradient(circle at 25% 25%, rgba(255,255,255,.32) 0 4px, transparent 5px),
-            linear-gradient(145deg, rgba(93,178,194,.78), rgba(221,194,119,.82));
+    background:
+        radial-gradient(circle at 25% 25%, rgba(255,255,255,.32) 0 4px, transparent 5px),
+        linear-gradient(145deg, rgba(93,178,194,.78), rgba(221,194,119,.82));
     box-shadow: inset 0 0 50px rgba(70,43,9,.18);
 }
 
@@ -1740,6 +2540,8 @@ html {
 
 .memory-island {
     position: absolute;
+
+    /* Override global button spacing so the map coordinates are reliable. */
     margin: 0 !important;
     padding: 12px !important;
     z-index: 3;
@@ -1770,35 +2572,12 @@ html {
     letter-spacing: .04em;
 }
 
-.island-one {
-    left: 7%;
-    top: 11%;
-}
-
-.island-two {
-    left: 31%;
-    top: 30%;
-}
-
-.island-three {
-    left: 59%;
-    top: 10%;
-}
-
-.island-four {
-    left: 76%;
-    top: 39%;
-}
-
-.island-five {
-    left: 41%;
-    top: 63%;
-}
-
-.island-six {
-    left: 8%;
-    top: 70%;
-}
+.island-one { left: 7%; top: 11%; }
+.island-two { left: 31%; top: 30%; }
+.island-three { left: 59%; top: 10%; }
+.island-four { left: 76%; top: 39%; }
+.island-five { left: 41%; top: 63%; }
+.island-six { left: 8%; top: 70%; }
 
 .map-ship {
     position: absolute;
@@ -1808,6 +2587,8 @@ html {
     animation: shipBob 2.8s ease-in-out infinite;
 }
 
+/* Memory modal */
+/* Keep island memory pop-ups above the map destination panel and its buttons. */
 .memory-modal,
 .treasure-message {
     position: fixed;
@@ -1852,47 +2633,36 @@ html {
 
 .close-memory {
     position: absolute;
-    top: 8px;
     right: 12px;
-    width: 42px;
-    height: 42px;
-    border: 2px solid #111;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.9);
-    color: #111;
-    font-size: 30px;
-    line-height: 35px;
+    top: 8px;
+    border: 0;
+    background: transparent;
+    color: #38220f;
+    font-size: 35px;
     cursor: pointer;
-    z-index: 5;
-    transition: transform 0.2s ease,
-            background 0.2s ease;
 }
 
 .memory-modal-icon {
-    font-size: 42px;
-    margin-bottom: 5px;
+    font-size: 58px;
 }
 
 .memory-chapter {
     margin-top: 8px;
-    color: #74471b;
-    margin: 0 0 5px;
     font-size: 14px;
-    letter-spacing: 3px;
-    opacity: 0.7;
+    letter-spacing: .14em;
+    color: #74471b;
 }
 
 .memory-modal-box h2 {
     margin-top: 7px;
-    margin: 5px 0 10px;
-    font-size: clamp(28px, 5vw, 46px);
+    font-size: clamp(30px, 6vw, 50px);
 }
 
 .memory-line {
-    width: 100px;
-    height: 3px;
-    margin: 12px auto 15px;
-    background: #111;
+    width: 120px;
+    height: 4px;
+    margin: 15px auto;
+    background: #74471b;
 }
 
 .memory-modal-box > p:last-child {
@@ -1901,6 +2671,7 @@ html {
     line-height: 1.7;
 }
 
+/* Counter */
 .counter-section {
     text-align: center;
 }
@@ -1949,6 +2720,7 @@ html {
     line-height: 1.6;
 }
 
+/* Treasure */
 .treasure-section {
     text-align: center;
 }
@@ -2031,6 +2803,7 @@ html {
     letter-spacing: .12em;
 }
 
+/* Treasure popup */
 .treasure-heart {
     font-size: 58px;
     animation: heartBeat 1.2s ease-in-out infinite;
@@ -2054,6 +2827,7 @@ html {
     font-size: 18px;
 }
 
+/* Footer */
 .op-footer {
     padding: 75px 20px 90px;
     text-align: center;
@@ -2087,46 +2861,28 @@ html {
     color: #ffd878;
 }
 
+/* Animations */
 @keyframes spinCompass {
-    to {
-        transform: rotate(360deg);
-    }
+    to { transform: rotate(360deg); }
 }
 
 @keyframes cloudMove {
-    from {
-        transform: translateX(0) scale(1);
-    }
-
-    to {
-        transform: translateX(calc(100vw + 450px)) scale(1.15);
-    }
+    from { transform: translateX(0) scale(1); }
+    to { transform: translateX(calc(100vw + 450px)) scale(1.15); }
 }
 
 @keyframes shipBob {
-    0%, 100% {
-        transform: translateY(0) rotate(-2deg);
-    }
-
-    50% {
-        transform: translateY(-13px) rotate(3deg);
-    }
+    0%, 100% { transform: translateY(0) rotate(-2deg); }
+    50% { transform: translateY(-13px) rotate(3deg); }
 }
 
 @keyframes heartBeat {
-    0%, 100% {
-        transform: scale(1);
-    }
-
-    20% {
-        transform: scale(1.12);
-    }
-
-    40% {
-        transform: scale(1);
-    }
+    0%, 100% { transform: scale(1); }
+    20% { transform: scale(1.12); }
+    40% { transform: scale(1); }
 }
 
+/* Mobile */
 @media (max-width: 850px) {
     .op-header {
         padding: 10px 12px;
@@ -2167,41 +2923,20 @@ html {
         min-height: 92px;
     }
 
-    .island-one {
-        left: 4%;
-        top: 8%;
-    }
-
-    .island-two {
-        left: 39%;
-        top: 18%;
-    }
-
-    .island-three {
-        left: 63%;
-        top: 8%;
-    }
-
-    .island-four {
-        left: 67%;
-        top: 43%;
-    }
-
-    .island-five {
-        left: 36%;
-        top: 61%;
-    }
-
-    .island-six {
-        left: 5%;
-        top: 70%;
-    }
+    .island-one { left: 4%; top: 8%; }
+    .island-two { left: 39%; top: 18%; }
+    .island-three { left: 63%; top: 8%; }
+    .island-four { left: 67%; top: 43%; }
+    .island-five { left: 36%; top: 61%; }
+    .island-six { left: 5%; top: 70%; }
 
     .map-ship {
         left: 44%;
         top: 42%;
         font-size: 58px;
     }
+
+
 
     .op-counter {
         grid-template-columns: repeat(2, 1fr);
@@ -2249,32 +2984,14 @@ html {
         font-size: 12px;
     }
 
-    .island-one {
-        left: 2%;
-    }
+    .island-one { left: 2%; }
+    .island-two { left: 36%; }
+    .island-three { left: 64%; }
+    .island-four { left: 64%; top: 42%; }
+    .island-five { left: 34%; top: 62%; }
+    .island-six { left: 2%; top: 72%; }
 
-    .island-two {
-        left: 36%;
-    }
 
-    .island-three {
-        left: 64%;
-    }
-
-    .island-four {
-        left: 64%;
-        top: 42%;
-    }
-
-    .island-five {
-        left: 34%;
-        top: 62%;
-    }
-
-    .island-six {
-        left: 2%;
-        top: 72%;
-    }
 
     .op-polaroid {
         padding: 7px 7px 15px;
@@ -2307,6 +3024,8 @@ html {
     }
 }
 
+
+/* Current One Piece HTML uses .op-scroll */
 .one-piece-page .op-scroll {
     margin-top: 28px;
     display: inline-block;
@@ -2335,6 +3054,33 @@ html {
     transform: translateY(-2px);
 }
 
+
+/* =====================================================
+   ONE PIECE — INTEGRATION OVERRIDES
+   ===================================================== */
+/* Our Grand Line is a completely separate full-screen landing page.
+   It must never become a normal section in the main page flow.
+   IMPORTANT: give the overlay its OWN opaque background so the normal
+   website can never show through it. */
+.one-piece-page {
+    display: none;
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    min-height: 100vh;
+    z-index: 10000;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    isolation: isolate;
+    background:
+        linear-gradient(rgba(2, 48, 88, .24), rgba(1, 27, 58, .40)),
+        url("images/sunny.png") center center / cover no-repeat,
+        #0879c9;
+    color: var(--op-white);
+}
+
 .one-piece-page .op-opening.hide {
     opacity: 0;
     visibility: hidden;
@@ -2347,10 +3093,13 @@ html {
     z-index: 1;
     min-height: 100vh;
     background: linear-gradient(
-            to bottom,
-            rgba(3, 54, 96, .12),
-            rgba(0, 27, 57, .28)
-        );
+        to bottom,
+        rgba(3, 54, 96, .12),
+        rgba(0, 27, 57, .28)
+    );
+
+    /* Keep the Voyage completely hidden behind the opening screen.
+       It appears only after the opening screen has finished fading out. */
     visibility: hidden;
     opacity: 0;
     pointer-events: none;
@@ -2370,6 +3119,11 @@ html {
 
 .one-piece-page .op-header {
     z-index: 1200;
+}
+
+/* Keep the Grand Line music control locked to the top-right even when
+   WANTED / MAP / FINAL TREASURE opens as a full-screen panel. */
+.one-piece-page .op-header {
     box-sizing: border-box;
     width: 100vw;
     right: 0;
@@ -2383,6 +3137,14 @@ html {
     margin: 0;
 }
 
+@font-face {
+    font-family: "One Piece";
+    src: url("onepiecefont.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
 .one-piece-page,
 .one-piece-page *,
 .one-piece-page button,
@@ -2390,6 +3152,35 @@ html {
 .one-piece-page textarea,
 .one-piece-page select {
     font-family: "One Piece", Georgia, serif !important;
+}
+
+
+/* =========================================================
+   GRAND LINE DESTINATION MENU
+   ========================================================= */
+.one-piece-page .op-grand-line-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 20px;
+    width: min(360px, 86vw);
+    margin: 32px 0 0;
+}
+
+.one-piece-page .op-destination-button {
+    width: 100%;
+    min-height: 72px;
+    padding: 14px 18px;
+    border: 3px solid #5e3b17;
+    border-radius: 12px;
+    background: linear-gradient(#f7d982, #bd8735);
+    color: #24170e;
+    box-shadow: 0 6px 0 #6e4518, 0 12px 22px rgba(0,0,0,.25);
+    cursor: pointer;
+    font-size: clamp(16px, 2.2vw, 23px);
+    letter-spacing: .05em;
+    transition: transform .2s ease, filter .2s ease;
 }
 
 .one-piece-page .op-destination-button:hover {
@@ -2405,10 +3196,38 @@ html {
     text-shadow: 1px 2px 2px rgba(0,0,0,.45);
 }
 
+.one-piece-page .op-destination-panel {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1100;
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+    box-sizing: border-box;
+    padding: 82px clamp(18px, 5vw, 70px) 50px;
+    /* Keep the Thousand Sunny ocean scene visible behind EVERY destination. */
+    background:
+        linear-gradient(135deg, rgba(4,30,52,.52), rgba(8,65,91,.42)),
+        url("images/sunny.png") center center / cover no-repeat;
+    background-attachment: fixed;
+    backdrop-filter: blur(1.5px);
+}
+
+.one-piece-page .op-destination-panel.op-panel-active {
+    display: block;
+    animation: opPanelPop .48s cubic-bezier(.2,.85,.25,1) both;
+}
+
+/* When a destination popup is open, hide the global BACK button so the
+   popup has only its single GRAND LINE button on the top-left. */
 .one-piece-page .grand-line-content.op-destination-open .op-header .op-back-button {
     display: none;
 }
 
+/* Hide the three destination buttons while their selected destination is open. */
 .one-piece-page .grand-line-content.op-destination-open .op-grand-line-menu,
 .one-piece-page .grand-line-content.op-destination-open .op-menu-hint {
     opacity: 0;
@@ -2441,24 +3260,10 @@ html {
 }
 
 @keyframes opPanelPop {
-    0% {
-        opacity: 0;
-        transform: scale(.82) translateY(35px);
-    }
-
-    55% {
-        opacity: 1;
-        transform: scale(1.025) translateY(-4px);
-    }
-
-    78% {
-        transform: scale(.99) translateY(1px);
-    }
-
-    100% {
-        opacity: 1;
-        transform: scale(1) translateY(0);
-    }
+    0% { opacity: 0; transform: scale(.82) translateY(35px); }
+    55% { opacity: 1; transform: scale(1.025) translateY(-4px); }
+    78% { transform: scale(.99) translateY(1px); }
+    100% { opacity: 1; transform: scale(1) translateY(0); }
 }
 
 @media (max-width: 700px) {
@@ -2474,27 +3279,17 @@ html {
         width: 100%;
         min-height: 62px;
     }
-
-    .one-piece-page .op-music-menu {
-        right: -8px;
-    }
-
-    .one-piece-page .op-destination-panel {
-        padding: 76px 16px 38px;
-    }
-
-    .one-piece-page .op-panel-back {
-        top: 16px;
-        left: 16px;
-        padding: 9px 13px;
-        font-size: 12px;
-    }
 }
 
+/* The Grand Line no longer contains a journey timer. */
 .one-piece-page .counter-section {
     display: none !important;
 }
 
+
+/* =========================================================
+   GRAND LINE MUSIC — DEDICATED ONLY
+   ========================================================= */
 body.one-piece-active #musicBox,
 body.one-piece-active #musicBoxAryan {
     display: none !important;
@@ -2502,12 +3297,22 @@ body.one-piece-active #musicBoxAryan {
     pointer-events: none !important;
 }
 
+.one-piece-page .op-music-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .one-piece-page .op-music-menu {
     position: absolute;
     top: calc(100% + 10px);
     right: 0;
     width: min(260px, 78vw);
+    max-height:300px;
     padding: 12px;
+    overflow-y:auto;
+    overflow-x:hidden;
     border: 2px solid #e8c86b;
     border-radius: 12px;
     background: rgba(7, 26, 44, .97);
@@ -2535,7 +3340,9 @@ body.one-piece-active #musicBoxAryan {
 
 .one-piece-page .op-song-btn {
     width: 100%;
-    padding: 10px 12px;
+    padding: 6px 9px;
+    margin: 2px 0;
+    line-height:1.2;
     border: 1px solid rgba(248,217,121,.65);
     border-radius: 8px;
     background: rgba(255,255,255,.08);
@@ -2549,48 +3356,72 @@ body.one-piece-active #musicBoxAryan {
     background: rgba(248,217,121,.18);
 }
 
+@media (max-width: 700px) {
+    .one-piece-page .op-music-menu {
+        right: -8px;
+    }
+}
+
+/* Grand Line destination buttons: press-to-pop animation */
 .one-piece-page .op-destination-button.button-pop {
     animation: grandLineButtonPop .42s cubic-bezier(.2,.85,.25,1) both;
 }
 
 @keyframes grandLineButtonPop {
-    0% {
-        transform: translateX(0) scale(1);
+    0%   { transform: translateX(0) scale(1); }
+    38%  { transform: translateX(16px) scale(1.12); }
+    68%  { transform: translateX(7px) scale(1.04); }
+    100% { transform: translateX(0) scale(1); }
+}
+
+@media (max-width: 700px) {
+    .one-piece-page .op-destination-panel {
+        padding: 76px 16px 38px;
     }
 
-    38% {
-        transform: translateX(16px) scale(1.12);
-    }
-
-    68% {
-        transform: translateX(7px) scale(1.04);
-    }
-
-    100% {
-        transform: translateX(0) scale(1);
+    .one-piece-page .op-panel-back {
+        top: 16px;
+        left: 16px;
+        padding: 9px 13px;
+        font-size: 12px;
     }
 }
+/* =========================================================
+   MEMORY POLAROID SLIDESHOW
+========================================================= */
 
 .memory-modal {
     position: fixed;
     inset: 0;
+
     z-index: 7000;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     padding: 12px;
-    background: radial-gradient(
-                circle at center,
-                rgba(255,255,255,0.15),
-                rgba(0,0,0,0.72)
-            );
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(255,255,255,0.15),
+            rgba(0,0,0,0.72)
+        );
+
     backdrop-filter: blur(6px);
+
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    transition: opacity 0.35s ease,
-            visibility 0.35s ease;
+
+    transition:
+        opacity 0.35s ease,
+        visibility 0.35s ease;
 }
+
+
+/* OPEN */
 
 .memory-modal.active {
     opacity: 1;
@@ -2598,687 +3429,514 @@ body.one-piece-active #musicBoxAryan {
     pointer-events: auto;
 }
 
+
+/* =========================================================
+   POPUP BOX
+========================================================= */
+
 .memory-modal-box {
     position: relative;
+
     width: min(96vw, 1400px);
     max-width: 96vw;
     max-height: 96vh;
-    overflow-y: auto;
+
+    overflow-y: hidden;
+
     padding: 35px 30px 30px;
+
     text-align: center;
-    background: linear-gradient(135deg, rgba(4,30,52,.72), rgba(8,65,91,.62)),
-            url("images/sunny.png") center center / cover no-repeat;
+
+    background:
+        linear-gradient(135deg, rgba(4,30,52,.72), rgba(8,65,91,.62)),
+        url("images/sunny.png") center center / cover no-repeat;
     background-attachment: fixed;
+
     border: 4px solid #151515;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.55),
-            8px 8px 0 rgba(0,0,0,0.2);
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,0.55),
+        8px 8px 0 rgba(0,0,0,0.2);
+
     transform: scale(0.85) translateY(25px);
+
     transition: transform 0.4s cubic-bezier(.2,.8,.2,1);
 }
+
 
 .memory-modal.active .memory-modal-box {
     transform: scale(1) translateY(0);
 }
 
+
+/* =========================================================
+   CLOSE BUTTON
+========================================================= */
+
+.close-memory {
+    position: absolute;
+
+    top: 8px;
+    right: 12px;
+
+    width: 42px;
+    height: 42px;
+
+    border: 2px solid #111;
+    border-radius: 50%;
+
+    background: rgba(255,255,255,0.9);
+
+    color: #111;
+
+    font-size: 30px;
+    line-height: 35px;
+
+    cursor: pointer;
+
+    z-index: 5;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+}
+
+
 .close-memory:hover {
     transform: rotate(90deg) scale(1.08);
 }
 
+
+/* =========================================================
+   MEMORY TEXT
+========================================================= */
+
+.memory-modal-icon {
+    font-size: 42px;
+    margin-bottom: 5px;
+}
+
+
+.memory-chapter {
+    margin: 0 0 5px;
+
+    font-size: 14px;
+    letter-spacing: 3px;
+
+    opacity: 0.7;
+}
+
+
+.memory-modal-box h2 {
+    margin: 5px 0 10px;
+
+    font-size: clamp(28px, 5vw, 46px);
+}
+
+
+.memory-line {
+    width: 100px;
+    height: 3px;
+
+    margin: 12px auto 15px;
+
+    background: #111;
+}
+
+
 .memory-modal-box #memoryText {
     max-width: 650px;
+
     margin: 0 auto 25px;
+
     font-size: 16px;
     line-height: 1.7;
 }
 
+
+/* =========================================================
+   POLAROID AREA
+========================================================= */
+
 .memory-polaroid-area,
 .memory-polaroid {
+
     position: relative;
+
     display: flex;
+
     align-items: center;
     justify-content: center;
+
     gap: 20px;
+
     width: 100%;
+
     margin: 10px auto 5px;
 }
 
+
+/* =========================================================
+   POLAROID FRAME
+========================================================= */
+
 .memory-polaroid-frame {
+
     position: relative;
+
     width: min(1100px, 88vw);
     max-width: 88vw;
-    max-height: 82vh;
+    max-height: 70vh;
+
     padding: 16px 16px 58px;
+
     background: #fff;
-    box-shadow: 0 12px 25px rgba(0,0,0,0.28),
-            3px 4px 0 rgba(0,0,0,0.12);
+
+    box-shadow:
+        0 12px 25px rgba(0,0,0,0.28),
+        3px 4px 0 rgba(0,0,0,0.12);
+
     transform: rotate(-1.5deg);
-    transition: transform 0.3s ease,
-            opacity 0.25s ease;
+
+    transition:
+        transform 0.3s ease,
+        opacity 0.25s ease;
 }
+
 
 .memory-polaroid-frame:hover {
     transform: rotate(0deg) scale(1.015);
 }
 
+
+/* =========================================================
+   PHOTO
+========================================================= */
+
 .memory-polaroid-frame img {
+
     display: block;
+
     width: 100%;
     height: auto;
-    max-height: 72vh;
+    max-height: 58vh;
+
+    /* Keep the complete photo visible instead of cropping it. */
     aspect-ratio: auto;
     object-fit: contain;
+
     background: #eee;
+
     border: 1px solid #ddd;
+
     opacity: 1;
+
     transition: opacity 0.25s ease;
 }
+
 
 .memory-polaroid-frame img.photo-changing {
     opacity: 0;
 }
 
+
+/* =========================================================
+   CAPTION
+========================================================= */
+
 .memory-photo-caption,
 #memoryPhotoCaption {
+
     position: absolute;
+
     left: 14px;
     right: 14px;
     bottom: 10px;
+
     margin: 0;
+
     min-height: 30px;
+
     display: flex;
+
     align-items: center;
     justify-content: center;
-    font-family: "Comic Sans MS",
-            "Bradley Hand",
-            cursive;
+
+    font-family:
+        "Comic Sans MS",
+        "Bradley Hand",
+        cursive;
+
     font-size: 18px;
+
     color: #222;
+
     line-height: 1.2;
 }
 
+
+/* =========================================================
+   POLAROID PIN
+========================================================= */
+
 .memory-polaroid-pin,
 .polaroid-pin {
+
     position: absolute;
+
     width: 18px;
     height: 18px;
+
     top: -9px;
     left: 50%;
+
     transform: translateX(-50%);
+
     border-radius: 50%;
+
     background: #333;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.35);
+
+    box-shadow:
+        0 2px 4px rgba(0,0,0,0.35);
+
     z-index: 3;
 }
 
+
 .memory-polaroid-pin::after,
 .polaroid-pin::after {
+
     content: "";
+
     position: absolute;
+
     width: 7px;
     height: 7px;
+
     top: 3px;
     left: 3px;
+
     border-radius: 50%;
+
     background: rgba(255,255,255,0.5);
 }
 
+
+/* =========================================================
+   PREVIOUS / NEXT BUTTONS
+========================================================= */
+
 .memory-photo-nav {
+
     flex-shrink: 0;
+
     width: 56px;
     min-width: 56px;
     height: 56px;
+
     border-radius: 50%;
+
     border: 2px solid #111;
+
     background: rgba(255,255,255,0.9);
+
     color: #111;
+
     font-family: Georgia, serif;
+
     font-size: 40px;
+
     line-height: 35px;
+
     cursor: pointer;
+
     display: flex;
+
     align-items: center;
     justify-content: center;
-    transition: transform 0.2s ease,
-            background 0.2s ease;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease;
 }
 
+
 .memory-photo-nav:hover {
+
     transform: scale(1.12);
+
     background: #fff;
 }
+
 
 .memory-photo-nav:active {
     transform: scale(0.95);
 }
 
+
+/* =========================================================
+   PHOTO COUNTER
+========================================================= */
+
 .memory-photo-counter {
+
     margin: 10px 0 0;
+
     font-size: 13px;
+
     letter-spacing: 2px;
+
     opacity: 0.65;
 }
+
+
+/* =========================================================
+   LOADING / MISSING PHOTO
+========================================================= */
 
 .memory-polaroid-frame img[src=""] {
     visibility: hidden;
 }
 
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .memory-modal {
+        padding: 6px;
+    }
+
+    .memory-modal-box {
+        width: 99vw;
+        max-width: 99vw;
+        max-height: 98vh;
+        padding: 42px 8px 12px;
+    }
+
+    .memory-modal-icon {
+        font-size: 34px;
+    }
+
+    .memory-modal-box h2 {
+        font-size: 27px;
+    }
+
+    .memory-modal-box #memoryText {
+        font-size: 14px;
+        line-height: 1.55;
+        margin-bottom: 18px;
+    }
+
+    .memory-polaroid-area,
+    .memory-polaroid {
+        gap: 8px;
+        width: 100%;
+    }
+
+    .memory-polaroid-frame {
+        width: min(92vw, 900px);
+        max-width: 92vw;
+        max-height: 68vh;
+        padding: 10px 10px 48px;
+    }
+
+    .memory-polaroid-frame img {
+        width: 100%;
+        max-height: 56vh;
+        aspect-ratio: auto;
+        object-fit: contain;
+    }
+
+    .memory-photo-caption,
+    #memoryPhotoCaption {
+        left: 9px;
+        right: 9px;
+        bottom: 7px;
+        font-size: 14px;
+    }
+
+    .memory-photo-nav {
+        width: 44px;
+        min-width: 44px;
+        height: 44px;
+        margin: 0 !important;
+        padding: 0 !important;
+        font-size: 32px;
+        line-height: 1;
+    }
+
+    .memory-polaroid-pin,
+    .polaroid-pin {
+        width: 14px;
+        height: 14px;
+        top: -7px;
+    }
+
+    .memory-polaroid-pin::after,
+    .polaroid-pin::after {
+        width: 5px;
+        height: 5px;
+        top: 2px;
+        left: 2px;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+
 @media (max-width: 380px) {
+
     .memory-modal-box {
         padding-left: 8px;
         padding-right: 8px;
     }
 
+
     .memory-polaroid-frame {
+
         width: 63vw;
+
         padding-bottom: 38px;
     }
 
+
     .memory-photo-nav {
+
         width: 34px;
         height: 34px;
+
         font-size: 27px;
     }
+
 
     .memory-photo-caption {
         font-size: 12px;
     }
 }
+/* =========================================
+   GRAND LINE — TEXT SIZE & WEIGHT
+   ========================================= */
 
-.one-piece-page .op-destination-panel.op-panel-active {
-    display: flex !important;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 86px clamp(20px, 5vw, 80px) 55px !important;
-}
-
-.one-piece-page .memory-polaroid-frame img {
-    display: block !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    height: auto !important;
-    max-height: 58dvh !important;
-    object-fit: contain !important;
-}
-
-.one-piece-page .memory-polaroid-frame #memoryPhotoCaption,
-.one-piece-page #memoryPhotoCaption {
-    left: 14px !important;
-    right: 14px !important;
-    bottom: 10px !important;
-    max-width: calc(100% - 28px);
-    font-size: clamp(14px, 1.5vw, 20px) !important;
-}
-
-@media (max-width: 700px) {
-    .one-piece-page .op-grand-line-menu {
-        left: 16px;
-        top: auto;
-        bottom: 35px;
-        transform: none;
-        width: min(310px, calc(100vw - 32px));
-    }
-
-    .one-piece-page .op-destination-button {
-        min-height: 58px;
-        font-size: 14px;
-    }
-
-    .one-piece-page .op-destination-panel.op-panel-active {
-        padding: 78px 12px 35px !important;
-    }
-
-    .one-piece-page .memory-modal {
-        padding: 8px !important;
-    }
-
-    .one-piece-page .memory-modal-box {
-        width: 96vw !important;
-        max-width: 96vw !important;
-        max-height: 96dvh !important;
-        padding: 35px 10px 14px !important;
-    }
-
-    .one-piece-page .memory-polaroid-frame {
-        width: min(78vw, 520px) !important;
-        max-width: 78vw !important;
-        max-height: 67dvh !important;
-        padding: 10px 10px 48px !important;
-    }
-
-    .one-piece-page .memory-polaroid-frame img {
-        max-height: 57dvh !important;
-    }
-
-    .one-piece-page .memory-photo-nav {
-        width: 42px !important;
-        min-width: 42px !important;
-        height: 42px !important;
-        font-size: 30px !important;
-    }
-}
-
-#onePiecePage {
-    position: fixed !important;
-    inset: 0 !important;
-    width: 100vw !important;
-    height: 100dvh !important;
-    min-width: 100vw !important;
-    min-height: 100dvh !important;
-    z-index: 9999 !important;
-    overflow: hidden !important;
-    background-color: #0879c9 !important;
-    isolation: isolate;
-}
-
-#onePiecePage > * {
-    position: relative;
-    z-index: 2;
-}
-
-.one-piece-page .op-grand-line-menu {
-    position: absolute !important;
-    left: 11vw !important;
-    top: 50% !important;
-    bottom: auto !important;
-    transform: translateY(-50%) !important;
-    width: 320px !important;
-    max-width: 24vw !important;
-    margin: 0 !important;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: stretch !important;
-    justify-content: flex-start !important;
-    gap: 18px !important;
-    z-index: 50 !important;
-}
-
-.one-piece-page .op-destination-button {
-    width: 100% !important;
-    min-height: 68px !important;
-    margin: 0 !important;
-    box-sizing: border-box;
-}
-
-.one-piece-page .grand-line-title,
-.one-piece-page .grand-line-subtitle,
-.one-piece-page .grand-line-description {
-    position: relative;
-    z-index: 10;
-}
-
-.one-piece-page .op-destination-panel {
-    position: fixed !important;
-    inset: 0 !important;
-    width: 100vw !important;
-    height: 100dvh !important;
-    min-width: 100vw !important;
-    min-height: 100dvh !important;
-    margin: 0 !important;
-    border-radius: 0 !important;
-    overflow-x: hidden !important;
-    overflow-y: auto !important;
-    z-index: 2000 !important;
-}
-
-.one-piece-page
-.op-destination-panel.op-panel-active {
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: flex-start !important;
-    padding: 90px
-        clamp(25px, 6vw, 100px)
-        50px !important;
-}
-
-.one-piece-page .grand-line-map {
-    width: min(1200px, 90vw) !important;
-    min-height: 65vh !important;
-    margin: 25px auto 0 !important;
-}
-
-.one-piece-page .wanted-posters {
-    width: min(1100px, 90vw) !important;
-    margin: 25px auto 0 !important;
-}
-
-.one-piece-page .memory-modal {
-    position: fixed !important;
-    inset: 0 !important;
-    width: 100vw !important;
-    height: 100dvh !important;
-    z-index: 7000 !important;
-    padding: 20px !important;
-}
-
-.one-piece-page .memory-modal-box {
-    width: min(1100px, 92vw) !important;
-    max-width: 92vw !important;
-    max-height: 92dvh !important;
-    overflow-y: auto !important;
-    padding: 30px
-        35px
-        25px !important;
-}
-
-.one-piece-page .memory-polaroid {
-    width: 100% !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    gap: 25px !important;
-}
-
-.one-piece-page .memory-polaroid-frame {
-    width: min(650px, 65vw) !important;
-    max-width: 650px !important;
-    max-height: 72dvh !important;
-    padding: 14px
-        14px
-        65px !important;
-}
-
-.one-piece-page
-.memory-polaroid-frame img {
-    display: block !important;
-    width: 100% !important;
-    height: auto !important;
-    max-width: 100% !important;
-    max-height: 60dvh !important;
-    object-fit: contain !important;
-}
-
-.one-piece-page
-.memory-polaroid-frame #memoryPhotoCaption,
-.one-piece-page #memoryPhotoCaption {
-    left: 14px !important;
-    right: 14px !important;
-    bottom: 12px !important;
-    max-width: calc(100% - 28px) !important;
-    font-size: clamp(14px, 1.4vw, 20px) !important;
-}
-
-.one-piece-page .op-back-button {
-    position: absolute !important;
-    top: 55px !important;
-    left: 35px !important;
-    z-index: 100 !important;
-}
-
-.one-piece-page .op-music-wrap {
-    position: absolute !important;
-    top: 55px !important;
-    right: 35px !important;
-    z-index: 100 !important;
-}
-
-@media (max-width: 700px) {
-    #onePiecePage {
-        width: 100vw !important;
-        height: 100dvh !important;
-        overflow: hidden !important;
-    }
-
-    .one-piece-page .op-grand-line-menu {
-        left: 7vw !important;
-        top: auto !important;
-        bottom: 8vh !important;
-        transform: none !important;
-        width: min(
-            310px,
-            72vw
-        ) !important;
-        max-width: 72vw !important;
-        gap: 12px !important;
-    }
-
-    .one-piece-page .op-destination-button {
-        min-height: 58px !important;
-        font-size: 14px !important;
-    }
-
-    .one-piece-page
-    .op-destination-panel.op-panel-active {
-        padding: 78px
-            12px
-            30px !important;
-    }
-
-    .one-piece-page .memory-modal {
-        padding: 8px !important;
-    }
-
-    .one-piece-page .memory-modal-box {
-        width: 96vw !important;
-        max-width: 96vw !important;
-        max-height: 96dvh !important;
-        padding: 35px
-            10px
-            15px !important;
-    }
-
-    .one-piece-page .memory-polaroid {
-        gap: 8px !important;
-    }
-
-    .one-piece-page .memory-polaroid-frame {
-        width: min(
-            76vw,
-            500px
-        ) !important;
-        max-width: 76vw !important;
-        max-height: 68dvh !important;
-        padding: 10px
-            10px
-            50px !important;
-    }
-
-    .one-piece-page
-    .memory-polaroid-frame img {
-        max-height: 58dvh !important;
-    }
-
-    .one-piece-page .memory-photo-nav {
-        width: 42px !important;
-        min-width: 42px !important;
-        height: 42px !important;
-        font-size: 28px !important;
-    }
-
-    .one-piece-page .op-back-button {
-        top: 20px !important;
-        left: 16px !important;
-    }
-
-    .one-piece-page .op-music-wrap {
-        top: 20px !important;
-        right: 16px !important;
-    }
-}
-
-/* ============================================================
-   INTERACTION SAFETY FIXES
-   ============================================================ */
-
-/* The global button rule gives every button a 45px top margin.
-   These controls must not inherit that spacing. */
-.close-memory,
-.memory-photo-nav,
-.op-panel-back,
-.op-back-button,
-.op-music-button,
-.op-song-btn {
-    margin-top: 0 !important;
-    pointer-events: auto !important;
-}
-
-/* Keep the close button above the Polaroid content and clickable. */
-.close-memory {
-    z-index: 20 !important;
-}
-
-/* Keep the previous/next controls above the Polaroid frame. */
-.memory-photo-nav {
-    position: relative;
-    z-index: 20 !important;
-    flex: 0 0 auto;
-}
-
-/* Explicitly make the active memory modal receive input. */
-.memory-modal.active,
-.memory-modal.active * {
-    pointer-events: auto;
-}
-
-/* The destination screen is the scrolling surface. */
-.one-piece-page .op-destination-panel.op-panel-active {
-    pointer-events: auto !important;
-    overflow-x: hidden !important;
-    overflow-y: auto !important;
-    -webkit-overflow-scrolling: touch;
-}
-
-/* Keep the Grand Line controls above decorative layers. */
-.one-piece-page .op-grand-line-menu,
-.one-piece-page .op-header,
-.one-piece-page .op-panel-back {
-    isolation: isolate;
-}
-
-/* Prevent horizontal overflow while preserving vertical scrolling. */
-html,
-body {
-    max-width: 100%;
-}
-
-/* Ensure the full-screen One Piece layer itself remains opaque. */
-#onePiecePage,
 .one-piece-page {
-    background-color: #0879c9;
+    font-size: 17px;
 }
 
-/* ============================================================
-   FINAL CLEANUP / ISOLATION
-   ============================================================
-   Keep the original main-site styling intact while preventing the
-   global button rule from leaking into Grand Line and Polaroid UI.
-*/
-
-/* Never let the site's generic button spacing affect these controls. */
-.one-piece-page button,
-.one-piece-page .memory-photo-nav,
-.one-piece-page .close-memory,
-.one-piece-page .op-back-button,
-.one-piece-page .op-panel-back,
-.one-piece-page .op-music-button,
-.one-piece-page .op-song-btn,
-.one-piece-page .op-destination-button {
-    box-sizing: border-box;
-    margin-top: 0;
+.one-piece-page p,
+.one-piece-page li,
+.one-piece-page span,
+.one-piece-page label {
+    font-weight: 500;
 }
 
-/* Grand Line controls must remain clickable above decorative layers. */
-.one-piece-page .op-header,
-.one-piece-page .op-grand-line-menu,
-.one-piece-page .op-destination-button,
-.one-piece-page .op-panel-back,
-.one-piece-page .op-music-wrap,
-.one-piece-page .memory-modal,
-.one-piece-page .memory-modal-box,
-.one-piece-page .memory-photo-nav,
-.one-piece-page .close-memory {
-    pointer-events: auto;
-}
-
-/* The modal itself is the full-screen Thousand Sunny scene. */
-.one-piece-page .memory-modal {
-    position: fixed;
-    inset: 0;
-    z-index: 7000;
-    background:
-        linear-gradient(rgba(2, 48, 88, .28), rgba(1, 27, 58, .48)),
-        url("images/sunny.png") center center / cover no-repeat;
-    background-attachment: fixed;
-}
-
-/* Keep the Polaroid navigation horizontally aligned with the photo. */
-.one-piece-page .memory-polaroid,
-.one-piece-page .memory-polaroid-area {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.one-piece-page .memory-photo-nav {
-    position: relative;
-    z-index: 20;
-    flex: 0 0 auto;
-    padding: 0;
-}
-
-.one-piece-page .close-memory {
-    z-index: 30;
-    padding: 0;
-}
-
-/* Support both the old and current Polaroid pin class names. */
-.one-piece-page .memory-polaroid-pin,
-.one-piece-page .polaroid-pin {
-    position: absolute;
-}
-
-/* Support the current id-based caption used by the HTML. */
-.one-piece-page #memoryPhotoCaption,
-.one-piece-page .memory-photo-caption {
-    position: absolute;
-    left: 14px;
-    right: 14px;
-    bottom: 10px;
-    margin: 0;
-    max-width: calc(100% - 28px);
-}
-
-/* The photo must fit inside the Polaroid instead of being cropped. */
-.one-piece-page .memory-polaroid-frame img {
-    display: block;
-    width: 100%;
-    height: auto;
-    max-width: 100%;
-    object-fit: contain;
-}
-
-/* Destination panels remain the scrolling surface. */
-.one-piece-page .op-destination-panel.op-panel-active {
-    overflow-x: hidden;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-}
-
-@media (max-width: 700px) {
-    .one-piece-page .memory-modal {
-        background-position: center center;
-        padding: 8px;
-    }
-
-    .one-piece-page .memory-photo-nav {
-        width: 42px;
-        min-width: 42px;
-        height: 42px;
-        margin: 0;
-        padding: 0;
-    }
-
-    .one-piece-page .close-memory {
-        margin: 0;
-        padding: 0;
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .one-piece-page .memory-polaroid-frame,
-    .one-piece-page .memory-photo-nav,
-    .one-piece-page .close-memory {
-        transition-duration: .001ms;
-    }
+.one-piece-page h1,
+.one-piece-page h2,
+.one-piece-page h3,
+.one-piece-page h4,
+.one-piece-page strong {
+    font-weight: 700;
 }
