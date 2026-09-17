@@ -3261,7 +3261,10 @@ body.one-piece-active #musicBoxAryan {
     position: absolute;
     top: calc(100% + 10px);
     right: 0;
-    width: min(260px, 78vw);
+    width: min(280px, 82vw);
+    max-height: min(360px, 55vh);
+    overflow-y: auto;
+    overflow-x: hidden;
     padding: 12px;
     border: 2px solid #e8c86b;
     border-radius: 12px;
@@ -3278,6 +3281,22 @@ body.one-piece-active #musicBoxAryan {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
+}
+
+.one-piece-page .op-music-menu::-webkit-scrollbar { width: 6px; }
+.one-piece-page .op-music-menu::-webkit-scrollbar-track { background: transparent; }
+.one-piece-page .op-music-menu::-webkit-scrollbar-thumb {
+    background: rgba(248,217,121,.55);
+    border-radius: 10px;
+}
+.one-piece-page .op-music-menu::-webkit-scrollbar-thumb:hover {
+    background: rgba(248,217,121,.8);
+}
+
+.one-piece-page .op-song-btn {
+    width: 100%;
+    flex-shrink: 0;
+    margin: 0;
 }
 
 .one-piece-page .op-music-menu-title {
