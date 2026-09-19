@@ -928,7 +928,7 @@ function makeLetterCard(letters, els) {
         }
 
         els.card.classList.toggle(
-            "expanded",
+            "letter-open",
             expanded
         );
 
