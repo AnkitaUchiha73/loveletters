@@ -1773,7 +1773,9 @@ button:hover{
 
 #mainLetterCard.letter-open .letterCardBody,
 #aryanLetterCard.letter-open .letterCardBody {
-
+   
+    display: block;
+   
     font-size: 15px;
 
     line-height: 1.7;
