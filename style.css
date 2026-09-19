@@ -3429,19 +3429,24 @@ body.one-piece-active #musicBoxAryan {
     top: 8px;
     right: 12px;
 
-    width: 42px;
-    height: 42px;
+    width: 46px;
+    height: 46px;
     padding: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     border: 2px solid #111;
     border-radius: 50%;
 
-    background: rgba(255,255,255,0.9);
+    background: rgba(255,255,255,0.95);
 
     color: #111;
 
-    font-size: 30px;
-    line-height: 35px;
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1;
 
     cursor: pointer;
 
@@ -3712,7 +3717,16 @@ body.one-piece-active #musicBoxAryan {
         transform 0.2s ease,
         background 0.2s ease;
 }
+.memory-photo-nav .wheel-icon {
+    display: inline-block;
+    font-size: 44px;
+    line-height: 1;
+    animation: shipWheelSpin 6s linear infinite;
+}
 
+@keyframes shipWheelSpin {
+    to { transform: rotate(360deg); }
+}
 
 .memory-photo-nav:hover {
 
@@ -3811,15 +3825,18 @@ body.one-piece-active #musicBoxAryan {
         font-size: 14px;
     }
 
-    .memory-photo-nav {
-        width: 44px;
-        min-width: 44px;
-        height: 44px;
-        margin: 0 !important;
-        padding: 0 !important;
-        font-size: 32px;
-        line-height: 1;
-    }
+   .memory-photo-nav {
+    width: 56px;
+    min-width: 56px;
+    height: 56px;
+    margin: 0 !important;
+    padding: 0 !important;
+    line-height: 1;
+}
+
+.memory-photo-nav .wheel-icon {
+    font-size: 36px;
+}
 
     .memory-polaroid-pin,
     .polaroid-pin {
@@ -3860,12 +3877,13 @@ body.one-piece-active #musicBoxAryan {
 
 
     .memory-photo-nav {
+    width: 44px;
+    height: 44px;
+}
 
-        width: 34px;
-        height: 34px;
-
-        font-size: 27px;
-    }
+.memory-photo-nav .wheel-icon {
+    font-size: 28px;
+}
 
 
     .memory-photo-caption {
