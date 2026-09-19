@@ -3437,29 +3437,19 @@ body.one-piece-active #musicBoxAryan {
     align-items: center;
     justify-content: center;
 
-    border: 2px solid #111;
+    border: none;
     border-radius: 50%;
-
-    background: rgba(255,255,255,0.95);
-
-    color: #111;
-
-    font-size: 26px;
-    font-weight: 700;
-    line-height: 1;
+    background: transparent;
 
     cursor: pointer;
 
     z-index: 5;
 
-    transition:
-        transform 0.2s ease,
-        background 0.2s ease;
+    transition: transform 0.2s ease;
 }
 
-
 .close-memory:hover {
-    transform: rotate(90deg) scale(1.08);
+    transform: scale(1.12);
 }
 
 
@@ -3684,44 +3674,35 @@ body.one-piece-active #musicBoxAryan {
 ========================================================= */
 
 .memory-photo-nav {
-
     flex-shrink: 0;
-
-    width: 56px;
-    min-width: 56px;
-    height: 56px;
+    width: 72px;
+    min-width: 72px;
+    height: 72px;
     padding: 0;
-
+    border: none;
     border-radius: 50%;
-
-    border: 2px solid #111;
-
-    background: rgba(255,255,255,0.9);
-
-    color: #111;
-
-    font-family: Georgia, serif;
-
-    font-size: 28px;
-
-    line-height: 35px;
-
+    background: transparent;
     cursor: pointer;
-
     display: flex;
-
     align-items: center;
     justify-content: center;
-
-    transition:
-        transform 0.2s ease,
-        background 0.2s ease;
+    transition: transform 0.2s ease;
 }
-.memory-photo-nav .wheel-icon {
+.memory-photo-nav .wheel-icon,
+.close-memory .close-wheel {
     display: inline-block;
-    font-size: 44px;
+    color: #fff6da;
+    text-shadow: 0 3px 8px rgba(0,0,0,.65), 0 0 12px rgba(0,0,0,.35);
     line-height: 1;
     animation: shipWheelSpin 6s linear infinite;
+}
+
+.memory-photo-nav .wheel-icon {
+    font-size: 44px;
+}
+
+.close-memory .close-wheel {
+    font-size: 26px;
 }
 
 @keyframes shipWheelSpin {
@@ -3729,10 +3710,7 @@ body.one-piece-active #musicBoxAryan {
 }
 
 .memory-photo-nav:hover {
-
     transform: scale(1.12);
-
-    background: #fff;
 }
 
 
@@ -3837,6 +3815,14 @@ body.one-piece-active #musicBoxAryan {
 .memory-photo-nav .wheel-icon {
     font-size: 36px;
 }
+   .close-memory {
+    width: 38px;
+    height: 38px;
+}
+
+.close-memory .close-wheel {
+    font-size: 20px;
+}
 
     .memory-polaroid-pin,
     .polaroid-pin {
@@ -3884,7 +3870,14 @@ body.one-piece-active #musicBoxAryan {
 .memory-photo-nav .wheel-icon {
     font-size: 28px;
 }
+.close-memory {
+    width: 32px;
+    height: 32px;
+}
 
+.close-memory .close-wheel {
+    font-size: 17px;
+}
 
     .memory-photo-caption {
         font-size: 12px;
