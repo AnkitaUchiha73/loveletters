@@ -3431,6 +3431,7 @@ body.one-piece-active #musicBoxAryan {
 
     width: 42px;
     height: 42px;
+    padding: 0;
 
     border: 2px solid #111;
     border-radius: 50%;
@@ -3534,10 +3535,10 @@ body.one-piece-active #musicBoxAryan {
 
     position: relative;
 
-    width: min(1100px, 88vw);
-    max-width: 88vw;
+    display: inline-block;
+    width: auto;
+    max-width: min(1100px, 88vw);
     max-height: 70vh;
-
     padding: 16px 16px 58px;
 
     background: #fff;
@@ -3567,8 +3568,9 @@ body.one-piece-active #musicBoxAryan {
 
     display: block;
 
-    width: 100%;
+    width: auto;
     height: auto;
+    max-width: 100%;
     max-height: 58vh;
 
     /* Keep the complete photo visible instead of cropping it. */
@@ -3683,6 +3685,7 @@ body.one-piece-active #musicBoxAryan {
     width: 56px;
     min-width: 56px;
     height: 56px;
+    padding: 0;
 
     border-radius: 50%;
 
@@ -3787,18 +3790,18 @@ body.one-piece-active #musicBoxAryan {
     }
 
     .memory-polaroid-frame {
-        width: min(92vw, 900px);
-        max-width: 92vw;
-        max-height: 82vh;
-        padding: 10px 10px 48px;
-    }
+    width: auto;
+    max-width: 92vw;
+    max-height: 82vh;
+    padding: 10px 10px 48px;
+}
 
-    .memory-polaroid-frame img {
-        width: 100%;
-        max-height: 70vh;
-        aspect-ratio: auto;
-        object-fit: contain;
-    }
+   .memory-polaroid-frame img {
+    width: auto;
+    max-width: 100%;
+    max-height: 70vh;
+    object-fit: contain;
+}
 
     .memory-photo-caption,
     #memoryPhotoCaption {
@@ -3849,7 +3852,8 @@ body.one-piece-active #musicBoxAryan {
 
     .memory-polaroid-frame {
 
-        width: 63vw;
+        max-width: 63vw;
+        width:auto;
 
         padding-bottom: 38px;
     }
