@@ -3690,21 +3690,23 @@ body.one-piece-active #musicBoxAryan {
 }
 .memory-photo-nav .wheel-icon,
 .close-memory .close-wheel {
-    display: inline-block;
+    display: block;
     color: #fff6da;
-    text-shadow: 0 3px 8px rgba(0,0,0,.65), 0 0 12px rgba(0,0,0,.35);
-    line-height: 1;
+    filter:
+        drop-shadow(0 3px 8px rgba(0,0,0,.65))
+        drop-shadow(0 0 10px rgba(0,0,0,.35));
     animation: shipWheelSpin 6s linear infinite;
 }
 
 .memory-photo-nav .wheel-icon {
-    font-size: 44px;
+    width: 44px;
+    height: 44px;
 }
 
 .close-memory .close-wheel {
-    font-size: 26px;
+    width: 26px;
+    height: 26px;
 }
-
 @keyframes shipWheelSpin {
     to { transform: rotate(360deg); }
 }
@@ -3813,15 +3815,13 @@ body.one-piece-active #musicBoxAryan {
 }
 
 .memory-photo-nav .wheel-icon {
-    font-size: 36px;
-}
-   .close-memory {
-    width: 38px;
-    height: 38px;
+    width: 36px;
+    height: 36px;
 }
 
 .close-memory .close-wheel {
-    font-size: 20px;
+    width: 20px;
+    height: 20px;
 }
 
     .memory-polaroid-pin,
@@ -3868,15 +3868,13 @@ body.one-piece-active #musicBoxAryan {
 }
 
 .memory-photo-nav .wheel-icon {
-    font-size: 28px;
-}
-.close-memory {
-    width: 32px;
-    height: 32px;
+    width: 28px;
+    height: 28px;
 }
 
 .close-memory .close-wheel {
-    font-size: 17px;
+    width: 17px;
+    height: 17px;
 }
 
     .memory-photo-caption {
