@@ -56,6 +56,7 @@ if (music) {
 const songs = [
     "music/GehraHua.mp3",
     "music/AajkalTereMerePyarKeCharche.mp3",
+    "music/AeMereHumsafar.mp3",
     "music/BadheAcheLagteHai.mp3",
     "music/Barbaad.mp3",
     "music/Dhun.mp3",
@@ -2876,7 +2877,7 @@ function stopGrandLineBackgroundSlideshow() {
                 text:
                     "This island isn't on any map yet. It's the one we're sailing toward together, and every day we get a little closer.",
 
-                song: "music/TumHiHo.mp3",   // swap for any song you like
+                song: "music/Aashiyan.mp3",   // swap for any song you like
 
                 photos: [
                     "images/future1.jpeg",
