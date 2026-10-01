@@ -67,6 +67,9 @@
     <button type="button" class="op-song-btn" data-op-song="music/BrandNewWorld.mp3">
         🌊 Brand New World
     </button>
+     <button type="button" class="op-song-btn" data-op-song="music/Dr.TonyTonyChopper.mp3">
+        🩺 Dr. Tony Tony Chopper
+    </button>
     <button type="button" class="op-song-btn" data-op-song="music/FightTogether.mp3">
         ⚔️ Fight Together
     </button>
@@ -229,23 +232,130 @@
             </p>
 
             <div class="grand-line-map">
+                <!-- Map dressing -->
+<div class="map-waves"></div>
+<div class="map-waves waves-2"></div>
+<div class="map-fog fog-1"></div>
+<div class="map-fog fog-2"></div>
 
-                <svg class="map-route" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-    <polyline points="10,18 34,37 66,17 83,46 44,70"
-              fill="none" stroke="#8a4e22" stroke-width="0.6"
-              stroke-dasharray="2.2,1.8" stroke-linecap="round"/>
+<svg class="map-compass" viewBox="0 0 100 100" aria-hidden="true">
+    <circle cx="50" cy="50" r="46" fill="rgba(246,225,164,.55)" stroke="#6f4a20" stroke-width="3"/>
+    <circle cx="50" cy="50" r="38" fill="none" stroke="#6f4a20" stroke-width="1" stroke-dasharray="2 3"/>
+    <polygon points="8,50 50,43 92,50 50,57" fill="#f5e6b8" stroke="#4a2c12" stroke-width="1.5"/>
+    <g class="compass-needle">
+        <polygon points="50,20 57,50 50,44 43,50" fill="#b93427" stroke="#4a2c12" stroke-width="1.5"/>
+        <polygon points="50,80 57,50 50,56 43,50" fill="#f5e6b8" stroke="#4a2c12" stroke-width="1.5"/>
+    </g>
+    <circle cx="50" cy="50" r="4" fill="#4a2c12"/>
+    <text x="50" y="16" text-anchor="middle" font-size="11" fill="#4a2c12">N</text>
 </svg>
 
+
+<span class="map-deco sea-monster monster-1">🐙</span>
+<span class="map-deco sea-monster monster-2">🐳</span>
+<span class="map-deco sea-monster monster-3">🦀</span>
+
+               <svg class="map-route" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+    <polyline points="50.0,30.3 50.7,26.9 54.8,19.2 63.4,13.0 74.7,13.3 84.3,20.9 88.0,33.0 84.3,45.9 74.7,57.9 63.4,68.6 54.8,78.2 50.7,85.3 50.0,88.0 49.3,85.3 45.2,78.2 36.6,68.6 25.3,57.9 15.7,45.9 12.0,33.0 15.7,20.9 25.3,13.3 36.6,13.0 45.2,19.2 49.3,26.9 50.0,30.3"
+              fill="none" stroke="#c0392b" stroke-width="0.6"
+              stroke-dasharray="2.2,1.8" stroke-linecap="round"/>
+</svg>
+<!-- Island 0: Ankita -->
+<button class="memory-island island-zero" data-memory="ankita">
+   <svg class="island-shape" viewBox="0 0 200 160" aria-hidden="true">
+    <ellipse cx="100" cy="140" rx="85" ry="14" fill="rgba(10,40,65,0.3)"/>
+    <path d="M20,132 C14,118 19,109 30,107 L170,107 C181,109 186,118 180,132 C176,138 165,138 150,138 L50,138 C35,138 24,138 20,132 Z" fill="#dab876" stroke="#7a5a34" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M28,110 C30,96 44,92 58,92 L142,92 C156,92 170,96 172,110 Z" fill="#7cbf5a" stroke="#33531f" stroke-width="4" stroke-linejoin="round"/>
+
+    <!-- curled, fluffy tail -->
+    <path d="M128,98 C158,102 166,70 150,60 C143,56 137,63 144,68 C150,73 147,88 128,88" fill="#fffdf9" stroke="#8a93a6" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <!-- slimmer body -->
+    <path d="M74,100 C68,80 80,60 100,60 C120,60 132,80 126,100 Z" fill="#fffdf9" stroke="#8a93a6" stroke-width="3.5" stroke-linejoin="round"/>
+    <path d="M89,100 C87,85 93,74 100,74 C107,74 113,85 111,100 Z" fill="#f5efe8"/>
+    <!-- dainty paws -->
+    <ellipse cx="91" cy="100" rx="6" ry="3.6" fill="#fff" stroke="#8a93a6" stroke-width="2.5"/>
+    <ellipse cx="109" cy="100" rx="6" ry="3.6" fill="#fff" stroke="#8a93a6" stroke-width="2.5"/>
+
+    <!-- ears (softer, rounder tips) -->
+    <path d="M75,34 Q76,14 80,13 Q90,18 94,27 Z" fill="#fffdf9" stroke="#8a93a6" stroke-width="3.5" stroke-linejoin="round"/>
+    <path d="M125,34 Q124,14 120,13 Q110,18 106,27 Z" fill="#fffdf9" stroke="#8a93a6" stroke-width="3.5" stroke-linejoin="round"/>
+    <path d="M79,30 Q80,20 82,19 Q86,22 88,26 Z" fill="#f9b7cb"/>
+    <path d="M121,30 Q120,20 118,19 Q114,22 112,26 Z" fill="#f9b7cb"/>
+
+    <!-- rounder head -->
+    <ellipse cx="100" cy="43" rx="29" ry="25" fill="#fffdf9" stroke="#8a93a6" stroke-width="3.5"/>
+
+    <!-- bow on the left ear -->
+    <g stroke="#b83a6b" stroke-width="2" stroke-linejoin="round">
+        <path d="M78,22 L66,14 L67,29 Z" fill="#ff7aa8"/>
+        <path d="M78,22 L88,12 L90,27 Z" fill="#ff7aa8"/>
+        <circle cx="78" cy="22" r="4" fill="#ff5c8a"/>
+    </g>
+
+    <!-- eyes with lashes -->
+    <ellipse cx="89" cy="42" rx="5" ry="6.4" fill="#8fd3f5" stroke="#3b4656" stroke-width="1.8"/>
+    <ellipse cx="111" cy="42" rx="5" ry="6.4" fill="#8fd3f5" stroke="#3b4656" stroke-width="1.8"/>
+    <ellipse cx="89.5" cy="43" rx="2.2" ry="4.4" fill="#1c2430"/>
+    <ellipse cx="110.5" cy="43" rx="2.2" ry="4.4" fill="#1c2430"/>
+    <circle cx="90.8" cy="40" r="1.5" fill="#fff"/>
+    <circle cx="111.8" cy="40" r="1.5" fill="#fff"/>
+    <g stroke="#2a2f3c" stroke-width="1.8" stroke-linecap="round" fill="none">
+        <path d="M83,38 Q82,35 79,34"/><path d="M84,36 Q83,32 81,30"/>
+        <path d="M117,38 Q118,35 121,34"/><path d="M116,36 Q117,32 119,30"/>
+    </g>
+
+    <!-- blush -->
+    <ellipse cx="80" cy="52" rx="6" ry="3.4" fill="#ffb3c8" opacity=".75"/>
+    <ellipse cx="120" cy="52" rx="6" ry="3.4" fill="#ffb3c8" opacity=".75"/>
+
+    <!-- tiny heart nose, little smile -->
+    <ellipse cx="100" cy="54" rx="8" ry="5.5" fill="#fff6ee"/>
+    <path d="M100,54 C96,49 94,52 96,54 L100,58 L104,54 C106,52 104,49 100,54 Z" fill="#f2799f" stroke="#a83a66" stroke-width="1" stroke-linejoin="round" transform="translate(0,-1)"/>
+    <path d="M100,57 Q96,61 92,58 M100,57 Q104,61 108,58" fill="none" stroke="#9a8478" stroke-width="1.6" stroke-linecap="round"/>
+
+    <!-- fine whiskers -->
+    <g stroke="#a3abb9" stroke-width="1.4" stroke-linecap="round">
+        <line x1="68" y1="52" x2="84" y2="54"/><line x1="68" y1="58" x2="84" y2="58"/>
+        <line x1="132" y1="52" x2="116" y2="54"/><line x1="132" y1="58" x2="116" y2="58"/>
+    </g>
+
+    <!-- ribbon collar with bell -->
+    <path d="M86,68 Q100,76 114,68" fill="none" stroke="#ff7aa8" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="100" cy="74" r="3.6" fill="#ffd23f" stroke="#b8860b" stroke-width="1.5"/>
+    <line x1="100" y1="72" x2="100" y2="76" stroke="#b8860b" stroke-width="1"/>
+</svg>
+    <span class="island-icon">🌸</span>
+    <strong>ANKITA<br>ISLAND</strong>
+</button>
                 <!-- Island 1 -->
 <button class="memory-island island-one" data-memory="codm">
    <svg class="island-shape" viewBox="0 0 200 160" aria-hidden="true">
     <ellipse cx="100" cy="140" rx="85" ry="14" fill="rgba(10,40,65,0.3)"/>
-    <path d="M20,132 C14,118 19,109 30,107 L170,107 C181,109 186,118 180,132 C176,138 165,138 150,138 L50,138 C35,138 24,138 20,132 Z"
-          fill="#dab876" stroke="#7a5a34" stroke-width="4" stroke-linejoin="round"/>
-    <path d="M28,112 C24,98 30,90 40,90 L58,78 L58,74 L92,22 L124,74 L124,78 L142,90 C154,90 160,98 156,112 Z"
-          fill="#5c9a48" stroke="#33531f" stroke-width="4" stroke-linejoin="round"/>
-    <path d="M92,22 L107,48 L77,48 Z" fill="#eef3f5" stroke="#33531f" stroke-width="3" stroke-linejoin="round"/>
-    <path d="M92,22 L98,32 L86,32 Z" fill="#fff" opacity="0.9"/>
+    <path d="M20,132 C14,118 19,109 30,107 L170,107 C181,109 186,118 180,132 C176,138 165,138 150,138 L50,138 C35,138 24,138 20,132 Z" fill="#dab876" stroke="#7a5a34" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M28,110 C30,96 44,92 58,92 L142,92 C156,92 170,96 172,110 Z" fill="#6f9a4a" stroke="#33531f" stroke-width="4" stroke-linejoin="round"/>
+    <!-- crosshair -->
+    <g fill="none" stroke="#d9482b" stroke-width="3" stroke-linecap="round">
+        <circle cx="100" cy="24" r="13"/>
+        <line x1="100" y1="6" x2="100" y2="14"/><line x1="100" y1="34" x2="100" y2="42"/>
+        <line x1="82" y1="24" x2="90" y2="24"/><line x1="110" y1="24" x2="118" y2="24"/>
+    </g>
+    <circle cx="100" cy="24" r="2" fill="#d9482b"/>
+    <!-- controller -->
+    <path d="M50,66 C50,52 62,48 76,48 L124,48 C138,48 150,52 150,66 C152,84 146,98 134,98 C124,98 120,90 112,86 L88,86 C80,90 76,98 66,98 C54,98 48,84 50,66 Z" fill="#3b3f51" stroke="#151826" stroke-width="4" stroke-linejoin="round"/>
+    <!-- d-pad -->
+    <rect x="68" y="58" width="8" height="22" rx="2" fill="#d8dce8" stroke="#151826" stroke-width="1.5"/>
+    <rect x="61" y="65" width="22" height="8" rx="2" fill="#d8dce8" stroke="#151826" stroke-width="1.5"/>
+    <!-- buttons -->
+    <circle cx="128" cy="58" r="5" fill="#f4c542" stroke="#151826" stroke-width="1.5"/>
+    <circle cx="138" cy="67" r="5" fill="#e5484d" stroke="#151826" stroke-width="1.5"/>
+    <circle cx="128" cy="76" r="5" fill="#3fa7f5" stroke="#151826" stroke-width="1.5"/>
+    <circle cx="118" cy="67" r="5" fill="#4cc26b" stroke="#151826" stroke-width="1.5"/>
+    <!-- sticks + center buttons -->
+    <circle cx="90"  cy="77" r="6" fill="#20243a" stroke="#0b0d18" stroke-width="2"/>
+    <circle cx="110" cy="77" r="6" fill="#20243a" stroke="#0b0d18" stroke-width="2"/>
+    <rect x="94" y="58" width="5" height="3" rx="1.5" fill="#9aa2bd"/>
+    <rect x="101" y="58" width="5" height="3" rx="1.5" fill="#9aa2bd"/>
 </svg>
     <span class="island-icon">🎮</span>
     <strong>CODM<br>ISLAND</strong>
@@ -255,12 +365,24 @@
 <button class="memory-island island-two" data-memory="videocall">
    <svg class="island-shape" viewBox="0 0 200 160" aria-hidden="true">
     <ellipse cx="100" cy="140" rx="85" ry="14" fill="rgba(10,40,65,0.3)"/>
-    <path d="M20,132 C14,118 19,109 30,107 L170,107 C181,109 186,118 180,132 C176,138 165,138 150,138 L50,138 C35,138 24,138 20,132 Z"
-          fill="#dab876" stroke="#7a5a34" stroke-width="4" stroke-linejoin="round"/>
-    <path d="M28,112 C24,98 30,90 40,90 L58,78 L58,74 L92,22 L124,74 L124,78 L142,90 C154,90 160,98 156,112 Z"
-          fill="#5c9a48" stroke="#33531f" stroke-width="4" stroke-linejoin="round"/>
-    <path d="M92,22 L107,48 L77,48 Z" fill="#eef3f5" stroke="#33531f" stroke-width="3" stroke-linejoin="round"/>
-    <path d="M92,22 L98,32 L86,32 Z" fill="#fff" opacity="0.9"/>
+    <path d="M20,132 C14,118 19,109 30,107 L170,107 C181,109 186,118 180,132 C176,138 165,138 150,138 L50,138 C35,138 24,138 20,132 Z" fill="#dab876" stroke="#7a5a34" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M28,110 C30,96 44,92 58,92 L142,92 C156,92 170,96 172,110 Z" fill="#5c9a48" stroke="#33531f" stroke-width="4" stroke-linejoin="round"/>
+    <!-- signal waves -->
+    <g fill="none" stroke="#ff5c8a" stroke-width="3" stroke-linecap="round">
+        <path d="M136,40 A14,14 0 0 1 136,60"/><path d="M144,32 A24,24 0 0 1 144,68"/>
+        <path d="M64,40 A14,14 0 0 0 64,60"/><path d="M56,32 A24,24 0 0 0 56,68"/>
+    </g>
+    <!-- phone -->
+    <rect x="74" y="14" width="52" height="88" rx="9" fill="#1d2a44" stroke="#0d1b2a" stroke-width="4"/>
+    <rect x="80" y="24" width="40" height="64" rx="3" fill="#8fd6f2"/>
+    <rect x="92" y="17" width="16" height="3" rx="1.5" fill="#0d1b2a"/>
+    <!-- person on screen -->
+    <circle cx="100" cy="49" r="8" fill="#ffd9b8" stroke="#7a5a34" stroke-width="1.5"/>
+    <path d="M84,88 C84,68 116,68 116,88 Z" fill="#ff8fb3" stroke="#a83a66" stroke-width="1.5"/>
+    <!-- self view -->
+    <rect x="104" y="27" width="13" height="17" rx="2" fill="#ffe28d" stroke="#7a5a34" stroke-width="1.5"/>
+    <!-- call button -->
+    <circle cx="100" cy="95" r="4" fill="#e5484d"/>
 </svg>
     <span class="island-icon">📞</span>
     <strong>VIDEO<br>CALLS</strong>
@@ -270,12 +392,57 @@
 <button class="memory-island island-three" data-memory="Mysore">
   <svg class="island-shape" viewBox="0 0 200 160" aria-hidden="true">
     <ellipse cx="100" cy="140" rx="85" ry="14" fill="rgba(10,40,65,0.3)"/>
-    <path d="M20,132 C14,118 19,109 30,107 L170,107 C181,109 186,118 180,132 C176,138 165,138 150,138 L50,138 C35,138 24,138 20,132 Z"
-          fill="#dab876" stroke="#7a5a34" stroke-width="4" stroke-linejoin="round"/>
-    <path d="M28,112 C24,98 30,90 40,90 L58,78 L58,74 L92,22 L124,74 L124,78 L142,90 C154,90 160,98 156,112 Z"
-          fill="#5c9a48" stroke="#33531f" stroke-width="4" stroke-linejoin="round"/>
-    <path d="M92,22 L107,48 L77,48 Z" fill="#eef3f5" stroke="#33531f" stroke-width="3" stroke-linejoin="round"/>
-    <path d="M92,22 L98,32 L86,32 Z" fill="#fff" opacity="0.9"/>
+    <path d="M20,132 C14,118 19,109 30,107 L170,107 C181,109 186,118 180,132 C176,138 165,138 150,138 L50,138 C35,138 24,138 20,132 Z" fill="#dab876" stroke="#7a5a34" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M28,110 C30,96 44,92 58,92 L142,92 C156,92 170,96 172,110 Z" fill="#5c9a48" stroke="#33531f" stroke-width="4" stroke-linejoin="round"/>
+
+    <!-- main facade -->
+    <rect x="44" y="68" width="112" height="26" fill="#f3e2b3" stroke="#7a5a34" stroke-width="3"/>
+    <!-- roof ledge -->
+    <rect x="42" y="64" width="116" height="6" fill="#e8d09a" stroke="#7a5a34" stroke-width="2.5"/>
+
+    <!-- corner towers -->
+    <rect x="38"  y="50" width="18" height="44" fill="#f3e2b3" stroke="#7a5a34" stroke-width="3"/>
+    <rect x="144" y="50" width="18" height="44" fill="#f3e2b3" stroke="#7a5a34" stroke-width="3"/>
+    <!-- corner tower domes -->
+    <path d="M36,50 Q47,28 58,50 Z" fill="#e8a33d" stroke="#7a4a10" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M142,50 Q153,28 164,50 Z" fill="#e8a33d" stroke="#7a4a10" stroke-width="3" stroke-linejoin="round"/>
+    <circle cx="47" cy="27" r="2.2" fill="#d9482b"/>
+    <circle cx="153" cy="27" r="2.2" fill="#d9482b"/>
+
+    <!-- small side domes on the roofline -->
+    <path d="M66,64 Q73,50 80,64 Z" fill="#e8a33d" stroke="#7a4a10" stroke-width="2.5" stroke-linejoin="round"/>
+    <path d="M120,64 Q127,50 134,64 Z" fill="#e8a33d" stroke="#7a4a10" stroke-width="2.5" stroke-linejoin="round"/>
+
+    <!-- central tower -->
+    <rect x="86" y="36" width="28" height="58" fill="#f3e2b3" stroke="#7a5a34" stroke-width="3"/>
+    <!-- central tower balcony band -->
+    <rect x="83" y="50" width="34" height="5" fill="#e8d09a" stroke="#7a5a34" stroke-width="2"/>
+    <!-- central golden dome -->
+    <path d="M82,36 Q100,4 118,36 Z" fill="#e8a33d" stroke="#7a4a10" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M94,26 Q97,16 101,13" fill="none" stroke="#fff3c4" stroke-width="2" stroke-linecap="round" opacity=".8"/>
+    <!-- arched windows, facade -->
+    <g fill="#7a4a2a">
+        <path d="M50,88 v-8 a4,4 0 0 1 8,0 v8 Z"/>
+        <path d="M62,88 v-8 a4,4 0 0 1 8,0 v8 Z"/>
+        <path d="M74,88 v-8 a4,4 0 0 1 8,0 v8 Z"/>
+        <path d="M118,88 v-8 a4,4 0 0 1 8,0 v8 Z"/>
+        <path d="M130,88 v-8 a4,4 0 0 1 8,0 v8 Z"/>
+        <path d="M142,88 v-8 a4,4 0 0 1 8,0 v8 Z"/>
+    </g>
+    <!-- arched windows, corner towers and central tower -->
+    <g fill="#7a4a2a">
+        <path d="M43,64 v-6 a4,4 0 0 1 8,0 v6 Z"/>
+        <path d="M149,64 v-6 a4,4 0 0 1 8,0 v6 Z"/>
+        <path d="M96,48 v-6 a4,4 0 0 1 8,0 v6 Z"/>
+    </g>
+
+    <!-- grand central entrance arch -->
+    <path d="M90,94 V78 a10,10 0 0 1 20,0 V94 Z" fill="#7a4a2a" stroke="#4a2c12" stroke-width="2.5"/>
+    <path d="M94,94 V80 a6,6 0 0 1 12,0 V94 Z" fill="#3a2010"/>
+
+    <!-- lawn shrubs -->
+    <circle cx="30"  cy="100" r="7" fill="#3f8a3a" stroke="#245a22" stroke-width="2.5"/>
+    <circle cx="170" cy="100" r="7" fill="#3f8a3a" stroke="#245a22" stroke-width="2.5"/>
 </svg>
     <span class="island-icon">🏰✨</span>
     <strong>MYSORE<br>ISLAND</strong>
@@ -283,14 +450,54 @@
 
 <!-- Island 4 -->
 <button class="memory-island island-four" data-memory="Banglore">
-  <svg class="island-shape" viewBox="0 0 200 160" aria-hidden="true">
+ <svg class="island-shape" viewBox="0 0 200 160" aria-hidden="true">
     <ellipse cx="100" cy="140" rx="85" ry="14" fill="rgba(10,40,65,0.3)"/>
-    <path d="M20,132 C14,118 19,109 30,107 L170,107 C181,109 186,118 180,132 C176,138 165,138 150,138 L50,138 C35,138 24,138 20,132 Z"
-          fill="#dab876" stroke="#7a5a34" stroke-width="4" stroke-linejoin="round"/>
-    <path d="M28,112 C24,98 30,90 40,90 L58,78 L58,74 L92,22 L124,74 L124,78 L142,90 C154,90 160,98 156,112 Z"
-          fill="#5c9a48" stroke="#33531f" stroke-width="4" stroke-linejoin="round"/>
-    <path d="M92,22 L107,48 L77,48 Z" fill="#eef3f5" stroke="#33531f" stroke-width="3" stroke-linejoin="round"/>
-    <path d="M92,22 L98,32 L86,32 Z" fill="#fff" opacity="0.9"/>
+    <path d="M20,132 C14,118 19,109 30,107 L170,107 C181,109 186,118 180,132 C176,138 165,138 150,138 L50,138 C35,138 24,138 20,132 Z" fill="#dab876" stroke="#7a5a34" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M28,110 C30,96 44,92 58,92 L142,92 C156,92 170,96 172,110 Z" fill="#5c9a48" stroke="#33531f" stroke-width="4" stroke-linejoin="round"/>
+
+    <!-- main block -->
+    <rect x="66" y="62" width="68" height="30" fill="#d9d4c7" stroke="#5b564a" stroke-width="3"/>
+    <!-- battlements across the top of the main block -->
+    <g fill="#d9d4c7" stroke="#5b564a" stroke-width="2.5">
+        <rect x="68"  y="55" width="8" height="7"/>
+        <rect x="80"  y="55" width="8" height="7"/>
+        <rect x="92"  y="55" width="8" height="7"/>
+        <rect x="104" y="55" width="8" height="7"/>
+        <rect x="116" y="55" width="8" height="7"/>
+        <rect x="126" y="55" width="6" height="7"/>
+    </g>
+
+    <!-- towers -->
+    <rect x="46"  y="40" width="26" height="52" fill="#c9c4b5" stroke="#5b564a" stroke-width="3"/>
+    <rect x="128" y="40" width="26" height="52" fill="#c9c4b5" stroke="#5b564a" stroke-width="3"/>
+    <g fill="#c9c4b5" stroke="#5b564a" stroke-width="2.5">
+        <rect x="46"  y="33" width="7" height="7"/><rect x="55"  y="33" width="7" height="7"/><rect x="64"  y="33" width="7" height="7"/>
+        <rect x="129" y="33" width="7" height="7"/><rect x="138" y="33" width="7" height="7"/><rect x="147" y="33" width="7" height="7"/>
+    </g>
+
+    <!-- tower windows -->
+    <g fill="#5b3a22">
+        <path d="M54,62 v-6 a5,5 0 0 1 10,0 v6 Z"/>
+        <path d="M136,62 v-6 a5,5 0 0 1 10,0 v6 Z"/>
+        <path d="M54,82 v-6 a5,5 0 0 1 10,0 v6 Z"/>
+        <path d="M136,82 v-6 a5,5 0 0 1 10,0 v6 Z"/>
+    </g>
+
+    <!-- timber band on main block -->
+    <line x1="72" y1="72" x2="128" y2="72" stroke="#6b4423" stroke-width="2" opacity=".7"/>
+
+    <!-- main block windows -->
+    <g fill="#5b3a22">
+        <path d="M76,72 v-4 a4,4 0 0 1 8,0 v4 Z"/>
+        <path d="M116,72 v-4 a4,4 0 0 1 8,0 v4 Z"/>
+    </g>
+
+    <!-- entrance -->
+    <path d="M91,92 V82 a9,9 0 0 1 18,0 V92 Z" fill="#7a4a2a" stroke="#4a2c12" stroke-width="2.5"/>
+
+    <!-- lawn shrubs -->
+    <circle cx="36"  cy="98" r="8" fill="#3f8a3a" stroke="#245a22" stroke-width="2.5"/>
+    <circle cx="164" cy="98" r="8" fill="#3f8a3a" stroke="#245a22" stroke-width="2.5"/>
 </svg>
     <span class="island-icon">🏰</span>
     <strong>BANGLORE<br>ISLAND</strong>
@@ -299,20 +506,163 @@
 <!-- Island 5 -->
 <button class="memory-island island-five" data-memory="Mumbai">
    <svg class="island-shape" viewBox="0 0 200 160" aria-hidden="true">
+    <defs>
+        <clipPath id="mdBay">
+            <path d="M36,102 C36,40 164,40 164,102 Z"/>
+        </clipPath>
+    </defs>
+
     <ellipse cx="100" cy="140" rx="85" ry="14" fill="rgba(10,40,65,0.3)"/>
-    <path d="M20,132 C14,118 19,109 30,107 L170,107 C181,109 186,118 180,132 C176,138 165,138 150,138 L50,138 C35,138 24,138 20,132 Z"
-          fill="#dab876" stroke="#7a5a34" stroke-width="4" stroke-linejoin="round"/>
-    <path d="M28,112 C24,98 30,90 40,90 L58,78 L58,74 L92,22 L124,74 L124,78 L142,90 C154,90 160,98 156,112 Z"
-          fill="#5c9a48" stroke="#33531f" stroke-width="4" stroke-linejoin="round"/>
-    <path d="M92,22 L107,48 L77,48 Z" fill="#eef3f5" stroke="#33531f" stroke-width="3" stroke-linejoin="round"/>
-    <path d="M92,22 L98,32 L86,32 Z" fill="#fff" opacity="0.9"/>
+    <path d="M20,132 C14,118 19,109 30,107 L170,107 C181,109 186,118 180,132 C176,138 165,138 150,138 L50,138 C35,138 24,138 20,132 Z" fill="#dab876" stroke="#7a5a34" stroke-width="4" stroke-linejoin="round"/>
+
+    <!-- sea and sky view of the bay -->
+    <g clip-path="url(#mdBay)">
+        <!-- sky -->
+        <rect x="30" y="36" width="140" height="40" fill="#ffd9a0"/>
+        <rect x="30" y="58" width="140" height="18" fill="#ffc27d"/>
+        <!-- sun -->
+        <circle cx="100" cy="74" r="18" fill="#ffe0a0" opacity=".55"/>
+        <circle cx="100" cy="74" r="11" fill="#ff8c42"/>
+        <!-- sea -->
+        <rect x="30" y="74" width="140" height="32" fill="#3f9bc4"/>
+        <rect x="30" y="74" width="140" height="6" fill="#62b6d6"/>
+        <!-- sun reflection -->
+        <g fill="#ffd27a">
+            <rect x="92" y="78" width="16" height="2.4" rx="1.2"/>
+            <rect x="95" y="84" width="10" height="2.4" rx="1.2"/>
+            <rect x="97" y="90" width="6"  height="2.4" rx="1.2"/>
+        </g>
+        <!-- waves -->
+        <g fill="none" stroke="#e8f7ff" stroke-width="2" stroke-linecap="round" opacity=".85">
+            <path d="M46,86 q5,-4 10,0 t10,0"/>
+            <path d="M128,84 q5,-4 10,0 t10,0"/>
+            <path d="M58,96 q5,-4 10,0 t10,0"/>
+            <path d="M120,96 q5,-4 10,0 t10,0"/>
+        </g>
+        <!-- a couple of gulls -->
+        <g fill="none" stroke="#5b4a3a" stroke-width="1.8" stroke-linecap="round">
+            <path d="M64,54 q3,-3 6,0 q3,-3 6,0"/>
+            <path d="M126,46 q2.5,-2.5 5,0 q2.5,-2.5 5,0"/>
+        </g>
+    </g>
+    
+    
 </svg>
     <span class="island-icon">🌊</span>
     <strong>MUMBAI<br>ISLAND</strong>
 </button>
+  <!-- Island 6: Aryan -->
+<button class="memory-island island-six" data-memory="aryanAbout">
+    <svg class="island-shape" viewBox="0 0 200 160" aria-hidden="true">
+    <ellipse cx="100" cy="140" rx="85" ry="14" fill="rgba(10,40,65,0.3)"/>
+    <path d="M20,132 C14,118 19,109 30,107 L170,107 C181,109 186,118 180,132 C176,138 165,138 150,138 L50,138 C35,138 24,138 20,132 Z" fill="#dab876" stroke="#7a5a34" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M28,110 C30,96 44,92 58,92 L142,92 C156,92 170,96 172,110 Z" fill="#5c9a48" stroke="#33531f" stroke-width="4" stroke-linejoin="round"/>
+
+    <!-- tail -->
+    <path d="M132,100 C160,102 166,74 152,64" fill="none" stroke="#8a4b12" stroke-width="10" stroke-linecap="round"/>
+    <path d="M132,100 C160,102 166,74 152,64" fill="none" stroke="#f2a65a" stroke-width="6" stroke-linecap="round"/>
+
+    <!-- white coat -->
+    <path d="M66,103 C58,80 74,62 100,62 C126,62 142,80 134,103 Z" fill="#fffdf7" stroke="#5b6570" stroke-width="3.5" stroke-linejoin="round"/>
+    <!-- scrubs -->
+    <polygon points="89,64 100,84 111,64" fill="#4aa3c7" stroke="#2f6f8c" stroke-width="2" stroke-linejoin="round"/>
+    <!-- lapels -->
+    <path d="M89,64 L96,90 M111,64 L104,90" stroke="#5b6570" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <!-- pocket + pen -->
+    <rect x="110" y="84" width="14" height="13" rx="1.5" fill="#f1ede0" stroke="#5b6570" stroke-width="2"/>
+    <line x1="117" y1="80" x2="117" y2="88" stroke="#e5484d" stroke-width="2.5" stroke-linecap="round"/>
+
+    <!-- paws -->
+    <ellipse cx="86" cy="103" rx="7" ry="4" fill="#fde7c8" stroke="#8a4b12" stroke-width="2.5"/>
+    <ellipse cx="114" cy="103" rx="7" ry="4" fill="#fde7c8" stroke="#8a4b12" stroke-width="2.5"/>
+
+    <!-- ears -->
+    <polygon points="74,34 78,12 94,26" fill="#f2a65a" stroke="#8a4b12" stroke-width="3.5" stroke-linejoin="round"/>
+    <polygon points="126,34 122,12 106,26" fill="#f2a65a" stroke="#8a4b12" stroke-width="3.5" stroke-linejoin="round"/>
+    <polygon points="79,30 80,19 88,26" fill="#f7a8bf"/>
+    <polygon points="121,30 120,19 112,26" fill="#f7a8bf"/>
+
+    <!-- head -->
+    <ellipse cx="100" cy="42" rx="29" ry="25" fill="#f2a65a" stroke="#8a4b12" stroke-width="3.5"/>
+
+    <!-- head mirror -->
+    <path d="M73,34 Q100,20 127,34" fill="none" stroke="#8a93a0" stroke-width="3.5" stroke-linecap="round"/>
+    <circle cx="100" cy="24" r="8" fill="#dfe6ee" stroke="#5b6570" stroke-width="2.5"/>
+    <circle cx="100" cy="24" r="2.6" fill="#5b6570"/>
+    <path d="M94,21 Q96,18 99,18" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/>
+
+    <!-- eyes -->
+    <ellipse cx="89" cy="42" rx="4.5" ry="6" fill="#fff" stroke="#2a1a0a" stroke-width="1.8"/>
+    <ellipse cx="111" cy="42" rx="4.5" ry="6" fill="#fff" stroke="#2a1a0a" stroke-width="1.8"/>
+    <ellipse cx="89.5" cy="43" rx="2.4" ry="4.2" fill="#2a1a0a"/>
+    <ellipse cx="110.5" cy="43" rx="2.4" ry="4.2" fill="#2a1a0a"/>
+    <circle cx="90.5" cy="40.5" r="1.2" fill="#fff"/>
+    <circle cx="111.5" cy="40.5" r="1.2" fill="#fff"/>
+
+    <!-- muzzle, nose, mouth -->
+    <ellipse cx="100" cy="54" rx="9" ry="6.5" fill="#fde7c8"/>
+    <path d="M96,50 L104,50 L100,55 Z" fill="#e8668a" stroke="#a83a66" stroke-width="1.2" stroke-linejoin="round"/>
+    <path d="M100,55 L100,58 M100,58 Q95,62 91,58 M100,58 Q105,62 109,58" fill="none" stroke="#8a4b12" stroke-width="1.8" stroke-linecap="round"/>
+
+    <!-- whiskers -->
+    <g stroke="#6b4423" stroke-width="1.6" stroke-linecap="round">
+        <line x1="70" y1="52" x2="86" y2="55"/><line x1="69" y1="59" x2="86" y2="59"/>
+        <line x1="130" y1="52" x2="114" y2="55"/><line x1="131" y1="59" x2="114" y2="59"/>
+    </g>
+
+    <!-- stethoscope around the neck -->
+    <path d="M88,66 C84,88 94,97 100,97 C106,97 116,88 112,66" fill="none" stroke="#2b3544" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="88" cy="66" r="3.2" fill="#c9d3de" stroke="#2b3544" stroke-width="2"/>
+    <circle cx="112" cy="66" r="3.2" fill="#c9d3de" stroke="#2b3544" stroke-width="2"/>
+    <circle cx="100" cy="99" r="5" fill="#c9d3de" stroke="#2b3544" stroke-width="2.5"/>
+    <circle cx="100" cy="99" r="2" fill="#eef3f7"/>
+</svg>
+    <span class="island-icon">⚓</span>
+    <strong>ARYAN<br>ISLAND</strong>
+</button>
+<!-- Island 7: Future -->
+<button class="memory-island island-seven" data-memory="future">
+    <svg class="island-shape" viewBox="0 0 200 160" aria-hidden="true">
+        <ellipse cx="100" cy="140" rx="85" ry="14" fill="rgba(10,40,65,0.3)"/>
+        <path d="M20,132 C14,118 19,109 30,107 L170,107 C181,109 186,118 180,132 C176,138 165,138 150,138 L50,138 C35,138 24,138 20,132 Z" fill="#dab876" stroke="#7a5a34" stroke-width="4" stroke-linejoin="round"/>
+        <path d="M28,110 C30,96 44,92 58,92 L142,92 C156,92 170,96 172,110 Z" fill="#6fb35a" stroke="#33531f" stroke-width="4" stroke-linejoin="round"/>
+
+        <!-- crescent moon + stars -->
+        
+        <g fill="#fff6c8" stroke="#c9a53a" stroke-width="1.2" stroke-linejoin="round">
+            <path d="M40,22 l2.4,6.4 6.6,2.4 -6.6,2.4 -2.4,6.4 -2.4,-6.4 -6.6,-2.4 6.6,-2.4z"/>
+            <path d="M72,10 l1.8,4.6 4.6,1.8 -4.6,1.8 -1.8,4.6 -1.8,-4.6 -4.6,-1.8 4.6,-1.8z"/>
+            <path d="M126,28 l1.6,4 4,1.6 -4,1.6 -1.6,4 -1.6,-4 -4,-1.6 4,-1.6z"/>
+        </g>
+
+        <!-- little dream house -->
+        <rect x="132" y="42" width="9" height="20" fill="#9c5a3c" stroke="#4a2c12" stroke-width="2.5"/>
+        <rect x="68" y="62" width="64" height="32" fill="#f6e6c8" stroke="#7a5a34" stroke-width="3"/>
+        <polygon points="60,64 100,32 140,64" fill="#c0392b" stroke="#6e1f16" stroke-width="3.5" stroke-linejoin="round"/>
+        <line x1="74" y1="56" x2="126" y2="56" stroke="#8e2a20" stroke-width="2" opacity=".5"/>
+
+       
+
+        <!-- door + side windows -->
+        <path d="M91,94 V80 a9,9 0 0 1 18,0 V94 Z" fill="#7a4a2a" stroke="#4a2c12" stroke-width="2.5"/>
+        <circle cx="105" cy="87" r="1.5" fill="#ffd23f"/>
+        <rect x="74" y="72" width="12" height="12" fill="#ffe28d" stroke="#7a5a34" stroke-width="2"/>
+        <rect x="114" y="72" width="12" height="12" fill="#ffe28d" stroke="#7a5a34" stroke-width="2"/>
+
+        <!-- fairy lights on the lawn -->
+        <g fill="#ff7aa8" stroke="#a83a66" stroke-width="1">
+            <circle cx="40" cy="100" r="3"/><circle cx="52" cy="104" r="3"/>
+            <circle cx="148" cy="104" r="3"/><circle cx="160" cy="100" r="3"/>
+        </g>
+        <!-- shrubs -->
+        <circle cx="34" cy="96" r="7" fill="#3f8a3a" stroke="#245a22" stroke-width="2.5" opacity=".0"/>
+    </svg>
+    <span class="island-icon">🔮</span>
+    <strong>FUTURE<br>ISLAND</strong>
+</button>
                 <div class="map-ship">
-                    ⛵
-                </div>
+    <span class="ship-flip"><span class="ship-emoji">⛵</span></span>
+</div>
 
             </div>
 
