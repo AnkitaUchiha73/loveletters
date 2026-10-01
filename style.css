@@ -2703,12 +2703,18 @@ button {
     opacity: .85;
     pointer-events: none;
 }
-.island-one { left: 7%; top: 11%; }
-.island-two { left: 31%; top: 30%; }
-.island-three { left: 59%; top: 10%; }
-.island-four { left: 76%; top: 39%; }
-.island-five { left: 41%; top: 63%; }
-.island-six { left: 8%; top: 70%; }
+.island-zero  { left: 50.0%; top: 30.3%; }  /* Ankita — the notch where the two lobes meet */
+.island-one   { left: 63.4%; top: 13.0%; }  /* CODM — right lobe peak */
+.island-two   { left: 88.0%; top: 33.0%; }  /* Video Calls — right outer edge, widest point */
+.island-three { left: 63.4%; top: 68.6%; }  /* Mysore — right lower curve */
+.island-six   { left: 50.0%; top: 88.0%; }  /* Aryan — bottom tip */
+.island-four  { left: 36.6%; top: 68.6%; }  /* Banglore — left lower curve (mirror of Mysore) */
+.island-five  { left: 12.0%; top: 33.0%; }  /* Mumbai — left outer edge (mirror of Video Calls) */
+.island-seven { left: 36.6%; top: 13.0%; }  /* Future — left lobe peak (mirror of CODM) */
+
+.island-extras[data-key="future"] .palm {
+    display: none;
+}
 
 .memory-island {
     position: absolute;
@@ -2726,6 +2732,7 @@ button {
     align-items: center;
     filter: drop-shadow(0 10px 10px rgba(10,30,50,.35));
     transition: transform .22s ease, filter .22s ease;
+    transform: translate(-50%, -50%);   /* ADD THIS LINE */
 }
 
 .memory-island .island-shape {
@@ -2745,7 +2752,7 @@ button {
 }
 
 .memory-island:hover {
-    transform: translateY(-8px) scale(1.06);
+    transform: translate(-50%, -50%) translateY(-8px) scale(1.06);
     filter: drop-shadow(0 16px 14px rgba(10,30,50,.45)) brightness(1.05);
 }
 .memory-island strong {
@@ -2763,37 +2770,119 @@ button {
     text-shadow: 0 1px 2px rgba(0,0,0,.5);
 }
 
-.island-one .island-shape {
-    filter: hue-rotate(0deg);
+/* ---------- Flowing route ---------- */
+.map-route polyline { animation: routeFlow 12s linear infinite; }
+@keyframes routeFlow { to { stroke-dashoffset: -40; } }
+
+/* ---------- Waves (two drifting layers) ---------- */
+.map-waves {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    opacity: .30;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 120'%3E%3Cpath d='M0 60 Q50 30 100 60 T200 60 T300 60 T400 60' fill='none' stroke='white' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-size: 240px 72px;
+    animation: waveDriftA 40s linear infinite;
+}
+.map-waves.waves-2 {
+    opacity: .18;
+    background-size: 360px 108px;
+    background-position: 0 40px;
+    animation: waveDriftB 65s linear infinite reverse;
+}
+@keyframes waveDriftA { to { background-position: 240px 0; } }
+@keyframes waveDriftB { from { background-position: 0 40px; } to { background-position: 360px 40px; } }
+
+/* ---------- Fog ---------- */
+.map-fog {
+    position: absolute;
+    width: 55%;
+    height: 26%;
+    z-index: 2;
+    border-radius: 50%;
+    pointer-events: none;
+    background: radial-gradient(ellipse at center, rgba(255,255,255,.42), rgba(255,255,255,0) 70%);
+    filter: blur(6px);
+    animation: fogDrift 26s ease-in-out infinite alternate;
+}
+.map-fog.fog-1 { left: -10%; top: 52%; }
+.map-fog.fog-2 { right: -12%; top: 8%; animation-duration: 34s; animation-direction: alternate-reverse; }
+@keyframes fogDrift { from { transform: translateX(-6%); } to { transform: translateX(18%); } }
+
+/* ---------- Compass rose ---------- */
+.map-compass {
+    position: absolute;
+    left: 14px;
+    bottom: 14px;
+    width: 92px;
+    z-index: 2;
+    pointer-events: none;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,.3));
+}
+.compass-needle {
+    transform-box: fill-box;
+    transform-origin: 50% 50%;
+    animation: needleWobble 6s ease-in-out infinite;
+}
+@keyframes needleWobble {
+    0%, 100% { transform: rotate(-12deg); }
+    50%      { transform: rotate(14deg); }
 }
 
-.island-two .island-shape {
-    transform: scaleX(-1);
-    filter: hue-rotate(45deg);
+/* ---------- Whirlpool + sea monsters ---------- */
+.map-deco {
+    position: absolute;
+    z-index: 2;
+    pointer-events: none;
+    font-size: clamp(30px, 4vw, 48px);
+    line-height: 1;
+    margin: -.5em 0 0 -.5em;   /* centres without using transform */
+    opacity: .85;
+    filter: drop-shadow(0 4px 4px rgba(0,0,0,.3));
 }
+.monster-1  { left: 8%;  top: 12%; animation: shipBob 3.6s ease-in-out infinite; }
+.monster-2  { left: 88%; top: 84%; animation: shipBob 4.4s ease-in-out infinite reverse; }
+.monster-3  { right: 8%; top: 12%; animation: shipBob 3.2s ease-in-out infinite; }
 
-.island-three .island-shape {
-    filter: hue-rotate(-35deg) saturate(1.15);
-}
-
-.island-four .island-shape {
-    transform: scaleX(-1);
-    filter: hue-rotate(95deg);
-}
-
-.island-five .island-shape {
-    filter: hue-rotate(165deg) saturate(1.1);
-}
-
+/* ---------- Ship (position wrapper / flip / bob are separate layers) ---------- */
 .map-ship {
     position: absolute;
     z-index: 4;
-    font-size: 70px;
-    filter: drop-shadow(0 8px 4px rgba(0,0,0,.3));
-    animation: shipBob 2.8s ease-in-out infinite;
     left: 50%;
     top: 50%;
+    font-size: 70px;
+    line-height: 1;
     transform: translate(-50%, -50%);
+    filter: drop-shadow(0 8px 4px rgba(0,0,0,.3));
+}
+.ship-flip  { display: block; transition: transform .35s ease; }
+.ship-emoji { display: block; animation: shipBob 2.8s ease-in-out infinite; }
+
+/* ---------- Wake trail ---------- */
+.ship-wake {
+    position: absolute;
+    z-index: 3;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.75);
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    animation: wakeFade 1.4s ease-out forwards;
+}
+@keyframes wakeFade { to { opacity: 0; transform: translate(-50%, -50%) scale(2.6); } }
+
+/* ---------- Visited island glow ---------- */
+.memory-island.visited,
+.memory-island.visited:hover {
+    filter: drop-shadow(0 10px 10px rgba(10,30,50,.35))
+            drop-shadow(0 0 14px rgba(255,225,130,.95));
+}
+
+
+@media (max-width: 520px) {
+    .map-compass { width: 68px; }
 }
 
 /* Memory modal */
@@ -3079,13 +3168,14 @@ button {
     .memory-island {
     width: 112px;
 }
-
-    .island-one { left: 4%; top: 8%; }
-    .island-two { left: 39%; top: 18%; }
-    .island-three { left: 63%; top: 8%; }
-    .island-four { left: 67%; top: 43%; }
-    .island-five { left: 36%; top: 61%; }
-    .island-six { left: 5%; top: 70%; }
+.island-zero  { left: 50.0%; top: 30.3%; }  /* Ankita — the notch where the two lobes meet */
+.island-one   { left: 63.4%; top: 13.0%; }  /* CODM — right lobe peak */
+.island-two   { left: 88.0%; top: 33.0%; }  /* Video Calls — right outer edge, widest point */
+.island-three { left: 63.4%; top: 68.6%; }  /* Mysore — right lower curve */
+.island-six   { left: 50.0%; top: 88.0%; }  /* Aryan — bottom tip */
+.island-four  { left: 36.6%; top: 68.6%; }  /* Banglore — left lower curve (mirror of Mysore) */
+.island-five  { left: 12.0%; top: 33.0%; }  /* Mumbai — left outer edge (mirror of Video Calls) */
+    
 
     .map-ship {
         left: 44%;
@@ -3094,7 +3184,7 @@ button {
     }
 
 .map-route polyline {
-    points: 4,12 41,22 63,12 67,47 36,65;
+    position: 4,12 41,22 63,12 67,47 36,65;
 }
 
     .op-counter {
@@ -3141,16 +3231,17 @@ button {
     .memory-island strong {
         font-size: 12px;
     }
-
-    .island-one { left: 2%; }
-    .island-two { left: 36%; }
-    .island-three { left: 64%; }
-    .island-four { left: 64%; top: 42%; }
-    .island-five { left: 34%; top: 62%; }
-    .island-six { left: 2%; top: 72%; }
+.island-zero  { left: 50.0%; top: 30.3%; }  /* Ankita — the notch where the two lobes meet */
+.island-one   { left: 63.4%; top: 13.0%; }  /* CODM — right lobe peak */
+.island-two   { left: 88.0%; top: 33.0%; }  /* Video Calls — right outer edge, widest point */
+.island-three { left: 63.4%; top: 68.6%; }  /* Mysore — right lower curve */
+.island-six   { left: 50.0%; top: 88.0%; }  /* Aryan — bottom tip */
+.island-four  { left: 36.6%; top: 68.6%; }  /* Banglore — left lower curve (mirror of Mysore) */
+.island-five  { left: 12.0%; top: 33.0%; }  /* Mumbai — left outer edge (mirror of Video Calls) */
+    
 
 .map-route polyline {
-    points: 2,12 38,12 64,12 64,46 34,66;
+    position: 2,12 38,12 64,12 64,46 34,66;
 }
 
     .op-polaroid {
@@ -4173,4 +4264,150 @@ body.one-piece-active #musicBoxAryan {
     background:
         linear-gradient(rgba(246,225,164,.88), rgba(221,193,123,.88)),
         url("images/goingmerry.png") center center / cover no-repeat;
+}
+/* ---------- Idle bob (uses the separate `translate` property,
+              so it doesn't fight your hover transform) ---------- */
+.memory-island {
+    animation: islandBob 5s ease-in-out infinite;
+    animation-delay: var(--bob-delay, 0s);
+}
+@keyframes islandBob {
+    0%, 100% { translate: 0 0; }
+    50%      { translate: 0 -6px; }
+}
+
+/* ---------- Decoration overlay ---------- */
+.island-extras {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    aspect-ratio: 200 / 160;
+    container-type: inline-size;
+    pointer-events: none;
+    z-index: 1;
+}
+.island-extras svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+
+/* Foam lapping at the shore */
+.foam-arc {
+    fill: none;
+    stroke: #fff;
+    stroke-width: 3;
+    stroke-linecap: round;
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: foamPulse 3s ease-out infinite;
+}
+.foam-arc.foam-2 { animation-delay: 1.5s; stroke-width: 2; }
+@keyframes foamPulse {
+    0%   { opacity: .85; transform: scale(.92); }
+    100% { opacity: 0;   transform: scale(1.12); }
+}
+.memory-island:hover .foam-arc { animation-duration: 1.4s; }
+
+/* Palms (blossom trees on Ankita's island) */
+.island-extras .leaf {
+    fill: #3f8a3a;
+    stroke: #245a22;
+    stroke-width: 1;
+}
+.island-extras[data-key="ankita"] .leaf {
+    fill: #f4a6c0;
+    stroke: #c76a8d;
+}
+.palm {
+    transform-origin: 0 0;
+    animation: palmSway 4.5s ease-in-out infinite;
+}
+@keyframes palmSway {
+    0%, 100% { transform: rotate(-3deg); }
+    50%      { transform: rotate(4deg); }
+}
+
+/* Twinkling snow cap */
+.twinkle {
+    fill: #fff8d0;
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: twinkle 2.8s ease-in-out infinite;
+}
+.twinkle.tw-2 { animation-delay: 1.3s; }
+@keyframes twinkle {
+    0%, 100% { opacity: 0; transform: scale(.3); }
+    50%      { opacity: 1; transform: scale(1); }
+}
+
+/* Beach prop */
+.island-prop {
+    position: absolute;
+    left: 50%;
+    top: 70%;
+    margin-left: -.5em;
+    font-size: 20px;
+    font-size: 15cqw;
+    line-height: 1;
+    filter: drop-shadow(0 2px 2px rgba(0,0,0,.4));
+}
+
+/* Keep the emoji icon and name sign above the decorations */
+.memory-island .island-icon { z-index: 6; }
+
+/* ---------- Wooden plank name sign ---------- */
+.memory-island strong {
+    position: relative;
+    z-index: 5;
+    padding: 4px 14px;
+    background: linear-gradient(#c98a3f, #8a5a24);
+    border: 2px solid #4a2c12;
+    border-radius: 6px;
+    color: #fff3c8;
+    text-shadow: 0 1px 0 #4a2c12;
+    box-shadow: 0 3px 0 #4a2c12, 0 6px 10px rgba(0,0,0,.3);
+}
+.memory-island strong::before,
+.memory-island strong::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #3a220e;
+    translate: 0 -50%;
+}
+.memory-island strong::before { left: 4px; }
+.memory-island strong::after  { right: 4px; }
+.map-deco.sea-monster {
+    font-size: clamp(60px, 9vw, 110px);
+}
+/* The new shapes carry their own decoration, so remove the palm trees where they'd clash */
+.island-extras[data-key="codm"] .palm,
+.island-extras[data-key="videocall"] .palm,
+.island-extras[data-key="Mysore"] .palm,
+.island-extras[data-key="Mumbai"] .palm,
+.island-extras[data-key="aryanAbout"] .palm {
+    display: none;
+}
+.island-extras[data-key="ankita"] .palm {
+    display: none;
+}
+.island-extras[data-key="Banglore"] .palm {
+    display: none;
+}
+
+/* The little emoji props sit on top of the new drawings, so hide them */
+.island-extras .island-prop {
+    display: none;
+}
+
+/* Tall shapes (palace, lighthouse, tower) collide with the floating emoji icon */
+.memory-island .island-icon {
+    display: none;
 }
