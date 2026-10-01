@@ -2075,6 +2075,7 @@ function stopGrandLineBackgroundSlideshow() {
             { src: "music/WeAre.mp3" },
             { src: "music/BinksSake.mp3" },
             { src: "music/BrandNewWorld.mp3" },
+            { src: "music/Dr.TonyTonyChopper.mp3"},
             { src: "music/FightTogether.mp3" },
             { src: "music/Hope.mp3" },
             { src: "music/MarvelousBattle.mp3" },
@@ -2238,6 +2239,13 @@ function stopGrandLineBackgroundSlideshow() {
                             0;
 
                     }
+                    // -----------------------------------------
+        // STOP ISLAND SONG (safety net)
+        // -----------------------------------------
+
+        islandAudio.pause();
+        grandLineWasPlaying = false;
+
 
 
                     opMusicPlaying =
@@ -2655,6 +2663,32 @@ function stopGrandLineBackgroundSlideshow() {
         // =====================================================
 
         const memories = {
+            ankita: {
+
+    icon: "🌸",
+
+    chapter: "CHAPTER 0",
+
+    title: "About Ankita",
+
+    text:
+        "The girl behind the letters, the poems, and the quiet chaos in between. Here's a little piece of who she is.",
+
+    song: "music/ChammakChallo.mp3",
+
+    photos: [
+        "images/ankita1.jpeg",
+        "images/ankita2.jpeg",
+        "images/ankita3.jpeg"
+    ],
+
+    captions: [
+        "Just her, being her 🌸",
+        "A little piece of Ankita.",
+        "The one who wrote it all ❤️"
+    ]
+
+},
 
             codm: {
 
@@ -2687,6 +2721,7 @@ function stopGrandLineBackgroundSlideshow() {
                 icon: "📞",
 
                 chapter: "CHAPTER II",
+                song:"music/TumHiHo.mp3",
 
                 title: "Across The Distance",
 
@@ -2715,6 +2750,7 @@ function stopGrandLineBackgroundSlideshow() {
                 chapter: "CHAPTER III",
 
                 title: "Mysore",
+                song: "music/GehraHua.mp3",
 
                 text:
                     "Another chapter, another place, and another collection of memories that became ours.",
@@ -2754,6 +2790,7 @@ function stopGrandLineBackgroundSlideshow() {
             Banglore: {
 
                 icon: "🏰",
+                song: "music/BlindingLights.mp3",
 
                 chapter: "CHAPTER IV",
 
@@ -2784,6 +2821,7 @@ function stopGrandLineBackgroundSlideshow() {
                 chapter: "CHAPTER V",
 
                 title: "Mumbai",
+                song : "music/Perfect.mp3",
 
                 text:
                     "A city full of lights, chaos and endless stories — and somehow, one of my favourite stories here is ours.",
@@ -2798,6 +2836,58 @@ function stopGrandLineBackgroundSlideshow() {
                     "Mumbai nights 🌊",
                     "Our little adventure in the city.",
                     "A memory worth keeping forever ❤️"
+                ]
+
+            },
+            aryanAbout: {
+
+    icon: "⚓",
+
+    chapter: "CHAPTER VI",
+
+    title: "About Aryan",
+
+    text:
+        "The boy who never gave up, even when the distance tried its hardest. This one's for him.",
+
+    song: "music/HeartThrob.mp3",
+
+    photos: [
+        "images/aryan1.jpeg",
+        "images/aryan2.jpeg",
+        "images/aryan3.jpeg"
+    ],
+
+    captions: [
+        "Just him, being him ⚓",
+        "A little piece of Aryan.",
+        "The one who stayed ❤️"
+    ]
+
+},
+            future: {
+
+                icon: "🔮",
+
+                chapter: "CHAPTER VII",
+
+                title: "Our Future",
+
+                text:
+                    "This island isn't on any map yet. It's the one we're sailing toward together, and every day we get a little closer.",
+
+                song: "music/TumHiHo.mp3",   // swap for any song you like
+
+                photos: [
+                    "images/future1.jpeg",
+                    "images/future2.jpeg",
+                    "images/future3.jpeg"
+                ],
+
+                captions: [
+                    "Not written yet 🔮",
+                    "But I already know who's in it.",
+                    "One day closer ❤️"
                 ]
 
             }
@@ -2880,6 +2970,54 @@ function stopGrandLineBackgroundSlideshow() {
         let currentPhotoIndex = 0;
 
         let memoryPhotoTimer = null;
+        // =====================================================
+// ISLAND SONGS
+// =====================================================
+
+const islandAudio = new Audio();
+islandAudio.loop = true;
+islandAudio.preload = "auto";
+
+let grandLineWasPlaying = false;
+
+function playIslandSong(memoryKey) {
+
+    const memory = memories[memoryKey];
+
+    if (!memory || !memory.song) {
+        console.warn("No song set for island:", memoryKey);
+        return;
+    }
+
+    // Remember if the Grand Line playlist was playing, then pause it
+    if (onePieceMusic && !onePieceMusic.paused) {
+        grandLineWasPlaying = true;
+    }
+    if (onePieceMusic) onePieceMusic.pause();
+
+    islandAudio.onerror = () =>
+        console.warn("Could not load island song:", memory.song);
+
+    islandAudio.src = memory.song;
+
+    islandAudio.play().catch(error => {
+        console.log("Island song error:", error);
+    });
+}
+
+function stopIslandSong() {
+
+    islandAudio.pause();
+    islandAudio.removeAttribute("src");
+    islandAudio.load();
+
+    // Resume the Grand Line playlist where it left off
+    if (grandLineWasPlaying && onePieceMusic) {
+        onePieceMusic.play().catch(() => {});
+    }
+
+    grandLineWasPlaying = false;
+}
 
 
         // =====================================================
@@ -3147,6 +3285,7 @@ function stopGrandLineBackgroundSlideshow() {
 
             currentPhotoIndex =
                 0;
+            stopIslandSong();
 
 
             if (!memoryModal) {
@@ -3173,64 +3312,153 @@ function stopGrandLineBackgroundSlideshow() {
         // =====================================================
         // MEMORY ISLAND CLICK
         // =====================================================
+document
+    .querySelectorAll(".memory-island")
+    .forEach(island => {
 
-        document
-    .querySelectorAll(
-        ".memory-island"
-    )
-    .forEach(
-        island => {
+        island.addEventListener("click", event => {
 
-            island.addEventListener(
-                "click",
-                event => {
+            event.preventDefault();
+            event.stopPropagation();
 
-                    event.preventDefault();
-                    event.stopPropagation();
+            const memoryKey = island.dataset.memory;
 
-                    sailShipTo(island);
+            playIslandSong(memoryKey);
 
-                    const memoryKey =
-                        island.dataset.memory;
+            sailShipTo(island);
+            island.classList.add("visited");
 
-                    // Give the ship a moment to arrive before
-                    // the memory popup covers the map.
-                    setTimeout(() => {
-                        openMemory(memoryKey);
-                    }, 550);
+            setTimeout(() => {
+                openMemory(memoryKey);
+            }, 550);
 
-                }
-            );
+        });
 
-        }
-    );
+    });
+
+// ⬇️ PASTE THE HOVER CODE HERE ⬇️
+document.querySelectorAll(".memory-island").forEach(island => {
+
+    island.addEventListener("mouseenter", () => {
+        if (memoryModal.classList.contains("active")) return;
+        playIslandSong(island.dataset.memory);
+    });
+
+    island.addEventListener("mouseleave", () => {
+        if (memoryModal.classList.contains("active")) return;
+        stopIslandSong();
+    });
+
+});
+    // =====================================================
+// ISLAND DECORATIONS
+// =====================================================
+
+const islandProps = {
+    ankita:     "🌸",
+    codm:       "🎯",
+    videocall:  "📡",
+    Mysore:     "🐘",
+    Banglore:   "🌳",
+    Mumbai:     "🚤",
+    aryanAbout: "🩺",
+    future:     "🔮"
+};
+
+const palmSVG = `
+<g class="palm">
+    <path d="M0 0 Q4 -16 10 -30" fill="none" stroke="#7a5a34" stroke-width="3.5" stroke-linecap="round"/>
+    <g transform="translate(10 -30)">
+        <path class="leaf" d="M0 0 Q-14 -10 -24 2 Q-10 -2 0 0Z"/>
+        <path class="leaf" d="M0 0 Q-8 -18 -18 -16 Q-6 -10 0 0Z"/>
+        <path class="leaf" d="M0 0 Q8 -18 18 -16 Q6 -10 0 0Z"/>
+        <path class="leaf" d="M0 0 Q14 -10 24 2 Q10 -2 0 0Z"/>
+    </g>
+</g>`;
+
+document.querySelectorAll(".memory-island").forEach((island, i) => {
+
+    const key = island.dataset.memory;
+
+    // stagger the bobbing so the islands don't move in unison
+    island.style.setProperty("--bob-delay", `${-(i * 0.9)}s`);
+
+    const extras = document.createElement("span");
+    extras.className = "island-extras";
+    extras.dataset.key = key;
+    extras.setAttribute("aria-hidden", "true");
+
+    extras.innerHTML = `
+        <svg viewBox="0 0 200 160">
+            <path class="foam-arc" d="M10 134 A90 16 0 0 0 190 134"/>
+            <path class="foam-arc foam-2" d="M24 136 A76 12 0 0 0 176 136"/>
+
+            <g transform="translate(34 116)">${palmSVG}</g>
+            <g transform="translate(168 118) scale(-.8 .8)">${palmSVG}</g>
+
+            <path class="twinkle" d="M70 42 l2 6 6 2 -6 2 -2 6 -2 -6 -6 -2 6 -2z"/>
+            <path class="twinkle tw-2" d="M122 60 l1.6 5 5 1.6 -5 1.6 -1.6 5 -1.6 -5 -5 -1.6 5 -1.6z"/>
+        </svg>
+        <span class="island-prop">${islandProps[key] || ""}</span>
+    `;
+
+    island.appendChild(extras);
+});
 // =====================================================
 // SHIP SAILS TO CLICKED ISLAND
 // =====================================================
-
 const mapShip = document.querySelector(".map-ship");
+const shipFlip = mapShip ? mapShip.querySelector(".ship-flip") : null;
 const grandLineMap = document.querySelector(".grand-line-map");
+let wakeTimer = null;
+
+function spawnWake() {
+    const m = grandLineMap.getBoundingClientRect();
+    const s = mapShip.getBoundingClientRect();
+
+    const dot = document.createElement("span");
+    dot.className = "ship-wake";
+    dot.style.left = (s.left + s.width / 2 - m.left) + "px";
+    dot.style.top  = (s.top + s.height * 0.85 - m.top) + "px";
+
+    grandLineMap.appendChild(dot);
+    setTimeout(() => dot.remove(), 1400);
+}
 
 function sailShipTo(islandEl) {
 
-    if (!mapShip || !grandLineMap || !islandEl) {
-        return;
-    }
+    if (!mapShip || !grandLineMap || !islandEl) return;
 
     const mapRect = grandLineMap.getBoundingClientRect();
     const islandRect = islandEl.getBoundingClientRect();
+    const shipRect = mapShip.getBoundingClientRect();
 
-    // Center of the island, expressed as % of the map box
+    // Face the direction of travel
+    const dx = (islandRect.left + islandRect.width / 2) -
+               (shipRect.left + shipRect.width / 2);
+
+    if (shipFlip && Math.abs(dx) > 6) {
+        shipFlip.style.transform = dx < 0 ? "scaleX(-1)" : "scaleX(1)";
+    }
+
+    // Sail
     const targetLeftPct =
         ((islandRect.left + islandRect.width / 2) - mapRect.left) / mapRect.width * 100;
-
     const targetTopPct =
         ((islandRect.top + islandRect.height / 2) - mapRect.top) / mapRect.height * 100;
 
     mapShip.style.transition = "left 1.6s ease, top 1.6s ease";
     mapShip.style.left = `${targetLeftPct}%`;
     mapShip.style.top = `${targetTopPct}%`;
+
+    // Wake trail while sailing
+    clearInterval(wakeTimer);
+    wakeTimer = setInterval(spawnWake, 110);
+    setTimeout(() => clearInterval(wakeTimer), 1650);
 }
+
+
+    
 
 
 
