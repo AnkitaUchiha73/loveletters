@@ -1067,4 +1067,64 @@ body.one-piece-active #musicBoxAryan{display:none!important;visibility:hidden!im
     .one-piece-page .op-music-button{width:44px;height:44px;min-height:44px}
     .one-piece-page .op-music-button::before{width:30px;height:30px}
 }
+/* =====================================================
+   GRAND LINE: NO WHITE TEXT + BIGGER SUBHEADINGS
+   ===================================================== */
+:root{--op-gold:#ffe083;--op-gold-deep:#ffd45a}
+
+/* Base colour for everything on the page (was white) */
+.one-piece-page{color:var(--op-gold)}
+
+/* Opening screen */
+.one-piece-page .op-opening-content,
+.one-piece-page .op-compass,
+.one-piece-page .op-couple-name{color:var(--op-gold)}
+.one-piece-page .op-opening h1{color:var(--op-gold-deep)}
+.one-piece-page .op-small-text{color:var(--op-gold);font-size:clamp(18px,4.6vw,24px)}
+
+/* Header buttons */
+.one-piece-page .op-back-button{color:var(--op-gold)}
+.one-piece-page .op-song-btn{color:var(--op-gold)}
+
+/* Hero text */
+.one-piece-page .op-hero-content{color:var(--op-gold)}
+.one-piece-page .op-hero .op-kicker{
+    color:var(--op-gold);
+    font-size:clamp(20px,5vw,32px);
+    text-shadow:0 3px 10px rgba(0,0,0,.9),0 0 6px rgba(0,0,0,.8);
+}
+.one-piece-page .op-hero p:not(.op-kicker){
+    color:var(--op-gold);
+    font-size:clamp(22px,5.8vw,32px);
+    line-height:1.5;
+    text-shadow:0 3px 10px rgba(0,0,0,.95),0 0 8px rgba(0,0,0,.85);
+}
+
+/* Menu hint */
+.one-piece-page .op-menu-hint{color:var(--op-gold);font-size:18px}
+
+/* Subtitles inside the parchment panels (dark text, bigger) */
+.one-piece-page .section-subtitle,
+.one-piece-page .map-intro,
+.one-piece-page .treasure-intro,
+.one-piece-page .treasure-section > p{color:#24170e;font-size:clamp(22px,5vw,28px)}
+.one-piece-page .wanted-subtitle{color:#24170e;font-size:clamp(20px,4.6vw,24px)}
+.one-piece-page .crime{font-size:clamp(21px,4.8vw,25px)}
+.one-piece-page .bounty{font-size:clamp(30px,6.5vw,36px)}
+.one-piece-page .chest-hint{color:#24170e;font-size:22px}
+
+/* Memory popup (dark background, so gold) */
+.one-piece-page .memory-modal-box,
+.one-piece-page .memory-modal-box h2,
+.one-piece-page .memory-modal-box #memoryText,
+.one-piece-page .memory-modal-box > p:last-child{color:var(--op-gold)}
+.one-piece-page .memory-chapter{color:var(--op-gold-deep);opacity:.95;font-size:22px}
+.one-piece-page .memory-modal-box #memoryText{font-size:clamp(20px,5vw,24px)}
+.one-piece-page .memory-photo-counter{color:var(--op-gold);opacity:.9;font-size:20px}
+
+/* Footer */
+.one-piece-page .op-footer{color:var(--op-gold)}
+.one-piece-page .op-footer h3{color:var(--op-gold-deep)}
+.one-piece-page .op-footer p{color:var(--op-gold);font-size:clamp(22px,5vw,26px)}
+.one-piece-page .footer-couple{color:var(--op-gold-deep);font-size:clamp(30px,6vw,36px)}
 
