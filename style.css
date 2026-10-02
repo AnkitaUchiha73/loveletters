@@ -1050,3 +1050,24 @@ body.one-piece-active #musicBoxAryan{display:none!important;visibility:hidden!im
         animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;
     }
 }
+.one-piece-page .op-back-button,
+.one-piece-page .op-music-button{margin:0!important;display:flex;align-items:center;justify-content:center}
+
+.one-piece-page .op-music-button{
+    width:48px;height:48px;min-height:48px;padding:0;border-radius:50%;
+    font-size:0!important;color:transparent;line-height:0;
+}
+.one-piece-page .op-music-button::before{
+    content:"";display:block;width:32px;height:32px;
+    background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cg stroke='%23fff6da' stroke-linecap='round' fill='none'%3E%3Ccircle cx='50' cy='50' r='26' stroke-width='7'/%3E%3Cpath stroke-width='6' d='M50 6V94M6 50H94M18.9 18.9L81.1 81.1M81.1 18.9L18.9 81.1'/%3E%3C/g%3E%3Cg fill='%23fff6da'%3E%3Ccircle cx='50' cy='50' r='9'/%3E%3Ccircle cx='50' cy='6' r='6'/%3E%3Ccircle cx='50' cy='94' r='6'/%3E%3Ccircle cx='6' cy='50' r='6'/%3E%3Ccircle cx='94' cy='50' r='6'/%3E%3Ccircle cx='18.9' cy='18.9' r='6'/%3E%3Ccircle cx='81.1' cy='81.1' r='6'/%3E%3Ccircle cx='81.1' cy='18.9' r='6'/%3E%3Ccircle cx='18.9' cy='81.1' r='6'/%3E%3C/g%3E%3C/svg%3E") center/contain no-repeat;
+    filter:drop-shadow(0 2px 5px rgba(0,0,0,.6));
+    animation:shipWheelSpin 6s linear infinite;
+}
+@media(max-width:850px){
+    .one-piece-page .op-music-button{width:44px;height:44px;min-height:44px}
+    .one-piece-page .op-music-button::before{width:30px;height:30px}
+}
+html,body{background:#1b6fc8}
+.one-piece-page,
+.one-piece-page::before,
+.op-opening{min-height:100lvh}
