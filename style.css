@@ -4569,54 +4569,53 @@ body.one-piece-active #musicBoxAryan {
    ========================================================= */
 @media (max-width: 850px) {
 
-    /* ---- Header: pull both buttons up into the corners ---- */
-    .one-piece-page .op-header {
-        padding: 8px 10px 0;          /* no extra safe-area gap */
-        min-height: 0;
+    .one-piece-page .op-grand-line-menu {
+        width: min(58vw, 260px);     /* was 44vw / 190px */
+        gap: 16px;
     }
 
+    .one-piece-page .op-destination-button {
+        min-height: 76px;            /* was 58px */
+        padding: 12px 14px;
+        font-size: clamp(19px, 5.4vw, 24px);   /* was 15px */
+        line-height: 1.2;
+    }
+
+    /* Back + music buttons slightly bigger too */
+    .one-piece-page .op-back-button {
+        min-height: 44px;
+        font-size: 18px;
+        padding: 8px 14px;
+    }
+    .one-piece-page .op-music-button {
+        width: 44px;
+        height: 44px;
+        min-height: 44px;
+        font-size: 22px;
+    }
+}
+.one-piece-page .op-compass {
+    font-variant-emoji: text;
+    color: #fff;
+    background: none;
+}
+@media (max-width: 850px) {
+
+    /* Music + Back tucked into the top corners */
+    .one-piece-page .op-header {
+        padding: 8px 10px 0;
+        min-height: 0;
+    }
     .one-piece-page .op-header .op-music-wrap {
         top: 8px;
         right: 10px;
     }
-
-    .one-piece-page .op-music-button {
-        width: 40px;
-        min-height: 40px;
-        height: 40px;
-        padding: 0;
-        font-size: 20px;
-    }
-
-    .one-piece-page .op-back-button {
-        min-height: 40px;
-        padding: 6px 12px;
-        font-size: 16px;
-    }
-
-    /* The "GRAND LINE" button inside the popups lines up with them */
     .one-piece-page .grand-line-content .op-destination-panel .op-panel-back {
         top: 8px;
         left: 10px;
     }
 
-    /* ---- Destination buttons: narrow column on the left ---- */
-    .one-piece-page .op-grand-line-menu {
-        width: min(44vw, 190px);
-        gap: 14px;
-        margin: 22px 0 0;
-        align-items: flex-start;
-    }
-
-    .one-piece-page .op-destination-button {
-        min-height: 58px;
-        padding: 8px 10px;
-        font-size: 15px;
-        letter-spacing: .03em;
-        line-height: 1.15;
-    }
-
-    /* Optional: slide the background right so more of the ship shows */
+    /* Show more of the ship */
     .one-piece-page .op-bg-slideshow,
     .one-piece-page::before {
         background-position: 72% center;
