@@ -1067,7 +1067,4 @@ body.one-piece-active #musicBoxAryan{display:none!important;visibility:hidden!im
     .one-piece-page .op-music-button{width:44px;height:44px;min-height:44px}
     .one-piece-page .op-music-button::before{width:30px;height:30px}
 }
-html,body{background:#1b6fc8}
-.one-piece-page,
-.one-piece-page::before,
-.op-opening{min-height:100lvh}
+
