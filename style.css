@@ -986,11 +986,15 @@ body.one-piece-active #musicBoxAryan{display:none!important;visibility:hidden!im
     .op-hero p:not(.op-kicker){font-size:clamp(17px,4.6vw,22px)}
     .op-hero p:not(.op-kicker) br{display:none}
 
-    /* Destination buttons: bigger text, column on the left */
-    .one-piece-page .op-grand-line-menu{width:min(68vw,290px);gap:16px;margin:22px 0 0}
-    .one-piece-page .op-destination-button{
-        min-height:84px;padding:12px;font-size:clamp(27px,7.6vw,34px);letter-spacing:.03em;line-height:1.15;
-    }
+   /* Destination buttons: compact for mobile */
+.one-piece-page .op-grand-line-menu{width:min(58vw,240px);gap:10px;margin:16px 0 0}
+.one-piece-page .op-destination-button{
+    min-height:52px;padding:8px 10px;border-width:2px;border-radius:10px;
+    font-size:clamp(16px,4.6vw,20px);letter-spacing:.03em;line-height:1.1;
+    white-space:nowrap;-webkit-text-stroke:.4px currentColor;
+    box-shadow:0 4px 0 #6e4518,0 8px 14px rgba(0,0,0,.25);
+}
+.one-piece-page .op-menu-hint{font-size:14px;margin-top:10px}
 
     /* Wanted + map */
     .wanted-container{grid-template-columns:1fr;width:min(430px,100%)}
