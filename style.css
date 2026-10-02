@@ -1,2222 +1,365 @@
-/* ==========================
+/* =====================================================
    GENERAL
-========================== */
- 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
- 
-body{
-    font-family:'Times New Roman', Times, serif;
-    overflow-x:hidden;
-}
- 
-/* ==========================
-   INTRO PAGE
-========================== */
- 
-#intro{
- 
-    position:relative;
- 
-    width:100%;
- 
-    height:100vh;
- 
-    overflow:hidden;
- 
-}
- 
-.cover{
- 
-    position:absolute;
- 
-    top:0;
-    left:0;
- 
-    width:100%;
-    height:100%;
- 
-    object-fit:cover;
- 
-}
- 
-/* Dark Overlay */
- 
-#intro::before{
- 
-    content:"";
- 
-    position:absolute;
- 
-    inset:0;
- 
-    background:rgba(0,0,0,.45);
- 
-}
- 
-/* Center Content */
- 
-.content{
- 
-    position:relative;
- 
-    z-index:2;
- 
-    height:100%;
- 
-    display:flex;
- 
-    flex-direction:column;
- 
-    justify-content:center;
- 
-    align-items:center;
- 
-    text-align:center;
- 
-    color:white;
- 
-    padding:30px;
- 
-}
- 
-.content h1{
- 
-    font-size:55px;
- 
-    width:70%;
- 
-    line-height:1.3;
- 
-}
- 
-.content h3{
- 
-    margin-top:25px;
- 
-    font-size:24px;
- 
-    color:#ffd6e7;
- 
-}
- 
-.content p{
- 
-    width:650px;
- 
-    max-width:90%;
- 
-    margin-top:35px;
- 
-    font-size:20px;
- 
-    line-height:1.8;
- 
-}
- 
-button{
- 
-    margin-top:45px;
- 
-    padding:18px 40px;
- 
-    border:none;
- 
-    border-radius:50px;
- 
-    background:#d63384;
- 
-    color:white;
- 
-    font-size:20px;
- 
-    cursor:pointer;
- 
-    transition:.3s;
- 
-}
- 
-button:hover{
- 
-    transform:scale(1.08);
- 
-    background:#b81f6b;
- 
-}
- 
-/* ==========================
-   LETTER PAGE
-========================== */
- 
-#lettersPage{
- 
-    display:none;
- 
-    position:relative;
- 
-    width:100%;
- 
-    min-height:100vh;
- 
-    overflow:hidden;
- 
-}
- 
-/* Background Slideshow */
- 
-#slideshow{
- 
-    position:fixed;
- 
-    inset:0;
- 
- 
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-color: black;
- 
- 
-    transition:background-image 1s ease;
- 
-    z-index:-2;
- 
-}
- 
-/* ==========================
-   ARYAN'S LETTERS PAGE
-========================== */
- 
-#aryanPage{
- 
-    display:none;
- 
-    position:relative;
- 
-    width:100%;
- 
-    min-height:100vh;
- 
-    overflow:hidden;
- 
-}
- 
-/* Background Slideshow */
- 
-#slideshowAryan{
- 
-    position:fixed;
- 
-    inset:0;
- 
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-color: black;
- 
-    transition:background-image 1s ease;
- 
-    z-index:-2;
- 
-}
+   ===================================================== */
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Times New Roman',Times,serif;overflow-x:hidden;min-height:100%}
 
+button{
+    margin-top:45px;padding:18px 40px;border:none;border-radius:50px;
+    background:#d63384;color:#fff;font:inherit;cursor:pointer;transition:.3s;
+}
+button:hover{transform:scale(1.08);background:#b81f6b}
+
+/* =====================================================
+   INTRO PAGE
+   ===================================================== */
+#intro{position:relative;width:100%;height:100vh;overflow:hidden}
+.cover{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover}
+#intro::before{content:"";position:absolute;inset:0;background:rgba(0,0,0,.45)}
+
+.content{
+    position:relative;z-index:2;height:100%;
+    display:flex;flex-direction:column;justify-content:center;align-items:center;
+    text-align:center;color:#fff;padding:30px;
+}
+.content h1{font-size:55px;width:70%;line-height:1.3}
+.content h3{margin-top:25px;font-size:24px;color:#ffd6e7}
+.content p{width:650px;max-width:90%;margin-top:35px;font-size:20px;line-height:1.8}
+
+/* =====================================================
+   LETTER PAGES (Ankita / Aryan) + SLIDESHOWS
+   ===================================================== */
+#lettersPage,#aryanPage{display:none;position:relative;width:100%;min-height:100vh;overflow:hidden}
+
+#slideshow,#slideshowAryan{
+    position:fixed;inset:0;
+    background-size:contain;background-repeat:no-repeat;background-position:center;background-color:#000;
+    transition:background-image 1s ease;z-index:-2;
+}
 
 /* Fade transitions between pages */
- 
-#intro,
-#lettersPage,
-#aryanPage{
- 
-    transition: opacity .8s ease;
- 
-}
- 
-/* Dark Overlay */
- 
+#intro,#lettersPage,#aryanPage{transition:opacity .8s ease}
+
 .overlay{
- 
-    min-height:100vh;
- 
-    background:rgba(0,0,0,.55);
- 
-    color:white;
- 
-    display:flex;
- 
-    flex-direction:column;
- 
-    justify-content:center;
- 
-    align-items:center;
- 
-    padding:60px;
- 
+    min-height:100vh;background:rgba(0,0,0,.55);color:#fff;
+    display:flex;flex-direction:column;justify-content:center;align-items:center;padding:60px;
 }
- 
-.overlay h1{
- 
-    font-size:50px;
- 
-}
- 
-.subtitle{
- 
-    margin-top:15px;
- 
-    font-size:20px;
- 
-    color:#ffe3ef;
- 
-}
- 
-/* ==========================
-   GALLERY
-========================== */
- 
-.gallery{
- 
-    margin-top:60px;
- 
-    display:flex;
+.overlay h1{font-size:50px}
+.subtitle{margin-top:15px;font-size:20px;color:#ffe3ef}
 
-    flex-direction:column;
+.gallery{margin-top:60px;display:flex;flex-direction:column;align-items:center;gap:35px;width:80%}
 
-    align-items:center;
- 
-    gap:35px;
- 
-    width:80%;
- 
-}
+/* Hide the title/subtitle/gallery until the intro animation reveals them */
+#mainTitle,#mainSubtitle,#mainSubtitle2,.gallery{opacity:0;transition:1.5s ease}
 
-
-/* ==========================
-   SINGLE LETTER CARD (inline, with Prev / Next)
-========================== */
-
-.letterCardWrap{
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    gap:20px;
-
-    width:100%;
-
-}
+/* =====================================================
+   LETTER CARD (base styles)
+   ===================================================== */
+.letterCardWrap{display:flex;align-items:center;justify-content:center;gap:20px;width:100%}
 
 .cardArrow{
-
-    /* override the global button{} defaults (margin-top, wide padding, etc.) */
-    margin:0;
-
-    width:56px;
-    height:56px;
-    padding:0;
-    flex-shrink:0;
-
-    border-radius:50%;
-
-    background:rgba(255,255,255,.15);
-    backdrop-filter:blur(12px);
-    border:1px solid rgba(255,255,255,.3);
-    color:white;
-
-    font-size:30px;
-    line-height:1;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    cursor:pointer;
-
-    transition:.3s;
-
+    margin:0;width:56px;height:56px;padding:0;flex-shrink:0;border-radius:50%;
+    background:rgba(255,255,255,.15);backdrop-filter:blur(12px);
+    border:1px solid rgba(255,255,255,.3);color:#fff;
+    font-size:30px;line-height:1;
+    display:flex;align-items:center;justify-content:center;
+    cursor:pointer;transition:.3s;
 }
-
-.cardArrow:hover:not(:disabled){
-
-    transform:translateY(-4px);
-
-    background:rgba(255,255,255,.25);
-
-}
-
-.cardArrow:disabled{
-
-    opacity:.3;
-
-    cursor:not-allowed;
-
-    transform:none;
-
-}
-
-.cardArrow:disabled:hover{
-
-    transform:none;
-
-    background:rgba(255,255,255,.15);
-
-}
+.cardArrow:hover:not(:disabled){transform:translateY(-4px);background:rgba(255,255,255,.25)}
+.cardArrow:disabled{opacity:.3;cursor:not-allowed;transform:none}
+.cardArrow:disabled:hover{transform:none;background:rgba(255,255,255,.15)}
 
 .letterCard{
-
-    width:600px;
-    max-width:100%;
-
-    max-height:65vh;
-    overflow-y:auto;
-
-    background:#fffdf7;
-    color:#3d2d1e;
-
-    border-radius:20px;
-
-    padding:40px;
-
-    text-align:left;
-
-    box-shadow:0 15px 40px rgba(0,0,0,.4);
-
+    width:600px;max-width:100%;max-height:65vh;overflow-y:auto;
+    background:#fffdf7;color:#3d2d1e;border-radius:20px;padding:40px;
+    text-align:left;box-shadow:0 15px 40px rgba(0,0,0,.4);
 }
-
-.letterCardEmoji{
-
-    font-size:40px;
-
-    text-align:center;
-
-    margin-bottom:10px;
-
-}
-
-.letterCard h2{
-
-    text-align:center;
-
-    margin-bottom:6px;
-
-}
-
-.letterCard h6{
-
-    text-align:center;
-
-    opacity:.6;
-
-    font-weight:normal;
-
-    margin-bottom:20px;
-
-}
-
-.letterCardBody{
-
-    display:none;
-
-}
-
+.letterCardEmoji{font-size:40px;text-align:center;margin-bottom:10px}
+.letterCard h2{text-align:center;margin-bottom:6px}
+.letterCard h6{text-align:center;opacity:.6;font-weight:normal;margin-bottom:20px}
+.letterCardBody{display:none}
 .letterCardToggle{
-
-    display:block;
-
-    margin:15px auto 0;
-
-    padding:10px 22px;
-
-    font-size:15px;
-
-    border-radius:20px;
-
-    background:rgba(214,51,132,.12);
-
-    color:#d63384;
-
-    border:1px solid rgba(214,51,132,.35);
-
-    box-shadow:none;
-
+    display:block;margin:15px auto 0;padding:10px 22px;font-size:15px;border-radius:20px;
+    background:rgba(214,51,132,.12);color:#d63384;border:1px solid rgba(214,51,132,.35);box-shadow:none;
 }
+.letterCardToggle:hover{transform:none;background:rgba(214,51,132,.2)}
+.letterCardBody p{font-size:19px;line-height:1.8;margin-bottom:18px}
+.letterCardBody p:first-child{margin-top:20px}
+.letterCardPosition{display:block;text-align:center;margin-top:15px;font-size:14px;opacity:.6}
 
-.letterCardToggle:hover{
+.actionRow{display:flex;gap:20px;flex-wrap:wrap;justify-content:center}
+.actionRow button{margin-top:0;padding:14px 28px;font-size:17px}
 
-    transform:none;
-
-    background:rgba(214,51,132,.2);
-
-}
-
-.letterCardBody p{
-
-    font-size:19px;
-
-    line-height:1.8;
-
-    margin-bottom:18px;
-
-}
-
-.letterCardBody p:first-child{
-
-    margin-top:20px;
-
-}
-
-.letterCardPosition{
-
-    display:block;
-
-    text-align:center;
-
-    margin-top:15px;
-
-    font-size:14px;
-
-    opacity:.6;
-
-}
-
-.actionRow{
-
-    display:flex;
-
-    gap:20px;
-
-    flex-wrap:wrap;
-
-    justify-content:center;
-
-}
-
-.actionRow button{
-
-    margin-top:0;
-
-    padding:14px 28px;
-
-    font-size:17px;
-
-}
-
-@media(max-width:768px){
-
-    .letterCardWrap{
-
-        gap:10px;
-
-    }
-
-    .letterCard{
-
-        padding:26px;
-
-        max-height:55vh;
-
-    }
-
-    .cardArrow{
-
-        width:44px;
-        height:44px;
-        font-size:24px;
-
-    }
-
-}
- 
-/* ==========================
+/* =====================================================
    LETTER POPUP
-========================== */
- 
+   ===================================================== */
 .letterPopup{
- 
-    display:none;
- 
-    position:fixed;
- 
-    inset:0;
- 
-    background:rgba(0,0,0,.65);
- 
-    justify-content:center;
- 
-    align-items:center;
- 
-    z-index:100;
- 
+    display:none;position:fixed;inset:0;background:rgba(0,0,0,.65);
+    justify-content:center;align-items:center;z-index:100;
 }
- 
 .letterContent{
- 
-    width:700px;
- 
-    max-width:90%;
- 
-    max-height:85vh;
- 
-    overflow-y:auto;
- 
-    background:#fffdf7;
- 
-    color:#3d2d1e;
- 
-    border-radius:20px;
- 
-    padding:45px;
- 
+    width:700px;max-width:90%;max-height:85vh;overflow-y:auto;
+    background:#fffdf7;color:#3d2d1e;border-radius:20px;padding:45px;
     box-shadow:0 15px 40px rgba(0,0,0,.4);
- 
 }
- 
-.letterContent h1{
- 
-    text-align:center;
- 
-    margin-bottom:30px;
- 
-}
- 
-.letterContent p{
- 
-    font-size:20px;
- 
-    line-height:1.9;
- 
-    margin-bottom:20px;
- 
-}
- 
-/* Close Button */
- 
-.close{
- 
-    float:right;
- 
-    font-size:35px;
- 
-    cursor:pointer;
- 
-    color:#444;
- 
-}
- 
-.close:hover{
- 
-    color:red;
- 
-}
- 
-/* ==========================
-   RESPONSIVE
-========================== */
- 
+.letterContent h1{text-align:center;margin-bottom:30px}
+.letterContent p{font-size:20px;line-height:1.9;margin-bottom:20px}
+.close{float:right;font-size:35px;cursor:pointer;color:#444}
+.close:hover{color:red}
+
 @media(max-width:768px){
- 
-    .content h1{
- 
-        font-size:36px;
- 
-        width:90%;
- 
-    }
- 
-    .content p{
- 
-        font-size:18px;
- 
-    }
- 
-    .gallery{
- 
-        width:95%;
- 
-    }
- 
-    .letterContent{
- 
-        padding:30px;
- 
-    }
- 
-}
-#musicBox{
-    position:fixed;
-    bottom:25px;
-    right:25px;
-    z-index:999;
-}
- 
-#musicBoxAryan{
-    position:fixed;
-    bottom:25px;
-    right:25px;
-    z-index:999;
-}
- 
- 
-#musicToggle,
-#musicToggleAryan{
- 
-    width:65px;
-    height:65px;
- 
-    border-radius:50%;
- 
-    background:linear-gradient(135deg,#ff7aa8,#d63384);
- 
-    border:none;
- 
-    color:white;
- 
-    font-size:28px;
- 
-    cursor:pointer;
- 
-    box-shadow:0 0 25px rgba(255,120,170,.8);
- 
-    animation:pulse 2s infinite;
- 
-}
- 
- 
-@keyframes pulse{
- 
-    0%{
-        transform:scale(1);
-    }
- 
-    50%{
-        transform:scale(1.1);
-    }
- 
-    100%{
-        transform:scale(1);
-    }
- 
-}
- 
- 
- 
-#musicMenu,
-#musicMenuAryan{
- 
-    position:absolute;
- 
-    bottom:80px;
-    right:0;
- 
-    width:230px;
- 
-    padding:15px;
- 
-    border-radius:20px;
- 
-    background:rgba(255,255,255,.15);
- 
-    backdrop-filter:blur(15px);
- 
-    display:none;
- 
-    flex-direction:column;
- 
-    gap:10px;
-
-    /* Scroll instead of growing past the screen once every song is listed */
-    max-height:min(320px, 55vh);
-    overflow-y:auto;
-    overflow-x:hidden;
- 
-}
- 
- 
-#musicMenu.show,
-#musicMenuAryan.show{
- 
-    display:flex;
- 
+    .content h1{font-size:36px;width:90%}
+    .content p{font-size:18px}
+    .gallery{width:95%}
+    .letterCardWrap{gap:10px}
+    .letterCard{padding:26px;max-height:55vh}
+    .cardArrow{width:44px;height:44px;font-size:24px}
+    .letterContent{padding:30px}
 }
 
-/* Slim, on-brand scrollbar for the song list (webkit browsers) */
-#musicMenu::-webkit-scrollbar,
-#musicMenuAryan::-webkit-scrollbar{
-    width:6px;
+/* =====================================================
+   MUSIC BOX (Letters + Aryan pages)
+   ===================================================== */
+#musicBox,#musicBoxAryan{position:fixed;bottom:25px;right:25px;z-index:999}
+
+#musicToggle,#musicToggleAryan{
+    width:65px;height:65px;border-radius:50%;
+    background:linear-gradient(135deg,#ff7aa8,#d63384);border:none;color:#fff;font-size:28px;
+    cursor:pointer;box-shadow:0 0 25px rgba(255,120,170,.8);animation:pulse 2s infinite;
 }
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
 
-#musicMenu::-webkit-scrollbar-track,
-#musicMenuAryan::-webkit-scrollbar-track{
-    background:transparent;
+#musicMenu,#musicMenuAryan{
+    position:absolute;bottom:80px;right:0;width:230px;padding:15px;border-radius:20px;
+    background:rgba(255,255,255,.15);backdrop-filter:blur(15px);
+    display:none;flex-direction:column;gap:10px;
+    max-height:min(320px,55vh);overflow-y:auto;overflow-x:hidden;
 }
+#musicMenu.show,#musicMenuAryan.show{display:flex}
 
-#musicMenu::-webkit-scrollbar-thumb,
-#musicMenuAryan::-webkit-scrollbar-thumb{
-    background:rgba(255,255,255,.45);
-    border-radius:10px;
+#musicMenu::-webkit-scrollbar,#musicMenuAryan::-webkit-scrollbar{width:6px}
+#musicMenu::-webkit-scrollbar-track,#musicMenuAryan::-webkit-scrollbar-track{background:transparent}
+#musicMenu::-webkit-scrollbar-thumb,#musicMenuAryan::-webkit-scrollbar-thumb{background:rgba(255,255,255,.45);border-radius:10px}
+
+.song-btn,#shuffleBtn,#shuffleBtnAryan{
+    margin:0;padding:12px;border-radius:20px;background:rgba(255,255,255,.2);color:#fff;
+    border:1px solid rgba(255,255,255,.3);font-size:14px;flex-shrink:0;
 }
- 
- 
- 
-.song-btn,
-#shuffleBtn,
-#shuffleBtnAryan{
- 
-    margin:0;
- 
-    padding:12px;
- 
-    border-radius:20px;
- 
-    background:rgba(255,255,255,.2);
- 
-    color:white;
- 
-    border:1px solid rgba(255,255,255,.3);
- 
-    font-size:14px;
+.song-btn:hover,#shuffleBtn:hover,#shuffleBtnAryan:hover{background:#ff5c8a}
+.song-btn.active{background:#ff5c8a;box-shadow:0 0 15px #ff5c8a}
 
-    flex-shrink:0;
- 
-}
- 
- 
- 
-.song-btn:hover,
-#shuffleBtn:hover,
-#shuffleBtnAryan:hover{
- 
-    background:#ff5c8a;
- 
-}
- 
- 
- 
-.song-btn.active{
- 
-    background:#ff5c8a;
- 
-    box-shadow:0 0 15px #ff5c8a;
- 
-}
-/* Hide everything initially */
-
-#mainTitle,
-#mainSubtitle,
-#mainSubtitle2,
-.gallery{
-
-    opacity:0;
-    transition:1.5s ease;
-
-}
-
-/* Journey Screen */
-
+/* =====================================================
+   JOURNEY SCREEN
+   ===================================================== */
 #journeyIntro{
-    position: fixed;
-    inset: 0;
-    background: transparent;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    color: white;
-    opacity: 0;              /* keep your existing fade-in behavior */
-    z-index: 100;
-    pointer-events: none;    /* so it doesn't block clicks while invisible */
+    position:fixed;inset:0;background:transparent;
+    display:flex;flex-direction:column;justify-content:center;align-items:center;
+    text-align:center;color:#fff;opacity:0;z-index:100;pointer-events:none;
 }
+#journeyTitle{font-size:2.8rem;font-family:'Times New Roman',Times,serif;opacity:0;transition:1.5s}
+#loveCounter{margin-top:35px;opacity:0;transition:1.5s}
+#loveCounter h1{font-size:3rem;margin-bottom:15px}
+#loveCounter h3{margin-bottom:20px;font-weight:300}
+#counter{font-size:2rem;line-height:1.8;display:block;width:100%;text-align:center}
+.journeyQuote{margin-top:25px;font-style:italic;opacity:.85}
 
-#journeyTitle{
-
-    font-size:2.8rem;
-
-    font-family:'Times New Roman', Times, serif, serif;
-
-    opacity:0;
-
-    transition:1.5s;
-
-}
-
-#loveCounter{
-
-    margin-top:35px;
-
-    opacity:0;
-
-    transition:1.5s;
-
-}
-
-#loveCounter h1{
-
-    font-size:3rem;
-
-    margin-bottom:15px;
-
-}
-
-#loveCounter h3{
-
-    margin-bottom:20px;
-
-    font-weight:300;
-
-}
-
-#counter{
-    font-size:2rem;
-    line-height:1.8;
-    display:block;
-    width:100%;
-    text-align:center;
-}
-
-.journeyQuote{
-
-    margin-top:25px;
-
-    font-style:italic;
-
-    opacity:.85;
-
-}
 /* =====================================================
-   REUSABLE ONE-TIME QUIZ
+   ONE-TIME QUIZ
    ===================================================== */
+.quiz-overlay{
+    position:fixed;inset:0;z-index:99999;display:none;align-items:center;justify-content:center;
+    background:radial-gradient(circle at center,rgba(255,220,225,.25),rgba(0,0,0,.88));
+    backdrop-filter:blur(8px);padding:20px;
+}
+.quiz-box{
+    width:min(520px,92vw);max-height:90vh;overflow-y:auto;padding:45px 35px;text-align:center;
+    background:rgba(255,248,240,.97);border:2px solid rgba(130,80,60,.35);border-radius:18px;
+    box-shadow:0 25px 70px rgba(0,0,0,.45);animation:quizAppear .7s ease;
+}
+@keyframes quizAppear{
+    from{opacity:0;transform:scale(.85) translateY(30px)}
+    to{opacity:1;transform:scale(1) translateY(0)}
+}
+.quiz-heart{font-size:55px;animation:heartbeat 1.5s infinite}
+@keyframes heartbeat{0%,100%{transform:scale(1)}50%{transform:scale(1.15)}}
 
-.quiz-overlay {
+.quiz-box h1{margin-top:15px;margin-bottom:20px}
+.quiz-box h2{margin-bottom:25px}
+.quiz-box p{line-height:1.7}
+.quiz-small-text{font-style:italic;opacity:.75}
 
-    position: fixed;
+.quiz-box button{
+    margin-top:20px;padding:12px 25px;border:none;border-radius:25px;
+    background:#7b3f3f;color:#fff;font-size:16px;cursor:pointer;
+    transition:transform .2s ease,box-shadow .2s ease;
+}
+.quiz-box button:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(80,30,30,.3)}
 
-    inset: 0;
+.quiz-progress{margin-bottom:25px;font-size:14px;opacity:.65}
+.quiz-option{
+    display:block;width:100%;margin:12px 0;padding:14px 18px;
+    border:1px solid rgba(100,60,50,.25);border-radius:12px;background:rgba(255,255,255,.7);
+    color:#4b2929;cursor:pointer;font-size:15px;transition:background .2s ease,transform .2s ease;
+}
+.quiz-option:hover{transform:translateY(-2px)}
+.quiz-option.correct{background:#d9f2df;border-color:#6ba77a}
+.quiz-option.wrong{background:#f6d8d8;border-color:#c47777}
+.quiz-option.disabled{pointer-events:none}
+#quizFeedback{min-height:30px;margin-top:18px;font-weight:500}
+#quizResultEmoji{font-size:65px;margin-bottom:10px}
+#quizScore{font-size:20px;font-weight:bold;margin:20px 0}
 
-    z-index: 99999;
-
-    display: none;
-
-    align-items: center;
-
-    justify-content: center;
-
-    background:
-        radial-gradient(
-            circle at center,
-            rgba(255, 220, 225, 0.25),
-            rgba(0, 0, 0, 0.88)
-        );
-
-    backdrop-filter: blur(8px);
-
-    padding: 20px;
+@media(max-width:600px){
+    .quiz-box{padding:35px 22px}
+    .quiz-box h1{font-size:27px}
+    .quiz-box h2{font-size:21px}
 }
 
-
-/* Quiz box */
-
-.quiz-box {
-
-    width: min(520px, 92vw);
-
-    max-height: 90vh;
-
-    overflow-y: auto;
-
-    padding: 45px 35px;
-
-    text-align: center;
-
-    background: rgba(255, 248, 240, 0.97);
-
-    border: 2px solid rgba(130, 80, 60, 0.35);
-
-    border-radius: 18px;
-
-    box-shadow:
-        0 25px 70px rgba(0, 0, 0, 0.45);
-
-    animation: quizAppear 0.7s ease;
-}
-
-
-@keyframes quizAppear {
-
-    from {
-
-        opacity: 0;
-
-        transform:
-            scale(0.85)
-            translateY(30px);
-
-    }
-
-    to {
-
-        opacity: 1;
-
-        transform:
-            scale(1)
-            translateY(0);
-
-    }
-
-}
-
-
-/* Heart */
-
-.quiz-heart {
-
-    font-size: 55px;
-
-    animation:
-        heartbeat 1.5s infinite;
-}
-
-
-@keyframes heartbeat {
-
-    0%,
-    100% {
-        transform: scale(1);
-    }
-
-    50% {
-        transform: scale(1.15);
-    }
-
-}
-
-
-/* Text */
-
-.quiz-box h1 {
-
-    margin-top: 15px;
-
-    margin-bottom: 20px;
-}
-
-
-.quiz-box h2 {
-
-    margin-bottom: 25px;
-}
-
-
-.quiz-box p {
-
-    line-height: 1.7;
-}
-
-
-.quiz-small-text {
-
-    font-style: italic;
-
-    opacity: 0.75;
-}
-
-
-/* Buttons */
-
-.quiz-box button {
-
-    margin-top: 20px;
-
-    padding: 12px 25px;
-
-    border: none;
-
-    border-radius: 25px;
-
-    background: #7b3f3f;
-
-    color: white;
-
-    font-size: 16px;
-
-    cursor: pointer;
-
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
-}
-
-
-.quiz-box button:hover {
-
-    transform:
-        translateY(-2px);
-
-    box-shadow:
-        0 8px 20px
-        rgba(80, 30, 30, 0.3);
-}
-
-
-/* Progress */
-
-.quiz-progress {
-
-    margin-bottom: 25px;
-
-    font-size: 14px;
-
-    opacity: 0.65;
-}
-
-
-/* Answer options */
-
-.quiz-option {
-
-    display: block;
-
-    width: 100%;
-
-    margin: 12px 0;
-
-    padding: 14px 18px;
-
-    box-sizing: border-box;
-
-    border: 1px solid
-        rgba(100, 60, 50, 0.25);
-
-    border-radius: 12px;
-
-    background:
-        rgba(255, 255, 255, 0.7);
-
-    color: #4b2929;
-
-    cursor: pointer;
-
-    font-size: 15px;
-
-    transition:
-        background 0.2s ease,
-        transform 0.2s ease;
-}
-
-
-.quiz-option:hover {
-
-    transform:
-        translateY(-2px);
-}
-
-
-/* Correct */
-
-.quiz-option.correct {
-
-    background: #d9f2df;
-
-    border-color: #6ba77a;
-}
-
-
-/* Wrong */
-
-.quiz-option.wrong {
-
-    background: #f6d8d8;
-
-    border-color: #c47777;
-}
-
-
-/* Disable after answer */
-
-.quiz-option.disabled {
-
-    pointer-events: none;
-}
-
-
-/* Feedback */
-
-#quizFeedback {
-
-    min-height: 30px;
-
-    margin-top: 18px;
-
-    font-weight: 500;
-}
-
-
-/* Result */
-
-#quizResultEmoji {
-
-    font-size: 65px;
-
-    margin-bottom: 10px;
-}
-
-
-#quizScore {
-
-    font-size: 20px;
-
-    font-weight: bold;
-
-    margin: 20px 0;
-}
-
-
-/* Mobile */
-
-@media (max-width: 600px) {
-
-    .quiz-box {
-
-        padding: 35px 22px;
-
-    }
-
-    .quiz-box h1 {
-
-        font-size: 27px;
-
-    }
-
-    .quiz-box h2 {
-
-        font-size: 21px;
-
-    }
-
-}
 /* =====================================================
-   TRANSPARENT MAIN PAGE BUTTONS
+   TRANSPARENT MAIN-PAGE BUTTONS
    ===================================================== */
-
 .mainLetterButtons{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    gap:18px;
-    width:100%;
-    max-width:650px;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    gap:18px;width:100%;max-width:650px;
 }
-
-
-/* Letter preview itself */
-
-.letterPreviewButton{
-    width:100%;
-    display:flex;
-    justify-content:center;
-}
-
-
-/* Transparent / glass buttons */
+.letterPreviewButton{width:100%;display:flex;justify-content:center}
 
 .transparentActionButton{
-
-    margin:0;
-
-    width:280px;
-
-    padding:15px 25px;
-
-    border-radius:40px;
-
-    background:rgba(255,255,255,0.10);
-
-    border:1px solid rgba(255,255,255,0.45);
-
-    backdrop-filter:blur(5px);
-    -webkit-backdrop-filter:blur(5px);
-
-    color:white;
-
-    font-family:'Times New Roman', Times, serif;
-
-    font-size:18px;
-
-    box-shadow:
-        0 8px 25px rgba(0,0,0,0.15);
-
-    transition:
-        background .3s ease,
-        transform .3s ease,
-        border-color .3s ease;
-
+    margin:0;width:280px;padding:15px 25px;border-radius:40px;
+    background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.45);
+    backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);
+    color:#fff;font-family:'Times New Roman',Times,serif;font-size:18px;
+    box-shadow:0 8px 25px rgba(0,0,0,.15);
+    transition:background .3s ease,transform .3s ease,border-color .3s ease;
 }
-
-
-/* Hover */
-
-.transparentActionButton:hover{
-
-    transform:translateY(-3px);
-
-    background:rgba(255,255,255,0.20);
-
-    border-color:rgba(255,255,255,0.7);
-
-}
-
-
-/* Letter card */
-
-.letterPreviewButton .letterCard{
-
-    width:600px;
-    max-width:90vw;
-
-    background:rgba(255,253,247,0.92);
-
-}
-
-
-/* Tap to read */
-
-.letterPreviewButton .letterCardToggle{
-
-    background:rgba(214,51,132,0.12);
-
-    border:1px solid rgba(214,51,132,0.35);
-
-}
-
-
-/* Mobile */
+.transparentActionButton:hover{transform:translateY(-3px);background:rgba(255,255,255,.2);border-color:rgba(255,255,255,.7)}
 
 @media(max-width:768px){
-
-    .mainLetterButtons{
-
-        width:95%;
-
-        gap:14px;
-
-    }
-
-
-    .transparentActionButton{
-
-        width:90%;
-
-        max-width:300px;
-
-        font-size:16px;
-
-        padding:13px 20px;
-
-    }
-
-
-    .letterPreviewButton .letterCard{
-
-        width:100%;
-
-        max-width:100%;
-
-        padding:25px 20px;
-
-    }
-
+    .mainLetterButtons{width:95%;gap:14px}
+    .transparentActionButton{width:90%;max-width:300px;font-size:16px;padding:13px 20px}
 }
-/* =====================================================
-   MAIN LETTER CARD
-   ===================================================== */
-
-/* The whole letter area */
-#gallery {
-    width: 100%;
-}
-
-
-/* Letter + arrows */
-#gallery .letterCardWrap {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 20px;
-    width: 100%;
-}
-
 
 /* =====================================================
-   COLLAPSED LETTER PREVIEW
+   LETTER-CARD SLIDESHOW  (Ankita #mainLetterCard, Aryan #aryanLetterCard, Poem #poemCard)
+   Compact glass preview; larger white card when opened.
    ===================================================== */
+#gallery{width:100%}
+#gallery .letterCardWrap,#aryanPage .letterCardWrap{gap:15px}
 
-#mainLetterCard {
-
-    width: 600px;
-    max-width: 75vw;
-
-    /* TRANSPARENT */
-    background: rgba(255, 255, 255, 0.08);
-
-    border: 1px solid rgba(255, 255, 255, 0.55);
-
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-
-    color: white;
-
-    transition:
-        background 0.4s ease,
-        color 0.4s ease,
-        box-shadow 0.4s ease,
-        transform 0.4s ease;
-
+/* Arrows */
+#gallery .cardArrow,#aryanPage .cardArrow{width:42px;min-width:42px;height:52px;padding:0;font-size:32px;flex-shrink:0}
+#gallery .cardArrow{
+    background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.55);color:#fff;
+    backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);
+    transition:background .3s ease,transform .3s ease;
 }
+#gallery .cardArrow:hover{background:rgba(255,255,255,.28);transform:scale(1.08)}
+#gallery .cardArrow:disabled{opacity:.3;cursor:not-allowed}
+#prevLetterBtn,#nextLetterBtn{display:none!important}
 
-
-/* =====================================================
-   WHEN LETTER IS OPEN
-   ===================================================== */
-
-#mainLetterCard.letter-open {
-
-    background: rgba(255, 255, 255, 0.97);
-
-    color: #4a2a35;
-
-    box-shadow:
-        0 15px 45px rgba(0, 0, 0, 0.30);
-
+/* Action buttons under the main card */
+#gallery .actionRow{display:flex;justify-content:center;gap:15px;margin-top:25px;flex-wrap:wrap}
+#gallery .actionRow button{
+    background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.55);color:#fff;
+    backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);
+    transition:background .3s ease,transform .3s ease;
 }
+#gallery .actionRow button:hover{background:rgba(255,255,255,.22);transform:translateY(-2px)}
 
-
-/* =====================================================
-   PREVIEW TEXT
-   ===================================================== */
-
-#mainLetterCard .letterCardEmoji {
-
-    font-size: 45px;
-
+/* Collapsed card */
+#mainLetterCard,#aryanLetterCard,#poemCard{
+    width:320px;max-width:320px;min-height:unset;padding:22px 18px;box-sizing:border-box;
+    background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.55);border-radius:16px;
+    backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);color:#fff;
+    transition:background .4s ease,color .4s ease,box-shadow .4s ease,width .4s ease;
 }
+/* Swipe support on Ankita + Aryan */
+#mainLetterCard,#aryanLetterCard{touch-action:pan-y;cursor:grab;will-change:transform,opacity}
+#mainLetterCard:active,#aryanLetterCard:active{cursor:grabbing}
 
+/* Card contents */
+#mainLetterCard .letterCardEmoji,#aryanLetterCard .letterCardEmoji,#poemCard .letterCardEmoji{font-size:36px;margin-bottom:6px}
 
-#mainLetterCard #viewerTitle {
+#mainLetterCard #viewerTitle,#aryanLetterCard #viewerTitleAryan,#poemCard #viewerTitlePoem{font-size:21px;line-height:1.25;margin:5px 0}
+#mainLetterCard #viewerDate,#aryanLetterCard #viewerDateAryan,#poemCard #viewerDatePoem{font-size:12px;margin:4px 0 12px}
+#mainLetterCard #viewerTitle,#poemCard #viewerTitlePoem{color:#fff;transition:color .4s ease}
+#mainLetterCard #viewerDate,#poemCard #viewerDatePoem{color:rgba(255,255,255,.85);transition:color .4s ease}
 
-    color: white;
-
-    transition: color 0.4s ease;
-
+#mainLetterCard .letterCardToggle,#aryanLetterCard .letterCardToggle,#poemCard .letterCardToggle{
+    font-size:13px;padding:9px 14px;
+    background:rgba(255,255,255,.18);color:#fff;border:1px solid rgba(255,255,255,.6);box-shadow:none;
+    transition:background .3s ease,color .3s ease;
 }
-
-
-#mainLetterCard #viewerDate {
-
-    color: rgba(255, 255, 255, 0.85);
-
-    transition: color 0.4s ease;
-
+#aryanLetterCard .letterCardToggle:hover,#poemCard .letterCardToggle:hover{
+    background:rgba(255,255,255,.28);color:#fff;border-color:rgba(255,255,255,.8);transform:none;
 }
+#mainLetterCard .letterCardPosition,#aryanLetterCard .letterCardPosition,#poemCard .letterCardPosition{font-size:11px;margin-top:10px}
 
-
-/* When opened */
-#mainLetterCard.letter-open #viewerTitle {
-
-    color: #4a2a35;
-
+/* Opened card */
+#mainLetterCard.letter-open,#aryanLetterCard.letter-open,#poemCard.letter-open{
+    width:520px;max-width:85vw;padding:30px 28px;
+    background:rgba(255,255,255,.97);color:#4a2a35;box-shadow:0 15px 45px rgba(0,0,0,.3);
 }
-
-
-#mainLetterCard.letter-open #viewerDate {
-
-    color: #777;
-
-}
-
-
-/* =====================================================
-   TAP TO READ BUTTON
-   ===================================================== */
-
-#mainLetterCard .letterCardToggle {
-
-    background: rgba(255, 255, 255, 0.18);
-
-    color: white;
-
-    border: 1px solid rgba(255, 255, 255, 0.6);
-
-    transition:
-        background 0.3s ease,
-        color 0.3s ease;
-
-}
-
-
-/* When letter is open */
-#mainLetterCard.letter-open .letterCardToggle {
-
-    background: #d63384;
-
-    color: white;
-
-    border-color: #d63384;
-
-}
-
-
-/* =====================================================
-   LETTER BODY
-   ===================================================== */
-
-#mainLetterCard .letterCardBody {
-
-    color: #4a2a35;
-
-}
-
-
-/* =====================================================
-   ARROWS
-   ===================================================== */
-
-#gallery .cardArrow {
-
-    background: rgba(255, 255, 255, 0.12);
-
-    border: 1px solid rgba(255, 255, 255, 0.55);
-
-    color: white;
-
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-
-    transition:
-        background 0.3s ease,
-        transform 0.3s ease;
-
-}
-
-
-#gallery .cardArrow:hover {
-
-    background: rgba(255, 255, 255, 0.28);
-
-    transform: scale(1.08);
-
-}
-
-
-#gallery .cardArrow:disabled {
-
-    opacity: 0.3;
-
-    cursor: not-allowed;
-
-}
-
-
-/* =====================================================
-   ACTION BUTTONS
-   ===================================================== */
-
-#gallery .actionRow {
-
-    display: flex;
-
-    justify-content: center;
-
-    gap: 15px;
-
-    margin-top: 25px;
-
-    flex-wrap: wrap;
-
-}
-
-
-#gallery .actionRow button {
-
-    background: rgba(255, 255, 255, 0.10);
-
-    border: 1px solid rgba(255, 255, 255, 0.55);
-
-    color: white;
-
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-
-    transition:
-        background 0.3s ease,
-        transform 0.3s ease;
-
-}
-
-
-#gallery .actionRow button:hover {
-
-    background: rgba(255, 255, 255, 0.22);
-
-    transform: translateY(-2px);
-
-}
-
-
-/* =====================================================
-   MOBILE
-   ===================================================== */
-
-@media (max-width: 768px) {
-
-    #gallery .letterCardWrap {
-
-        gap: 8px;
-
-    }
-
-
-    #mainLetterCard {
-
-        width: 100%;
-
-        max-width: 75vw;
-
-    }
-
-
-    #gallery .cardArrow {
-
-        flex-shrink: 0;
-
-    }
-
-
-    #gallery .actionRow {
-
-        flex-direction: column;
-
-        align-items: center;
-
-    }
-
-
-    #gallery .actionRow button {
-
-        width: 85%;
-
-        max-width: 300px;
-
-    }
-
-}
-/* =====================================================
-   COMPACT LETTER PREVIEW
-   Applies to DESKTOP + MOBILE
-   ===================================================== */
-
-#mainLetterCard,
-#aryanLetterCard {
-
-    /* Compact size */
-    width: 320px;
-    max-width: 320px;
-
-    min-height: unset;
-
-    padding: 22px 18px;
-
-    box-sizing: border-box;
-
-    background: rgba(255, 255, 255, 0.08);
-
-    border: 1px solid rgba(255, 255, 255, 0.55);
-
-    border-radius: 16px;
-
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-
-    color: white;
-
-    transition:
-        background 0.4s ease,
-        color 0.4s ease,
-        box-shadow 0.4s ease,
-        width 0.4s ease;
-}
-
-
-/* =====================================================
-   COMPACT PREVIEW CONTENT
-   ===================================================== */
-
-#mainLetterCard .letterCardEmoji,
-#aryanLetterCard .letterCardEmoji {
-
-    font-size: 36px;
-
-    margin-bottom: 6px;
-
-}
-
-
-#mainLetterCard #viewerTitle,
-#aryanLetterCard #viewerTitleAryan {
-
-    font-size: 21px;
-
-    line-height: 1.25;
-
-    margin: 5px 0;
-
-}
-
-
-#mainLetterCard #viewerDate,
-#aryanLetterCard #viewerDateAryan {
-
-    font-size: 12px;
-
-    margin: 4px 0 12px;
-
-}
-
-
-#mainLetterCard .letterCardToggle,
-#aryanLetterCard .letterCardToggle {
-
-    font-size: 13px;
-
-    padding: 9px 14px;
-
-}
-
-
-/* Position number */
-
-#mainLetterCard .letterCardPosition,
-#aryanLetterCard .letterCardPosition {
-
-    font-size: 11px;
-
-    margin-top: 10px;
-
-}
-
-
-/* =====================================================
-   ARROWS
-   ===================================================== */
-
-#gallery .letterCardWrap,
-#aryanPage .letterCardWrap {
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    gap: 15px;
-
-}
-
-
-#gallery .cardArrow,
-#aryanPage .cardArrow {
-
-    width: 42px;
-
-    min-width: 42px;
-
-    height: 52px;
-
-    padding: 0;
-
-    font-size: 32px;
-
-    flex-shrink: 0;
-
-}
-
-
-/* =====================================================
-   WHEN LETTER IS OPEN
-   Make it larger only when reading
-   ===================================================== */
-
-#mainLetterCard.letter-open,
-#aryanLetterCard.letter-open {
-
-    width: 520px;
-
-    max-width: 85vw;
-
-    padding: 30px 28px;
-
-    background: rgba(255, 255, 255, 0.97);
-
-    color: #4a2a35;
-
-    box-shadow:
-        0 15px 45px rgba(0, 0, 0, 0.30);
-
-}
-
-
-/* Letter body */
-
+#mainLetterCard.letter-open #viewerTitle,#poemCard.letter-open #viewerTitlePoem{color:#4a2a35}
+#mainLetterCard.letter-open #viewerDate,#poemCard.letter-open #viewerDatePoem{color:#777}
+#mainLetterCard.letter-open .letterCardToggle,
+#aryanLetterCard.letter-open .letterCardToggle,
+#poemCard.letter-open .letterCardToggle{background:#d63384;color:#fff;border-color:#d63384}
+#aryanLetterCard.letter-open .letterCardToggle:hover,
+#poemCard.letter-open .letterCardToggle:hover{background:#b81f6b;border-color:#b81f6b;transform:none}
 #mainLetterCard.letter-open .letterCardBody,
-#aryanLetterCard.letter-open .letterCardBody {
-   
-    display: block;
-   
-    font-size: 15px;
+#aryanLetterCard.letter-open .letterCardBody,
+#poemCard.letter-open .letterCardBody{display:block;color:#4a2a35;font-size:15px;line-height:1.7;max-height:55vh;overflow-y:auto}
 
-    line-height: 1.7;
+/* Swipe animations */
+@keyframes slideOutLeft{to{transform:translateX(-60px);opacity:0}}
+@keyframes slideOutRight{to{transform:translateX(60px);opacity:0}}
+@keyframes slideInFromRight{from{transform:translateX(60px);opacity:0}to{transform:translateX(0);opacity:1}}
+@keyframes slideInFromLeft{from{transform:translateX(-60px);opacity:0}to{transform:translateX(0);opacity:1}}
+.slide-out-left{animation:slideOutLeft .22s ease forwards}
+.slide-out-right{animation:slideOutRight .22s ease forwards}
+.slide-in-right{animation:slideInFromRight .28s ease forwards}
+.slide-in-left{animation:slideInFromLeft .28s ease forwards}
 
-    max-height: 55vh;
-
-    overflow-y: auto;
-
-}
-
-
-/* =====================================================
-   MOBILE
-   ===================================================== */
-
-@media (max-width: 768px) {
-
-    #mainLetterCard,
-    #aryanLetterCard {
-
-        width: 280px;
-
-        max-width: calc(100vw - 105px);
-
-        padding: 18px 13px;
-
-    }
-
-
-    #mainLetterCard .letterCardEmoji,
-    #aryanLetterCard .letterCardEmoji {
-
-        font-size: 32px;
-
-    }
-
-
-    #mainLetterCard #viewerTitle,
-    #aryanLetterCard #viewerTitleAryan {
-
-        font-size: 18px;
-
-    }
-
-
-    #gallery .letterCardWrap,
-    #aryanPage .letterCardWrap {
-
-        gap: 6px;
-
-    }
-
-
-    #gallery .cardArrow,
-    #aryanPage .cardArrow {
-
-        width: 38px;
-
-        min-width: 38px;
-
-        height: 48px;
-
-        font-size: 29px;
-
-    }
-
-
-    /* Opened letter */
-    #mainLetterCard.letter-open,
-    #aryanLetterCard.letter-open {
-
-        width: 90vw;
-
-        max-width: 420px;
-
-        padding: 24px 18px;
-
-    }
-
-}
-/* =====================================================
-   CINEMATIC IDLE MODE
-   ===================================================== */
-
-/*
-   The slideshow and music continue running.
-   Everything else gently disappears.
-*/
-
-#lettersPage,
-#aryanPage {
-    position: relative;
-}
-
-
-/* Smoothly hide the interface */
-
-#lettersPage .overlay,
-#lettersPage #musicBox,
-#aryanPage .overlay,
-#aryanPage #musicBoxAryan {
-
-    transition:
-        opacity 1.2s ease,
-        visibility 1.2s ease;
-
+@media(max-width:768px){
+    #gallery .actionRow{flex-direction:column;align-items:center}
+    #gallery .actionRow button{width:85%;max-width:300px}
+    #gallery .letterCardWrap,#aryanPage .letterCardWrap{gap:6px}
+    #gallery .cardArrow,#aryanPage .cardArrow{width:38px;min-width:38px;height:48px;font-size:29px}
+    #mainLetterCard,#aryanLetterCard,#poemCard{width:280px;max-width:calc(100vw - 105px);padding:18px 13px}
+    #mainLetterCard .letterCardEmoji,#aryanLetterCard .letterCardEmoji,#poemCard .letterCardEmoji{font-size:32px}
+    #mainLetterCard #viewerTitle,#aryanLetterCard #viewerTitleAryan,#poemCard #viewerTitlePoem{font-size:18px}
+    #mainLetterCard.letter-open,#aryanLetterCard.letter-open,#poemCard.letter-open{width:90vw;max-width:420px;padding:24px 18px}
 }
 
 /* =====================================================
    CINEMATIC IDLE MODE
-   Music box intentionally stays visible
+   Slideshow + music keep running; the page content fades out.
    ===================================================== */
+#lettersPage .overlay,#aryanPage .overlay{transition:opacity 1.2s ease,visibility 1.2s ease}
+#lettersPage.idle-mode .overlay,#aryanPage.idle-mode .overlay{opacity:0;visibility:hidden;pointer-events:none}
+#lettersPage #musicBox,#aryanPage #musicBoxAryan{opacity:1!important;visibility:visible!important;pointer-events:auto!important}
+#lettersPage #slideshow,#aryanPage #slideshowAryan{opacity:1!important}
 
-#lettersPage .overlay,
-#aryanPage .overlay {
-
-    transition:
-        opacity 1.2s ease,
-        visibility 1.2s ease;
-
+@media(max-width:768px){
+    #lettersPage .overlay,#aryanPage .overlay{transition:opacity .9s ease,visibility .9s ease}
 }
 
 
-/* Hide ONLY the main page content */
+/* =====================================================================
+   =====================================================================
+   ONE PIECE — OUR GRAND LINE
+   =====================================================================
+   ===================================================================== */
 
-#lettersPage.idle-mode .overlay,
-#aryanPage.idle-mode .overlay {
-
-    opacity: 0;
-
-    visibility: hidden;
-
-    pointer-events: none;
-
+@font-face{
+    font-family:"One Piece";
+    src:url("onepiecefont.ttf") format("truetype");
+    font-weight:normal;font-style:normal;font-display:swap;
 }
 
-
-/* Music boxes NEVER fade */
-
-#lettersPage #musicBox,
-#aryanPage #musicBoxAryan {
-
-    opacity: 1 !important;
-
-    visibility: visible !important;
-
-    pointer-events: auto !important;
-
-}
-
-
-/* =====================================================
-   MAKE SURE SLIDESHOW STAYS VISIBLE
-   ===================================================== */
-
-#lettersPage #slideshow,
-#aryanPage #slideshowAryan {
-
-    opacity: 1 !important;
-
-}
-
-
-/* =====================================================
-   OPTIONAL: DARKEN THE SLIDESHOW SLIGHTLY IN IDLE MODE
-   ===================================================== */
-
-#lettersPage.idle-mode .overlay,
-#aryanPage.idle-mode .overlay {
-    opacity: 0;
-    pointer-events: none;
-}
-
-
-/* =====================================================
-   MOBILE
-   ===================================================== */
-
-@media (max-width: 768px) {
-
-    #lettersPage .overlay,
-    #lettersPage #musicBox,
-    #aryanPage .overlay,
-    #aryanPage #musicBoxAryan {
-
-        transition:
-            opacity 0.9s ease,
-            visibility 0.9s ease;
-
-    }
-
-}
-/* ==========================
-   ARYAN TAP TO READ BUTTON
-   Same glass style as Letters Page
-   ========================== */
-/* Collapsed (glass/white) */
-#aryanLetterCard .letterCardToggle {
-    background: rgba(255,255,255,0.18);
-    color: white;
-    border: 1px solid rgba(255,255,255,0.6);
-    box-shadow: none;
-}
-
-#aryanLetterCard .letterCardToggle:hover {
-    background: rgba(255,255,255,0.28);
-    color: white;
-    border-color: rgba(255,255,255,0.8);
-    transform: none;
-}
-
-/* When letter is open — pink, same as main */
-#aryanLetterCard.letter-open .letterCardToggle {
-    background: #d63384;
-    color: white;
-    border-color: #d63384;
-}
-
-#aryanLetterCard.letter-open .letterCardToggle:hover {
-    background: #b81f6b;
-    border-color: #b81f6b;
-    transform: none;
-}
-/* ==========================
-   POEM CARD — same glass style as Letters Page
-   ========================== */
-
-#poemCard {
-    width: 320px;
-    max-width: 320px;
-    min-height: unset;
-    padding: 22px 18px;
-    box-sizing: border-box;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.55);
-    border-radius: 16px;
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    color: white;
-    transition:
-        background 0.4s ease,
-        color 0.4s ease,
-        box-shadow 0.4s ease,
-        width 0.4s ease;
-}
-
-#poemCard .letterCardEmoji {
-    font-size: 36px;
-    margin-bottom: 6px;
-}
-
-#poemCard #viewerTitlePoem {
-    color: white;
-    font-size: 21px;
-    line-height: 1.25;
-    margin: 5px 0;
-    transition: color 0.4s ease;
-}
-
-#poemCard #viewerDatePoem {
-    color: rgba(255, 255, 255, 0.85);
-    font-size: 12px;
-    margin: 4px 0 12px;
-    transition: color 0.4s ease;
-}
-
-#poemCard .letterCardToggle {
-    background: rgba(255, 255, 255, 0.18);
-    color: white;
-    border: 1px solid rgba(255, 255, 255, 0.6);
-    font-size: 13px;
-    padding: 9px 14px;
-    transition: background 0.3s ease, color 0.3s ease;
-}
-
-#poemCard .letterCardToggle:hover {
-    background: rgba(255, 255, 255, 0.28);
-    border-color: rgba(255, 255, 255, 0.8);
-    transform: none;
-}
-
-#poemCard .letterCardPosition {
-    font-size: 11px;
-    margin-top: 10px;
-}
-
-/* When the poem is open */
-
-#poemCard.letter-open {
-    width: 520px;
-    max-width: 85vw;
-    padding: 30px 28px;
-    background: rgba(255, 255, 255, 0.97);
-    color: #4a2a35;
-    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.30);
-}
-
-#poemCard.letter-open #viewerTitlePoem {
-    color: #4a2a35;
-}
-
-#poemCard.letter-open #viewerDatePoem {
-    color: #777;
-}
-
-#poemCard.letter-open .letterCardToggle {
-    background: #d63384;
-    color: white;
-    border-color: #d63384;
-}
-
-#poemCard.letter-open .letterCardToggle:hover {
-    background: #b81f6b;
-    border-color: #b81f6b;
-}
-
-/* THIS is the line that was actually missing before —
-   without it, "Tap to read" toggled the button text but
-   never revealed the poem itself. */
-#poemCard.letter-open .letterCardBody {
-    display: block;
-    color: #4a2a35;
-    font-size: 15px;
-    line-height: 1.7;
-    max-height: 55vh;
-    overflow-y: auto;
-}
-
-@media (max-width: 768px) {
-
-    #poemCard {
-        width: 280px;
-        max-width: calc(100vw - 105px);
-        padding: 18px 13px;
-    }
-
-    #poemCard .letterCardEmoji {
-        font-size: 32px;
-    }
-
-    #poemCard #viewerTitlePoem {
-        font-size: 18px;
-    }
-
-    #poemCard.letter-open {
-        width: 90vw;
-        max-width: 420px;
-        padding: 24px 18px;
-    }
-
-}
-/* =====================================================
-   SLIDE TRANSITION FOR LETTER CARDS
-   ===================================================== */
-
-#mainLetterCard,
-#aryanLetterCard {
-    touch-action: pan-y;   /* let vertical scroll pass through, we handle horizontal */
-    cursor: grab;
-    will-change: transform, opacity;
-}
-
-#mainLetterCard:active,
-#aryanLetterCard:active {
-    cursor: grabbing;
-}
-
-@keyframes slideOutLeft {
-    to { transform: translateX(-60px); opacity: 0; }
-}
-
-@keyframes slideOutRight {
-    to { transform: translateX(60px); opacity: 0; }
-}
-
-@keyframes slideInFromRight {
-    from { transform: translateX(60px); opacity: 0; }
-    to   { transform: translateX(0);    opacity: 1; }
-}
-
-@keyframes slideInFromLeft {
-    from { transform: translateX(-60px); opacity: 0; }
-    to   { transform: translateX(0);     opacity: 1; }
-}
-
-.slide-out-left  { animation: slideOutLeft 0.22s ease forwards; }
-.slide-out-right { animation: slideOutRight 0.22s ease forwards; }
-.slide-in-right   { animation: slideInFromRight 0.28s ease forwards; }
-.slide-in-left    { animation: slideInFromLeft 0.28s ease forwards; }
-#prevLetterBtn,
-#nextLetterBtn {
-    display: none !important;
-}
-
-/* =====================================================
-   ONE PIECE — SUNNY + OCEAN DESIGN
-   ===================================================== */
-
-/* The Grand Line header contains only Back (left) and Music (right). */
-.one-piece-page .op-header-title {
-    display: none !important;
-}
-
-@font-face {
-    font-family: "One Piece";
-    src: url("onepiecefont.ttf") format("truetype");
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-}
-
-:root {
-    --op-blue: #0879c9;
-    --op-deep-blue: #034f91;
-    --op-sky: #7ed8ff;
-    --op-gold: #f4c35b;
-    --op-paper: #ead39a;
-    --op-paper-dark: #b88b45;
-    --op-ink: #20170f;
-    --op-red: #b93427;
-    --op-white: #fffdf2;
-    --op-shadow: rgba(0, 33, 65, .42);
-}
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    min-height: 100%;
-}
-
-button {
-    font: inherit;
-}
+:root{--op-white:#fffdf2;--op-shadow:rgba(0,33,65,.42)}
 
 .one-piece-page,
 .one-piece-page *,
@@ -2225,2399 +368,681 @@ button {
 .one-piece-page button,
 .one-piece-page input,
 .one-piece-page textarea,
-.one-piece-page select {
-    font-family: "One Piece", Georgia, serif !important;
-}
+.one-piece-page select{font-family:"One Piece",Georgia,serif!important}
 
-.one-piece-page {
-    position: relative;
-    min-height: 100vh;
-    overflow-x: hidden;
-    color: var(--op-ink);
-    isolation: isolate;
-    background: #0879c9;
-}
-.one-piece-page .op-bg-slideshow {
-    position: fixed;
-    inset: 0;
-    z-index: 0;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    transition: background-image 1s ease;
-    pointer-events: none;
-}
+/* Elements that exist in the HTML but stay hidden */
+.one-piece-page .op-header-title,
+.one-piece-page .counter-section{display:none!important}
 
-:where(.one-piece-page .grand-line-content > *:not(.op-bg-slideshow)) {
-    position: relative;
-    z-index: 10;
+/* ---------- Full-screen overlay page ---------- */
+.one-piece-page{
+    display:none;position:fixed;inset:0;width:100vw;height:100vh;height:100dvh;
+    z-index:10000;overflow-x:hidden;overflow-y:auto;overscroll-behavior:contain;isolation:isolate;
+    color:var(--op-white);
+    background:linear-gradient(rgba(2,48,88,.24),rgba(1,27,58,.40)),url("images/sunny.png") center center/cover no-repeat;
 }
-.one-piece-page::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    z-index: -3;
+.one-piece-page::before{
+    content:"";position:fixed;inset:0;z-index:-3;
+    background:linear-gradient(to bottom,rgba(0,55,105,.04),rgba(0,31,75,.24)),url("images/sunny.png") center center/cover no-repeat;
+    transform:translateZ(0);
+}
+.one-piece-page::after{
+    content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
     background:
-        linear-gradient(to bottom, rgba(0, 55, 105, .04), rgba(0, 31, 75, .24)),
-        url("images/sunny.png") center center / cover no-repeat;
-    transform: translateZ(0);
+        linear-gradient(to bottom,rgba(255,255,255,.03),rgba(0,0,0,.16)),
+        radial-gradient(circle at 50% 25%,transparent 0 32%,rgba(0,29,65,.18) 100%);
 }
-
-.one-piece-page::after {
-    content: "";
-    position: fixed;
-    inset: 0;
-    z-index: -2;
-    pointer-events: none;
-    background:
-        linear-gradient(to bottom, rgba(255, 255, 255, .03), rgba(0, 0, 0, .16)),
-        radial-gradient(circle at 50% 25%, transparent 0 32%, rgba(0, 29, 65, .18) 100%);
-}
-
-.grand-line-content {
-    min-height: 100vh;
-    background: linear-gradient(
-        to bottom,
-        rgba(255,255,255,.02) 0%,
-        rgba(255,255,255,.05) 45%,
-        rgba(0,38,75,.18) 100%
-    );
-}
-
-/* Opening */
-.op-opening {
-    position: fixed;
-    inset: 0;
-    z-index: 100;
-    display: grid;
-    place-items: center;
-    padding: 24px;
-    text-align: center;
-    background:
-        linear-gradient(rgba(1, 43, 82, .42), rgba(1, 36, 70, .64)),
-        url("images/sunny.png") center / cover no-repeat;
-    transition: opacity .8s ease, visibility .8s ease, transform .8s ease;
-}
-
-.op-opening.hidden {
-    opacity: 0;
-    visibility: hidden;
-    transform: scale(1.04);
-    pointer-events: none;
-}
-
-.op-opening-content {
-    width: min(680px, 94vw);
-    padding: clamp(28px, 5vw, 58px);
-    color: var(--op-white);
-    text-shadow: 0 4px 18px rgba(0, 0, 0, .5);
-}
-
-.op-compass {
-    font-size: clamp(44px, 8vw, 76px);
-    margin-bottom: 8px;
-    animation: spinCompass 12s linear infinite;
-}
-
-.op-small-text,
-.op-kicker,
-.op-chapter {
-    letter-spacing: .16em;
-    font-size: clamp(11px, 1.5vw, 15px);
-}
-
-.op-opening h1 {
-    margin: 12px 0;
-    font-size: clamp(48px, 10vw, 112px);
-    line-height: .9;
-    letter-spacing: .05em;
-    color: #fff3bd;
-}
-
-.op-crossed {
-    font-size: 36px;
-    margin: 12px 0;
-}
-
-.op-couple-name {
-    font-size: clamp(22px, 4vw, 34px);
-    letter-spacing: .12em;
-}
-
-.op-couple-name span {
-    color: #ffb2aa;
-    margin: 0 8px;
-}
-
-/* Buttons */
-.op-main-button,
-.op-scroll-button {
-    border: 0;
-    cursor: pointer;
-    color: #20170f;
-    background: linear-gradient(#ffe7a0, #dca94f);
-    border: 3px solid #5f3d16;
-    box-shadow:
-        0 7px 0 #4c3217,
-        0 12px 24px rgba(0,0,0,.28);
-    transition: transform .2s ease, filter .2s ease, box-shadow .2s ease;
-}
-
-.op-main-button {
-    margin-top: 28px;
-    padding: 14px 32px;
-    border-radius: 10px;
-    font-size: clamp(18px, 2.5vw, 25px);
-}
-
-.op-main-button:hover,
-.op-scroll-button:hover {
-    transform: translateY(-3px);
-    filter: brightness(1.06);
-    box-shadow: 0 10px 0 #4c3217, 0 16px 28px rgba(0,0,0,.3);
-}
-
-.op-main-button:active,
-.op-scroll-button:active {
-    transform: translateY(3px);
-    box-shadow: 0 3px 0 #4c3217, 0 7px 14px rgba(0,0,0,.22);
-}
-
-/* =========================================================
-   GRAND LINE HEADER — BACK LEFT / MUSIC RIGHT
-   ========================================================= */
-.op-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    min-height: 76px;
-    z-index: 10050;
-
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-
-    padding: calc(16px + env(safe-area-inset-top, 0px)) 22px 16px;
-    background: transparent;
-    border: 0;
-    box-shadow: none;
-    backdrop-filter: none;
-    pointer-events: none;
-}
-
-.op-header .op-back-button,
-.op-header .op-music-wrap {
-    pointer-events: auto;
-}
-
-.op-back-button,
-.op-music-button {
-    border: 2px solid rgba(255, 235, 167, .85);
-    background: rgba(0, 34, 67, .48);
-    color: white;
-    cursor: pointer;
-    border-radius: 9px;
-    min-height: 44px;
-    transition: .2s ease;
-}
-
-.op-back-button {
-    padding: 8px 16px;
-    font-size: 17px;
-    letter-spacing: .08em;
-}
-
-.op-music-button {
-    width: 48px;
-    font-size: 22px;
-}
-
-.op-back-button:hover,
-.op-music-button:hover {
-    background: rgba(255, 226, 128, .18);
-    transform: translateY(-2px);
-}
-
-/* Hero */
-.op-hero {
-    position: relative;
-    min-height: min(92vh, 880px);
-    display: grid;
-    place-items: center;
-    overflow: hidden;
-    padding: 100px 20px 80px;
-}
-
-.op-sun-glow {
-    position: absolute;
-    width: min(50vw, 580px);
-    aspect-ratio: 1;
-    left: 14%;
-    top: 30%;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(255,238,158,.34), rgba(255,238,158,0) 68%);
-    pointer-events: none;
-}
-
-.op-hero-content {
-    position: relative;
-    z-index: 2;
-    width: min(700px, 94vw);
-    margin-right: auto;
-    margin-left: clamp(3vw, 8vw, 12vw);
-    padding: clamp(28px, 5vw, 52px);
-    color: white;
-    text-align: left;
-    text-shadow: 0 4px 15px rgba(0,0,0,.58);
-}
-
-.op-kicker {
-    color: #fff1ae;
-    margin-bottom: 15px;
-}
-
-.op-hero h2 {
-    font-size: clamp(42px, 7vw, 84px);
-    line-height: .94;
-    letter-spacing: .02em;
-}
-
-.op-hero h2 span {
-    color: #ffe083;
-}
-
-.op-hero p:not(.op-kicker) {
-    margin-top: 22px;
-    font-family: Georgia, serif;
-    font-size: clamp(15px, 2vw, 20px);
-    line-height: 1.7;
-    letter-spacing: .01em;
-}
-
-.op-scroll-button {
-    margin-top: 28px;
-    padding: 11px 18px;
-    border-radius: 8px;
-    font-size: 16px;
-}
-
-.op-cloud {
-    position: absolute;
-    width: 180px;
-    height: 65px;
-    border-radius: 50%;
-    background: rgba(255,255,255,.28);
-    filter: blur(2px);
-    pointer-events: none;
-}
-
-.cloud-one {
-    left: -190px;
-    top: 18%;
-    animation: cloudMove 30s linear infinite;
-}
-
-.cloud-two {
-    left: -280px;
-    top: 35%;
-    transform: scale(.7);
-    animation: cloudMove 40s linear infinite 8s;
-}
-
-/* Sections */
-.op-section {
-    position: relative;
-    width: min(1180px, 92vw);
-    margin: 45px auto;
-    padding: clamp(28px, 5vw, 58px);
-    border: 4px solid #704b1f;
-    border-radius: 18px;
-    background:
-        radial-gradient(circle at 10% 15%, rgba(96, 57, 15, .1) 0 2px, transparent 3px),
-        radial-gradient(circle at 88% 70%, rgba(96, 57, 15, .12) 0 2px, transparent 3px),
-        linear-gradient(rgba(246,225,164,.94), rgba(221,193,123,.93));
-    background-size: auto, auto, auto;
-    box-shadow: 0 18px 45px var(--op-shadow), inset 0 0 35px rgba(91,55,12,.12);
-}
-
-.op-section::before,
-.op-section::after {
-    content: "✦";
-    position: absolute;
-    color: rgba(92, 57, 20, .65);
-    font-size: 25px;
-}
-
-.op-section::before {
-    top: 12px;
-    left: 18px;
-}
-
-.op-section::after {
-    right: 18px;
-    bottom: 12px;
-}
-
-.op-section-title {
-    text-align: center;
-    color: #24170e;
-    font-size: clamp(26px, 4vw, 48px);
-    letter-spacing: .07em;
-    text-shadow: 1px 2px 0 rgba(255,255,255,.28);
-}
-
-.op-section-title span {
-    color: #6b241d;
-}
-
-.section-subtitle,
-.map-intro,
-.counter-intro,
-.treasure-intro,
-.treasure-section > p {
-    text-align: center;
-    font-family: Georgia, serif;
-}
-
-.section-subtitle,
-.map-intro {
-    margin-top: 10px;
-    font-size: 17px;
-}
-
-/* Wanted posters */
-.wanted-container {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(280px, 1fr));
-    gap: clamp(24px, 5vw, 65px);
-    width: min(1100px, 100%);
-    margin: 35px auto 0;
-}
-
-.wanted-poster {
-    padding: clamp(20px, 3vw, 32px) clamp(20px, 3vw, 32px) clamp(26px, 4vw, 40px);
-    text-align: center;
-    color: #21160d;
-    background:
-        linear-gradient(rgba(235,207,139,.92), rgba(210,174,98,.95));
-    border: 4px solid #805820;
-    box-shadow: 0 13px 25px rgba(72,42,9,.35);
-    transform: rotate(-1.2deg);
-}
-
-.wanted-poster:nth-child(2) {
-    transform: rotate(1.2deg);
-}
-
-.wanted-top {
-    font-size: clamp(34px, 5vw, 58px);
-    letter-spacing: .08em;
-    border-bottom: 3px solid #5e3b17;
-    padding-bottom: 5px;
-}
-.wanted-photo img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center top;
-    display: block;
-}
-.wanted-photo {
-    position: relative;
-    height: clamp(280px, 38vw, 420px);
-    margin: 20px auto;
-    display: grid;
-    place-items: center;
-    border: 4px solid #5e3b17;
-    background: transparent;
-    overflow: hidden;
-}
-
-.wanted-photo-slide {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center top;
-    opacity: 0;
-    transition: opacity 1s ease;
-}
-
-.wanted-photo-slide.active {
-    opacity: 1;
-}
-
-.wanted-photo span {
-    font-size: 70px;
-    filter: drop-shadow(0 4px 5px rgba(0,0,0,.2));
-}
-
-
-.wanted-poster h3 {
-    font-size: clamp(26px, 4vw, 42px);
-}
-
-.wanted-subtitle {
-    margin-top: 3px;
-    font-size: 13px;
-    letter-spacing: .1em;
-}
-
-.bounty {
-    margin-top: 14px;
-    font-size: 21px;
-}
-
-.crime {
-    margin-top: 12px;
-    font-family: Georgia, serif;
-    line-height: 1.5;
-}
-
-/* Map */
-.map-section {
-    overflow: hidden;
-}
-
-.grand-line-map {
-    position: relative;
-    min-height: 520px;
-    margin-top: 25px;
-    border: 4px solid #6f4a20;
-    border-radius: 15px;
-    overflow: hidden;
-    background:
-        radial-gradient(circle at 25% 25%, rgba(255,255,255,.32) 0 4px, transparent 5px),
-        linear-gradient(145deg, rgba(93,178,194,.78), rgba(221,194,119,.82));
-    box-shadow: inset 0 0 50px rgba(70,43,9,.18);
-}
-
-.map-route {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 2;
-    opacity: .85;
-    pointer-events: none;
-}
-.island-zero  { left: 50.0%; top: 30.3%; }  /* Ankita — the notch where the two lobes meet */
-.island-one   { left: 63.4%; top: 13.0%; }  /* CODM — right lobe peak */
-.island-two   { left: 88.0%; top: 33.0%; }  /* Video Calls — right outer edge, widest point */
-.island-three { left: 63.4%; top: 68.6%; }  /* Mysore — right lower curve */
-.island-six   { left: 50.0%; top: 88.0%; }  /* Aryan — bottom tip */
-.island-four  { left: 36.6%; top: 68.6%; }  /* Banglore — left lower curve (mirror of Mysore) */
-.island-five  { left: 12.0%; top: 33.0%; }  /* Mumbai — left outer edge (mirror of Video Calls) */
-.island-seven { left: 36.6%; top: 13.0%; }  /* Future — left lobe peak (mirror of CODM) */
-
-.island-extras[data-key="future"] .palm {
-    display: none;
-}
-
-.memory-island {
-    position: absolute;
-    margin: 0 !important;
-    padding: 0 !important;
-    z-index: 3;
-    width: 150px;
-    border: none;
-    border-radius: 0;
-    background: transparent;
-    box-shadow: none;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    filter: drop-shadow(0 10px 10px rgba(10,30,50,.35));
-    transition: transform .22s ease, filter .22s ease;
-    transform: translate(-50%, -50%);   /* ADD THIS LINE */
-}
-
-.memory-island .island-shape {
-    width: 100%;
-    height: auto;
-    display: block;
-    pointer-events: none;
-}
-
-.memory-island .island-icon {
-    position: absolute;
-    top: -6px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 26px;
-    filter: drop-shadow(0 2px 3px rgba(0,0,0,.5));
-}
-
-.memory-island:hover {
-    transform: translate(-50%, -50%) translateY(-8px) scale(1.06);
-    filter: drop-shadow(0 16px 14px rgba(10,30,50,.45)) brightness(1.05);
-}
-.memory-island strong {
-    margin-top: -14px;
-    padding: 3px 10px;
-    border-radius: 10px;
-    background: rgba(10,30,50,.6);
-    border: 1px solid rgba(255,255,255,.25);
-    color: #fff6da;
-    font-size: 13px;
-    font-weight: normal;
-    letter-spacing: .04em;
-    line-height: 1.25;
-    text-align: center;
-    text-shadow: 0 1px 2px rgba(0,0,0,.5);
-}
-
-/* ---------- Flowing route ---------- */
-.map-route polyline { animation: routeFlow 12s linear infinite; }
-@keyframes routeFlow { to { stroke-dashoffset: -40; } }
-
-/* ---------- Waves (two drifting layers) ---------- */
-.map-waves {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    pointer-events: none;
-    opacity: .30;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 120'%3E%3Cpath d='M0 60 Q50 30 100 60 T200 60 T300 60 T400 60' fill='none' stroke='white' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E");
-    background-size: 240px 72px;
-    animation: waveDriftA 40s linear infinite;
-}
-.map-waves.waves-2 {
-    opacity: .18;
-    background-size: 360px 108px;
-    background-position: 0 40px;
-    animation: waveDriftB 65s linear infinite reverse;
+.one-piece-page .op-bg-slideshow{
+    position:fixed;inset:0;z-index:0;
+    background-size:cover;background-position:center;background-repeat:no-repeat;
+    transition:background-image 1s ease;pointer-events:none;
 }
-@keyframes waveDriftA { to { background-position: 240px 0; } }
-@keyframes waveDriftB { from { background-position: 0 40px; } to { background-position: 360px 40px; } }
+:where(.one-piece-page .grand-line-content > *:not(.op-bg-slideshow)){position:relative;z-index:10}
 
-/* ---------- Fog ---------- */
-.map-fog {
-    position: absolute;
-    width: 55%;
-    height: 26%;
-    z-index: 2;
-    border-radius: 50%;
-    pointer-events: none;
-    background: radial-gradient(ellipse at center, rgba(255,255,255,.42), rgba(255,255,255,0) 70%);
-    filter: blur(6px);
-    animation: fogDrift 26s ease-in-out infinite alternate;
+/* Content stays hidden until the opening screen has faded out */
+.one-piece-page .grand-line-content{
+    position:relative;z-index:1;min-height:100vh;
+    background:linear-gradient(to bottom,rgba(3,54,96,.12),rgba(0,27,57,.28));
+    visibility:hidden;opacity:0;pointer-events:none;
+    transition:opacity .15s ease,visibility 0s linear .15s;
 }
-.map-fog.fog-1 { left: -10%; top: 52%; }
-.map-fog.fog-2 { right: -12%; top: 8%; animation-duration: 34s; animation-direction: alternate-reverse; }
-@keyframes fogDrift { from { transform: translateX(-6%); } to { transform: translateX(18%); } }
-
-/* ---------- Compass rose ---------- */
-.map-compass {
-    position: absolute;
-    left: 14px;
-    bottom: 14px;
-    width: 92px;
-    z-index: 2;
-    pointer-events: none;
-    filter: drop-shadow(0 4px 6px rgba(0,0,0,.3));
-}
-.compass-needle {
-    transform-box: fill-box;
-    transform-origin: 50% 50%;
-    animation: needleWobble 6s ease-in-out infinite;
-}
-@keyframes needleWobble {
-    0%, 100% { transform: rotate(-12deg); }
-    50%      { transform: rotate(14deg); }
-}
-
-/* ---------- Whirlpool + sea monsters ---------- */
-.map-deco {
-    position: absolute;
-    z-index: 2;
-    pointer-events: none;
-    font-size: clamp(30px, 4vw, 48px);
-    line-height: 1;
-    margin: -.5em 0 0 -.5em;   /* centres without using transform */
-    opacity: .85;
-    filter: drop-shadow(0 4px 4px rgba(0,0,0,.3));
-}
-.monster-1  { left: 8%;  top: 12%; animation: shipBob 3.6s ease-in-out infinite; }
-.monster-2  { left: 88%; top: 84%; animation: shipBob 4.4s ease-in-out infinite reverse; }
-.monster-3  { right: 8%; top: 12%; animation: shipBob 3.2s ease-in-out infinite; }
-
-/* ---------- Ship (position wrapper / flip / bob are separate layers) ---------- */
-.map-ship {
-    position: absolute;
-    z-index: 4;
-    left: 50%;
-    top: 50%;
-    font-size: 70px;
-    line-height: 1;
-    transform: translate(-50%, -50%);
-    filter: drop-shadow(0 8px 4px rgba(0,0,0,.3));
-}
-.ship-flip  { display: block; transition: transform .35s ease; }
-.ship-emoji { display: block; animation: shipBob 2.8s ease-in-out infinite; }
-
-/* ---------- Wake trail ---------- */
-.ship-wake {
-    position: absolute;
-    z-index: 3;
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    background: rgba(255,255,255,.75);
-    pointer-events: none;
-    transform: translate(-50%, -50%);
-    animation: wakeFade 1.4s ease-out forwards;
-}
-@keyframes wakeFade { to { opacity: 0; transform: translate(-50%, -50%) scale(2.6); } }
-
-/* ---------- Visited island glow ---------- */
-.memory-island.visited,
-.memory-island.visited:hover {
-    filter: drop-shadow(0 10px 10px rgba(10,30,50,.35))
-            drop-shadow(0 0 14px rgba(255,225,130,.95));
-}
-
-
-@media (max-width: 520px) {
-    .map-compass { width: 68px; }
-}
-
-/* Memory modal */
-/* Keep island memory pop-ups above the map destination panel and its buttons. */
-.memory-modal,
-.treasure-message {
-    position: fixed;
-    inset: 0;
-    z-index: 1200;
-    display: grid;
-    place-items: center;
-    padding: 20px;
-    background: rgba(0, 31, 60, .74);
-    backdrop-filter: blur(7px);
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transition: .3s ease;
-}
-
-.memory-modal.open,
-.treasure-message.open {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-}
-
-.memory-modal-box,
-.treasure-message-box {
-    position: relative;
-    width: min(620px, 94vw);
-    padding: clamp(28px, 5vw, 55px);
-    text-align: center;
-    border: 5px solid #704b1f;
-    border-radius: 17px;
-    background: linear-gradient(#f5df9e, #d7b96f);
-    box-shadow: 0 25px 70px rgba(0,0,0,.45);
-    transform: translateY(25px) scale(.96);
-    transition: .35s ease;
-}
-
-.memory-modal.open .memory-modal-box,
-.treasure-message.open .treasure-message-box {
-    transform: translateY(0) scale(1);
-}
-
-.close-memory {
-    position: absolute;
-    right: 12px;
-    top: 8px;
-    border: 0;
-    background: transparent;
-    color: #38220f;
-    font-size: 35px;
-    cursor: pointer;
-}
-
-.memory-modal-icon {
-    font-size: 58px;
-}
-
-.memory-chapter {
-    margin-top: 8px;
-    font-size: 14px;
-    letter-spacing: .14em;
-    color: #74471b;
-}
-
-.memory-modal-box h2 {
-    margin-top: 7px;
-    font-size: clamp(30px, 6vw, 50px);
-}
-
-.memory-line {
-    width: 120px;
-    height: 4px;
-    margin: 15px auto;
-    background: #74471b;
-}
-
-.memory-modal-box > p:last-child {
-    font-family: Georgia, serif;
-    font-size: 18px;
-    line-height: 1.7;
-}
-
-
-
-/* Treasure */
-.treasure-section {
-    text-align: center;
-}
-
-.treasure-section > p {
-    margin-top: 8px;
-    font-size: 17px;
-}
-
-.treasure-area {
-    margin-top: 30px;
-}
-.treasure-chest {
-    position: relative;
-    width: 200px;
-    height: 170px;
-    border: 0;
-    background: transparent;
-    cursor: pointer;
-    padding: 0;
-    transition: transform .25s ease, filter .25s ease;
-    filter: drop-shadow(0 14px 18px rgba(60, 35, 10, .45));
-}
-
-.treasure-chest:hover {
-    transform: translateY(-8px) rotate(-2deg);
-    filter: drop-shadow(0 20px 22px rgba(60, 35, 10, .5))
-            drop-shadow(0 0 22px rgba(255, 220, 130, .55));
-}
-
-.chest-svg { width: 100%; height: 100%; display: block; overflow: visible; }
-.chest-shadow { fill: rgba(20, 10, 0, .28); filter: blur(3px); }
-.chest-plank { stroke: rgba(50, 27, 8, .35); stroke-width: 2; }
-.chest-stud { fill: #fff2c4; stroke: #7a5417; stroke-width: 1; }
-
-.chest-lid-group {
-    transform-origin: 100px 82px;
-    transition: transform .55s cubic-bezier(.2,.8,.25,1);
-}
-.treasure-chest.open .chest-lid-group {
-    transform: rotateX(-58deg) translateY(-6px);
-}
-
-.chest-lock-group {
-    transform-origin: 100px 91px;
-    transition: opacity .35s ease, transform .35s ease;
-}
-.treasure-chest.open .chest-lock-group {
-    opacity: 0;
-    transform: translateY(-14px) scale(.7);
-}
-
-.chest-gem-group {
-    transform-origin: 100px 54px;
-    animation: chestGemPulse 2.4s ease-in-out infinite;
-}
-@keyframes chestGemPulse {
-    0%, 100% { filter: drop-shadow(0 0 3px rgba(150, 230, 255, .6)); }
-    50%      { filter: drop-shadow(0 0 10px rgba(150, 230, 255, .95)); }
-}
-
-.sparkle { fill: #fff6d8; animation: chestSparkle 2.6s ease-in-out infinite; }
-.s1 { animation-delay: 0s; } .s2 { animation-delay: .5s; }
-.s3 { animation-delay: 1s; } .s4 { animation-delay: 1.6s; }
-@keyframes chestSparkle {
-    0%, 100% { opacity: 0; transform: scale(.4); }
-    50%      { opacity: 1; transform: scale(1.15); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .chest-gem-group, .sparkle { animation: none; }
-}
-.chest-hint {
-    margin-top: 9px;
-    font-size: 14px;
-    letter-spacing: .12em;
-}
-
-/* Treasure popup */
-.treasure-heart {
-    font-size: 58px;
-    animation: heartBeat 1.2s ease-in-out infinite;
-}
-
-.treasure-message-box > p {
-    margin-top: 8px;
-    font-size: 17px;
+.one-piece-page .grand-line-content.op-grand-line-visible{
+    visibility:visible;opacity:1;pointer-events:auto;transition:opacity .25s ease;
 }
-
-.treasure-message-box h2 {
-    margin-top: 12px;
-    font-size: clamp(36px, 7vw, 64px);
-    color: #9e3028;
-    line-height: 1;
-}
-
-.treasure-sign {
-    margin-top: 18px;
-    font-family: Georgia, serif;
-    font-size: 18px;
-}
-
-/* Footer */
-.op-footer {
-    padding: 75px 20px 90px;
-    text-align: center;
-    color: white;
-    background: rgba(3, 38, 70, .76);
-    border-top: 4px solid rgba(255,223,137,.7);
-    box-shadow: 0 -10px 35px rgba(0,0,0,.2);
-}
-
-.footer-skull {
-    font-size: 44px;
-    color: #ffe28d;
-}
-
-.op-footer h3 {
-    margin-top: 10px;
-    font-size: clamp(26px, 5vw, 46px);
-    color: #fff1b5;
-}
-
-.op-footer p {
-    margin-top: 10px;
-    font-family: Georgia, serif;
-    font-size: 16px;
-}
-
-.footer-couple {
-    margin-top: 25px;
-    font-size: 23px;
-    letter-spacing: .1em;
-    color: #ffd878;
-}
-
-/* Animations */
-@keyframes spinCompass {
-    to { transform: rotate(360deg); }
-}
-
-@keyframes cloudMove {
-    from { transform: translateX(0) scale(1); }
-    to { transform: translateX(calc(100vw + 450px)) scale(1.15); }
-}
-
-@keyframes shipBob {
-    0%, 100% { transform: translateY(0) rotate(-2deg); }
-    50% { transform: translateY(-13px) rotate(3deg); }
-}
-
-@keyframes heartBeat {
-    0%, 100% { transform: scale(1); }
-    20% { transform: scale(1.12); }
-    40% { transform: scale(1); }
-}
-
-/* Mobile */
-@media (max-width: 850px) {
-    .op-header {
-        padding: 10px 12px;
-    }
-
-    .op-back-button {
-        font-size: 14px;
-        padding: 7px 12px;
-    }
-
-    .op-hero {
-        min-height: 760px;
-        align-items: end;
-        padding-bottom: 70px;
-    }
-
-    .op-hero-content {
-        margin: 0;
-        text-align: center;
-        padding: 22px;
-    }
-
-    .op-hero p:not(.op-kicker) br {
-        display: none;
-    }
-
-    .wanted-container {
-        grid-template-columns: 1fr;
-        width: min(430px, 100%);
-    }
-
-    .grand-line-map {
-        min-height: 680px;
-    }
-
-    .memory-island {
-    width: 112px;
-}
-.island-zero  { left: 50.0%; top: 30.3%; }  /* Ankita — the notch where the two lobes meet */
-.island-one   { left: 63.4%; top: 13.0%; }  /* CODM — right lobe peak */
-.island-two   { left: 88.0%; top: 33.0%; }  /* Video Calls — right outer edge, widest point */
-.island-three { left: 63.4%; top: 68.6%; }  /* Mysore — right lower curve */
-.island-six   { left: 50.0%; top: 88.0%; }  /* Aryan — bottom tip */
-.island-four  { left: 36.6%; top: 68.6%; }  /* Banglore — left lower curve (mirror of Mysore) */
-.island-five  { left: 12.0%; top: 33.0%; }  /* Mumbai — left outer edge (mirror of Video Calls) */
-    
-
-    .map-ship {
-        left: 44%;
-        top: 42%;
-        font-size: 58px;
-    }
-
-.map-route polyline {
-    position: 4,12 41,22 63,12 67,47 36,65;
-}
-
-    .op-counter {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 520px) {
-    .op-section {
-        width: 95vw;
-        padding: 27px 17px 35px;
-        margin: 28px auto;
-    }
-
-    .op-back-button {
-        font-size: 12px;
-        padding: 7px 9px;
-    }
-
-    .op-music-button {
-        width: 42px;
-    }
-
-    .op-header-title {
-        font-size: 14px;
-    }
-
-    .op-opening h1 {
-        font-size: 49px;
-    }
-
-    .op-hero h2 {
-        font-size: 39px;
-    }
-
-    .grand-line-map {
-        min-height: 700px;
-    }
-
-    .memory-island {
-    width: 100px;
-}
-
-    .memory-island strong {
-        font-size: 12px;
-    }
-.island-zero  { left: 50.0%; top: 30.3%; }  /* Ankita — the notch where the two lobes meet */
-.island-one   { left: 63.4%; top: 13.0%; }  /* CODM — right lobe peak */
-.island-two   { left: 88.0%; top: 33.0%; }  /* Video Calls — right outer edge, widest point */
-.island-three { left: 63.4%; top: 68.6%; }  /* Mysore — right lower curve */
-.island-six   { left: 50.0%; top: 88.0%; }  /* Aryan — bottom tip */
-.island-four  { left: 36.6%; top: 68.6%; }  /* Banglore — left lower curve (mirror of Mysore) */
-.island-five  { left: 12.0%; top: 33.0%; }  /* Mumbai — left outer edge (mirror of Video Calls) */
-    
-
-.map-route polyline {
-    position: 2,12 38,12 64,12 64,46 34,66;
-}
-
-    .op-polaroid {
-        padding: 7px 7px 15px;
-    }
-
-    .op-polaroid figcaption {
-        font-size: 11px;
-    }
-
-    .counter-box {
-        padding: 13px 7px;
-    }
-
-    .counter-box span {
-        font-size: 28px;
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    html {
-        scroll-behavior: auto;
-    }
-
-    *,
-    *::before,
-    *::after {
-        animation-duration: .001ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: .001ms !important;
-    }
-}
-
-
-/* Current One Piece HTML uses .op-scroll */
-.one-piece-page .op-scroll {
-    margin-top: 28px;
-    display: inline-block;
-    padding: 11px 18px;
-    border-radius: 8px;
-    color: #20170f;
-    background: linear-gradient(#ffe7a0, #dca94f);
-    border: 3px solid #5f3d16;
-    box-shadow: 0 7px 0 #4c3217, 0 12px 24px rgba(0,0,0,.28);
-    cursor: default;
-    font-size: 16px;
-    letter-spacing: .04em;
-}
-
-#gallery .one-piece-entry-button {
-    margin-top: 0;
-    background: rgba(255,255,255,.10);
-    border: 1px solid rgba(255,255,255,.55);
-    color: white;
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-}
-
-#gallery .one-piece-entry-button:hover {
-    background: rgba(255,255,255,.22);
-    transform: translateY(-2px);
-}
-
 
 /* =====================================================
-   ONE PIECE — INTEGRATION OVERRIDES
+   OPENING SCREEN ("Our Grand Line")
    ===================================================== */
-/* Our Grand Line is a completely separate full-screen landing page.
-   It must never become a normal section in the main page flow.
-   IMPORTANT: give the overlay its OWN opaque background so the normal
-   website can never show through it. */
-.one-piece-page {
-    display: none;
-    position: fixed;
-    inset: 0;
-    width: 100vw;
-    height: 100vh;
-    height: 100dvh;
-    min-height: 100vh;
-    min-height: 100dvh;
-    z-index: 10000;
-    overflow-x: hidden;
-    overflow-y: auto;
-    overscroll-behavior: contain;
-    isolation: isolate;
-    background:
-        linear-gradient(rgba(2, 48, 88, .24), rgba(1, 27, 58, .40)),
-        url("images/sunny.png") center center / cover no-repeat;
-    color: var(--op-white);
+.op-opening{
+    position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:24px;text-align:center;
+    background:linear-gradient(rgba(1,43,82,.42),rgba(1,36,70,.64)),url("images/sunny.png") center/cover no-repeat;
+    transition:opacity .8s ease,visibility .8s ease,transform .8s ease;
+}
+.op-opening.hidden,.op-opening.hide{opacity:0;visibility:hidden;transform:scale(1.04);pointer-events:none}
+
+.op-opening-content{
+    width:min(680px,94vw);padding:clamp(28px,5vw,58px);
+    color:var(--op-white);text-shadow:0 4px 18px rgba(0,0,0,.5);
+}
+.op-compass{
+    font-size:clamp(44px,8vw,76px);margin-bottom:8px;
+    font-variant-emoji:text;color:#fff;animation:spinCompass 12s linear infinite;
+}
+.op-small-text,.op-kicker,.op-chapter{letter-spacing:.16em;font-size:clamp(14px,1.9vw,19px)}
+.op-opening h1{margin:12px 0;font-size:clamp(56px,11vw,128px);line-height:.9;letter-spacing:.05em;color:#fff3bd}
+.op-crossed{font-size:44px;margin:12px 0}
+.op-couple-name{font-size:clamp(28px,5vw,42px);letter-spacing:.12em}
+.op-couple-name span{color:#ffb2aa;margin:0 8px}
+
+/* Gold wooden buttons (SET SAIL + the "scroll" label) */
+.op-main-button,
+.one-piece-page .op-scroll{
+    color:#20170f;background:linear-gradient(#ffe7a0,#dca94f);
+    border:3px solid #5f3d16;box-shadow:0 7px 0 #4c3217,0 12px 24px rgba(0,0,0,.28);
+}
+.op-main-button{
+    margin-top:28px;padding:14px 32px;border-radius:10px;
+    font-size:clamp(22px,3.1vw,31px);cursor:pointer;
+    transition:transform .2s ease,filter .2s ease,box-shadow .2s ease;
+}
+.op-main-button:hover{transform:translateY(-3px);filter:brightness(1.06);box-shadow:0 10px 0 #4c3217,0 16px 28px rgba(0,0,0,.3)}
+.op-main-button:active{transform:translateY(3px);box-shadow:0 3px 0 #4c3217,0 7px 14px rgba(0,0,0,.22)}
+.one-piece-page .op-scroll{
+    margin-top:28px;display:inline-block;padding:11px 18px;border-radius:8px;
+    cursor:default;font-size:20px;letter-spacing:.04em;
 }
 
-.one-piece-page .op-opening.hide {
-    opacity: 0;
-    visibility: hidden;
-    transform: scale(1.04);
-    pointer-events: none;
+/* =====================================================
+   HEADER  (BACK left / MUSIC right)
+   ===================================================== */
+.op-header{
+    position:fixed;top:0;left:0;right:0;width:100vw;min-height:76px;z-index:1200;box-sizing:border-box;
+    display:flex;align-items:flex-start;justify-content:space-between;
+    padding:calc(16px + env(safe-area-inset-top,0px)) 22px 16px;
+    background:transparent;border:0;box-shadow:none;backdrop-filter:none;pointer-events:none;
+}
+.op-header .op-back-button{pointer-events:auto}
+
+.op-back-button,.op-music-button{
+    border:2px solid rgba(255,235,167,.85);background:rgba(0,34,67,.48);color:#fff;
+    cursor:pointer;border-radius:9px;min-height:44px;transition:.2s ease;
+}
+.op-back-button{padding:8px 16px;font-size:21px;font-weight:900;letter-spacing:.08em;-webkit-text-stroke:.5px currentColor}
+.op-music-button{width:48px;font-size:27px}
+.op-back-button:hover,.op-music-button:hover{background:rgba(255,226,128,.18);transform:translateY(-2px)}
+
+/* Music control locked to the top-right corner */
+.one-piece-page .op-header .op-music-wrap{
+    position:absolute;top:16px;right:22px;left:auto;margin:0;
+    display:flex;align-items:center;justify-content:center;pointer-events:auto;
 }
 
-.one-piece-page .grand-line-content {
-    position: relative;
-    z-index: 1;
-    min-height: 100vh;
-    background: linear-gradient(
-        to bottom,
-        rgba(3, 54, 96, .12),
-        rgba(0, 27, 57, .28)
-    );
-
-    /* Keep the Voyage completely hidden behind the opening screen.
-       It appears only after the opening screen has finished fading out. */
-    visibility: hidden;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity .15s ease, visibility 0s linear .15s;
-}
-
-.one-piece-page .grand-line-content.op-grand-line-visible {
-    visibility: visible;
-    opacity: 1;
-    pointer-events: auto;
-    transition: opacity .25s ease;
-}
-
-.one-piece-page .op-opening {
-    position: fixed;
-}
-
-.one-piece-page .op-header {
-    z-index: 1200;
-}
-
-/* Keep the Grand Line music control locked to the top-right even when
-   WANTED / MAP / FINAL TREASURE opens as a full-screen panel. */
-.one-piece-page .op-header {
-    box-sizing: border-box;
-    width: 100vw;
-    right: 0;
-}
-
-.one-piece-page .op-header .op-music-wrap {
-    position: absolute;
-    top: 16px;
-    right: 22px;
-    left: auto;
-    margin: 0;
-}
-
-@font-face {
-    font-family: "One Piece";
-    src: url("onepiecefont.ttf") format("truetype");
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-}
-
-.one-piece-page,
-.one-piece-page *,
-.one-piece-page button,
-.one-piece-page input,
-.one-piece-page textarea,
-.one-piece-page select {
-    font-family: "One Piece", Georgia, serif !important;
-}
-
-
-/* =========================================================
-   GRAND LINE DESTINATION MENU
-   ========================================================= */
-.one-piece-page .op-grand-line-menu {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    gap: 20px;
-    width: min(360px, 86vw);
-    margin: 32px 0 0;
-}
-
-.one-piece-page .op-destination-button {
-    width: 100%;
-    min-height: 72px;
-    padding: 14px 18px;
-    border: 3px solid #5e3b17;
-    border-radius: 12px;
-    background: linear-gradient(#f7d982, #bd8735);
-    color: #24170e;
-    box-shadow: 0 6px 0 #6e4518, 0 12px 22px rgba(0,0,0,.25);
-    cursor: pointer;
-    font-size: clamp(16px, 2.2vw, 23px);
-    letter-spacing: .05em;
-    transition: transform .2s ease, filter .2s ease;
-}
-
-.one-piece-page .op-destination-button:hover {
-    transform: translateY(-5px) scale(1.02);
-    filter: brightness(1.08);
-}
-
-.one-piece-page .op-menu-hint {
-    margin-top: 16px;
-    font-size: 14px;
-    letter-spacing: .15em;
-    color: #fff1bd;
-    text-shadow: 1px 2px 2px rgba(0,0,0,.45);
-}
-
-.one-piece-page .op-destination-panel {
-    display: none;
-    position: fixed;
-    inset: 0;
-    z-index: 1100;
-    align-items: center;
-    justify-content: center;
-    box-sizing: border-box;
-    padding: calc(20px + env(safe-area-inset-top, 0px)) 16px calc(20px + env(safe-area-inset-bottom, 0px));
-    background: rgba(0, 20, 40, .68);
-    backdrop-filter: blur(6px);
-}
-
-.one-piece-page .op-destination-panel.op-panel-active {
-    display: flex;
-    animation: opPanelPop .48s cubic-bezier(.2,.85,.25,1) both;
-}
-
-.one-piece-page .op-panel-box {
-    position: relative;
-    width: 100%;
-    max-width: 1100px;
-    max-height: 88vh;
-    margin: 0;
-    overflow-y: auto;
-}
-
-/* When a destination popup is open, hide the global BACK button so the
-   popup has only its single GRAND LINE button on the top-left. */
-.one-piece-page .grand-line-content.op-destination-open .op-header .op-back-button {
-    display: none;
-}
-
-/* Hide the three destination buttons while their selected destination is open. */
-.one-piece-page .grand-line-content.op-destination-open .op-grand-line-menu,
-.one-piece-page .grand-line-content.op-destination-open .op-menu-hint {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-}
-
-.one-piece-page .op-panel-back {
-    position: absolute;
-    top: 14px;
-    left: 14px;
-    z-index: 2;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px 16px;
-    border: 2px solid #5e3b17;
-    border-radius: 9px;
-    background: linear-gradient(#f7d982, #bd8735);
-    color: #2b1a0d;
-    box-shadow: 0 4px 0 #6e4518, 0 8px 16px rgba(0,0,0,.25);
-    cursor: pointer;
-    font-size: 14px;
-    letter-spacing: .06em;
-    transition: transform .16s ease, filter .16s ease;
-}
-
-.one-piece-page .op-panel-back:hover {
-    filter: brightness(1.08);
-    transform: translateY(-2px);
-}
-
-@keyframes opPanelPop {
-    0% { opacity: 0; transform: scale(.82) translateY(35px); }
-    55% { opacity: 1; transform: scale(1.025) translateY(-4px); }
-    78% { transform: scale(.99) translateY(1px); }
-    100% { opacity: 1; transform: scale(1) translateY(0); }
-}
-
-@media (max-width: 700px) {
-    .one-piece-page .op-destination-panel {
-        padding: calc(20px + env(safe-area-inset-top, 0px)) 10px calc(20px + env(safe-area-inset-bottom, 0px));
-    }
-
-    .one-piece-page .op-panel-back {
-        top: 12px;
-        left: 12px;
-        padding: 9px 13px;
-        font-size: 12px;
-    }
-}
-
-/* The Grand Line no longer contains a journey timer. */
-.one-piece-page .counter-section {
-    display: none !important;
-}
-
-
-/* =========================================================
-   GRAND LINE MUSIC — DEDICATED ONLY
-   ========================================================= */
+/* Grand Line has its own music; hide the main-site music boxes while it's open */
 body.one-piece-active #musicBox,
-body.one-piece-active #musicBoxAryan {
-    display: none !important;
-    visibility: hidden !important;
-    pointer-events: none !important;
+body.one-piece-active #musicBoxAryan{display:none!important;visibility:hidden!important;pointer-events:none!important}
+
+.one-piece-page .op-music-menu{
+    position:absolute;top:calc(100% + 10px);right:0;width:min(260px,78vw);max-height:min(360px,60vh);
+    overflow-y:auto;overflow-x:hidden;padding:12px;
+    border:2px solid #e8c86b;border-radius:12px;background:rgba(7,26,44,.97);box-shadow:0 12px 30px rgba(0,0,0,.45);
+    opacity:0;visibility:hidden;transform:translateY(-6px);
+    transition:opacity .2s ease,transform .2s ease,visibility .2s ease;z-index:1001;
+}
+.one-piece-page .op-music-menu::-webkit-scrollbar{width:6px}
+.one-piece-page .op-music-menu::-webkit-scrollbar-thumb{background:rgba(248,217,121,.5);border-radius:10px}
+.one-piece-page .op-music-menu.show{opacity:1;visibility:visible;transform:translateY(0)}
+.one-piece-page .op-music-menu-title{padding:4px 6px 10px;color:#f8d979;font-size:17px;letter-spacing:.08em;text-align:center}
+.one-piece-page .op-song-btn{
+    width:100%;margin:0 0 6px;padding:10px 12px;
+    border:1px solid rgba(248,217,121,.65);border-radius:8px;background:rgba(255,255,255,.08);
+    color:#fff7dc;cursor:pointer;text-align:left;font-size:17px;
+}
+.one-piece-page .op-song-btn:last-child{margin-bottom:0}
+.one-piece-page .op-song-btn:hover{background:rgba(248,217,121,.18)}
+
+/* =====================================================
+   LANDING PAGE (hero)
+   ===================================================== */
+.op-hero{
+    position:relative;min-height:min(92vh,880px);display:grid;place-items:center;
+    overflow:hidden;padding:100px 20px 80px;
+}
+.op-sun-glow{
+    position:absolute;width:min(50vw,580px);aspect-ratio:1;left:14%;top:30%;border-radius:50%;
+    background:radial-gradient(circle,rgba(255,238,158,.34),rgba(255,238,158,0) 68%);pointer-events:none;
+}
+.op-hero-content{
+    position:relative;z-index:2;width:min(700px,94vw);
+    margin-right:auto;margin-left:clamp(3vw,8vw,12vw);padding:clamp(28px,5vw,52px);
+    color:#fff;text-align:left;text-shadow:0 4px 15px rgba(0,0,0,.58);
+}
+.op-kicker{color:#fff1ae;margin-bottom:15px}
+.op-hero .op-kicker{font-size:clamp(16px,2.2vw,24px);font-weight:900;-webkit-text-stroke:.5px currentColor}
+
+/* "THE VOYAGE OF" in black, names in gold */
+.op-hero h2{
+    font-size:clamp(50px,8.5vw,104px);line-height:.94;letter-spacing:.02em;
+    color:#000;text-shadow:0 2px 10px rgba(255,255,255,.55);-webkit-text-stroke:1px #000;
+}
+.op-hero h2 span{color:#ffe083;-webkit-text-stroke:1px #ffe083;text-shadow:0 4px 15px rgba(0,0,0,.58)}
+
+.op-hero p:not(.op-kicker){
+    margin-top:22px;font-size:clamp(19px,2.5vw,26px);font-weight:900;
+    line-height:1.6;letter-spacing:.01em;-webkit-text-stroke:.5px currentColor;
 }
 
-.one-piece-page .op-music-wrap {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.op-cloud{position:absolute;width:180px;height:65px;border-radius:50%;background:rgba(255,255,255,.28);filter:blur(2px);pointer-events:none}
+.cloud-one{left:-190px;top:18%;animation:cloudMove 30s linear infinite}
+.cloud-two{left:-280px;top:35%;transform:scale(.7);animation:cloudMove 40s linear infinite 8s}
+
+/* =====================================================
+   DESTINATION MENU (Wanted / Our World Map / One Piece)
+   ===================================================== */
+.one-piece-page .op-grand-line-menu{
+    display:flex;flex-direction:column;align-items:flex-start;justify-content:flex-start;
+    gap:20px;width:min(440px,88vw);margin:32px 0 0;
+}
+.one-piece-page .op-destination-button{
+    width:100%;min-height:84px;padding:14px 18px;
+    border:3px solid #5e3b17;border-radius:12px;background:linear-gradient(#f7d982,#bd8735);
+    color:#24170e;box-shadow:0 6px 0 #6e4518,0 12px 22px rgba(0,0,0,.25);cursor:pointer;
+    font-size:clamp(20px,2.8vw,29px);font-weight:900;letter-spacing:.06em;-webkit-text-stroke:.8px currentColor;
+    transition:transform .2s ease,filter .2s ease;
+}
+.one-piece-page .op-destination-button:hover{transform:translateY(-5px) scale(1.02);filter:brightness(1.08)}
+.one-piece-page .op-destination-button.button-pop{animation:grandLineButtonPop .42s cubic-bezier(.2,.85,.25,1) both}
+.one-piece-page .op-menu-hint{
+    margin-top:16px;font-size:18px;font-weight:900;letter-spacing:.15em;
+    color:#fff1bd;text-shadow:1px 2px 2px rgba(0,0,0,.45);
 }
 
-.one-piece-page .op-music-menu {
-    position: absolute;
-    top: calc(100% + 10px);
-    right: 0;
-    width: min(260px, 78vw);
-    max-height: min(360px, 60vh);
-    overflow-y: auto;
-    overflow-x: hidden;
-    padding: 12px;
-    border: 2px solid #e8c86b;
-    border-radius: 12px;
-    background: rgba(7, 26, 44, .97);
-    box-shadow: 0 12px 30px rgba(0,0,0,.45);
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-6px);
-    transition: opacity .2s ease, transform .2s ease, visibility .2s ease;
-    z-index: 1001;
+/* ---------- Full-screen destination panels ---------- */
+.one-piece-page .op-destination-panel{
+    display:none;position:fixed;inset:0;z-index:1100;align-items:center;justify-content:center;
+    box-sizing:border-box;padding:0;background:rgba(0,20,40,.55);backdrop-filter:blur(6px);
+}
+.one-piece-page .op-destination-panel.op-panel-active{display:flex;animation:opPanelPop .48s cubic-bezier(.2,.85,.25,1) both}
+
+.one-piece-page .grand-line-content .op-destination-panel .op-panel-box{
+    position:relative;width:100%;max-width:none;height:100%;max-height:none;margin:0;
+    border-width:0;border-radius:0;box-sizing:border-box;
+    padding:calc(80px + env(safe-area-inset-top,0px)) clamp(16px,4vw,60px) calc(40px + env(safe-area-inset-bottom,0px));
+    display:flex;flex-direction:column;justify-content:safe center;overflow-y:auto;
 }
 
-.one-piece-page .op-music-menu::-webkit-scrollbar {
-    width: 6px;
+/* Popup backgrounds */
+.one-piece-page .op-panel-box.op-section{
+    background:linear-gradient(rgba(246,225,164,.88),rgba(221,193,123,.88)),url("images/sunny.png") center center/cover no-repeat;
+}
+.one-piece-page #mapSection .op-panel-box.op-section{
+    background:linear-gradient(rgba(246,225,164,.88),rgba(221,193,123,.88)),url("images/goingmerry.png") center center/cover no-repeat;
 }
 
-.one-piece-page .op-music-menu::-webkit-scrollbar-thumb {
-    background: rgba(248,217,121,.5);
-    border-radius: 10px;
+/* While a popup is open: hide the global BACK + the three menu buttons */
+.one-piece-page .grand-line-content.op-destination-open .op-header .op-back-button{display:none}
+.one-piece-page .grand-line-content.op-destination-open .op-grand-line-menu,
+.one-piece-page .grand-line-content.op-destination-open .op-menu-hint{opacity:0;visibility:hidden;pointer-events:none}
+
+/* "GRAND LINE" back button inside the popups */
+.one-piece-page .op-panel-back{
+    position:absolute;top:14px;left:14px;z-index:2;
+    display:inline-flex;align-items:center;justify-content:center;padding:10px 16px;
+    border:2px solid #5e3b17;border-radius:9px;background:linear-gradient(#f7d982,#bd8735);
+    color:#2b1a0d;box-shadow:0 4px 0 #6e4518,0 8px 16px rgba(0,0,0,.25);cursor:pointer;
+    font-size:18px;font-weight:900;letter-spacing:.06em;transition:transform .16s ease,filter .16s ease;
 }
+.one-piece-page .op-panel-back:hover{filter:brightness(1.08);transform:translateY(-2px)}
+.one-piece-page .grand-line-content .op-destination-panel .op-panel-back{top:calc(16px + env(safe-area-inset-top,0px));left:22px}
 
-.one-piece-page .op-music-menu.show {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-}
-
-.one-piece-page .op-music-menu-title {
-    padding: 4px 6px 10px;
-    color: #f8d979;
-    font-size: 13px;
-    letter-spacing: .08em;
-    text-align: center;
-}
-
-.one-piece-page .op-song-btn {
-    width: 100%;
-    margin: 0 0 6px;
-    padding: 10px 12px;
-    border: 1px solid rgba(248,217,121,.65);
-    border-radius: 8px;
-    background: rgba(255,255,255,.08);
-    color: #fff7dc;
-    cursor: pointer;
-    text-align: left;
-    font-size: 13px;
-}
-
-.one-piece-page .op-song-btn:last-child {
-    margin-bottom: 0;
-}
-
-.one-piece-page .op-song-btn:hover {
-    background: rgba(248,217,121,.18);
-}
-
-@media (max-width: 700px) {
-    .one-piece-page .op-music-menu {
-        right: -8px;
-    }
-}
-
-/* Grand Line destination buttons: press-to-pop animation */
-.one-piece-page .op-destination-button.button-pop {
-    animation: grandLineButtonPop .42s cubic-bezier(.2,.85,.25,1) both;
-}
-
-@keyframes grandLineButtonPop {
-    0%   { transform: translateX(0) scale(1); }
-    38%  { transform: translateX(16px) scale(1.12); }
-    68%  { transform: translateX(7px) scale(1.04); }
-    100% { transform: translateX(0) scale(1); }
-}
-
-@media (max-width: 700px) {
-    .one-piece-page .op-destination-panel {
-        padding: 76px 16px 38px;
-    }
-
-    .one-piece-page .op-panel-back {
-        top: 16px;
-        left: 16px;
-        padding: 9px 13px;
-        font-size: 12px;
-    }
-}
-/* =========================================================
-   MEMORY POLAROID SLIDESHOW
-========================================================= */
-
-.memory-modal {
-    position: fixed;
-    inset: 0;
-
-    z-index: 7000;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    padding: 12px;
-
+/* =====================================================
+   PARCHMENT SECTIONS
+   ===================================================== */
+.op-section{
+    position:relative;width:min(1180px,92vw);margin:45px auto;padding:clamp(28px,5vw,58px);
+    border:4px solid #704b1f;border-radius:18px;
     background:
-        radial-gradient(
-            circle at center,
-            rgba(255,255,255,0.15),
-            rgba(0,0,0,0.72)
-        );
-
-    backdrop-filter: blur(6px);
-
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-
-    transition:
-        opacity 0.35s ease,
-        visibility 0.35s ease;
-}
-
-
-/* OPEN */
-
-.memory-modal.active {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-}
-
-
-/* =========================================================
-   POPUP BOX
-========================================================= */
-
-.memory-modal-box {
-    position: relative;
-
-    width: min(96vw, 1400px);
-    max-width: 96vw;
-    max-height: 96vh;
-
-    overflow-y: auto;
-
-    padding: 35px 30px 30px;
-
-    text-align: center;
-
-    background:
-        linear-gradient(135deg, rgba(4,30,52,.72), rgba(8,65,91,.62)),
-        url("images/sunny.png") center center / cover no-repeat;
-    background-attachment: fixed;
-
-    border: 4px solid #151515;
-
-    box-shadow:
-        0 20px 60px rgba(0,0,0,0.55),
-        8px 8px 0 rgba(0,0,0,0.2);
-
-    transform: scale(0.85) translateY(25px);
-
-    transition: transform 0.4s cubic-bezier(.2,.8,.2,1);
-}
-
-
-.memory-modal.active .memory-modal-box {
-    transform: scale(1) translateY(0);
-}
-
-
-/* =========================================================
-   CLOSE BUTTON
-========================================================= */
-
-.close-memory {
-    position: absolute;
-
-    top: 8px;
-    right: 12px;
-
-    width: 46px;
-    height: 46px;
-    padding: 0;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border: none;
-    border-radius: 50%;
-    background: transparent;
-
-    cursor: pointer;
-
-    z-index: 5;
-
-    transition: transform 0.2s ease;
-}
-
-.close-memory:hover {
-    transform: scale(1.12);
-}
-
-
-/* =========================================================
-   MEMORY TEXT
-========================================================= */
-
-.memory-modal-icon {
-    font-size: 42px;
-    margin-bottom: 5px;
-}
-
-
-.memory-chapter {
-    margin: 0 0 5px;
-
-    font-size: 14px;
-    letter-spacing: 3px;
-
-    opacity: 0.7;
-}
-
-
-.memory-modal-box h2 {
-    margin: 5px 0 10px;
-
-    font-size: clamp(28px, 5vw, 46px);
-}
-
-
-.memory-line {
-    width: 100px;
-    height: 3px;
-
-    margin: 12px auto 15px;
-
-    background: #111;
-}
-
-
-.memory-modal-box #memoryText {
-    max-width: 650px;
-
-    margin: 0 auto 25px;
-
-    font-size: 16px;
-    line-height: 1.7;
-}
-
-
-/* =========================================================
-   POLAROID AREA
-========================================================= */
-
-.memory-polaroid-area,
-.memory-polaroid {
-
-    position: relative;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    gap: 20px;
-
-    width: 100%;
-
-    margin: 10px auto 5px;
-}
-
-
-/* =========================================================
-   POLAROID FRAME
-========================================================= */
-
-.memory-polaroid-frame {
-
-    position: relative;
-
-    display: inline-block;
-    width: auto;
-    max-width: min(1100px, 88vw);
-    max-height: 70vh;
-    padding: 16px 16px 58px;
-
-    background: #fff;
-
-    box-shadow:
-        0 12px 25px rgba(0,0,0,0.28),
-        3px 4px 0 rgba(0,0,0,0.12);
-
-    transform: rotate(-1.5deg);
-
-    transition:
-        transform 0.3s ease,
-        opacity 0.25s ease;
-}
-
-
-.memory-polaroid-frame:hover {
-    transform: rotate(0deg) scale(1.015);
-}
-
-
-/* =========================================================
-   PHOTO
-========================================================= */
-
-.memory-polaroid-frame img {
-
-    display: block;
-
-    width: auto;
-    height: auto;
-    max-width: 100%;
-    max-height: 58vh;
-
-    /* Keep the complete photo visible instead of cropping it. */
-    aspect-ratio: auto;
-    object-fit: contain;
-
-    background: #eee;
-
-    border: 1px solid #ddd;
-
-    opacity: 1;
-
-    transition: opacity 0.25s ease;
-}
-
-
-.memory-polaroid-frame img.photo-changing {
-    opacity: 0;
-}
-
-
-/* =========================================================
-   CAPTION
-========================================================= */
-
-.memory-photo-caption,
-#memoryPhotoCaption {
-
-    position: absolute;
-
-    left: 14px;
-    right: 14px;
-    bottom: 10px;
-
-    margin: 0;
-
-    min-height: 30px;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    font-family:
-        "Comic Sans MS",
-        "Bradley Hand",
-        cursive;
-
-    font-size: 18px;
-
-    color: #222;
-
-    line-height: 1.2;
-}
-
-
-/* =========================================================
-   POLAROID PIN
-========================================================= */
-
-.memory-polaroid-pin,
-.polaroid-pin {
-
-    position: absolute;
-
-    width: 18px;
-    height: 18px;
-
-    top: -9px;
-    left: 50%;
-
-    transform: translateX(-50%);
-
-    border-radius: 50%;
-
-    background: #333;
-
-    box-shadow:
-        0 2px 4px rgba(0,0,0,0.35);
-
-    z-index: 3;
-}
-
-
-.memory-polaroid-pin::after,
-.polaroid-pin::after {
-
-    content: "";
-
-    position: absolute;
-
-    width: 7px;
-    height: 7px;
-
-    top: 3px;
-    left: 3px;
-
-    border-radius: 50%;
-
-    background: rgba(255,255,255,0.5);
-}
-
-
-/* =========================================================
-   PREVIOUS / NEXT BUTTONS
-========================================================= */
-
-.memory-photo-nav {
-    flex-shrink: 0;
-    width: 72px;
-    min-width: 72px;
-    height: 72px;
-    padding: 0;
-    border: none;
-    border-radius: 50%;
-    background: transparent;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.2s ease;
-}
-.memory-photo-nav .wheel-icon,
-.close-memory .close-wheel {
-    display: block;
-    color: #fff6da;
-    filter:
-        drop-shadow(0 3px 8px rgba(0,0,0,.65))
-        drop-shadow(0 0 10px rgba(0,0,0,.35));
-    animation: shipWheelSpin 6s linear infinite;
-}
-
-.memory-photo-nav .wheel-icon {
-    width: 44px;
-    height: 44px;
-}
-
-.close-memory .close-wheel {
-    width: 26px;
-    height: 26px;
-}
-@keyframes shipWheelSpin {
-    to { transform: rotate(360deg); }
-}
-
-.memory-photo-nav:hover {
-    transform: scale(1.12);
-}
-
-
-.memory-photo-nav:active {
-    transform: scale(0.95);
-}
-
-
-/* =========================================================
-   PHOTO COUNTER
-========================================================= */
-
-.memory-photo-counter {
-
-    margin: 10px 0 0;
-
-    font-size: 13px;
-
-    letter-spacing: 2px;
-
-    opacity: 0.65;
-}
-
-
-/* =========================================================
-   LOADING / MISSING PHOTO
-========================================================= */
-
-.memory-polaroid-frame img[src=""] {
-    visibility: hidden;
-}
-
-
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media (max-width: 600px) {
-
-    .memory-modal {
-        padding: 6px;
-    }
-
-    .memory-modal-box {
-        width: 99vw;
-        max-width: 99vw;
-        max-height: 98vh;
-        padding: 42px 8px 12px;
-    }
-
-    .memory-modal-icon {
-        font-size: 34px;
-    }
-
-    .memory-modal-box h2 {
-        font-size: 27px;
-    }
-
-    .memory-modal-box #memoryText {
-        font-size: 14px;
-        line-height: 1.55;
-        margin-bottom: 18px;
-    }
-
-    .memory-polaroid-area,
-    .memory-polaroid {
-        gap: 8px;
-        width: 100%;
-    }
-
-    .memory-polaroid-frame {
-    width: auto;
-    max-width: 92vw;
-    max-height: 82vh;
-    padding: 10px 10px 48px;
-}
-
-   .memory-polaroid-frame img {
-    width: auto;
-    max-width: 100%;
-    max-height: 70vh;
-    object-fit: contain;
-}
-
-    .memory-photo-caption,
-    #memoryPhotoCaption {
-        left: 9px;
-        right: 9px;
-        bottom: 7px;
-        font-size: 14px;
-    }
-
-   .memory-photo-nav {
-    width: 56px;
-    min-width: 56px;
-    height: 56px;
-    margin: 0 !important;
-    padding: 0 !important;
-    line-height: 1;
-}
-
-.memory-photo-nav .wheel-icon {
-    width: 36px;
-    height: 36px;
-}
-
-.close-memory .close-wheel {
-    width: 20px;
-    height: 20px;
-}
-
-    .memory-polaroid-pin,
-    .polaroid-pin {
-        width: 14px;
-        height: 14px;
-        top: -7px;
-    }
-
-    .memory-polaroid-pin::after,
-    .polaroid-pin::after {
-        width: 5px;
-        height: 5px;
-        top: 2px;
-        left: 2px;
-    }
-}
-
-
-/* =========================================================
-   VERY SMALL PHONES
-========================================================= */
-
-@media (max-width: 380px) {
-
-    .memory-modal-box {
-        padding-left: 8px;
-        padding-right: 8px;
-    }
-
-
-    .memory-polaroid-frame {
-
-        max-width: 63vw;
-        width:auto;
-
-        padding-bottom: 38px;
-    }
-
-
-    .memory-photo-nav {
-    width: 44px;
-    height: 44px;
-}
-
-.memory-photo-nav .wheel-icon {
-    width: 28px;
-    height: 28px;
-}
-
-.close-memory .close-wheel {
-    width: 17px;
-    height: 17px;
-}
-
-    .memory-photo-caption {
-        font-size: 12px;
-    }
-}
-/* =========================================================
-   FULL-SCREEN DESTINATION PANELS (WANTED / MAP / ONE PIECE)
-   ========================================================= */
-
-.one-piece-page .grand-line-content .op-destination-panel {
-    padding: 0;
-    background: rgba(0, 20, 40, .55);
-}
-
-.one-piece-page .grand-line-content .op-destination-panel .op-panel-box {
-    width: 100%;
-    max-width: none;
-    height: 100%;
-    max-height: none;
-    margin: 0;
-
-    border-width: 0;
-    border-radius: 0;
-    box-sizing: border-box;
-
-    /* top padding keeps the content clear of the GRAND LINE and music buttons */
-    padding:
-        calc(80px + env(safe-area-inset-top, 0px))
-        clamp(16px, 4vw, 60px)
-        calc(40px + env(safe-area-inset-bottom, 0px));
-
-    /* centre the content vertically, but scroll normally if it's taller than the screen */
-    display: flex;
-    flex-direction: column;
-    justify-content: safe center;
-
-    overflow-y: auto;
-}
-
-/* Line the GRAND LINE button up with the music button on the right */
-.one-piece-page .grand-line-content .op-destination-panel .op-panel-back {
-    top: calc(16px + env(safe-area-inset-top, 0px));
-    left: 22px;
-}
-
-/* Let the map use the extra height so the islands spread out */
-.one-piece-page .map-section .grand-line-map {
-    min-height: max(520px, calc(100dvh - 260px));
-}
-
-@media (max-width: 850px) {
-    .one-piece-page .map-section .grand-line-map {
-        min-height: max(700px, calc(100dvh - 240px));
-    }
-
-    .one-piece-page .grand-line-content .op-destination-panel .op-panel-back {
-        left: 12px;
-    }
-}
-/* =========================================================
-   POPUP BACKGROUNDS — SUNNY / GOING MERRY
-   ========================================================= */
-
-.one-piece-page .op-panel-box.op-section {
-    background:
-        linear-gradient(rgba(246,225,164,.88), rgba(221,193,123,.88)),
-        url("images/sunny.png") center center / cover no-repeat;
-}
-
-.one-piece-page #mapSection .op-panel-box.op-section {
-    background:
-        linear-gradient(rgba(246,225,164,.88), rgba(221,193,123,.88)),
-        url("images/goingmerry.png") center center / cover no-repeat;
-}
-/* ---------- Idle bob (uses the separate `translate` property,
-              so it doesn't fight your hover transform) ---------- */
-.memory-island {
-    animation: islandBob 5s ease-in-out infinite;
-    animation-delay: var(--bob-delay, 0s);
-}
-@keyframes islandBob {
-    0%, 100% { translate: 0 0; }
-    50%      { translate: 0 -6px; }
-}
-
-/* ---------- Decoration overlay ---------- */
-.island-extras {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    aspect-ratio: 200 / 160;
-    container-type: inline-size;
-    pointer-events: none;
-    z-index: 1;
-}
-.island-extras svg {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    overflow: visible;
-}
-
-/* Foam lapping at the shore */
-.foam-arc {
-    fill: none;
-    stroke: #fff;
-    stroke-width: 3;
-    stroke-linecap: round;
-    transform-box: fill-box;
-    transform-origin: center;
-    animation: foamPulse 3s ease-out infinite;
-}
-.foam-arc.foam-2 { animation-delay: 1.5s; stroke-width: 2; }
-@keyframes foamPulse {
-    0%   { opacity: .85; transform: scale(.92); }
-    100% { opacity: 0;   transform: scale(1.12); }
-}
-.memory-island:hover .foam-arc { animation-duration: 1.4s; }
-
-/* Palms (blossom trees on Ankita's island) */
-.island-extras .leaf {
-    fill: #3f8a3a;
-    stroke: #245a22;
-    stroke-width: 1;
-}
-.island-extras[data-key="ankita"] .leaf {
-    fill: #f4a6c0;
-    stroke: #c76a8d;
-}
-.palm {
-    transform-origin: 0 0;
-    animation: palmSway 4.5s ease-in-out infinite;
-}
-@keyframes palmSway {
-    0%, 100% { transform: rotate(-3deg); }
-    50%      { transform: rotate(4deg); }
-}
-
-/* Twinkling snow cap */
-.twinkle {
-    fill: #fff8d0;
-    transform-box: fill-box;
-    transform-origin: center;
-    animation: twinkle 2.8s ease-in-out infinite;
-}
-.twinkle.tw-2 { animation-delay: 1.3s; }
-@keyframes twinkle {
-    0%, 100% { opacity: 0; transform: scale(.3); }
-    50%      { opacity: 1; transform: scale(1); }
-}
-
-/* Beach prop */
-.island-prop {
-    position: absolute;
-    left: 50%;
-    top: 70%;
-    margin-left: -.5em;
-    font-size: 20px;
-    font-size: 15cqw;
-    line-height: 1;
-    filter: drop-shadow(0 2px 2px rgba(0,0,0,.4));
-}
-
-/* Keep the emoji icon and name sign above the decorations */
-.memory-island .island-icon { z-index: 6; }
-
-/* ---------- Wooden plank name sign ---------- */
-.memory-island strong {
-    position: relative;
-    z-index: 5;
-    padding: 4px 14px;
-    background: linear-gradient(#c98a3f, #8a5a24);
-    border: 2px solid #4a2c12;
-    border-radius: 6px;
-    color: #fff3c8;
-    text-shadow: 0 1px 0 #4a2c12;
-    box-shadow: 0 3px 0 #4a2c12, 0 6px 10px rgba(0,0,0,.3);
-}
-.memory-island strong::before,
-.memory-island strong::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    width: 4px;
-    height: 4px;
-    border-radius: 50%;
-    background: #3a220e;
-    translate: 0 -50%;
-}
-.memory-island strong::before { left: 4px; }
-.memory-island strong::after  { right: 4px; }
-.map-deco.sea-monster {
-    font-size: clamp(60px, 9vw, 110px);
-}
-/* The new shapes carry their own decoration, so remove the palm trees where they'd clash */
-.island-extras[data-key="codm"] .palm,
-.island-extras[data-key="videocall"] .palm,
-.island-extras[data-key="Mysore"] .palm,
-.island-extras[data-key="Mumbai"] .palm,
-.island-extras[data-key="aryanAbout"] .palm {
-    display: none;
-}
-.island-extras[data-key="ankita"] .palm {
-    display: none;
-}
-.island-extras[data-key="Banglore"] .palm {
-    display: none;
-}
-
-/* The little emoji props sit on top of the new drawings, so hide them */
-.island-extras .island-prop {
-    display: none;
-}
-
-/* Tall shapes (palace, lighthouse, tower) collide with the floating emoji icon */
-.memory-island .island-icon {
-    display: none;
-}
-/* =========================================================
-   LANDING PAGE: black "THE VOYAGE OF" + bolder/bigger text
-   ========================================================= */
-
-/* "THE VOYAGE OF" goes black. The gold "ANKITA X ARYAN" span keeps its own colour. */
-.one-piece-page .op-hero h2 {
-    color: #000;
-    text-shadow: 0 2px 10px rgba(255, 255, 255, .55);  /* soft light halo so it reads against the sky */
-    -webkit-text-stroke: 1px #000;                     /* extra boldness */
-}
-
-/* Keep the gold names gold, with a bold stroke and the original dark shadow */
-.one-piece-page .op-hero h2 span {
-    color: #ffe083;
-    -webkit-text-stroke: 1px #ffe083;
-    text-shadow: 0 4px 15px rgba(0, 0, 0, .58);
-}
-
-/* "TWO STRANGERS. ONE ADVENTURE." */
-.one-piece-page .op-hero .op-kicker {
-    font-size: clamp(16px, 2.2vw, 24px);
-    font-weight: 900;
-    -webkit-text-stroke: .5px currentColor;
-}
-
-/* Description paragraph */
-.one-piece-page .op-hero p:not(.op-kicker) {
-    font-size: clamp(19px, 2.5vw, 29px);
-    font-weight: 900;
-    line-height: 1.6;
-    -webkit-text-stroke: .5px currentColor;
-}
-
-/* WANTED / OUR WORLD MAP / ONE PIECE buttons */
-.one-piece-page .op-grand-line-menu {
-    width: min(480px, 88vw);
-}
-
-.one-piece-page .op-destination-button {
-    min-height: 84px;
-    font-size: clamp(22px, 3vw, 34px);
-    font-weight: 900;
-    letter-spacing: .06em;
-    -webkit-text-stroke: .8px currentColor;
-}
-
-/* Hint under the buttons */
-.one-piece-page .op-menu-hint {
-    font-size: 18px;
-    font-weight: 900;
-}
-
-/* BACK button (top-left) */
-.one-piece-page .op-back-button {
-    font-size: 20px;
-    font-weight: 900;
-    -webkit-text-stroke: .5px currentColor;
-}
-
-/* The "GRAND LINE" back button inside the popups */
-.one-piece-page .op-panel-back {
-    font-size: 17px;
-    font-weight: 900;
-}
-
-/* Phones: keep the bigger text from overflowing */
-@media (max-width: 700px) {
-    .one-piece-page .op-hero h2 { -webkit-text-stroke: .6px #000; }
-    .one-piece-page .op-destination-button { min-height: 72px; font-size: clamp(20px, 5.5vw, 26px); }
-    .one-piece-page .op-hero p:not(.op-kicker) { font-size: clamp(17px, 4.6vw, 22px); }
-}
-/* =========================================================
-   GRAND LINE PAGE: BIGGER FONT SIZES (size only)
-   ========================================================= */
-
-/* ---------- Opening screen ---------- */
-.one-piece-page .op-small-text,
-.one-piece-page .op-kicker,
-.one-piece-page .op-chapter { font-size: clamp(14px, 1.9vw, 19px); }
-.one-piece-page .op-opening h1 { font-size: clamp(56px, 11vw, 128px); }
-.one-piece-page .op-crossed { font-size: 44px; }
-.one-piece-page .op-couple-name { font-size: clamp(28px, 5vw, 42px); }
-.one-piece-page .op-main-button { font-size: clamp(22px, 3.1vw, 31px); }
-
-/* ---------- Header buttons ---------- */
-.one-piece-page .op-back-button { font-size: 21px; }
-.one-piece-page .op-music-button { font-size: 27px; }
-
-/* ---------- Landing page (hero + menu) ---------- */
-.one-piece-page .op-hero h2 { font-size: clamp(50px, 8.5vw, 104px); }
-.one-piece-page .op-hero p:not(.op-kicker) { font-size: clamp(19px, 2.5vw, 26px); }
-.one-piece-page .op-scroll-button,
-.one-piece-page .op-scroll { font-size: 20px; }
-
-.one-piece-page .op-grand-line-menu { width: min(440px, 88vw); }  /* room for the bigger text */
-.one-piece-page .op-destination-button { font-size: clamp(20px, 2.8vw, 29px); }
-.one-piece-page .op-menu-hint { font-size: 18px; }
-.one-piece-page .op-panel-back { font-size: 18px; }
-
-/* ---------- Section headings ---------- */
-.one-piece-page .op-section-title { font-size: clamp(32px, 5vw, 60px); }
-.one-piece-page .section-subtitle,
-.one-piece-page .map-intro { font-size: 21px; }
+        radial-gradient(circle at 10% 15%,rgba(96,57,15,.1) 0 2px,transparent 3px),
+        radial-gradient(circle at 88% 70%,rgba(96,57,15,.12) 0 2px,transparent 3px),
+        linear-gradient(rgba(246,225,164,.94),rgba(221,193,123,.93));
+    box-shadow:0 18px 45px var(--op-shadow),inset 0 0 35px rgba(91,55,12,.12);
+}
+.op-section::before,.op-section::after{content:"✦";position:absolute;color:rgba(92,57,20,.65);font-size:25px}
+.op-section::before{top:12px;left:18px}
+.op-section::after{right:18px;bottom:12px}
+
+.op-section-title{
+    text-align:center;color:#24170e;font-size:clamp(32px,5vw,60px);letter-spacing:.07em;
+    text-shadow:1px 2px 0 rgba(255,255,255,.28);
+}
+.op-section-title span{color:#6b241d}
+
+.section-subtitle,.map-intro,.treasure-intro,.treasure-section > p{text-align:center}
+.section-subtitle,.map-intro{margin-top:10px;font-size:21px}
 
 /* ---------- Wanted posters ---------- */
-.one-piece-page .wanted-top { font-size: clamp(42px, 6.2vw, 72px); }
-.one-piece-page .wanted-poster h3 { font-size: clamp(32px, 5vw, 52px); }
-.one-piece-page .wanted-subtitle { font-size: 17px; }
-.one-piece-page .bounty { font-size: 27px; }
-.one-piece-page .crime { font-size: 20px; }
+.wanted-container{
+    display:grid;grid-template-columns:repeat(2,minmax(280px,1fr));
+    gap:clamp(24px,5vw,65px);width:min(1100px,100%);margin:35px auto 0;
+}
+.wanted-poster{
+    padding:clamp(20px,3vw,32px) clamp(20px,3vw,32px) clamp(26px,4vw,40px);
+    text-align:center;color:#21160d;
+    background:linear-gradient(rgba(235,207,139,.92),rgba(210,174,98,.95));
+    border:4px solid #805820;box-shadow:0 13px 25px rgba(72,42,9,.35);transform:rotate(-1.2deg);
+}
+.wanted-poster:nth-child(2){transform:rotate(1.2deg)}
+.wanted-top{
+    font-size:clamp(42px,6.2vw,72px);letter-spacing:.08em;
+    border-bottom:3px solid #5e3b17;padding-bottom:5px;
+}
+.wanted-photo{
+    position:relative;height:clamp(280px,38vw,420px);margin:20px auto;
+    display:grid;place-items:center;border:4px solid #5e3b17;background:transparent;overflow:hidden;
+}
+.wanted-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
+.wanted-photo-slide{
+    position:absolute;inset:0;width:100%;height:100%;
+    object-fit:cover;object-position:center top;opacity:0;transition:opacity 1s ease;
+}
+.wanted-photo-slide.active{opacity:1}
+.wanted-photo span{font-size:70px;filter:drop-shadow(0 4px 5px rgba(0,0,0,.2))}
+.wanted-poster h3{font-size:clamp(32px,5vw,52px)}
+.wanted-subtitle{margin-top:3px;font-size:17px;letter-spacing:.1em}
+.bounty{margin-top:14px;font-size:27px}
+.crime{margin-top:12px;font-size:20px;line-height:1.5}
 
-/* ---------- Map ---------- */
-.one-piece-page .memory-island strong { font-size: 17px; }
+/* =====================================================
+   WORLD MAP
+   ===================================================== */
+.map-section{overflow:hidden}
+.grand-line-map{
+    position:relative;min-height:max(520px,calc(100dvh - 260px));margin-top:25px;
+    border:4px solid #6f4a20;border-radius:15px;overflow:hidden;
+    background:
+        radial-gradient(circle at 25% 25%,rgba(255,255,255,.32) 0 4px,transparent 5px),
+        linear-gradient(145deg,rgba(93,178,194,.78),rgba(221,194,119,.82));
+    box-shadow:inset 0 0 50px rgba(70,43,9,.18);
+}
+.map-route{position:absolute;inset:0;width:100%;height:100%;z-index:2;opacity:.85;pointer-events:none}
+.map-route polyline{animation:routeFlow 12s linear infinite}
 
-/* ---------- Island memory popup ---------- */
-.one-piece-page .memory-modal-icon { font-size: 52px; }
-.one-piece-page .memory-chapter { font-size: 18px; }
-.one-piece-page .memory-modal-box h2 { font-size: clamp(36px, 7vw, 62px); }
-.one-piece-page .memory-modal-box #memoryText,
-.one-piece-page .memory-modal-box > p:last-child { font-size: 20px; }
-.one-piece-page #memoryPhotoCaption,
-.one-piece-page .memory-photo-caption { font-size: 22px; }
-.one-piece-page .memory-photo-counter { font-size: 17px; }
+/* Island positions (heart-shaped layout) */
+.island-zero  {left:50.0%;top:30.3%}  /* Ankita */
+.island-one   {left:63.4%;top:13.0%}  /* CODM */
+.island-two   {left:88.0%;top:33.0%}  /* Video Calls */
+.island-three {left:63.4%;top:68.6%}  /* Mysore */
+.island-six   {left:50.0%;top:88.0%}  /* Aryan */
+.island-four  {left:36.6%;top:68.6%}  /* Banglore */
+.island-five  {left:12.0%;top:33.0%}  /* Mumbai */
+.island-seven {left:36.6%;top:13.0%}  /* Future */
 
-/* ---------- Treasure ---------- */
-.one-piece-page .treasure-section > p,
-.one-piece-page .treasure-message-box > p { font-size: 21px; }
-.one-piece-page .chest-hint { font-size: 18px; }
-.one-piece-page .treasure-heart { font-size: 70px; }
-.one-piece-page .treasure-message-box h2 { font-size: clamp(44px, 8.5vw, 80px); }
-.one-piece-page .treasure-sign { font-size: 22px; }
+.memory-island{
+    position:absolute;margin:0!important;padding:0!important;z-index:3;width:150px;
+    border:none;border-radius:0;background:transparent;box-shadow:none;cursor:pointer;
+    display:flex;flex-direction:column;align-items:center;
+    filter:drop-shadow(0 10px 10px rgba(10,30,50,.35));
+    transition:transform .22s ease,filter .22s ease;
+    transform:translate(-50%,-50%);
+    animation:islandBob 5s ease-in-out infinite;animation-delay:var(--bob-delay,0s);
+}
+.memory-island:hover{transform:translate(-50%,-50%) translateY(-8px) scale(1.06);filter:drop-shadow(0 16px 14px rgba(10,30,50,.45)) brightness(1.05)}
+.memory-island.visited,.memory-island.visited:hover{
+    filter:drop-shadow(0 10px 10px rgba(10,30,50,.35)) drop-shadow(0 0 14px rgba(255,225,130,.95));
+}
+.memory-island .island-shape{width:100%;height:auto;display:block;pointer-events:none}
 
-/* ---------- Music menu ---------- */
-.one-piece-page .op-music-menu-title { font-size: 17px; }
-.one-piece-page .op-song-btn { font-size: 17px; }
+/* Wooden plank name sign */
+.memory-island strong{
+    position:relative;z-index:5;margin-top:-14px;padding:4px 14px;border-radius:6px;
+    background:linear-gradient(#c98a3f,#8a5a24);border:2px solid #4a2c12;
+    color:#fff3c8;font-size:17px;font-weight:normal;letter-spacing:.04em;line-height:1.25;text-align:center;
+    text-shadow:0 1px 0 #4a2c12;box-shadow:0 3px 0 #4a2c12,0 6px 10px rgba(0,0,0,.3);
+}
+.memory-island strong::before,.memory-island strong::after{
+    content:"";position:absolute;top:50%;width:4px;height:4px;border-radius:50%;background:#3a220e;translate:0 -50%;
+}
+.memory-island strong::before{left:4px}
+.memory-island strong::after{right:4px}
 
-/* ---------- Footer ---------- */
-.one-piece-page .footer-skull { font-size: 54px; }
-.one-piece-page .op-footer h3 { font-size: clamp(32px, 6vw, 58px); }
-.one-piece-page .op-footer p { font-size: 20px; }
-.one-piece-page .footer-couple { font-size: 29px; }
+/* Island decoration overlay */
+.island-extras{position:absolute;top:0;left:0;width:100%;aspect-ratio:200/160;container-type:inline-size;pointer-events:none;z-index:1}
+.island-extras svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.island-extras .palm,
+.island-extras .island-prop,
+.memory-island .island-icon{display:none}
+
+.foam-arc{
+    fill:none;stroke:#fff;stroke-width:3;stroke-linecap:round;
+    transform-box:fill-box;transform-origin:center;animation:foamPulse 3s ease-out infinite;
+}
+.foam-arc.foam-2{animation-delay:1.5s;stroke-width:2}
+.memory-island:hover .foam-arc{animation-duration:1.4s}
+
+.twinkle{fill:#fff8d0;transform-box:fill-box;transform-origin:center;animation:twinkle 2.8s ease-in-out infinite}
+.twinkle.tw-2{animation-delay:1.3s}
+
+/* Waves */
+.map-waves{
+    position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.30;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 120'%3E%3Cpath d='M0 60 Q50 30 100 60 T200 60 T300 60 T400 60' fill='none' stroke='white' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-size:240px 72px;animation:waveDriftA 40s linear infinite;
+}
+.map-waves.waves-2{opacity:.18;background-size:360px 108px;background-position:0 40px;animation:waveDriftB 65s linear infinite reverse}
+
+/* Fog */
+.map-fog{
+    position:absolute;width:55%;height:26%;z-index:2;border-radius:50%;pointer-events:none;
+    background:radial-gradient(ellipse at center,rgba(255,255,255,.42),rgba(255,255,255,0) 70%);
+    filter:blur(6px);animation:fogDrift 26s ease-in-out infinite alternate;
+}
+.map-fog.fog-1{left:-10%;top:52%}
+.map-fog.fog-2{right:-12%;top:8%;animation-duration:34s;animation-direction:alternate-reverse}
+
+/* Compass rose */
+.map-compass{position:absolute;left:14px;bottom:14px;width:92px;z-index:2;pointer-events:none;filter:drop-shadow(0 4px 6px rgba(0,0,0,.3))}
+.compass-needle{transform-box:fill-box;transform-origin:50% 50%;animation:needleWobble 6s ease-in-out infinite}
+
+/* Whirlpool + sea monsters */
+.map-deco{
+    position:absolute;z-index:2;pointer-events:none;font-size:clamp(30px,4vw,48px);line-height:1;
+    margin:-.5em 0 0 -.5em;opacity:.85;filter:drop-shadow(0 4px 4px rgba(0,0,0,.3));
+}
+.map-deco.sea-monster{font-size:clamp(60px,9vw,110px)}
+.monster-1{left:8%;top:12%;animation:shipBob 3.6s ease-in-out infinite}
+.monster-2{left:88%;top:84%;animation:shipBob 4.4s ease-in-out infinite reverse}
+.monster-3{right:8%;top:12%;animation:shipBob 3.2s ease-in-out infinite}
+
+/* Ship + wake */
+.map-ship{
+    position:absolute;z-index:4;left:50%;top:50%;font-size:70px;line-height:1;
+    transform:translate(-50%,-50%);filter:drop-shadow(0 8px 4px rgba(0,0,0,.3));
+}
+.ship-flip{display:block;transition:transform .35s ease}
+.ship-emoji{display:block;animation:shipBob 2.8s ease-in-out infinite}
+.ship-wake{
+    position:absolute;z-index:3;width:14px;height:14px;border-radius:50%;background:rgba(255,255,255,.75);
+    pointer-events:none;transform:translate(-50%,-50%);animation:wakeFade 1.4s ease-out forwards;
+}
+
+/* =====================================================
+   MEMORY POPUP (polaroid slideshow)
+   ===================================================== */
+.memory-modal{
+    position:fixed;inset:0;z-index:7000;display:flex;align-items:center;justify-content:center;padding:12px;
+    background:radial-gradient(circle at center,rgba(255,255,255,.15),rgba(0,0,0,.72));
+    backdrop-filter:blur(6px);opacity:0;visibility:hidden;pointer-events:none;
+    transition:opacity .35s ease,visibility .35s ease;
+}
+.memory-modal.open,.memory-modal.active{opacity:1;visibility:visible;pointer-events:auto}
+
+.memory-modal-box{
+    position:relative;width:min(96vw,1400px);max-width:96vw;max-height:96vh;overflow-y:auto;
+    padding:35px 30px 30px;text-align:center;
+    background:linear-gradient(135deg,rgba(4,30,52,.72),rgba(8,65,91,.62)),url("images/sunny.png") center center/cover no-repeat;
+    background-attachment:fixed;
+    border:4px solid #151515;border-radius:17px;
+    box-shadow:0 20px 60px rgba(0,0,0,.55),8px 8px 0 rgba(0,0,0,.2);
+    transform:scale(.85) translateY(25px);transition:transform .4s cubic-bezier(.2,.8,.2,1);
+}
+.memory-modal.open .memory-modal-box,
+.memory-modal.active .memory-modal-box,
+.treasure-message.open .treasure-message-box{transform:scale(1) translateY(0)}
+
+.close-memory{
+    position:absolute;top:8px;right:12px;width:46px;height:46px;padding:0;z-index:5;
+    display:flex;align-items:center;justify-content:center;
+    border:none;border-radius:50%;background:transparent;cursor:pointer;transition:transform .2s ease;
+}
+.close-memory:hover{transform:scale(1.12)}
+
+.memory-modal-icon{font-size:52px;margin-bottom:5px}
+.memory-chapter{margin:0 0 5px;font-size:18px;letter-spacing:3px;opacity:.7;color:#74471b}
+.memory-modal-box h2{margin:5px 0 10px;font-size:clamp(36px,7vw,62px)}
+.memory-line{width:100px;height:3px;margin:12px auto 15px;background:#111}
+.memory-modal-box #memoryText{max-width:650px;margin:0 auto 25px;font-size:20px;line-height:1.7}
+.memory-modal-box > p:last-child{font-family:Georgia,serif;font-size:20px;line-height:1.7}
+
+/* Polaroid area */
+.memory-polaroid-area,.memory-polaroid{
+    position:relative;display:flex;align-items:center;justify-content:center;gap:20px;width:100%;margin:10px auto 5px;
+}
+.memory-polaroid-frame{
+    position:relative;display:inline-block;width:auto;max-width:min(1100px,88vw);max-height:70vh;
+    padding:16px 16px 58px;background:#fff;
+    box-shadow:0 12px 25px rgba(0,0,0,.28),3px 4px 0 rgba(0,0,0,.12);
+    transform:rotate(-1.5deg);transition:transform .3s ease,opacity .25s ease;
+}
+.memory-polaroid-frame:hover{transform:rotate(0deg) scale(1.015)}
+.memory-polaroid-frame img{
+    display:block;width:auto;height:auto;max-width:100%;max-height:58vh;
+    aspect-ratio:auto;object-fit:contain;background:#eee;border:1px solid #ddd;
+    opacity:1;transition:opacity .25s ease;
+}
+.memory-polaroid-frame img.photo-changing{opacity:0}
+.memory-polaroid-frame img[src=""]{visibility:hidden}
+
+.memory-photo-caption,#memoryPhotoCaption{
+    position:absolute;left:14px;right:14px;bottom:10px;margin:0;min-height:30px;
+    display:flex;align-items:center;justify-content:center;
+    font-family:"Comic Sans MS","Bradley Hand",cursive;font-size:22px;color:#222;line-height:1.2;
+}
+
+/* Pin */
+.memory-polaroid-pin,.polaroid-pin{
+    position:absolute;width:18px;height:18px;top:-9px;left:50%;transform:translateX(-50%);
+    border-radius:50%;background:#333;box-shadow:0 2px 4px rgba(0,0,0,.35);z-index:3;
+}
+.memory-polaroid-pin::after,.polaroid-pin::after{
+    content:"";position:absolute;width:7px;height:7px;top:3px;left:3px;border-radius:50%;background:rgba(255,255,255,.5);
+}
+
+/* Prev / next ship wheels */
+.memory-photo-nav{
+    flex-shrink:0;width:72px;min-width:72px;height:72px;padding:0;border:none;border-radius:50%;
+    background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;
+    transition:transform .2s ease;
+}
+.memory-photo-nav:hover{transform:scale(1.12)}
+.memory-photo-nav:active{transform:scale(.95)}
+.memory-photo-nav .wheel-icon,.close-memory .close-wheel{
+    display:block;color:#fff6da;
+    filter:drop-shadow(0 3px 8px rgba(0,0,0,.65)) drop-shadow(0 0 10px rgba(0,0,0,.35));
+    animation:shipWheelSpin 6s linear infinite;
+}
+.memory-photo-nav .wheel-icon{width:44px;height:44px}
+.close-memory .close-wheel{width:26px;height:26px}
+
+.memory-photo-counter{margin:10px 0 0;font-size:17px;letter-spacing:2px;opacity:.65}
+
+/* =====================================================
+   TREASURE
+   ===================================================== */
+.treasure-section{text-align:center}
+.treasure-section > p{margin-top:8px;font-size:21px}
+.treasure-area{margin-top:30px}
+
+.treasure-chest{
+    position:relative;width:200px;height:170px;border:0;background:transparent;cursor:pointer;padding:0;
+    transition:transform .25s ease,filter .25s ease;filter:drop-shadow(0 14px 18px rgba(60,35,10,.45));
+}
+.treasure-chest:hover{
+    transform:translateY(-8px) rotate(-2deg);
+    filter:drop-shadow(0 20px 22px rgba(60,35,10,.5)) drop-shadow(0 0 22px rgba(255,220,130,.55));
+}
+.chest-svg{width:100%;height:100%;display:block;overflow:visible}
+.chest-shadow{fill:rgba(20,10,0,.28);filter:blur(3px)}
+.chest-plank{stroke:rgba(50,27,8,.35);stroke-width:2}
+.chest-stud{fill:#fff2c4;stroke:#7a5417;stroke-width:1}
+
+.chest-lid-group{transform-origin:100px 82px;transition:transform .55s cubic-bezier(.2,.8,.25,1)}
+.treasure-chest.open .chest-lid-group{transform:rotateX(-58deg) translateY(-6px)}
+.chest-lock-group{transform-origin:100px 91px;transition:opacity .35s ease,transform .35s ease}
+.treasure-chest.open .chest-lock-group{opacity:0;transform:translateY(-14px) scale(.7)}
+.chest-gem-group{transform-origin:100px 54px;animation:chestGemPulse 2.4s ease-in-out infinite}
+
+.sparkle{fill:#fff6d8;animation:chestSparkle 2.6s ease-in-out infinite}
+.s1{animation-delay:0s}.s2{animation-delay:.5s}.s3{animation-delay:1s}.s4{animation-delay:1.6s}
+
+.chest-hint{margin-top:9px;font-size:18px;letter-spacing:.12em}
+
+/* Treasure popup */
+.treasure-message{
+    position:fixed;inset:0;z-index:1200;display:grid;place-items:center;padding:20px;
+    background:rgba(0,31,60,.74);backdrop-filter:blur(7px);
+    opacity:0;visibility:hidden;pointer-events:none;transition:.3s ease;
+}
+.treasure-message.open{opacity:1;visibility:visible;pointer-events:auto}
+.treasure-message-box{
+    position:relative;width:min(620px,94vw);padding:clamp(28px,5vw,55px);text-align:center;
+    border:5px solid #704b1f;border-radius:17px;background:linear-gradient(#f5df9e,#d7b96f);
+    box-shadow:0 25px 70px rgba(0,0,0,.45);transform:translateY(25px) scale(.96);transition:.35s ease;
+}
+.treasure-heart{font-size:70px;animation:heartBeat 1.2s ease-in-out infinite}
+.treasure-message-box > p{margin-top:8px;font-size:21px}
+.treasure-message-box h2{margin-top:12px;font-size:clamp(44px,8.5vw,80px);color:#9e3028;line-height:1}
+.treasure-sign{margin-top:18px;font-family:Georgia,serif;font-size:22px}
+
+/* =====================================================
+   FOOTER
+   ===================================================== */
+.op-footer{
+    padding:75px 20px 90px;text-align:center;color:#fff;background:rgba(3,38,70,.76);
+    border-top:4px solid rgba(255,223,137,.7);box-shadow:0 -10px 35px rgba(0,0,0,.2);
+}
+.footer-skull{font-size:54px;color:#ffe28d}
+.op-footer h3{margin-top:10px;font-size:clamp(32px,6vw,58px);color:#fff1b5}
+.op-footer p{margin-top:10px;font-size:20px}
+.footer-couple{margin-top:25px;font-size:29px;letter-spacing:.1em;color:#ffd878}
+
+/* =====================================================
+   ONE PIECE "ENTRY" BUTTON ON THE MAIN SITE
+   ===================================================== */
+#gallery .one-piece-entry-button{
+    margin-top:0;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.55);color:#fff;
+    backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);
+}
+#gallery .one-piece-entry-button:hover{background:rgba(255,255,255,.22);transform:translateY(-2px)}
+
+/* =====================================================
+   ANIMATIONS
+   ===================================================== */
+@keyframes spinCompass{to{transform:rotate(360deg)}}
+@keyframes cloudMove{from{transform:translateX(0) scale(1)}to{transform:translateX(calc(100vw + 450px)) scale(1.15)}}
+@keyframes shipBob{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-13px) rotate(3deg)}}
+@keyframes heartBeat{0%,100%{transform:scale(1)}20%{transform:scale(1.12)}40%{transform:scale(1)}}
+@keyframes routeFlow{to{stroke-dashoffset:-40}}
+@keyframes waveDriftA{to{background-position:240px 0}}
+@keyframes waveDriftB{from{background-position:0 40px}to{background-position:360px 40px}}
+@keyframes fogDrift{from{transform:translateX(-6%)}to{transform:translateX(18%)}}
+@keyframes needleWobble{0%,100%{transform:rotate(-12deg)}50%{transform:rotate(14deg)}}
+@keyframes wakeFade{to{opacity:0;transform:translate(-50%,-50%) scale(2.6)}}
+@keyframes islandBob{0%,100%{translate:0 0}50%{translate:0 -6px}}
+@keyframes foamPulse{0%{opacity:.85;transform:scale(.92)}100%{opacity:0;transform:scale(1.12)}}
+@keyframes twinkle{0%,100%{opacity:0;transform:scale(.3)}50%{opacity:1;transform:scale(1)}}
+@keyframes chestGemPulse{
+    0%,100%{filter:drop-shadow(0 0 3px rgba(150,230,255,.6))}
+    50%{filter:drop-shadow(0 0 10px rgba(150,230,255,.95))}
+}
+@keyframes chestSparkle{0%,100%{opacity:0;transform:scale(.4)}50%{opacity:1;transform:scale(1.15)}}
+@keyframes shipWheelSpin{to{transform:rotate(360deg)}}
+@keyframes opPanelPop{
+    0%{opacity:0;transform:scale(.82) translateY(35px)}
+    55%{opacity:1;transform:scale(1.025) translateY(-4px)}
+    78%{transform:scale(.99) translateY(1px)}
+    100%{opacity:1;transform:scale(1) translateY(0)}
+}
+@keyframes grandLineButtonPop{
+    0%{transform:translateX(0) scale(1)}
+    38%{transform:translateX(16px) scale(1.12)}
+    68%{transform:translateX(7px) scale(1.04)}
+    100%{transform:translateX(0) scale(1)}
+}
+
+/* =====================================================================
+   RESPONSIVE — ONE PIECE
+   ===================================================================== */
+
+/* ---------- Tablets + phones ---------- */
+@media(max-width:850px){
+
+    /* Header: small buttons tucked into the top corners */
+    .op-header{padding:8px 10px 0;min-height:0}
+    .one-piece-page .op-header .op-music-wrap{top:8px;right:10px}
+    .op-back-button{min-height:44px;padding:8px 14px;font-size:18px}
+    .op-music-button{width:44px;height:44px;min-height:44px;font-size:22px}
+    .one-piece-page .grand-line-content .op-destination-panel .op-panel-back{top:8px;left:10px;font-size:15px}
+
+    /* Opening screen: bigger text */
+    .one-piece-page .op-opening-content{width:96vw;padding:20px 12px}
+    .op-opening h1{font-size:clamp(64px,19vw,92px);line-height:.95}
+    .op-opening .op-small-text{font-size:17px;letter-spacing:.1em}
+    .op-couple-name{font-size:40px}
+    .op-crossed{font-size:52px}
+    .op-main-button{font-size:30px;padding:16px 38px}
+
+    /* Hero */
+    .op-hero{min-height:760px;align-items:end;padding-bottom:70px}
+    .op-hero-content{margin:0;text-align:center;padding:22px}
+    .op-hero p:not(.op-kicker){font-size:clamp(17px,4.6vw,22px)}
+    .op-hero p:not(.op-kicker) br{display:none}
+
+    /* Destination buttons: bigger text, column on the left */
+    .one-piece-page .op-grand-line-menu{width:min(68vw,290px);gap:16px;margin:22px 0 0}
+    .one-piece-page .op-destination-button{
+        min-height:84px;padding:12px;font-size:clamp(27px,7.6vw,34px);letter-spacing:.03em;line-height:1.15;
+    }
+
+    /* Wanted + map */
+    .wanted-container{grid-template-columns:1fr;width:min(430px,100%)}
+    .grand-line-map{min-height:max(700px,calc(100dvh - 240px))}
+    .memory-island{width:112px}
+    .memory-island strong{font-size:15px}
+    .map-ship{left:44%;top:42%;font-size:58px}
+
+    /* Memory popup */
+    .memory-modal-box #memoryText{font-size:17px}
+    .memory-photo-caption,#memoryPhotoCaption{font-size:17px}
+}
 
 /* ---------- Phones ---------- */
-@media (max-width: 850px) {
-    .one-piece-page .op-back-button { font-size: 17px; }
-    .one-piece-page .op-panel-back { font-size: 15px; }
-    .one-piece-page .op-destination-button { font-size: clamp(20px, 5.5vw, 26px); }
-    .one-piece-page .op-hero p:not(.op-kicker) { font-size: clamp(17px, 4.6vw, 22px); }
-    .one-piece-page .memory-island strong { font-size: 15px; }
-    .one-piece-page .memory-modal-box #memoryText { font-size: 17px; }
-    .one-piece-page #memoryPhotoCaption { font-size: 17px; }
+@media(max-width:700px){
+    .op-hero h2{-webkit-text-stroke:.6px #000}
+    .one-piece-page .op-panel-back{padding:9px 13px}
+    .one-piece-page .op-music-menu{right:-8px}
 }
-/* =========================================================
-   MOBILE: smaller music/back buttons tucked up top,
-   destination buttons in a narrow column on the left
-   ========================================================= */
-@media (max-width: 850px) {
 
-    .one-piece-page .op-grand-line-menu {
-        width: min(58vw, 260px);     /* was 44vw / 190px */
-        gap: 16px;
-    }
-
-    .one-piece-page .op-destination-button {
-        min-height: 76px;            /* was 58px */
-        padding: 12px 14px;
-        font-size: clamp(19px, 5.4vw, 24px);   /* was 15px */
-        line-height: 1.2;
-    }
-
-    /* Back + music buttons slightly bigger too */
-    .one-piece-page .op-back-button {
-        min-height: 44px;
-        font-size: 18px;
-        padding: 8px 14px;
-    }
-    .one-piece-page .op-music-button {
-        width: 44px;
-        height: 44px;
-        min-height: 44px;
-        font-size: 22px;
-    }
+@media(max-width:600px){
+    .memory-modal{padding:6px}
+    .memory-modal-box{width:99vw;max-width:99vw;max-height:98vh;padding:42px 8px 12px}
+    .memory-modal-box #memoryText{line-height:1.55;margin-bottom:18px}
+    .memory-polaroid-area,.memory-polaroid{gap:8px;width:100%}
+    .memory-polaroid-frame{width:auto;max-width:92vw;max-height:82vh;padding:10px 10px 48px}
+    .memory-polaroid-frame img{width:auto;max-width:100%;max-height:70vh;object-fit:contain}
+    .memory-photo-caption,#memoryPhotoCaption{left:9px;right:9px;bottom:7px}
+    .memory-photo-nav{width:56px;min-width:56px;height:56px;margin:0!important;padding:0!important;line-height:1}
+    .memory-photo-nav .wheel-icon{width:36px;height:36px}
+    .close-memory .close-wheel{width:20px;height:20px}
+    .memory-polaroid-pin,.polaroid-pin{width:14px;height:14px;top:-7px}
+    .memory-polaroid-pin::after,.polaroid-pin::after{width:5px;height:5px;top:2px;left:2px}
 }
-.one-piece-page .op-compass {
-    font-variant-emoji: text;
-    color: #fff;
-    background: none;
+
+@media(max-width:520px){
+    .op-section{width:95vw;padding:27px 17px 35px;margin:28px auto}
+    .memory-island{width:100px}
+    .map-compass{width:68px}
 }
-@media (max-width: 850px) {
 
-    /* Music + Back tucked into the top corners */
-    .one-piece-page .op-header {
-        padding: 8px 10px 0;
-        min-height: 0;
-    }
-    .one-piece-page .op-header .op-music-wrap {
-        top: 8px;
-        right: 10px;
-    }
-    .one-piece-page .grand-line-content .op-destination-panel .op-panel-back {
-        top: 8px;
-        left: 10px;
-    }
+@media(max-width:380px){
+    .memory-modal-box{padding-left:8px;padding-right:8px}
+    .memory-polaroid-frame{max-width:63vw;width:auto;padding-bottom:38px}
+    .memory-photo-nav{width:44px;height:44px}
+    .memory-photo-nav .wheel-icon{width:28px;height:28px}
+    .close-memory .close-wheel{width:17px;height:17px}
+}
 
-    /* Show more of the ship */
-    .one-piece-page .op-bg-slideshow,
-    .one-piece-page::before {
-        background-position: 72% center;
+@media(prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{
+        animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;
     }
 }
