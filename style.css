@@ -1127,4 +1127,40 @@ body.one-piece-active #musicBoxAryan{display:none!important;visibility:hidden!im
 .one-piece-page .op-footer h3{color:var(--op-gold-deep)}
 .one-piece-page .op-footer p{color:var(--op-gold);font-size:clamp(22px,5vw,26px)}
 .one-piece-page .footer-couple{color:var(--op-gold-deep);font-size:clamp(30px,6vw,36px)}
+/* =====================================================
+   WANTED POSTER: IMAGE FRAME
+   ===================================================== */
+.one-piece-page .wanted-poster{
+    position:relative;aspect-ratio:662/992;padding:0;border:0;background:none;
+    box-shadow:none;container-type:inline-size;
+    filter:drop-shadow(0 12px 16px rgba(72,42,9,.45));
+}
 
+/* The frame image sits on top of the photo */
+.one-piece-page .wanted-poster::after{
+    content:"";position:absolute;inset:0;z-index:3;pointer-events:none;
+    background:url("images/wanted-frame.png") center/100% 100% no-repeat;
+}
+
+/* "WANTED" is already printed on the frame */
+.one-piece-page .wanted-top{display:none}
+
+/* Photo fills the window (slightly oversized so the frame edge covers it) */
+.one-piece-page .wanted-photo{
+    position:absolute;left:8.8%;top:21%;width:82.8%;height:43.2%;
+    margin:0;border:0;z-index:1;
+}
+
+/* Text goes in the blank area under "DEAD OR ALIVE" */
+.one-piece-page .wanted-poster h3,
+.one-piece-page .wanted-subtitle,
+.one-piece-page .bounty{
+    position:absolute;left:8%;right:8%;z-index:4;margin:0;
+    text-align:center;color:#3a2412;white-space:nowrap;
+}
+.one-piece-page .wanted-poster h3{top:71.5%;font-size:10.5cqw;line-height:1}
+.one-piece-page .wanted-subtitle{top:79%;font-size:4.4cqw;letter-spacing:.08em}
+.one-piece-page .bounty{top:82.5%;font-size:8.5cqw;line-height:1}
+
+/* No room left on the poster for this line */
+.one-piece-page .wanted-poster .crime{display:none}
