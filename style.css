@@ -1068,65 +1068,32 @@ body.one-piece-active #musicBoxAryan{display:none!important;visibility:hidden!im
     .one-piece-page .op-music-button::before{width:30px;height:30px}
 }
 /* =====================================================
-   GRAND LINE: NO WHITE TEXT + BIGGER SUBHEADINGS
+   GRAND LINE: SLIGHTLY BIGGER TEXT (colours unchanged)
    ===================================================== */
-:root{--op-gold:#ffe083;--op-gold-deep:#ffd45a}
-
-/* Base colour for everything on the page (was white) */
-.one-piece-page{color:var(--op-gold)}
 
 /* Opening screen */
-.one-piece-page .op-opening-content,
-.one-piece-page .op-compass,
-.one-piece-page .op-couple-name{color:var(--op-gold)}
-.one-piece-page .op-opening h1{color:var(--op-gold-deep)}
-.one-piece-page .op-small-text{color:var(--op-gold);font-size:clamp(18px,4.6vw,24px)}
+.one-piece-page .op-small-text{font-size:clamp(17px,4.4vw,22px)}
 
-/* Header buttons */
-.one-piece-page .op-back-button{color:var(--op-gold)}
-.one-piece-page .op-song-btn{color:var(--op-gold)}
+/* Hero */
+.one-piece-page .op-hero .op-kicker{font-size:clamp(18px,4.6vw,28px)}
+.one-piece-page .op-hero p:not(.op-kicker){font-size:clamp(20px,5.2vw,28px);line-height:1.5}
+.one-piece-page .op-menu-hint{font-size:17px}
 
-/* Hero text */
-.one-piece-page .op-hero-content{color:var(--op-gold)}
-.one-piece-page .op-hero .op-kicker{
-    color:var(--op-gold);
-    font-size:clamp(20px,5vw,32px);
-    text-shadow:0 3px 10px rgba(0,0,0,.9),0 0 6px rgba(0,0,0,.8);
-}
-.one-piece-page .op-hero p:not(.op-kicker){
-    color:var(--op-gold);
-    font-size:clamp(22px,5.8vw,32px);
-    line-height:1.5;
-    text-shadow:0 3px 10px rgba(0,0,0,.95),0 0 8px rgba(0,0,0,.85);
-}
-
-/* Menu hint */
-.one-piece-page .op-menu-hint{color:var(--op-gold);font-size:18px}
-
-/* Subtitles inside the parchment panels (dark text, bigger) */
+/* Subtitles inside the parchment panels */
 .one-piece-page .section-subtitle,
 .one-piece-page .map-intro,
 .one-piece-page .treasure-intro,
-.one-piece-page .treasure-section > p{color:#24170e;font-size:clamp(22px,5vw,28px)}
-.one-piece-page .wanted-subtitle{color:#24170e;font-size:clamp(20px,4.6vw,24px)}
-.one-piece-page .crime{font-size:clamp(21px,4.8vw,25px)}
-.one-piece-page .bounty{font-size:clamp(30px,6.5vw,36px)}
-.one-piece-page .chest-hint{color:#24170e;font-size:22px}
+.one-piece-page .treasure-section > p{font-size:clamp(22px,5vw,26px)}
+.one-piece-page .chest-hint{font-size:22px}
 
-/* Memory popup (dark background, so gold) */
-.one-piece-page .memory-modal-box,
-.one-piece-page .memory-modal-box h2,
-.one-piece-page .memory-modal-box #memoryText,
-.one-piece-page .memory-modal-box > p:last-child{color:var(--op-gold)}
-.one-piece-page .memory-chapter{color:var(--op-gold-deep);opacity:.95;font-size:22px}
-.one-piece-page .memory-modal-box #memoryText{font-size:clamp(20px,5vw,24px)}
-.one-piece-page .memory-photo-counter{color:var(--op-gold);opacity:.9;font-size:20px}
+/* Memory popup */
+.one-piece-page .memory-chapter{font-size:20px}
+.one-piece-page .memory-modal-box #memoryText{font-size:clamp(18px,4.6vw,22px)}
+.one-piece-page .memory-photo-counter{font-size:19px}
 
 /* Footer */
-.one-piece-page .op-footer{color:var(--op-gold)}
-.one-piece-page .op-footer h3{color:var(--op-gold-deep)}
-.one-piece-page .op-footer p{color:var(--op-gold);font-size:clamp(22px,5vw,26px)}
-.one-piece-page .footer-couple{color:var(--op-gold-deep);font-size:clamp(30px,6vw,36px)}
+.one-piece-page .op-footer p{font-size:clamp(21px,4.8vw,24px)}
+.one-piece-page .footer-couple{font-size:clamp(30px,6vw,34px)}
 /* =====================================================
    WANTED POSTER: IMAGE FRAME
    ===================================================== */
@@ -1164,3 +1131,37 @@ body.one-piece-active #musicBoxAryan{display:none!important;visibility:hidden!im
 
 /* No room left on the poster for this line */
 .one-piece-page .wanted-poster .crime{display:none}
+/* =====================================================
+   WANTED POSTER: REMOVE TEXT "DEAD OR ALIVE" + BOUNTY BESIDE B SYMBOL
+   ===================================================== */
+
+/* "DEAD OR ALIVE" is already printed on the frame image */
+.one-piece-page .wanted-subtitle{display:none}
+
+/* Name sits in the blank space under the printed "DEAD OR ALIVE" */
+.one-piece-page .wanted-poster h3{top:73.5%;font-size:11cqw}
+
+/* Bounty goes to the right of the B symbol, on the same line */
+.one-piece-page .bounty{
+    left:19%;right:10%;top:84.4%;
+    text-align:left;
+    font-size:8.5cqw;line-height:1;
+    color:#3a2412;
+}
+/* =====================================================
+   WANTED POSTER: CRIME UNDER THE NAME
+   ===================================================== */
+
+/* Name moves up slightly to make room */
+.one-piece-page .wanted-poster h3{top:71.5%;font-size:10.5cqw;line-height:1}
+
+/* Crime shown as one line directly under the name */
+.one-piece-page .wanted-poster .crime{
+    display:block;
+    position:absolute;left:10%;right:10%;top:79%;z-index:4;margin:0;
+    text-align:center;white-space:nowrap;
+    font-size:4.4cqw;line-height:1.2;
+    color:#3a2412;
+}
+.one-piece-page .wanted-poster .crime br{display:none}
+.one-piece-page .bounty{font-size:13cqw;font-weight:900;top:82.5%}
