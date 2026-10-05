@@ -2698,6 +2698,7 @@ function stopGrandLineBackgroundSlideshow() {
                 chapter: "CHAPTER I",
 
                 title: "Where It All Began",
+                song:"music/Raftaarein.mp3",
 
                 text:
                     "Our story began somewhere between a game of CODM and two people who had no idea what was coming next.",
