@@ -132,7 +132,6 @@
                 <div class="op-grand-line-menu" aria-label="Grand Line destinations">
                     <button type="button" class="op-destination-button" data-op-section="wantedSection">☠ WANTED</button>
                     <button type="button" class="op-destination-button" data-op-section="mapSection">🗺 OUR WORLD MAP</button>
-                    <button type="button" class="op-destination-button" data-op-section="treasureSection">ONE PIECE</button>
                 </div>
 
                 
@@ -232,6 +231,12 @@
             <p class="map-intro">
                 Every island holds a piece of our story.
             </p>
+            <p class="map-riddle">
+    Eight islands scattered across the sea,<br>
+    each one holds a part of you and me.<br>
+    Sail to them all, leave none behind,<br>
+    and the One Piece you seek will be yours to find.
+   </p>
 
             <div class="grand-line-map">
                 <!-- Map dressing -->
@@ -665,6 +670,132 @@
                 <div class="map-ship">
     <span class="ship-flip"><span class="ship-emoji">⛵</span></span>
 </div>
+<div id="mapTreasure" class="map-treasure">
+    <button id="treasureChest" class="treasure-chest" type="button" aria-label="Open the treasure chest">
+
+        <svg class="chest-svg" viewBox="0 0 200 170" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <defs>
+    <linearGradient id="cWood" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#b9772f"/><stop offset="100%" stop-color="#6b3d15"/>
+    </linearGradient>
+    <linearGradient id="cLid" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e2a35a"/><stop offset="100%" stop-color="#8f5a22"/>
+    </linearGradient>
+    <linearGradient id="cGold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fff0b5"/><stop offset="45%" stop-color="#f0bd4f"/><stop offset="100%" stop-color="#a8751d"/>
+    </linearGradient>
+    <radialGradient id="cGem" cx="35%" cy="30%" r="75%">
+      <stop offset="0%" stop-color="#ffe9ee"/><stop offset="45%" stop-color="#ff5c7a"/><stop offset="100%" stop-color="#9c1636"/>
+    </radialGradient>
+    <radialGradient id="cGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fff2b0" stop-opacity=".95"/>
+      <stop offset="60%" stop-color="#ffd35c" stop-opacity=".35"/>
+      <stop offset="100%" stop-color="#ffd35c" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="cRay" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0%" stop-color="#fff3b8" stop-opacity=".8"/>
+      <stop offset="100%" stop-color="#fff3b8" stop-opacity="0"/>
+    </linearGradient>
+    <clipPath id="cLidClip">
+      <path d="M20,84 C20,36 48,16 100,16 C152,16 180,36 180,84 Z"/>
+    </clipPath>
+  </defs>
+
+  <!-- soft glow behind chest -->
+  <ellipse class="chest-glow" cx="100" cy="80" rx="120" ry="90" fill="url(#cGlow)"/>
+
+  <!-- light rays (show when open) -->
+  <g class="chest-rays">
+    <polygon points="100,80 40,-40 70,-40"  fill="url(#cRay)"/>
+    <polygon points="100,80 90,-55 112,-55" fill="url(#cRay)"/>
+    <polygon points="100,80 130,-40 160,-40" fill="url(#cRay)"/>
+    <polygon points="100,80 10,-5 10,25"    fill="url(#cRay)"/>
+    <polygon points="100,80 190,-5 190,25"  fill="url(#cRay)"/>
+  </g>
+
+  <ellipse class="chest-shadow" cx="100" cy="158" rx="78" ry="9"/>
+
+  <!-- treasure inside (hidden behind the lid until open) -->
+  <g class="chest-loot">
+    <path d="M30,86 C40,62 62,56 100,54 C138,56 160,62 170,86 Z" fill="#c98a1c" stroke="#7a5417" stroke-width="2"/>
+    <g fill="url(#cGold)" stroke="#7a5417" stroke-width="1.5">
+      <ellipse cx="50"  cy="70" rx="9" ry="5"/>
+      <ellipse cx="72"  cy="62" rx="9" ry="5"/>
+      <ellipse cx="96"  cy="58" rx="9" ry="5"/>
+      <ellipse cx="122" cy="62" rx="9" ry="5"/>
+      <ellipse cx="146" cy="70" rx="9" ry="5"/>
+      <ellipse cx="62"  cy="78" rx="9" ry="5"/>
+      <ellipse cx="86"  cy="72" rx="9" ry="5"/>
+      <ellipse cx="112" cy="72" rx="9" ry="5"/>
+      <ellipse cx="136" cy="78" rx="9" ry="5"/>
+    </g>
+    <polygon points="100,44 108,56 100,68 92,56"  fill="url(#cGem)" stroke="#5e0f23" stroke-width="1.5"/>
+    <polygon points="64,56 70,64 64,72 58,64"     fill="#7fd7f2" stroke="#0d4f6b" stroke-width="1.2"/>
+    <polygon points="138,54 144,62 138,70 132,62" fill="#9df2b1" stroke="#1d6b34" stroke-width="1.2"/>
+  </g>
+
+  <!-- chest body -->
+  <rect x="22" y="82" width="156" height="70" rx="10" fill="url(#cWood)" stroke="#3d2310" stroke-width="4"/>
+  <g stroke="rgba(40,20,6,.35)" stroke-width="2">
+    <line x1="22" y1="105" x2="178" y2="105"/>
+    <line x1="22" y1="128" x2="178" y2="128"/>
+  </g>
+
+  <!-- vertical gold bands -->
+  <rect x="34"  y="82" width="13" height="70" fill="url(#cGold)" stroke="#3d2310" stroke-width="2"/>
+  <rect x="153" y="82" width="13" height="70" fill="url(#cGold)" stroke="#3d2310" stroke-width="2"/>
+  <!-- top + bottom rims -->
+  <rect x="22" y="82"  width="156" height="10" fill="url(#cGold)" stroke="#3d2310" stroke-width="2"/>
+  <rect x="22" y="140" width="156" height="12" rx="3" fill="url(#cGold)" stroke="#3d2310" stroke-width="2"/>
+
+  <!-- rivets -->
+  <g fill="#fff2c4" stroke="#7a5417" stroke-width="1">
+    <circle cx="40.5" cy="100" r="2.4"/><circle cx="40.5" cy="122" r="2.4"/>
+    <circle cx="159.5" cy="100" r="2.4"/><circle cx="159.5" cy="122" r="2.4"/>
+  </g>
+
+  <!-- lid -->
+  <g class="chest-lid-group">
+    <path d="M20,84 C20,36 48,16 100,16 C152,16 180,36 180,84 Z" fill="url(#cLid)" stroke="#3d2310" stroke-width="4"/>
+    <g clip-path="url(#cLidClip)">
+      <rect x="34"  y="10" width="13" height="80" fill="url(#cGold)" stroke="#3d2310" stroke-width="2"/>
+      <rect x="153" y="10" width="13" height="80" fill="url(#cGold)" stroke="#3d2310" stroke-width="2"/>
+      <path d="M30,30 C60,12 140,12 170,30" fill="none" stroke="rgba(255,255,255,.35)" stroke-width="4" stroke-linecap="round"/>
+    </g>
+    <rect x="20" y="72" width="160" height="13" fill="url(#cGold)" stroke="#3d2310" stroke-width="2"/>
+
+    <!-- jolly roger -->
+    <g class="chest-skull" stroke="#2b1708" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">
+      <path d="M78,58 L122,32 M122,58 L78,32" fill="none" stroke="#fff6da" stroke-width="4"/>
+      <path d="M78,58 L122,32 M122,58 L78,32" fill="none" stroke="#2b1708" stroke-width="1" />
+      <circle cx="100" cy="42" r="12" fill="#fff6da"/>
+      <rect x="94" y="49" width="12" height="8" rx="2" fill="#fff6da"/>
+      <circle cx="95.5"  cy="41" r="3" fill="#2b1708" stroke="none"/>
+      <circle cx="104.5" cy="41" r="3" fill="#2b1708" stroke="none"/>
+      <path d="M100,45 l-1.6,3 h3.2z" fill="#2b1708" stroke="none"/>
+    </g>
+  </g>
+
+  <!-- lock -->
+  <g class="chest-lock-group">
+    <path d="M90,84 v-9 a10,10 0 0 1 20,0 v9" fill="none" stroke="#3d2310" stroke-width="5"/>
+    <rect x="84" y="82" width="32" height="26" rx="6" fill="url(#cGold)" stroke="#3d2310" stroke-width="3"/>
+    <circle cx="100" cy="93" r="4" fill="#3d2310"/>
+    <rect x="98.4" y="93" width="3.2" height="8" rx="1.5" fill="#3d2310"/>
+  </g>
+
+  <!-- sparkles -->
+  <g class="chest-sparkles">
+    <path class="sparkle s1" d="M42,24 l2.4,6 6,2.4 -6,2.4 -2.4,6 -2.4,-6 -6,-2.4 6,-2.4z"/>
+    <path class="sparkle s2" d="M158,20 l2,5 5,2 -5,2 -2,5 -2,-5 -5,-2 5,-2z"/>
+    <path class="sparkle s3" d="M128,6 l1.6,4 4,1.6 -4,1.6 -1.6,4 -1.6,-4 -4,-1.6 4,-1.6z"/>
+    <path class="sparkle s4" d="M66,4 l1.6,4 4,1.6 -4,1.6 -1.6,4 -1.6,-4 -4,-1.6 4,-1.6z"/>
+  </g>
+</svg>
+
+    </button>
+    <p class="chest-hint">ONE PIECE</p>
+</div>
 
             </div>
 
@@ -779,105 +910,7 @@
 
 </div>
 
-        <!-- Treasure -->
-       <section id="treasureSection" class="op-destination-panel treasure-section">
-    <div class="op-panel-box op-section">
-
-            <button type="button" class="op-panel-back" data-op-home>GRAND LINE</button>
-
-            <div class="op-section-title">
-                ☠ THE FINAL ISLAND ☠
-            </div>
-
-            <p class="treasure-intro">
-                You've reached the end of the Grand Line.
-            </p>
-
-            <p>
-                But every great adventure has one final treasure...
-            </p>
-
-            <div class="treasure-area">
-
-                <button id="treasureChest" class="treasure-chest" type="button" aria-label="Open the treasure chest">
-
-    <svg class="chest-svg" viewBox="0 0 200 170" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-
-        <defs>
-            <linearGradient id="chestWood" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#c98a3f"/>
-                <stop offset="100%" stop-color="#7a4a1c"/>
-            </linearGradient>
-            <linearGradient id="chestLidWood" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#e6ab5c"/>
-                <stop offset="100%" stop-color="#9c631f"/>
-            </linearGradient>
-            <linearGradient id="chestGold" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%" stop-color="#ffe9a8"/>
-                <stop offset="50%" stop-color="#e8b64f"/>
-                <stop offset="100%" stop-color="#a5741f"/>
-            </linearGradient>
-            <radialGradient id="chestGem" cx="35%" cy="30%" r="75%">
-                <stop offset="0%" stop-color="#e8fbff"/>
-                <stop offset="45%" stop-color="#7fd7f2"/>
-                <stop offset="100%" stop-color="#1c7fa8"/>
-            </radialGradient>
-        </defs>
-
-        <ellipse class="chest-shadow" cx="100" cy="160" rx="72" ry="9"/>
-
-        <rect x="24" y="82" width="152" height="68" rx="12" fill="url(#chestWood)" stroke="#4a2c12" stroke-width="4"/>
-        <line x1="60" y1="82" x2="60" y2="150" class="chest-plank"/>
-        <line x1="100" y1="82" x2="100" y2="150" class="chest-plank"/>
-        <line x1="140" y1="82" x2="140" y2="150" class="chest-plank"/>
-
-        <rect x="24" y="82" width="152" height="12" fill="url(#chestGold)" stroke="#4a2c12" stroke-width="2"/>
-        <rect x="24" y="120" width="152" height="12" fill="url(#chestGold)" stroke="#4a2c12" stroke-width="2"/>
-
-        <circle cx="32" cy="88" r="3" class="chest-stud"/>
-        <circle cx="168" cy="88" r="3" class="chest-stud"/>
-        <circle cx="32" cy="144" r="3" class="chest-stud"/>
-        <circle cx="168" cy="144" r="3" class="chest-stud"/>
-
-        <g class="chest-lid-group">
-            <path d="M22,82 C22,38 46,18 100,18 C154,18 178,38 178,82 Z"
-                  fill="url(#chestLidWood)" stroke="#4a2c12" stroke-width="4"/>
-            <line x1="70" y1="24" x2="70" y2="80" class="chest-plank"/>
-            <line x1="100" y1="19" x2="100" y2="80" class="chest-plank"/>
-            <line x1="130" y1="24" x2="130" y2="80" class="chest-plank"/>
-            <rect x="22" y="68" width="156" height="13" fill="url(#chestGold)" stroke="#4a2c12" stroke-width="2"/>
-
-            <g class="chest-gem-group">
-                <polygon points="100,32 114,50 100,76 86,50" fill="url(#chestGem)" stroke="#0d4f6b" stroke-width="2"/>
-                <polygon points="100,32 114,50 100,58 86,50" fill="#ffffff" opacity=".45"/>
-            </g>
-        </g>
-
-        <g class="chest-lock-group">
-            <path d="M91,82 v-10 a9,9 0 0 1 18,0 v10" fill="none" stroke="#4a2c12" stroke-width="5"/>
-            <rect x="86" y="80" width="28" height="22" rx="5" fill="url(#chestGold)" stroke="#4a2c12" stroke-width="3"/>
-            <circle cx="100" cy="91" r="3.4" fill="#4a2c12"/>
-        </g>
-
-        <g class="chest-sparkles">
-            <circle cx="55" cy="34" r="2.2" class="sparkle s1"/>
-            <circle cx="150" cy="30" r="1.8" class="sparkle s2"/>
-            <circle cx="130" cy="14" r="1.5" class="sparkle s3"/>
-            <circle cx="70" cy="10" r="1.6" class="sparkle s4"/>
-        </g>
-
-    </svg>
-
-</button>
-
-                               <p class="chest-hint">
-                    TAP THE CHEST
-                </p>
-
-            </div>
-
-    </div>
-        </section>
+        
 
 
         <!-- Treasure Message -->
@@ -890,14 +923,14 @@
                     ❤️
                 </div>
 
-                <p>
-                    IF THIS JOURNEY<br>
-                    HAD A TREASURE...
-                </p>
+               <p id="treasureLineTop">
+    IF THIS JOURNEY<br>
+    HAD A TREASURE...
+</p>
 
-                <h2>
-                    IT WOULD BE YOU.
-                </h2>
+<h2 id="treasureLineMain">
+    IT WOULD BE YOU.
+</h2>
 
                 <div class="treasure-sign">
                     — Ankita ❤️
