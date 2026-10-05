@@ -2698,7 +2698,6 @@ function stopGrandLineBackgroundSlideshow() {
                 chapter: "CHAPTER I",
 
                 title: "Where It All Began",
-                song:"music/Raftaarein.mp3",
 
                 text:
                     "Our story began somewhere between a game of CODM and two people who had no idea what was coming next.",
@@ -3307,6 +3306,8 @@ function stopIslandSong() {
             document.body.classList.remove(
                 "memory-open"
             );
+            checkTreasureUnlock();
+
 
         }
 
@@ -3595,10 +3596,91 @@ function sailShipTo(islandEl) {
             document.getElementById(
                 "closeTreasure"
             );
+            // ---- Song that plays when the chest is opened ----
+const TREASURE_SONG = "music/OnePieceTreasure.mp3";   // <- put your file name here
+
+function playTreasureSong() {
+
+    // Pause the Grand Line playlist (it resumes when the message is closed)
+    if (onePieceMusic && !onePieceMusic.paused) {
+        grandLineWasPlaying = true;
+    }
+    if (onePieceMusic) onePieceMusic.pause();
+
+    islandAudio.onerror = () =>
+        console.warn("Could not load treasure song:", TREASURE_SONG);
+
+    islandAudio.src = TREASURE_SONG;
+    islandAudio.play().catch(error => {
+        console.log("Treasure song error:", error);
+    });
+}
+// ---- Treasure taglines (add as many as you like) ----
+const treasureLines = [
+    { top: "IF THIS JOURNEY<br>HAD A TREASURE...",       main: "IT WOULD BE YOU." },
+    { top: "OUT OF EVERY ISLAND<br>AND EVERY SEA...",     main: "I'D STILL CHOOSE YOU." },
+    { top: "THEY SAY THE ONE PIECE<br>IS OUT THERE...",   main: "I FOUND MINE IN YOU." },
+    { top: "NO MAP.<br>NO COMPASS NEEDED.",               main: "YOU'RE MY NORTH." },
+    { top: "I'D SAIL THE WHOLE<br>GRAND LINE...",         main: "TO COME HOME TO YOU." },
+    { top: "SOME PEOPLE<br>SEARCH FOR GOLD...",           main: "I FOUND YOU." },
+    { top: "NO MATTER HOW FAR<br>THE SEA STRETCHES...",   main: "WE ARE HOME." }
+];
+
+const treasureLineTop  = document.getElementById("treasureLineTop");
+const treasureLineMain = document.getElementById("treasureLineMain");
+
+let treasureQueue = [];
+let lastTreasureIndex = -1;
+
+function nextTreasureLine() {
+
+    // Refill with a fresh shuffle once every line has been shown
+    if (!treasureQueue.length) {
+
+        treasureQueue = treasureLines
+            .map((_, i) => i)
+            .sort(() => Math.random() - 0.5);
+
+        // Avoid showing the same line twice in a row across shuffles
+        const last = treasureQueue.length - 1;
+
+        if (treasureQueue.length > 1 && treasureQueue[last] === lastTreasureIndex) {
+            [treasureQueue[0], treasureQueue[last]] =
+                [treasureQueue[last], treasureQueue[0]];
+        }
+    }
+
+    lastTreasureIndex = treasureQueue.pop();
+
+    const line = treasureLines[lastTreasureIndex];
+
+    if (treasureLineTop)  treasureLineTop.innerHTML  = line.top;
+    if (treasureLineMain) treasureLineMain.innerHTML = line.main;
+}
+// ---- Final island: chest appears once every island is visited ----
+const mapTreasure = document.getElementById("mapTreasure");
+let treasureUnlocked = false;
+
+function checkTreasureUnlock() {
+
+    if (treasureUnlocked || !mapTreasure) return;
+
+    const total = document.querySelectorAll(".memory-island").length;
+    const seen  = document.querySelectorAll(".memory-island.visited").length;
+
+    if (total && seen === total) {
+        treasureUnlocked = true;
+        mapTreasure.classList.add("unlocked");
+    }
+}
 
 if (treasureChest) {
     treasureChest.addEventListener("click", () => {
+
         treasureChest.classList.add("open");
+        nextTreasureLine();
+        playTreasureSong();
+
         setTimeout(() => {
             if (treasureMessage) {
                 treasureMessage.classList.add("active", "open");
@@ -3610,26 +3692,19 @@ if (treasureChest) {
 
         if (closeTreasure) {
 
-            closeTreasure.addEventListener(
-                "click",
-                () => {
+    closeTreasure.addEventListener("click", () => {
 
-                    if (
-                        treasureMessage
-                    ) {
-
-                        treasureMessage.classList.remove(
-                            "active",
-                            "open"
-                        );
-
-                    }
-
-                }
-            );
-
+        if (treasureMessage) {
+            treasureMessage.classList.remove("active", "open");
         }
 
+        if (treasureChest) {
+            treasureChest.classList.remove("open");
+        }
+
+        stopIslandSong();   // stops the treasure song and resumes the Grand Line playlist
+    });
+}
 
         // =====================================================
         // ESCAPE KEY
@@ -3668,27 +3743,21 @@ if (treasureChest) {
                 // -----------------------------------------
                 // TREASURE POPUP
                 // -----------------------------------------
+if (
+    treasureMessage &&
+    (
+        treasureMessage.classList.contains("active") ||
+        treasureMessage.classList.contains("open")
+    )
+) {
 
-                if (
-                    treasureMessage &&
-                    (
-                        treasureMessage.classList.contains(
-                            "active"
-                        ) ||
-                        treasureMessage.classList.contains(
-                            "open"
-                        )
-                    )
-                ) {
+    treasureMessage.classList.remove("active", "open");
 
-                    treasureMessage.classList.remove(
-                        "active",
-                        "open"
-                    );
+    if (treasureChest) treasureChest.classList.remove("open");
+    stopIslandSong();
 
-                    return;
-
-                }
+    return;
+}
 
 
                 // -----------------------------------------
