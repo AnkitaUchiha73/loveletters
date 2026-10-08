@@ -3597,6 +3597,90 @@ function sailShipTo(islandEl) {
             document.getElementById(
                 "closeTreasure"
             );
+            // =====================================================
+// SECOND TREASURE: WEDDING PORTRAIT
+// =====================================================
+const weddingTreasure = document.getElementById("weddingTreasure");
+const openWedding     = document.getElementById("openWedding");
+const closeWedding    = document.getElementById("closeWedding");
+function startWeddingCelebration() {
+
+    if (!treasureCanvas || !tctx || reduceMotion) return;
+
+    // move the canvas into the wedding overlay so it shows on top
+    weddingTreasure.insertBefore(treasureCanvas, weddingTreasure.firstChild);
+
+    stopTreasureCelebration();     // clear anything left from the first popup
+    sizeTreasureCanvas();
+
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+
+    const later = (fn, ms) => fireworkTimers.push(setTimeout(fn, ms));
+    const kick  = () => { if (!confettiFrame) confettiLoop(); };
+
+    // soft shower from the top once the portrait starts unrolling
+    later(() => {
+        for (let i = 0; i < 10; i++) {
+            spawnBurst(Math.random() * w, -20, 4, Math.PI / 2, 0.6);
+        }
+        kick();
+    }, 900);
+
+    // longer firework show, every third one is a heart
+    fireworkCount = 0;
+    for (let i = 0; i < 14; i++) {
+        later(launchFirework, 700 + i * 850);
+    }
+
+    // a second gentle shower in the middle
+    later(() => {
+        spawnBurst(w / 2, h * 0.5, 40, -Math.PI / 2, Math.PI * 2);
+        kick();
+    }, 5000);
+
+    kick();
+}
+
+function openWeddingTreasure() {
+    if (!weddingTreasure) return;
+
+    weddingTreasure.classList.add("active");
+    weddingTreasure.setAttribute("aria-hidden", "false");
+
+    startWeddingCelebration();
+}
+
+function closeWeddingTreasure() {
+    if (!weddingTreasure) return;
+
+    weddingTreasure.classList.remove("active");
+    weddingTreasure.setAttribute("aria-hidden", "true");
+
+    stopTreasureCelebration();
+
+    // put the canvas back in the first popup
+    if (treasureMessage && treasureCanvas &&
+        treasureCanvas.parentElement !== treasureMessage) {
+        treasureMessage.insertBefore(treasureCanvas, treasureMessage.firstChild);
+    }
+}
+
+
+if (openWedding) {
+    openWedding.addEventListener("click", openWeddingTreasure);
+}
+
+if (closeWedding) {
+    closeWedding.addEventListener("click", closeWeddingTreasure);
+}
+
+// tap the dark background to close
+if (weddingTreasure) {
+    weddingTreasure.addEventListener("click", event => {
+        if (event.target === weddingTreasure) closeWeddingTreasure();
+    });
+}
             // ---- Song that plays when the chest is opened ----
 const TREASURE_SONG = "music/OnePieceTreasure.mp3";   // <- put your file name here
 
@@ -3683,7 +3767,7 @@ function spawnBurst(x, y, count, angleCenter, spread) {
     for (let i = 0; i < count; i++) {
 
         const angle = angleCenter + (Math.random() - 0.5) * spread;
-        const speed = 7 + Math.random() * 10;
+        const speed = 4 + Math.random() * 6;
         const roll  = Math.random();
 
         particles.push({
@@ -3756,7 +3840,7 @@ function launchFirework() {
 
     const x = w * (0.12 + Math.random() * 0.76);
     const targetY = h * (0.12 + Math.random() * 0.33);
-    const g = 0.2;
+    const g = 0.12;
 
     rockets.push({
         x,
@@ -3799,7 +3883,7 @@ function explodeFirework(x, y, color) {
             px: x, py: y,
             vx, vy,
             life: 1,
-            decay: 0.010 + Math.random() * 0.010,
+            decay: 0.006 + Math.random() * 0.010,
             color: isHeart ? "#ff5c8a" : color
         });
     }
@@ -3835,7 +3919,7 @@ function drawFireworks() {
         s.py = s.y;
 
         s.vx *= 0.985;
-        s.vy  = s.vy * 0.985 + 0.05;   // slow drag + gentle gravity
+        s.vy  = s.vy * 0.985 + 0.03;   // slow drag + gentle gravity
         s.x  += s.vx;
         s.y  += s.vy;
         s.life -= s.decay;
@@ -3864,9 +3948,9 @@ function confettiLoop() {
     drawFireworks();
 
     particles.forEach(p => {
-        p.vy += 0.28;
-        p.vx *= 0.99;
-        p.vy *= 0.995;
+        p.vy += 0.12;
+        p.vx *= 0.985;
+        p.vy *= 0.99;
         p.x  += p.vx;
         p.y  += p.vy;
         p.rot += p.spin + 0.08;
@@ -3892,43 +3976,41 @@ function startTreasureCelebration() {
     const w = window.innerWidth;
     const h = window.innerHeight;
 
-    // bottom corners
-    spawnBurst(0, h, 70, -Math.PI / 3,           0.9);
-    spawnBurst(w, h, 70, -Math.PI + Math.PI / 3, 0.9);
+    const later = (fn, ms) => fireworkTimers.push(setTimeout(fn, ms));
+    const kick  = () => { if (!confettiFrame) confettiLoop(); };
 
-    // top corners
-    spawnBurst(0, 0, 70, Math.PI / 3,            0.9);
-    spawnBurst(w, 0, 70, Math.PI - Math.PI / 3,  0.9);
+    // wave 1: bottom corners
+    later(() => {
+        spawnBurst(0, h, 35, -Math.PI / 3, 0.9);
+        spawnBurst(w, h, 35, -Math.PI + Math.PI / 3, 0.9);
+        kick();
+    }, 500);
 
-    // middle of the left and right edges
-    spawnBurst(0, h / 2, 70, 0,       0.9);
-    spawnBurst(w, h / 2, 70, Math.PI, 0.9);
+    // wave 2: middle of the edges
+    later(() => {
+        spawnBurst(0, h / 2, 30, 0, 0.9);
+        spawnBurst(w, h / 2, 30, Math.PI, 0.9);
+        kick();
+    }, 1300);
 
-    // rain from across the top edge
-    for (let i = 0; i < 12; i++) {
-        spawnBurst(Math.random() * w, -20, 6, Math.PI / 2, 0.6);
-    }
+    // wave 3: top corners + a gentle rain
+    later(() => {
+        spawnBurst(0, 0, 30, Math.PI / 3, 0.9);
+        spawnBurst(w, 0, 30, Math.PI - Math.PI / 3, 0.9);
+        for (let i = 0; i < 8; i++) {
+            spawnBurst(Math.random() * w, -20, 4, Math.PI / 2, 0.6);
+        }
+        kick();
+    }, 2100);
 
-    // second volley
-    setTimeout(() => {
-        spawnBurst(0, h, 50, -Math.PI / 3,           0.9);
-        spawnBurst(w, h, 50, -Math.PI + Math.PI / 3, 0.9);
-        spawnBurst(0, 0, 50, Math.PI / 3,            0.9);
-        spawnBurst(w, 0, 50, Math.PI - Math.PI / 3,  0.9);
-        spawnBurst(0, h / 2, 50, 0,       0.9);
-        spawnBurst(w, h / 2, 50, Math.PI, 0.9);
-        spawnBurst(w / 2, h * 0.45, 40, -Math.PI / 2, Math.PI * 2);
-    }, 650);
-
-    // fireworks: a rocket every ~450ms for about 5 seconds
+    // fireworks: first rocket after ~1.5s, then one every ~800ms
     fireworkCount = 0;
-    for (let i = 0; i < 11; i++) {
-        fireworkTimers.push(setTimeout(launchFirework, 300 + i * 450));
+    for (let i = 0; i < 8; i++) {
+        later(launchFirework, 1500 + i * 800);
     }
 
-    if (!confettiFrame) confettiLoop();
+    kick();
 }
-
 function stopTreasureCelebration() {
 
     particles = [];
@@ -4082,6 +4164,7 @@ if (treasureChest) {
 
     closeTreasure.addEventListener("click", () => {
          cancelTreasureReveal();
+         closeWeddingTreasure();
 
         if (treasureMessage) {
             treasureMessage.classList.remove("active", "open");
@@ -4127,6 +4210,10 @@ if (treasureChest) {
                     return;
 
                 }
+                if (weddingTreasure && weddingTreasure.classList.contains("active")) {
+    closeWeddingTreasure();
+    return;
+}
 
 
                 // -----------------------------------------
