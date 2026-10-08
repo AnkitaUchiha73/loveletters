@@ -3736,14 +3736,136 @@ function drawParticle(p) {
 
     tctx.restore();
 }
+// ---------- FIREWORKS ----------
+let rockets = [];
+let sparks = [];
+let fireworkTimers = [];
+let fireworkCount = 0;
 
+const FIREWORK_COLORS = [
+    "#ffd35c", "#ff7aa8", "#ff5c8a", "#7fd7f2",
+    "#9df2b1", "#fff6da", "#ff9f43", "#c792ff"
+];
+
+function launchFirework() {
+
+    if (!tctx) return;
+
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+
+    const x = w * (0.12 + Math.random() * 0.76);
+    const targetY = h * (0.12 + Math.random() * 0.33);
+    const g = 0.2;
+
+    rockets.push({
+        x,
+        y: h,
+        vx: (Math.random() - 0.5) * 1.2,
+        vy: -Math.sqrt(2 * g * (h - targetY)),
+        g,
+        color: FIREWORK_COLORS[Math.floor(Math.random() * FIREWORK_COLORS.length)]
+    });
+
+    if (!confettiFrame) confettiLoop();
+}
+
+function explodeFirework(x, y, color) {
+
+    fireworkCount++;
+
+    const isHeart = fireworkCount % 3 === 0;
+    const count = isHeart ? 64 : 80;
+
+    for (let i = 0; i < count; i++) {
+
+        let vx, vy;
+
+        if (isHeart) {
+            // classic heart curve
+            const t = (i / count) * Math.PI * 2;
+            vx = 16 * Math.pow(Math.sin(t), 3) * 0.26;
+            vy = -(13 * Math.cos(t) - 5 * Math.cos(2 * t)
+                   - 2 * Math.cos(3 * t) - Math.cos(4 * t)) * 0.26;
+        } else {
+            const angle = Math.random() * Math.PI * 2;
+            const speed = 1.5 + Math.random() * 5.5;
+            vx = Math.cos(angle) * speed;
+            vy = Math.sin(angle) * speed;
+        }
+
+        sparks.push({
+            x, y,
+            px: x, py: y,
+            vx, vy,
+            life: 1,
+            decay: 0.010 + Math.random() * 0.010,
+            color: isHeart ? "#ff5c8a" : color
+        });
+    }
+}
+
+function drawFireworks() {
+
+    // glowing look
+    tctx.globalCompositeOperation = "lighter";
+    tctx.lineCap = "round";
+
+    // rockets
+    rockets.forEach(r => {
+        r.vy += r.g;
+        r.x  += r.vx;
+        r.y  += r.vy;
+
+        tctx.strokeStyle = r.color;
+        tctx.lineWidth = 3;
+        tctx.beginPath();
+        tctx.moveTo(r.x - r.vx * 3, r.y - r.vy * 3);
+        tctx.lineTo(r.x, r.y);
+        tctx.stroke();
+    });
+
+    const exploding = rockets.filter(r => r.vy >= -0.5);
+    exploding.forEach(r => explodeFirework(r.x, r.y, r.color));
+    rockets = rockets.filter(r => r.vy < -0.5);
+
+    // sparks
+    sparks.forEach(s => {
+        s.px = s.x;
+        s.py = s.y;
+
+        s.vx *= 0.985;
+        s.vy  = s.vy * 0.985 + 0.05;   // slow drag + gentle gravity
+        s.x  += s.vx;
+        s.y  += s.vy;
+        s.life -= s.decay;
+
+        tctx.globalAlpha = Math.max(s.life, 0);
+        tctx.strokeStyle = s.color;
+        tctx.lineWidth = 2.2;
+        tctx.beginPath();
+        tctx.moveTo(s.px, s.py);
+        tctx.lineTo(s.x, s.y);
+        tctx.stroke();
+    });
+
+    tctx.globalAlpha = 1;
+    tctx.globalCompositeOperation = "source-over";
+
+    sparks = sparks.filter(s => s.life > 0);
+}
+
+// ---------- MAIN LOOP ----------
 function confettiLoop() {
 
     tctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
 
+    // fireworks sit behind the confetti
+    drawFireworks();
+
     particles.forEach(p => {
-        p.vy += 0.28;          // gravity
-        p.vx *= 0.99;          // air drag
+        p.vy += 0.28;
+        p.vx *= 0.99;
         p.vy *= 0.995;
         p.x  += p.vx;
         p.y  += p.vy;
@@ -3753,7 +3875,7 @@ function confettiLoop() {
 
     particles = particles.filter(p => p.y < window.innerHeight + 40);
 
-    if (particles.length) {
+    if (particles.length || rockets.length || sparks.length) {
         confettiFrame = requestAnimationFrame(confettiLoop);
     } else {
         confettiFrame = null;
@@ -3770,15 +3892,19 @@ function startTreasureCelebration() {
     const w = window.innerWidth;
     const h = window.innerHeight;
 
-    // bottom corners, aimed up and in
+    // bottom corners
     spawnBurst(0, h, 70, -Math.PI / 3,           0.9);
     spawnBurst(w, h, 70, -Math.PI + Math.PI / 3, 0.9);
 
-    // top corners, aimed down and in
+    // top corners
     spawnBurst(0, 0, 70, Math.PI / 3,            0.9);
     spawnBurst(w, 0, 70, Math.PI - Math.PI / 3,  0.9);
 
-    // a rain of pieces falling from across the whole top edge
+    // middle of the left and right edges
+    spawnBurst(0, h / 2, 70, 0,       0.9);
+    spawnBurst(w, h / 2, 70, Math.PI, 0.9);
+
+    // rain from across the top edge
     for (let i = 0; i < 12; i++) {
         spawnBurst(Math.random() * w, -20, 6, Math.PI / 2, 0.6);
     }
@@ -3789,8 +3915,16 @@ function startTreasureCelebration() {
         spawnBurst(w, h, 50, -Math.PI + Math.PI / 3, 0.9);
         spawnBurst(0, 0, 50, Math.PI / 3,            0.9);
         spawnBurst(w, 0, 50, Math.PI - Math.PI / 3,  0.9);
+        spawnBurst(0, h / 2, 50, 0,       0.9);
+        spawnBurst(w, h / 2, 50, Math.PI, 0.9);
         spawnBurst(w / 2, h * 0.45, 40, -Math.PI / 2, Math.PI * 2);
     }, 650);
+
+    // fireworks: a rocket every ~450ms for about 5 seconds
+    fireworkCount = 0;
+    for (let i = 0; i < 11; i++) {
+        fireworkTimers.push(setTimeout(launchFirework, 300 + i * 450));
+    }
 
     if (!confettiFrame) confettiLoop();
 }
@@ -3798,6 +3932,11 @@ function startTreasureCelebration() {
 function stopTreasureCelebration() {
 
     particles = [];
+    rockets = [];
+    sparks = [];
+
+    fireworkTimers.forEach(clearTimeout);
+    fireworkTimers = [];
 
     if (confettiFrame) {
         cancelAnimationFrame(confettiFrame);
@@ -3806,6 +3945,7 @@ function stopTreasureCelebration() {
 
     if (tctx) tctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
 }
+
 
 // =====================================================
 // TREASURE TYPEWRITER
