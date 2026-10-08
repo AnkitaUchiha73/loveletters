@@ -2698,7 +2698,6 @@ function stopGrandLineBackgroundSlideshow() {
                 chapter: "CHAPTER I",
 
                 title: "Where It All Began",
-                song:"music/Raftaarein.mp3",
 
                 text:
                     "Our story began somewhere between a game of CODM and two people who had no idea what was coming next.",
@@ -3653,10 +3652,242 @@ function nextTreasureLine() {
 
     lastTreasureIndex = treasureQueue.pop();
 
-    const line = treasureLines[lastTreasureIndex];
+        return treasureLines[lastTreasureIndex];
+}
+// =====================================================
+// TREASURE CELEBRATION: CONFETTI, COINS, HEARTS
+// =====================================================
+const treasureCanvas = document.getElementById("treasureCanvas");
+const tctx = treasureCanvas ? treasureCanvas.getContext("2d") : null;
+const treasureBox = document.querySelector(".treasure-message-box");
+const treasureSign = document.querySelector(".treasure-sign");
 
-    if (treasureLineTop)  treasureLineTop.innerHTML  = line.top;
-    if (treasureLineMain) treasureLineMain.innerHTML = line.main;
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+let particles = [];
+let confettiFrame = null;
+
+function sizeTreasureCanvas() {
+    if (!treasureCanvas || !tctx) return;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    treasureCanvas.width  = window.innerWidth  * dpr;
+    treasureCanvas.height = window.innerHeight * dpr;
+    tctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+}
+window.addEventListener("resize", sizeTreasureCanvas);
+
+const CONFETTI_COLORS = ["#ffd35c", "#ffe9a0", "#ff7aa8", "#ff5c8a", "#fff6da", "#7fd7f2"];
+
+function spawnBurst(x, y, count, angleCenter, spread) {
+    for (let i = 0; i < count; i++) {
+
+        const angle = angleCenter + (Math.random() - 0.5) * spread;
+        const speed = 7 + Math.random() * 10;
+        const roll  = Math.random();
+
+        particles.push({
+            x, y,
+            vx: Math.cos(angle) * speed,
+            vy: Math.sin(angle) * speed,
+            size: 6 + Math.random() * 7,
+            rot: Math.random() * Math.PI * 2,
+            spin: (Math.random() - 0.5) * 0.3,
+            // 45% coins, 20% hearts, 35% confetti
+            type: roll < 0.45 ? "coin" : roll < 0.65 ? "heart" : "paper",
+            color: CONFETTI_COLORS[Math.floor(Math.random() * CONFETTI_COLORS.length)]
+        });
+    }
+}
+
+function drawParticle(p) {
+
+    tctx.save();
+    tctx.translate(p.x, p.y);
+
+    if (p.type === "coin") {
+        // squashing width fakes the coin flipping in 3D
+        tctx.scale(Math.abs(Math.cos(p.rot)) * 0.9 + 0.1, 1);
+        tctx.beginPath();
+        tctx.arc(0, 0, p.size, 0, Math.PI * 2);
+        tctx.fillStyle = "#f0bd4f";
+        tctx.fill();
+        tctx.lineWidth = 2;
+        tctx.strokeStyle = "#a8751d";
+        tctx.stroke();
+        tctx.beginPath();
+        tctx.arc(0, 0, p.size * 0.55, 0, Math.PI * 2);
+        tctx.strokeStyle = "#fff0b5";
+        tctx.lineWidth = 1.5;
+        tctx.stroke();
+
+    } else if (p.type === "heart") {
+        tctx.rotate(Math.sin(p.rot) * 0.5);
+        tctx.font = `${p.size * 2.4}px serif`;
+        tctx.textAlign = "center";
+        tctx.textBaseline = "middle";
+        tctx.fillText("❤️", 0, 0);
+
+    } else {
+        tctx.rotate(p.rot);
+        tctx.fillStyle = p.color;
+        tctx.fillRect(-p.size / 2, -p.size / 4, p.size, p.size / 2);
+    }
+
+    tctx.restore();
+}
+
+function confettiLoop() {
+
+    tctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+
+    particles.forEach(p => {
+        p.vy += 0.28;          // gravity
+        p.vx *= 0.99;          // air drag
+        p.vy *= 0.995;
+        p.x  += p.vx;
+        p.y  += p.vy;
+        p.rot += p.spin + 0.08;
+        drawParticle(p);
+    });
+
+    particles = particles.filter(p => p.y < window.innerHeight + 40);
+
+    if (particles.length) {
+        confettiFrame = requestAnimationFrame(confettiLoop);
+    } else {
+        confettiFrame = null;
+        tctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+    }
+}
+
+function startTreasureCelebration() {
+
+    if (!treasureCanvas || !tctx || reduceMotion) return;
+
+    sizeTreasureCanvas();
+
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+
+    // two cannons from the bottom corners, aimed at the middle
+    spawnBurst(0, h,     70, -Math.PI / 3,         0.9);
+    spawnBurst(w, h,     70, -Math.PI + Math.PI / 3, 0.9);
+
+    // a second volley a moment later, plus a gentle centre pop
+    setTimeout(() => {
+        spawnBurst(0, h, 50, -Math.PI / 3,         0.9);
+        spawnBurst(w, h, 50, -Math.PI + Math.PI / 3, 0.9);
+        spawnBurst(w / 2, h * 0.45, 40, -Math.PI / 2, Math.PI * 2);
+    }, 650);
+
+    if (!confettiFrame) confettiLoop();
+}
+
+function stopTreasureCelebration() {
+
+    particles = [];
+
+    if (confettiFrame) {
+        cancelAnimationFrame(confettiFrame);
+        confettiFrame = null;
+    }
+
+    if (tctx) tctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+}
+
+// =====================================================
+// TREASURE TYPEWRITER
+// =====================================================
+let typeRun = 0;   // bumping this cancels any typing in progress
+
+function typeInto(el, html, speed, run) {
+
+    return new Promise(resolve => {
+
+        if (!el) return resolve();
+
+        // turn "A<br>B" into a list of characters and line breaks
+        const tokens = [];
+        html.split("<br>").forEach((part, i, arr) => {
+            tokens.push(...part.split(""));
+            if (i < arr.length - 1) tokens.push("<br>");
+        });
+
+        el.innerHTML = "";
+        el.classList.add("typing");
+
+        let i = 0;
+        let textNode = null;
+
+        function step() {
+
+            if (run !== typeRun) return resolve();   // cancelled
+
+            if (i >= tokens.length) {
+                el.classList.remove("typing");
+                return resolve();
+            }
+
+            const t = tokens[i++];
+
+            if (t === "<br>") {
+                el.appendChild(document.createElement("br"));
+                textNode = null;
+            } else {
+                if (!textNode) {
+                    textNode = document.createTextNode("");
+                    el.appendChild(textNode);
+                }
+                textNode.nodeValue += t;
+            }
+
+            setTimeout(step, t === " " ? speed * 0.5 : speed);
+        }
+
+        step();
+    });
+}
+
+const wait = ms => new Promise(r => setTimeout(r, ms));
+
+async function runTreasureReveal(line) {
+
+    const run = ++typeRun;
+
+    if (treasureBox) treasureBox.classList.remove("revealed");
+    if (treasureLineTop)  treasureLineTop.innerHTML  = "";
+    if (treasureLineMain) treasureLineMain.innerHTML = "";
+
+    startTreasureCelebration();
+
+    await wait(700);
+    if (run !== typeRun) return;
+
+    await typeInto(treasureLineTop, line.top, 55, run);
+    if (run !== typeRun) return;
+
+    await wait(450);
+    if (run !== typeRun) return;
+
+    await typeInto(treasureLineMain, line.main, 85, run);
+    if (run !== typeRun) return;
+
+    await wait(500);
+    if (run !== typeRun) return;
+
+    if (treasureBox) treasureBox.classList.add("revealed");
+
+    // one last little shower once the line lands
+    if (!reduceMotion && tctx) {
+        spawnBurst(window.innerWidth / 2, window.innerHeight * 0.3, 45, -Math.PI / 2, Math.PI * 2);
+        if (!confettiFrame) confettiLoop();
+    }
+}
+
+function cancelTreasureReveal() {
+    typeRun++;
+    stopTreasureCelebration();
+    if (treasureBox) treasureBox.classList.remove("revealed");
 }
 // ---- Final island: chest appears once every island is visited ----
 const mapTreasure = document.getElementById("mapTreasure");
@@ -3678,14 +3909,18 @@ function checkTreasureUnlock() {
 if (treasureChest) {
     treasureChest.addEventListener("click", () => {
 
+        if (treasureChest.classList.contains("open")) return;
+
         treasureChest.classList.add("open");
-        nextTreasureLine();
+
+        const line = nextTreasureLine();
         playTreasureSong();
 
         setTimeout(() => {
             if (treasureMessage) {
                 treasureMessage.classList.add("active", "open");
             }
+            runTreasureReveal(line);
         }, 500);
     });
 }
@@ -3694,6 +3929,7 @@ if (treasureChest) {
         if (closeTreasure) {
 
     closeTreasure.addEventListener("click", () => {
+         cancelTreasureReveal();
 
         if (treasureMessage) {
             treasureMessage.classList.remove("active", "open");
@@ -3751,6 +3987,7 @@ if (
         treasureMessage.classList.contains("open")
     )
 ) {
+    cancelTreasureReveal();
 
     treasureMessage.classList.remove("active", "open");
 
