@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
 <meta name="theme-color" content="#1b6fc8">
     <title>To, Dr. Aryan Goyal ❤️</title>
     <link rel="stylesheet" href="style.css">
@@ -915,27 +915,55 @@
 
 
         <!-- Treasure Message -->
-        <div id="treasureMessage" class="treasure-message">
-    <canvas id="treasureCanvas" aria-hidden="true"></canvas>
+             <div id="treasureMessage" class="treasure-message">
+            <canvas id="treasureCanvas" aria-hidden="true"></canvas>
 
-    <div class="treasure-message-box">
+            <div class="treasure-message-box">
+                <div class="treasure-heart">❤️</div>
+                <p id="treasureLineTop">IF THIS JOURNEY<br>HAD A TREASURE...</p>
+                <h2 id="treasureLineMain">IT WOULD BE YOU.</h2>
+                <div class="treasure-sign">— Ankita ❤️</div>
 
-        <div class="treasure-heart">❤️</div>
+                <div class="treasure-buttons">
+                    <button id="openWedding" class="op-main-button" type="button">
+                        💍 ONE MORE TREASURE
+                    </button>
+                    <button id="closeTreasure" class="op-main-button">
+                        KEEP SAILING ⚓
+                    </button>
+                </div>
+            </div>
+        </div>
 
-        <p id="treasureLineTop">
-            IF THIS JOURNEY<br>
-            HAD A TREASURE...
-        </p>
+        <!-- Second treasure: wedding portrait -->
+        <div id="weddingTreasure" class="wedding-treasure" aria-hidden="true">
+            <div class="wedding-glow"></div>
+            <div class="wedding-sparkles" aria-hidden="true">
+                <span>✦</span><span>✧</span><span>✦</span><span>✧</span><span>✦</span><span>✧</span>
+            </div>
 
-        <h2 id="treasureLineMain">IT WOULD BE YOU.</h2>
+            <div class="wedding-box">
+                <p class="wedding-kicker">THE GREATEST TREASURE OF ALL</p>
 
-        <div class="treasure-sign">— Ankita ❤️</div>
+                <div class="wedding-frame">
+                    <span class="wf-corner wf-tl">❦</span>
+                    <span class="wf-corner wf-tr">❦</span>
+                    <span class="wf-corner wf-bl">❦</span>
+                    <span class="wf-corner wf-br">❦</span>
+                    <div class="wedding-mat">
+                        <img id="weddingImg" src="images/wedding.png" alt="Ankita and Aryan on their wedding day">
+                    </div>
+                </div>
 
-        <button id="closeTreasure" class="op-main-button">
-            KEEP SAILING ⚓
-        </button>
+                <h2 class="wedding-title">SOMEDAY, CAPTAIN. 💍</h2>
+                <p class="wedding-caption">Every sea I cross, I'm sailing toward this.</p>
+                <div class="treasure-sign">— Ankita ❤️</div>
 
-    </div>
+                <button id="closeWedding" class="op-main-button" type="button">
+                    KEEP SAILING ⚓
+                </button>
+            </div>
+        </div>
 
 
 
