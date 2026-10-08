@@ -1239,3 +1239,71 @@ body.one-piece-active #musicBoxAryan{display:none!important;visibility:hidden!im
     font-size:clamp(18px,4.2vw,23px);line-height:1.55;
     font-style:italic;color:#6b241d;letter-spacing:.02em;
 }
+/* =====================================================
+   SET SAIL SCREEN: WAVES + SAILING SHIP
+   ===================================================== */
+.op-opening{overflow:hidden}
+.op-opening-content{position:relative;z-index:3}
+
+.op-sea{position:absolute;left:0;right:0;bottom:0;height:200px;z-index:1;pointer-events:none}
+
+.op-wave{
+    position:absolute;left:0;bottom:0;width:200%;display:block;
+    animation:opWaveSlide linear infinite;
+}
+.op-wave-back {height:130px;fill:rgba(40,130,190,.55);animation-duration:22s;bottom:30px}
+.op-wave-mid  {height:110px;fill:rgba(20,95,160,.7); animation-duration:15s;animation-direction:reverse;bottom:12px}
+.op-wave-front{height:90px; fill:rgba(5,60,115,.9);  animation-duration:10s;bottom:-6px}
+
+.op-sailing-ship{
+    position:absolute;bottom:92px;left:-120px;z-index:1;
+    font-size:clamp(54px,9vw,84px);line-height:1;
+    animation:opShipSail 26s linear infinite;
+    filter:drop-shadow(0 6px 6px rgba(0,0,0,.35));
+}
+.op-sailing-ship span{display:block;animation:opShipRock 3.2s ease-in-out infinite}
+
+@keyframes opWaveSlide{to{transform:translateX(-50%)}}
+@keyframes opShipSail{from{transform:translateX(0)}to{transform:translateX(calc(100vw + 260px))}}
+@keyframes opShipRock{
+    0%,100%{transform:translateY(0) rotate(-4deg)}
+    50%{transform:translateY(-9px) rotate(4deg)}
+}
+
+@media(max-width:850px){
+    .op-sea{height:150px}
+    .op-wave-back{height:100px}
+    .op-wave-mid{height:85px}
+    .op-wave-front{height:70px}
+    .op-sailing-ship{bottom:66px}
+}
+/* =====================================================
+   TREASURE REVEAL: CONFETTI + TYPEWRITER
+   ===================================================== */
+#treasureCanvas{
+    position:fixed;inset:0;width:100%;height:100%;z-index:5;pointer-events:none;
+}
+
+/* sign + button wait until the message has finished typing */
+.treasure-message-box .treasure-sign,
+.treasure-message-box #closeTreasure{
+    opacity:0;pointer-events:none;
+    transition:opacity .9s ease,transform .2s ease,filter .2s ease,box-shadow .2s ease;
+}
+.treasure-message-box.revealed .treasure-sign,
+.treasure-message-box.revealed #closeTreasure{opacity:1;pointer-events:auto}
+
+/* blinking pen caret on the line being typed */
+.treasure-message-box .typing::after{
+    content:"";display:inline-block;width:.08em;height:.9em;margin-left:.08em;
+    vertical-align:-.08em;background:currentColor;animation:caretBlink .7s steps(1) infinite;
+}
+@keyframes caretBlink{50%{opacity:0}}
+
+/* keeps the layout from jumping while text types in */
+#treasureLineTop{min-height:3.2em}
+#treasureLineMain{min-height:2.1em}
+
+/* heart gets a little pop when the message opens */
+.treasure-message.open .treasure-heart{animation:heartBeat 1.2s ease-in-out infinite,heartPop .7s cubic-bezier(.2,.9,.3,1.4) both}
+@keyframes heartPop{from{transform:scale(0) rotate(-25deg)}to{transform:scale(1) rotate(0)}}
