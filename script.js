@@ -2698,6 +2698,7 @@ function stopGrandLineBackgroundSlideshow() {
                 chapter: "CHAPTER I",
 
                 title: "Where It All Began",
+                song: "music/Raftaarein.mp3",
 
                 text:
                     "Our story began somewhere between a game of CODM and two people who had no idea what was coming next.",
@@ -3769,14 +3770,25 @@ function startTreasureCelebration() {
     const w = window.innerWidth;
     const h = window.innerHeight;
 
-    // two cannons from the bottom corners, aimed at the middle
-    spawnBurst(0, h,     70, -Math.PI / 3,         0.9);
-    spawnBurst(w, h,     70, -Math.PI + Math.PI / 3, 0.9);
+    // bottom corners, aimed up and in
+    spawnBurst(0, h, 70, -Math.PI / 3,           0.9);
+    spawnBurst(w, h, 70, -Math.PI + Math.PI / 3, 0.9);
 
-    // a second volley a moment later, plus a gentle centre pop
+    // top corners, aimed down and in
+    spawnBurst(0, 0, 70, Math.PI / 3,            0.9);
+    spawnBurst(w, 0, 70, Math.PI - Math.PI / 3,  0.9);
+
+    // a rain of pieces falling from across the whole top edge
+    for (let i = 0; i < 12; i++) {
+        spawnBurst(Math.random() * w, -20, 6, Math.PI / 2, 0.6);
+    }
+
+    // second volley
     setTimeout(() => {
-        spawnBurst(0, h, 50, -Math.PI / 3,         0.9);
+        spawnBurst(0, h, 50, -Math.PI / 3,           0.9);
         spawnBurst(w, h, 50, -Math.PI + Math.PI / 3, 0.9);
+        spawnBurst(0, 0, 50, Math.PI / 3,            0.9);
+        spawnBurst(w, 0, 50, Math.PI - Math.PI / 3,  0.9);
         spawnBurst(w / 2, h * 0.45, 40, -Math.PI / 2, Math.PI * 2);
     }, 650);
 
