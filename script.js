@@ -4277,3 +4277,62 @@ if (
 
     }
 );
+/* ENHANCE.JS  -  load AFTER script.js
+   Upgrades the background slideshows without touching script.js:
+   it watches #slideshow / #slideshowAryan and turns every image change
+   into a crossfade with a blurred backdrop. Also adds floating hearts. */
+(function () {
+
+    function upgradeSlideshow(el) {
+        if (!el) return;
+        let last = "";
+
+        const apply = () => {
+            const m = el.style.backgroundImage.match(/url\(["']?(.*?)["']?\)/);
+            if (!m || m[1] === last) return;
+            last = m[1];
+
+            const layer = document.createElement("div");
+            layer.className = "ss-layer";
+            layer.style.setProperty("--img", `url("${m[1]}")`);
+            el.appendChild(layer);
+
+            const reveal = () => requestAnimationFrame(() => {
+                layer.classList.add("show");
+                const old = [...el.querySelectorAll(".ss-layer")].filter(l => l !== layer);
+                setTimeout(() => old.forEach(o => o.remove()), 2000);
+            });
+
+            const img = new Image();
+            img.onload = img.onerror = reveal;   // wait until loaded so it never flashes
+            img.src = m[1];
+        };
+
+        new MutationObserver(apply).observe(el, { attributes: true, attributeFilter: ["style"] });
+        apply();
+    }
+
+    function addFloatingBits(page) {
+        if (!page || page.querySelector(".float-bits")) return;
+        const wrap = document.createElement("div");
+        wrap.className = "float-bits";
+        wrap.setAttribute("aria-hidden", "true");
+        const icons = ["❤", "✦", "♡", "✧", "❤"];
+        for (let i = 0; i < 14; i++) {
+            const s = document.createElement("span");
+            s.textContent = icons[i % icons.length];
+            s.style.left = Math.random() * 100 + "%";
+            s.style.fontSize = 10 + Math.random() * 16 + "px";
+            s.style.animationDuration = 14 + Math.random() * 14 + "s";
+            s.style.animationDelay = -Math.random() * 20 + "s";
+            wrap.appendChild(s);
+        }
+        page.appendChild(wrap);
+    }
+
+    upgradeSlideshow(document.getElementById("slideshow"));
+    upgradeSlideshow(document.getElementById("slideshowAryan"));
+    addFloatingBits(document.getElementById("lettersPage"));
+    addFloatingBits(document.getElementById("aryanPage"));
+
+})();
