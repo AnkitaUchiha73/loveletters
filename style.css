@@ -1,6 +1,7 @@
 /* =====================================================
    GENERAL
    ===================================================== */
+   
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{font-family:'Times New Roman',Times,serif;overflow-x:hidden;min-height:100%}
@@ -1379,4 +1380,236 @@ body.one-piece-active #musicBoxAryan{display:none!important;visibility:hidden!im
 }
 .wedding-treasure #treasureCanvas{
     position:fixed;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;
+}
+/* =====================================================
+   ENHANCE.CSS  -  load AFTER style.css
+   Buttons, letter cards, slideshow (main site only;
+   the One Piece / Grand Line page is untouched)
+   ===================================================== */
+
+
+:root{
+    --rose:#ff7aa8; --rose-deep:#d63384; --gold:#ffd9a8;
+    --paper:#fffaf0; --ink:#4a2a35;
+    --glass:rgba(255,255,255,.12); --glass-line:rgba(255,255,255,.5);
+}
+
+/* =====================================================
+   1. BUTTONS
+   ===================================================== */
+
+/* Main "Start Our Story" button */
+#openButton{
+    position:relative; overflow:hidden; isolation:isolate;
+    padding:18px 46px; border-radius:60px; letter-spacing:.06em; font-size:20px;
+    background:linear-gradient(135deg,#ff8fb8,#d63384 55%,#b81f6b);
+    border:1px solid rgba(255,255,255,.55);
+    box-shadow:0 10px 30px rgba(214,51,132,.55), inset 0 1px 0 rgba(255,255,255,.45);
+    animation:btnBreathe 3s ease-in-out infinite;
+}
+#openButton::after{                       /* shine sweep */
+    content:""; position:absolute; top:0; left:-120%; width:60%; height:100%; z-index:-1;
+    background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);
+    transform:skewX(-20deg); transition:left .8s ease;
+}
+#openButton:hover{transform:translateY(-4px) scale(1.05); box-shadow:0 16px 40px rgba(214,51,132,.7), inset 0 1px 0 rgba(255,255,255,.5)}
+#openButton:hover::after{left:140%}
+@keyframes btnBreathe{
+    0%,100%{box-shadow:0 10px 30px rgba(214,51,132,.5), inset 0 1px 0 rgba(255,255,255,.45)}
+    50%{box-shadow:0 10px 44px rgba(255,122,168,.85), inset 0 1px 0 rgba(255,255,255,.45)}
+}
+
+/* Glass pills: Poems / Grand Line / Write a Letter / His Letters */
+#gallery .actionRow button,
+#aryanPage #backFromAryanBtn{
+    position:relative; overflow:hidden; isolation:isolate;
+    padding:14px 30px; border-radius:50px; font-size:17px; letter-spacing:.04em;
+    background:linear-gradient(135deg,rgba(255,255,255,.22),rgba(255,255,255,.06));
+    border:1px solid var(--glass-line); color:#fff;
+    backdrop-filter:blur(10px) saturate(140%); -webkit-backdrop-filter:blur(10px) saturate(140%);
+    box-shadow:0 8px 24px rgba(0,0,0,.25), inset 0 1px 0 rgba(255,255,255,.4);
+    text-shadow:0 1px 6px rgba(0,0,0,.35);
+    transition:transform .3s ease, box-shadow .3s ease, background .3s ease, border-color .3s ease;
+}
+#gallery .actionRow button::before,
+#aryanPage #backFromAryanBtn::before{
+    content:""; position:absolute; inset:0; z-index:-1; opacity:0; transition:opacity .35s ease;
+    background:linear-gradient(135deg,rgba(255,122,168,.65),rgba(214,51,132,.55));
+}
+#gallery .actionRow button:hover,
+#aryanPage #backFromAryanBtn:hover{
+    transform:translateY(-4px); border-color:rgba(255,255,255,.85);
+    box-shadow:0 14px 32px rgba(214,51,132,.4), inset 0 1px 0 rgba(255,255,255,.5);
+}
+#gallery .actionRow button:hover::before,
+#aryanPage #backFromAryanBtn:hover::before{opacity:1}
+#gallery .actionRow button:active,
+#aryanPage #backFromAryanBtn:active{transform:translateY(0) scale(.97)}
+
+/* "Tap to read" toggle */
+.letterCardToggle{
+    border-radius:30px !important; letter-spacing:.05em;
+    transition:transform .25s ease, background .3s ease, box-shadow .3s ease !important;
+}
+.letterCardToggle:hover{transform:translateY(-2px) !important; box-shadow:0 6px 18px rgba(214,51,132,.35) !important}
+
+/* Floating music button */
+#musicToggle,#musicToggleAryan{
+    border:2px solid rgba(255,255,255,.7);
+    box-shadow:0 0 0 6px rgba(255,122,168,.18), 0 0 28px rgba(255,122,168,.8);
+}
+
+/* Music menu */
+#musicMenu,#musicMenuAryan{
+    background:rgba(30,10,25,.62); border:1px solid rgba(255,255,255,.25);
+    box-shadow:0 18px 40px rgba(0,0,0,.45); backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px);
+}
+.song-btn,#shuffleBtn,#shuffleBtnAryan{
+    text-align:left; border-radius:14px; transition:background .25s ease, transform .25s ease, box-shadow .25s ease;
+}
+.song-btn:hover,#shuffleBtn:hover,#shuffleBtnAryan:hover{transform:translateX(4px)}
+.song-btn.active{background:linear-gradient(135deg,#ff7aa8,#d63384); box-shadow:0 0 16px rgba(255,92,138,.7)}
+#shuffleBtn,#shuffleBtnAryan{text-align:center; background:rgba(255,255,255,.12); border-style:dashed}
+
+/* Write-a-letter popup button + inputs */
+#letterForm button[type="submit"]{
+    padding:14px 34px; border-radius:40px; background:linear-gradient(135deg,#ff8fb8,#d63384);
+    box-shadow:0 8px 22px rgba(214,51,132,.4);
+}
+#letterForm input,#letterForm textarea{
+    font-family:'Cormorant Garamond',Georgia,serif; font-size:18px; background:#fffdf7;
+    border:1px solid rgba(214,51,132,.3) !important; outline:none; transition:box-shadow .25s ease;
+}
+#letterForm input:focus,#letterForm textarea:focus{box-shadow:0 0 0 3px rgba(255,122,168,.35)}
+
+/* =====================================================
+   2. LETTER CARDS
+   ===================================================== */
+
+/* Closed card: frosted glass with soft glowing edge */
+#mainLetterCard,#aryanLetterCard,#poemCard{
+    position:relative;
+    background:linear-gradient(145deg,rgba(255,255,255,.2),rgba(255,255,255,.05)) !important;
+    border:1px solid rgba(255,255,255,.55) !important; border-radius:22px !important;
+    backdrop-filter:blur(12px) saturate(140%) !important; -webkit-backdrop-filter:blur(12px) saturate(140%) !important;
+    box-shadow:0 18px 45px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.5), 0 0 40px rgba(255,122,168,.18) !important;
+    transition:background .5s ease, color .5s ease, box-shadow .5s ease, width .5s ease, transform .35s ease !important;
+}
+#mainLetterCard:not(.letter-open):hover,
+#aryanLetterCard:not(.letter-open):hover,
+#poemCard:not(.letter-open):hover{
+    box-shadow:0 22px 55px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.6), 0 0 55px rgba(255,122,168,.35) !important;
+}
+
+/* envelope flap hint on the closed card */
+#mainLetterCard:not(.letter-open)::before,
+#aryanLetterCard:not(.letter-open)::before,
+#poemCard:not(.letter-open)::before{
+    content:""; position:absolute; top:0; left:0; right:0; height:46px; pointer-events:none;
+    border-radius:22px 22px 0 0; opacity:.5;
+    background:linear-gradient(to bottom,rgba(255,255,255,.18),transparent);
+    clip-path:polygon(0 0,100% 0,50% 100%);
+}
+
+.letterCardEmoji{filter:drop-shadow(0 4px 10px rgba(255,122,168,.7)); animation:emojiFloat 3.2s ease-in-out infinite}
+@keyframes emojiFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+
+#mainLetterCard #viewerTitle,#aryanLetterCard #viewerTitleAryan,#poemCard #viewerTitlePoem{
+    font-family:'Cormorant Garamond',Georgia,serif; font-weight:600; font-size:25px; letter-spacing:.02em;
+}
+#mainLetterCard #viewerDate,#aryanLetterCard #viewerDateAryan,#poemCard #viewerDatePoem{
+    font-family:'Caveat',cursive; font-size:19px; letter-spacing:.03em;
+}
+
+/* Opened card: warm love-letter paper */
+#mainLetterCard.letter-open,#aryanLetterCard.letter-open,#poemCard.letter-open{
+    background:
+        radial-gradient(circle at 12% 8%,rgba(214,51,132,.07),transparent 40%),
+        radial-gradient(circle at 90% 95%,rgba(200,150,80,.12),transparent 45%),
+        repeating-linear-gradient(to bottom,transparent 0 31px,rgba(214,51,132,.10) 31px 32px),
+        linear-gradient(#fffaf0,#fff3df) !important;
+    color:var(--ink) !important; border:1px solid rgba(190,140,90,.55) !important;
+    box-shadow:0 25px 70px rgba(0,0,0,.45), inset 0 0 60px rgba(210,160,90,.18), 0 0 0 6px rgba(255,255,255,.08) !important;
+    backdrop-filter:none !important; -webkit-backdrop-filter:none !important;
+    animation:paperUnfold .6s cubic-bezier(.2,.85,.25,1) both;
+}
+@keyframes paperUnfold{
+    from{transform:scaleY(.82) translateY(14px); opacity:.6}
+    to{transform:scaleY(1) translateY(0); opacity:1}
+}
+.letter-open::before{display:none !important}
+
+/* ornament under the title */
+#mainLetterCard.letter-open h2::after,
+#aryanLetterCard.letter-open h2::after,
+#poemCard.letter-open h2::after{
+    content:"❦"; display:block; margin-top:6px; font-size:20px; color:var(--rose-deep); opacity:.8;
+}
+
+#mainLetterCard.letter-open .letterCardBody,
+#aryanLetterCard.letter-open .letterCardBody,
+#poemCard.letter-open .letterCardBody{
+    font-family:'Cormorant Garamond',Georgia,serif; font-size:20px !important; line-height:32px !important; font-weight:500;
+    padding-right:6px; scrollbar-width:thin; scrollbar-color:rgba(214,51,132,.45) transparent;
+}
+.letter-open .letterCardBody p{font-size:inherit; line-height:inherit; margin-bottom:16px}
+/* drop cap on first paragraph's greeting is skipped; sign-off gets handwriting */
+.letter-open .letterCardBody p:last-child{font-family:'Caveat',cursive; font-size:24px; color:var(--rose-deep); line-height:1.3}
+.letter-open .letterCardPosition{color:#8a6a55; opacity:.8; font-family:'Caveat',cursive; font-size:17px}
+
+@media(max-width:768px){
+    #mainLetterCard.letter-open .letterCardBody,
+    #aryanLetterCard.letter-open .letterCardBody,
+    #poemCard.letter-open .letterCardBody{font-size:18px !important; line-height:28px !important}
+}
+
+/* =====================================================
+   3. SLIDESHOW
+   Blurred full-bleed backdrop + sharp photo on top,
+   slow crossfade and gentle Ken-Burns zoom.
+   (layers are created by enhance.js)
+   ===================================================== */
+#slideshow,#slideshowAryan{background-image:none !important; background-color:#0b0610}
+
+.ss-layer{position:absolute; inset:0; opacity:0; transition:opacity 1.8s ease; overflow:hidden}
+.ss-layer.show{opacity:1}
+.ss-layer::before{                       /* blurred fill, so no black bars */
+    content:""; position:absolute; inset:-60px;
+    background:var(--img) center/cover no-repeat;
+    filter:blur(30px) saturate(1.25) brightness(.6);
+    transform:scale(1.1);
+}
+.ss-layer::after{                        /* the real photo, fully visible */
+    content:""; position:absolute; inset:0;
+    background:var(--img) center/contain no-repeat;
+    filter:drop-shadow(0 20px 50px rgba(0,0,0,.6));
+    animation:kenBurns 10s ease-out forwards;
+}
+@keyframes kenBurns{from{transform:scale(1)}to{transform:scale(1.07)}}
+
+/* Dreamy vignette + warm tint instead of a flat dark overlay */
+#lettersPage .overlay,#aryanPage .overlay{
+    background:
+        radial-gradient(ellipse at center,rgba(20,5,18,.25) 0%,rgba(20,5,18,.62) 75%,rgba(10,2,10,.85) 100%),
+        linear-gradient(to bottom,rgba(214,51,132,.10),rgba(0,0,0,.25));
+}
+
+/* floating hearts / sparkles */
+.float-bits{position:fixed; inset:0; z-index:0; pointer-events:none; overflow:hidden}
+.float-bits span{
+    position:absolute; bottom:-40px; opacity:0; color:#ffc2d9;
+    text-shadow:0 0 10px rgba(255,122,168,.8);
+    animation:floatUp linear infinite;
+}
+@keyframes floatUp{
+    0%{transform:translateY(0) translateX(0) rotate(0); opacity:0}
+    10%{opacity:.7}
+    90%{opacity:.5}
+    100%{transform:translateY(-110vh) translateX(30px) rotate(40deg); opacity:0}
+}
+#lettersPage.idle-mode .float-bits,#aryanPage.idle-mode .float-bits{opacity:1}
+
+@media(prefers-reduced-motion:reduce){
+    .float-bits{display:none}
+    .ss-layer::after{animation:none}
 }
