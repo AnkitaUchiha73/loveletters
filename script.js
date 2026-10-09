@@ -4278,13 +4278,35 @@ if (
     }
 );
 /* ENHANCE.JS  -  load AFTER script.js
-   Upgrades the background slideshows without touching script.js:
-   it watches #slideshow / #slideshowAryan and turns every image change
-   into a crossfade with a blurred backdrop. Also adds floating hearts. */
+   1) Slideshow: crossfade + blurred backdrop, nothing drawn over the photo
+      (hearts only float in the empty bars around the photo)
+   2) Grand Line: the heart route is drawn island by island as she visits them */
 (function () {
+
+    /* ---------------------------------------------------------
+       1. SLIDESHOW
+       --------------------------------------------------------- */
+    const photoSize = new Map();   // page element -> {w, h} of current photo
+
+    function updateHole(page) {
+        const bits = page && page.querySelector(".float-bits");
+        const s = photoSize.get(page);
+        if (!bits || !s) return;
+
+        const vw = window.innerWidth, vh = window.innerHeight;
+        const k = Math.min(vw / s.w, vh / s.h);          // same maths as background-size: contain
+        const w = s.w * k, h = s.h * k;
+        const x = (vw - w) / 2, y = (vh - h) / 2;
+
+        // cut a hole exactly where the photo is, so hearts never touch it
+        bits.style.clipPath =
+            `polygon(evenodd, 0 0, ${vw}px 0, ${vw}px ${vh}px, 0 ${vh}px, 0 0,` +
+            ` ${x}px ${y}px, ${x + w}px ${y}px, ${x + w}px ${y + h}px, ${x}px ${y + h}px, ${x}px ${y}px)`;
+    }
 
     function upgradeSlideshow(el) {
         if (!el) return;
+        const page = el.parentElement;
         let last = "";
 
         const apply = () => {
@@ -4297,14 +4319,17 @@ if (
             layer.style.setProperty("--img", `url("${m[1]}")`);
             el.appendChild(layer);
 
+            const img = new Image();
             const reveal = () => requestAnimationFrame(() => {
+                if (img.naturalWidth) {
+                    photoSize.set(page, { w: img.naturalWidth, h: img.naturalHeight });
+                    updateHole(page);
+                }
                 layer.classList.add("show");
                 const old = [...el.querySelectorAll(".ss-layer")].filter(l => l !== layer);
                 setTimeout(() => old.forEach(o => o.remove()), 2000);
             });
-
-            const img = new Image();
-            img.onload = img.onerror = reveal;   // wait until loaded so it never flashes
+            img.onload = img.onerror = reveal;
             img.src = m[1];
         };
 
@@ -4318,11 +4343,11 @@ if (
         wrap.className = "float-bits";
         wrap.setAttribute("aria-hidden", "true");
         const icons = ["❤", "✦", "♡", "✧", "❤"];
-        for (let i = 0; i < 14; i++) {
+        for (let i = 0; i < 18; i++) {
             const s = document.createElement("span");
             s.textContent = icons[i % icons.length];
             s.style.left = Math.random() * 100 + "%";
-            s.style.fontSize = 10 + Math.random() * 16 + "px";
+            s.style.fontSize = 12 + Math.random() * 18 + "px";
             s.style.animationDuration = 14 + Math.random() * 14 + "s";
             s.style.animationDelay = -Math.random() * 20 + "s";
             wrap.appendChild(s);
@@ -4330,9 +4355,125 @@ if (
         page.appendChild(wrap);
     }
 
+    const lettersPage = document.getElementById("lettersPage");
+    const aryanPage = document.getElementById("aryanPage");
+
+    addFloatingBits(lettersPage);          // create these first so the hole can be applied
+    addFloatingBits(aryanPage);
     upgradeSlideshow(document.getElementById("slideshow"));
     upgradeSlideshow(document.getElementById("slideshowAryan"));
-    addFloatingBits(document.getElementById("lettersPage"));
-    addFloatingBits(document.getElementById("aryanPage"));
+
+    window.addEventListener("resize", () => {
+        updateHole(lettersPage);
+        updateHole(aryanPage);
+    });
+
+
+    /* ---------------------------------------------------------
+       2. HEART ROUTE: DRAWN ISLAND BY ISLAND
+       --------------------------------------------------------- */
+    const routeSvg = document.querySelector(".map-route");
+    const routeLine = routeSvg && routeSvg.querySelector("polyline");
+    if (!routeSvg || !routeLine) return;
+
+    // Islands in the order the route passes through them
+    const RING = ["ankita", "codm", "videocall", "Mysore", "aryanAbout", "Banglore", "Mumbai", "future"];
+
+    const pts = routeLine.getAttribute("points").trim().split(/\s+/);   // 25 points, closed loop
+    const PER_EDGE = 3;                                                // points between two islands
+
+    const NS = "http://www.w3.org/2000/svg";
+    const defs = document.createElementNS(NS, "defs");
+    routeSvg.insertBefore(defs, routeSvg.firstChild);
+
+    routeLine.classList.add("route-ghost");        // faint hint of the whole heart
+
+    // one masked, dashed polyline per edge of the heart
+    const edges = RING.map((_, k) => {
+
+        const slice = pts.slice(k * PER_EDGE, k * PER_EDGE + PER_EDGE + 1);
+
+        const mask = document.createElementNS(NS, "mask");
+        mask.setAttribute("id", "routeMask" + k);
+        mask.setAttribute("maskUnits", "userSpaceOnUse");
+        mask.setAttribute("x", "0"); mask.setAttribute("y", "0");
+        mask.setAttribute("width", "100"); mask.setAttribute("height", "100");
+
+        const m = document.createElementNS(NS, "path");   // <path>, not <polyline>, so the
+        m.setAttribute("class", "route-mask");            // existing flow animation skips it
+        m.setAttribute("pathLength", "1");
+        m.setAttribute("d", "M" + slice.join(" L"));
+        m.style.strokeDashoffset = "1";                    // hidden
+        mask.appendChild(m);
+        defs.appendChild(mask);
+
+        const line = document.createElementNS(NS, "polyline");
+        line.setAttribute("class", "route-edge");
+        line.setAttribute("points", slice.join(" "));
+        line.setAttribute("mask", `url(#routeMask${k})`);
+        routeSvg.appendChild(line);
+
+        return { mask: m, drawn: false };
+    });
+
+    function drawEdge(k, reverse) {
+        const e = edges[k];
+        if (e.drawn) return;
+        e.drawn = true;
+        e.mask.style.strokeDashoffset = reverse ? "-1" : "1";   // start hidden from the right end
+        void e.mask.getBoundingClientRect();                     // commit the start state
+        e.mask.style.strokeDashoffset = "0";                     // transition draws it
+    }
+
+    // draws from island p to island i along the shortest way round the heart
+    function drawBetween(p, i) {
+
+        const steps = [];
+        const fwd = (i - p + RING.length) % RING.length;
+
+        if (fwd <= RING.length / 2) {
+            for (let s = 0; s < fwd; s++) steps.push({ k: (p + s) % RING.length, reverse: false });
+        } else {
+            const back = RING.length - fwd;
+            for (let s = 1; s <= back; s++) steps.push({ k: (p - s + RING.length) % RING.length, reverse: true });
+        }
+
+        steps.forEach((st, n) => setTimeout(() => drawEdge(st.k, st.reverse), n * 1100));
+    }
+
+    // remember clicks; draw once the memory popup closes so she actually sees it
+    let previous = -1;
+    const visitedKeys = new Set();
+    const pending = [];
+
+    document.querySelectorAll(".memory-island").forEach(island => {
+        island.addEventListener("click", () => {
+            const key = island.dataset.memory;
+            if (RING.indexOf(key) === -1) return;
+            pending.push(key);
+            visitedKeys.add(key);
+        });
+    });
+
+    function flushRoute() {
+
+        while (pending.length) {
+            const idx = RING.indexOf(pending.shift());
+            if (previous !== -1 && previous !== idx) drawBetween(previous, idx);
+            previous = idx;
+        }
+
+        // every island visited: close the heart
+        if (visitedKeys.size === RING.length) {
+            edges.forEach((e, k) => { if (!e.drawn) setTimeout(() => drawEdge(k, false), 900 + k * 150); });
+        }
+    }
+
+    const memoryModal = document.getElementById("memoryModal");
+    if (memoryModal) {
+        new MutationObserver(() => {
+            if (!memoryModal.classList.contains("active")) setTimeout(flushRoute, 250);
+        }).observe(memoryModal, { attributes: true, attributeFilter: ["class"] });
+    }
 
 })();
