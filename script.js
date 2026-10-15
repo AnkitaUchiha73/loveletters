@@ -2165,6 +2165,23 @@ function stopGrandLineBackgroundSlideshow() {
             startButton.addEventListener(
                 "click",
                 () => {
+                    // -----------------------------------------
+// PLAY A RANDOM SONG FROM THE PLAYLIST
+// (We Are stays on the opening screen only)
+// -----------------------------------------
+
+let randomIndex;
+
+do {
+    randomIndex = Math.floor(
+        Math.random() * onePiecePlaylist.length
+    );
+} while (
+    randomIndex === opPlaylistIndex &&
+    onePiecePlaylist.length > 1
+);
+
+playOpSong(randomIndex);
 
 
                     // -----------------------------------------
