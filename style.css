@@ -1623,3 +1623,30 @@ body.one-piece-active #musicBoxAryan{display:none!important;visibility:hidden!im
     fill:none; stroke:#fff; stroke-width:3; stroke-dasharray:1 1;
     transition:stroke-dashoffset 1.3s ease-in-out;
 }
+/* WANTED POSTER: whole photo visible, frame on top */
+.one-piece-page .wanted-photo{
+    left:4.5%;
+    top:19.5%;
+    width:91%;
+    height:46.5%;
+    background:#2a1a0c;
+    overflow:hidden;
+}
+
+/* blurred copy of the photo fills any empty space */
+.one-piece-page .wanted-photo::before{
+    content:"";
+    position:absolute;
+    inset:-20px;
+    background:var(--poster-bg) center/cover no-repeat;
+    filter:blur(18px) brightness(.75);
+}
+
+/* the real photo, never cropped */
+.one-piece-page .wanted-photo img,
+.one-piece-page .wanted-photo-slide{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    object-position:center;
+}
