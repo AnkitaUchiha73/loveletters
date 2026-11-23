@@ -415,7 +415,7 @@ button:hover{transform:scale(1.08);background:#b81f6b}
    ===================================================== */
 .op-opening{
     position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:24px;text-align:center;
-    background:linear-gradient(rgba(1,43,82,.42),rgba(1,36,70,.64)),url("images/sunny.png") center/cover no-repeat;
+    background:linear-gradient(rgba(1,43,82,.42),rgba(1,36,70,.64)),url("image/sunny.png") center/cover no-repeat;
     transition:opacity .8s ease,visibility .8s ease,transform .8s ease;
 }
 .op-opening.hidden,.op-opening.hide{opacity:0;visibility:hidden;transform:scale(1.04);pointer-events:none}
@@ -572,10 +572,10 @@ body.one-piece-active #musicBoxAryan{display:none!important;visibility:hidden!im
 
 /* Popup backgrounds */
 .one-piece-page .op-panel-box.op-section{
-    background:linear-gradient(rgba(246,225,164,.88),rgba(221,193,123,.88)),url("images/sunny.png") center center/cover no-repeat;
+    background:linear-gradient(rgba(246,225,164,.88),rgba(221,193,123,.88)),url("image/sunny.png") center center/cover no-repeat;
 }
 .one-piece-page #mapSection .op-panel-box.op-section{
-    background:linear-gradient(rgba(246,225,164,.88),rgba(221,193,123,.88)),url("images/goingmerry.png") center center/cover no-repeat;
+    background:linear-gradient(rgba(246,225,164,.88),rgba(221,193,123,.88)),url("image/goingmerry.png") center center/cover no-repeat;
 }
 
 /* While a popup is open: hide the global BACK + the three menu buttons */
@@ -778,7 +778,7 @@ body.one-piece-active #musicBoxAryan{display:none!important;visibility:hidden!im
 .memory-modal-box{
     position:relative;width:min(96vw,1400px);max-width:96vw;max-height:96vh;overflow-y:auto;
     padding:35px 30px 30px;text-align:center;
-    background:linear-gradient(135deg,rgba(4,30,52,.72),rgba(8,65,91,.62)),url("images/sunny.png") center center/cover no-repeat;
+    background:linear-gradient(135deg,rgba(4,30,52,.72),rgba(8,65,91,.62)),url("image/sunny.png") center center/cover no-repeat;
     background-attachment:fixed;
     border:4px solid #151515;border-radius:17px;
     box-shadow:0 20px 60px rgba(0,0,0,.55),8px 8px 0 rgba(0,0,0,.2);
@@ -1130,7 +1130,7 @@ body.one-piece-active #musicBoxAryan{display:none!important;visibility:hidden!im
 /* The frame image sits on top of the photo */
 .one-piece-page .wanted-poster::after{
     content:"";position:absolute;inset:0;z-index:3;pointer-events:none;
-    background:url("images/wanted-frame.png") center/100% 100% no-repeat;
+    background:url("image/wanted.jpg") center/100% 100% no-repeat;
 }
 
 /* "WANTED" is already printed on the frame */
