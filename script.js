@@ -206,62 +206,60 @@ if (music) {
 // ============================
 
 const images = [
-    "images/image1.jpg",
-    "images/image2.jpg",
-    "images/image3.jpg",
-    "images/image4.jpg",
-    "images/image5.jpg",
-    "images/image6.jpg",
-    "images/image7.jpg",
-    "images/image8.jpg",
-    "images/image9.jpg",
-    "images/image10.jpg",
-    "images/image11.jpg",
-    "images/image12.jpg",
-    "images/image14.jpg",
-    "images/image15.jpg",
-    "images/image16.jpg",
-    "images/image17.jpg",
-    "images/image19.jpg",
-    "images/image21.jpg",
-    "images/image22.jpeg",
-    "images/image23.jpg",
-    "images/image24.jpeg",
-    "images/image25.jpeg",
-    "images/image26.jpeg",
-    "images/image27.jpeg",
-    "images/image28.jpeg",
-    "images/image29.jpeg",
-    "images/image30.jpeg",
-    "images/image31.jpeg",
-    "images/image32.jpeg",
-    "images/image33.jpeg",
-    "images/image34.jpeg"
+    "image/Mysore/Mysore1.jpg",
+    "image/Mysore/Mysore2.jpg",
+    "image/Mysore/Mysore3.jpg",
+    "image/Mysore/Mysore4.jpg",
+    "image/Mysore/Mysore5.jpg",
+    "image/Mysore/Mysore6.jpg",
+    "image/Mysore/Mysore7.jpg",
+    "image/Mysore/Mysore8.jpg",
+    "image/Mysore/Mysore9.jpg",
+    "image/Mysore/Mysore10.jpg",
+    "image/Mysore/Mysore11.jpg",
+    "image/Mysore/Mysore12.jpg",
+    "image/Mysore/Mysore13.jpg",
+    "image/Mysore/Mysore14.jpg",
+    "image/Mysore/Mysore15.jpg",
+    "image/Mysore/Mysore16.jpg",
+    "image/Mysore/Mysore17.jpg",
+    "image/Mysore/Mysore18.jpg",
+    "image/Mysore/Mysore19.jpg",
+    "image/Mysore/Mysore20.jpg",
+    "image/Mysore/Mysore21.jpg",
+    "image/Mysore/Mysore22.jpg",
+    "image/Mysore/Mysore23.jpg",
+    "image/Mysore/Mysore24.jpg",
+    "image/Mysore/Mysore25.jpg",
+    
 ];
 
 const aryanImages = [
-    "images/aryan1.jpeg",
-    "images/aryan2.jpeg",
-    "images/aryan3.jpeg",
-    "images/aryan4.jpeg",
-    "images/aryan5.jpeg",
-    "images/aryan6.jpeg",
-    "images/aryan7.jpeg",
-    "images/aryan8.jpeg",
-    "images/aryan9.jpeg",
-    "images/aryan10.jpeg",
-    "images/aryan11.jpeg",
-    "images/aryan12.jpeg",
-    "images/aryan13.jpeg",
-    "images/aryan14.jpeg",
-    "images/aryan15.jpeg",
-    "images/aryan16.jpeg",
-    "images/aryan17.jpeg",
-    "images/aryan18.jpeg",
-    "images/aryan19.jpeg",
-    "images/aryan20.jpeg",
-    "images/aryan21.jpeg",
-    "images/aryan22.jpeg"
+   "image/Aryan/Aryan1.jpg",
+    "image/Aryan/Aryan2.jpg",
+    "image/Aryan/Aryan3.jpg",
+    "image/Aryan/Aryan4.jpg",
+    "image/Aryan/Aryan5.jpg",
+    "image/Aryan/Aryan6.jpg",
+    "image/Aryan/Aryan7.jpg",
+    "image/Aryan/Aryan8.jpg",
+    "image/Aryan/Aryan9.jpg",
+    "image/Aryan/Aryan10.jpg",
+    "image/Aryan/Aryan11.jpg",
+    "image/Aryan/Aryan12.jpg",
+    "image/Aryan/Aryan13.jpg",
+    "image/Aryan/Aryan14.jpg",
+    "image/Aryan/Aryan15.jpg",
+    "image/Aryan/Aryan16.jpg",
+    "image/Aryan/Aryan17.jpg",
+    "image/Aryan/Aryan18.jpg",
+    "image/Aryan/Aryan19.jpg",
+    "image/Aryan/Aryan20.jpg",
+    "image/Aryan/Aryan21.jpg",
+    "image/Aryan/Aryan22.jpg",
+    "image/Aryan/Aryan23.jpg",
+    "image/Aryan/Aryan24.jpg",
+    "image/Aryan/Aryan25.jpg",
 ];
 
 let currentImage = 0;
@@ -882,7 +880,7 @@ const aryanLetters = [
             I really loved that….
             Loved the pillars we r building in the intial phases of our love….
             <br>Then
-            <br>When U said i will come to mysore….i felt so happy
+            <br>When U said i will come to Aryan….i felt so happy
             Im with a big smile all day…going with flow of my heart….
             <br>Srsly bolu mere mei itni himmat nahi thi
             Ki I will goo and meet u in person….
@@ -2695,9 +2693,107 @@ playOpSong(randomIndex);
     song: "music/ChammakChallo.mp3",
 
     photos: [
-        "images/ankita1.jpeg",
-        "images/ankita2.jpeg",
-        "images/ankita3.jpeg"
+    "image/Ankita/Ankita1.jpg",
+    "image/Ankita/Ankita2.jpg",
+    "image/Ankita/Ankita3.jpg",
+    "image/Ankita/Ankita4.jpg",
+    "image/Ankita/Ankita5.jpg",
+    "image/Ankita/Ankita6.jpg",
+    "image/Ankita/Ankita7.jpg",
+    "image/Ankita/Ankita8.jpg",
+    "image/Ankita/Ankita9.jpg",
+    "image/Ankita/Ankita10.jpg",
+    "image/Ankita/Ankita11.jpg",
+    "image/Ankita/Ankita12.jpg",
+    "image/Ankita/Ankita13.jpg",
+    "image/Ankita/Ankita14.jpg",
+    "image/Ankita/Ankita15.jpg",
+    "image/Ankita/Ankita16.jpg",
+    "image/Ankita/Ankita17.jpg",
+    "image/Ankita/Ankita18.jpg",
+    "image/Ankita/Ankita19.jpg",
+    "image/Ankita/Ankita20.jpg",
+    "image/Ankita/Ankita21.jpg",
+    "image/Ankita/Ankita22.jpg",
+    "image/Ankita/Ankita23.jpg",
+    "image/Ankita/Ankita24.jpg",
+    "image/Ankita/Ankita25.jpg",
+    "image/Ankita/Ankita26.jpg",
+    "image/Ankita/Ankita27.jpg",
+    "image/Ankita/Ankita28.jpg",
+    "image/Ankita/Ankita29.jpg",
+    "image/Ankita/Ankita30.jpg",
+    "image/Ankita/Ankita31.jpg",
+    "image/Ankita/Ankita32.jpg",
+    "image/Ankita/Ankita33.jpg",
+    "image/Ankita/Ankita34.jpg",
+    "image/Ankita/Ankita35.jpg",
+    "image/Ankita/Ankita36.jpg",
+    "image/Ankita/Ankita37.jpg",
+    "image/Ankita/Ankita38.jpg",
+    "image/Ankita/Ankita39.jpg",
+    "image/Ankita/Ankita40.jpg",
+    "image/Ankita/Ankita41.jpg",
+    "image/Ankita/Ankita42.jpg",
+    "image/Ankita/Ankita43.jpg",
+    "image/Ankita/Ankita44.jpg",
+    "image/Ankita/Ankita45.jpg",
+    "image/Ankita/Ankita46.jpg",
+    "image/Ankita/Ankita47.jpg",
+    "image/Ankita/Ankita48.jpg",
+    "image/Ankita/Ankita49.jpg",
+    "image/Ankita/Ankita50.jpg",
+    "image/Ankita/Ankita51.jpg",
+    "image/Ankita/Ankita52.jpg",
+    "image/Ankita/Ankita53.jpg",
+    "image/Ankita/Ankita54.jpg",
+    "image/Ankita/Ankita55.jpg",
+    "image/Ankita/Ankita56.jpg",
+    "image/Ankita/Ankita57.jpg",
+    "image/Ankita/Ankita58.jpg",
+    "image/Ankita/Ankita59.jpg",
+    "image/Ankita/Ankita60.jpg",
+    "image/Ankita/Ankita61.jpg",
+    "image/Ankita/Ankita62.jpg",
+    "image/Ankita/Ankita63.jpg",
+    "image/Ankita/Ankita64.jpg",
+    "image/Ankita/Ankita65.jpg",
+    "image/Ankita/Ankita66.jpg",
+    "image/Ankita/Ankita67.jpg",
+    "image/Ankita/Ankita68.jpg",
+    "image/Ankita/Ankita69.jpg",
+    "image/Ankita/Ankita70.jpg",
+    "image/Ankita/Ankita71.jpg",
+    "image/Ankita/Ankita72.jpg",
+    "image/Ankita/Ankita73.jpg",
+    "image/Ankita/Ankita74.jpg",
+    "image/Ankita/Ankita75.jpg",
+    "image/Ankita/Ankita76.jpg",
+    "image/Ankita/Ankita77.jpg",
+    "image/Ankita/Ankita78.jpg",
+    "image/Ankita/Ankita79.jpg",
+    "image/Ankita/Ankita80.jpg",
+    "image/Ankita/Ankita81.jpg",
+    "image/Ankita/Ankita82.jpg",
+    "image/Ankita/Ankita83.jpg",
+    "image/Ankita/Ankita84.jpg",
+    "image/Ankita/Ankita85.jpg",
+    "image/Ankita/Ankita86.jpg",
+    "image/Ankita/Ankita87.jpg",
+    "image/Ankita/Ankita88.jpg",
+    "image/Ankita/Ankita89.jpg",
+    "image/Ankita/Ankita90.jpg",
+    "image/Ankita/Ankita91.jpg",
+    "image/Ankita/Ankita92.jpg",
+    "image/Ankita/Ankita93.jpg",
+    "image/Ankita/Ankita94.jpg",
+    "image/Ankita/Ankita95.jpg",
+    "image/Ankita/Ankita96.jpg",
+    "image/Ankita/Ankita97.jpg",
+    "image/Ankita/Ankita98.jpg",
+    "image/Ankita/Ankita99.jpg",
+    "image/Ankita/Ankita100.jpg"
+        
     ],
 
     captions: [
@@ -2721,9 +2817,16 @@ playOpSong(randomIndex);
                     "Our story began somewhere between a game of CODM and two people who had no idea what was coming next.",
 
                 photos: [
-                    "images/codm1.jpeg",
-                    "images/codm2.jpeg",
-                    "images/codm3.jpeg"
+                        "image/Codm/Codm1.jpg",
+    "image/Codm/Codm2.jpg",
+    "image/Codm/Codm3.jpg",
+    "image/Codm/Codm4.jpg",
+    "image/Codm/Codm5.jpg",
+    "image/Codm/Codm6.jpg",
+    "image/Codm/Codm7.jpg",
+    "image/Codm/Codm8.jpg",
+    "image/Codm/Codm9.jpg",
+    "image/Codm/Codm10.jpg"
                 ],
 
                 captions: [
@@ -2748,9 +2851,16 @@ playOpSong(randomIndex);
                     "From messages to calls, somehow the distance never felt quite so far when you were on the other side.",
 
                 photos: [
-                    "images/videocall1.jpeg",
-                    "images/videocall2.jpeg",
-                    "images/videocall3.jpeg"
+                        "image/Videocall/Videocall1.jpg",
+    "image/Videocall/Videocall2.jpg",
+    "image/Videocall/Videocall3.jpg",
+    "image/Videocall/Videocall4.jpg",
+    "image/Videocall/Videocall5.jpg",
+    "image/Videocall/Videocall6.jpg",
+    "image/Videocall/Videocall7.jpg",
+    "image/Videocall/Videocall8.jpg",
+    "image/Videocall/Videocall9.jpg",
+    "image/Videocall/Videocall10.jpg"
                 ],
 
                 captions: [
@@ -2775,26 +2885,31 @@ playOpSong(randomIndex);
                     "Another chapter, another place, and another collection of memories that became ours.",
 
                 photos: [
-                    "images/aryan1.jpeg",
-                    "images/aryan16.jpeg",
-                    "images/aryan17.jpeg",
-                    "images/aryan4.jpeg",
-                    "images/aryan5.jpeg",
-                    "images/image1.jpg",
-                    "images/image2.jpg",
-                    "images/image22.jpeg",
-                    "images/image24.jpeg",
-                    "images/image25.jpeg",
-                    "images/image26.jpeg",
-                    "images/image27.jpeg",
-                    "images/image28.jpeg",
-                    "images/image29.jpeg",
-                    "images/image3.jpg",
-                    "images/image30.jpeg",
-                    "images/image31.jpeg",
-                    "images/image32.jpeg",
-                    "images/image33.jpeg",
-                    "images/image34.jpeg",
+                   "image/Mysore/Mysore1.jpg",
+    "image/Mysore/Mysore2.jpg",
+    "image/Mysore/Mysore3.jpg",
+    "image/Mysore/Mysore4.jpg",
+    "image/Mysore/Mysore5.jpg",
+    "image/Mysore/Mysore6.jpg",
+    "image/Mysore/Mysore7.jpg",
+    "image/Mysore/Mysore8.jpg",
+    "image/Mysore/Mysore9.jpg",
+    "image/Mysore/Mysore10.jpg",
+    "image/Mysore/Mysore11.jpg",
+    "image/Mysore/Mysore12.jpg",
+    "image/Mysore/Mysore13.jpg",
+    "image/Mysore/Mysore14.jpg",
+    "image/Mysore/Mysore15.jpg",
+    "image/Mysore/Mysore16.jpg",
+    "image/Mysore/Mysore17.jpg",
+    "image/Mysore/Mysore18.jpg",
+    "image/Mysore/Mysore19.jpg",
+    "image/Mysore/Mysore20.jpg",
+    "image/Mysore/Mysore21.jpg",
+    "image/Mysore/Mysore22.jpg",
+    "image/Mysore/Mysore23.jpg",
+    "image/Mysore/Mysore24.jpg",
+    "image/Mysore/Mysore25.jpg"
                 ],
 
                 captions: [
@@ -2806,22 +2921,29 @@ playOpSong(randomIndex);
             },
 
 
-            Banglore: {
+            Bengaluru: {
 
                 icon: "🏰",
                 song: "music/BlindingLights.mp3",
 
                 chapter: "CHAPTER IV",
 
-                title: "Banglore",
+                title: "Bengaluru",
 
                 text:
                     "Some places are special because of where they are. Others become special because of who you were with.",
 
                 photos: [
-                    "images/Banglore1.jpeg",
-                    "images/Banglore2.jpeg",
-                    "images/Banglore3.jpeg"
+                       "image/Bengaluru/Bengaluru1.jpg",
+    "image/Bengaluru/Bengaluru2.jpg",
+    "image/Bengaluru/Bengaluru3.jpg",
+    "image/Bengaluru/Bengaluru4.jpg",
+    "image/Bengaluru/Bengaluru5.jpg",
+    "image/Bengaluru/Bengaluru6.jpg",
+    "image/Bengaluru/Bengaluru7.jpg",
+    "image/Bengaluru/Bengaluru8.jpg",
+    "image/Bengaluru/Bengaluru9.jpg",
+    "image/Bengaluru/Bengaluru10.jpg"
                 ],
 
                 captions: [
@@ -2846,9 +2968,16 @@ playOpSong(randomIndex);
                     "A city full of lights, chaos and endless stories — and somehow, one of my favourite stories here is ours.",
 
                 photos: [
-                    "images/Mumbai1.jpeg",
-                    "images/Mumbai2.jpeg",
-                    "images/Mumbai3.jpeg"
+                       "image/Mumbai/Mumbai1.jpg",
+    "image/Mumbai/Mumbai2.jpg",
+    "image/Mumbai/Mumbai3.jpg",
+    "image/Mumbai/Mumbai4.jpg",
+    "image/Mumbai/Mumbai5.jpg",
+    "image/Mumbai/Mumbai6.jpg",
+    "image/Mumbai/Mumbai7.jpg",
+    "image/Mumbai/Mumbai8.jpg",
+    "image/Mumbai/Mumbai9.jpg",
+    "image/Mumbai/Mumbai10.jpg"
                 ],
 
                 captions: [
@@ -2872,9 +3001,32 @@ playOpSong(randomIndex);
     song: "music/HeartThrob.mp3",
 
     photos: [
-        "images/aryan1.jpeg",
-        "images/aryan2.jpeg",
-        "images/aryan3.jpeg"
+        "image/Aryan/Aryan1.jpg",
+    "image/Aryan/Aryan2.jpg",
+    "image/Aryan/Aryan3.jpg",
+    "image/Aryan/Aryan4.jpg",
+    "image/Aryan/Aryan5.jpg",
+    "image/Aryan/Aryan6.jpg",
+    "image/Aryan/Aryan7.jpg",
+    "image/Aryan/Aryan8.jpg",
+    "image/Aryan/Aryan9.jpg",
+    "image/Aryan/Aryan10.jpg",
+    "image/Aryan/Aryan11.jpg",
+    "image/Aryan/Aryan12.jpg",
+    "image/Aryan/Aryan13.jpg",
+    "image/Aryan/Aryan14.jpg",
+    "image/Aryan/Aryan15.jpg",
+    "image/Aryan/Aryan16.jpg",
+    "image/Aryan/Aryan17.jpg",
+    "image/Aryan/Aryan18.jpg",
+    "image/Aryan/Aryan19.jpg",
+    "image/Aryan/Aryan20.jpg",
+    "image/Aryan/Aryan21.jpg",
+    "image/Aryan/Aryan22.jpg",
+    "image/Aryan/Aryan23.jpg",
+    "image/Aryan/Aryan24.jpg",
+    "image/Aryan/Aryan25.jpg"
+        
     ],
 
     captions: [
@@ -2898,15 +3050,16 @@ playOpSong(randomIndex);
                 song: "music/Aashiyan.mp3",   // swap for any song you like
 
                 photos: [
-                    "images/future1.jpeg",
-                    "images/future2.jpeg",
-                    "images/future3.jpeg"
+                        "image/Future/Future1.jpeg",
+    "image/Future/Future2.jpeg",
+    "image/Future/Future3.jpeg"
+    
                 ],
 
                 captions: [
-                    "Not written yet 🔮",
-                    "But I already know who's in it.",
-                    "One day closer ❤️"
+                    "The one where we get our happily ever after.",
+                    "Having her in our arms.",
+                    "One more addition to our family."
                 ]
 
             }
@@ -3380,7 +3533,7 @@ const islandProps = {
     codm:       "🎯",
     videocall:  "📡",
     Mysore:     "🐘",
-    Banglore:   "🌳",
+    Bengaluru:   "🌳",
     Mumbai:     "🚤",
     aryanAbout: "🩺",
     future:     "🔮"
@@ -4394,7 +4547,7 @@ if (
     if (!routeSvg || !routeLine) return;
 
     // Islands in the order the route passes through them
-    const RING = ["ankita", "codm", "videocall", "Mysore", "aryanAbout", "Banglore", "Mumbai", "future"];
+    const RING = ["ankita", "codm", "videocall", "Mysore", "aryanAbout", "Bengaluru", "Mumbai", "future"];
 
     const pts = routeLine.getAttribute("points").trim().split(/\s+/);   // 25 points, closed loop
     const PER_EDGE = 3;                                                // points between two islands
