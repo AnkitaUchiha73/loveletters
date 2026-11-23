@@ -667,32 +667,7 @@ setInterval(() => {
     }
 
 }, 4000);
-// ============================
-// WANTED POSTER PHOTO SLIDESHOW (ARYAN)
-// ============================
 
-(function () {
-
-    const slides =
-        document.querySelectorAll(
-            "#aryanWantedPhoto .wanted-photo-slide"
-        );
-
-    if (slides.length < 2) return;
-
-    let index = 0;
-
-    setInterval(() => {
-
-        slides[index].classList.remove("active");
-
-        index = (index + 1) % slides.length;
-
-        slides[index].classList.add("active");
-
-    }, 3000);
-
-})();
 // ============================
 // LETTER CONTENT DATA
 // ============================
@@ -3065,7 +3040,49 @@ playOpSong(randomIndex);
             }
 
         };
+// =====================================================
+// WANTED POSTERS: reuse the island photos
+// =====================================================
+function startPosterSlideshow(boxId, photos, alt, delay) {
 
+    const box = document.getElementById(boxId);
+    if (!box || !photos || !photos.length) return;
+
+    box.innerHTML = "";
+
+    let front = document.createElement("img");
+    let back  = document.createElement("img");
+
+    [front, back].forEach(img => {
+        img.className = "wanted-photo-slide";
+        img.alt = alt;
+        box.appendChild(img);
+    });
+
+    let i = 0;
+    front.src = photos[0];
+    front.classList.add("active");
+
+    if (photos.length < 2) return;
+
+    setInterval(() => {
+
+        i = (i + 1) % photos.length;
+
+        back.onload = () => {
+            back.classList.add("active");
+            front.classList.remove("active");
+            [front, back] = [back, front];
+        };
+
+        back.onerror = () => console.warn("Poster photo failed:", photos[i]);
+        back.src = photos[i];
+
+    }, delay);
+}
+
+startPosterSlideshow("aryanWantedPhoto",  memories.aryanAbout.photos, "Aryan Goyal", 3000);
+startPosterSlideshow("ankitaWantedPhoto", memories.ankita.photos,    "Ankita",       3500);
 
         // =====================================================
         // MEMORY DOM ELEMENTS
