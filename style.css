@@ -1130,7 +1130,7 @@ body.one-piece-active #musicBoxAryan{display:none!important;visibility:hidden!im
 /* The frame image sits on top of the photo */
 .one-piece-page .wanted-poster::after{
     content:"";position:absolute;inset:0;z-index:3;pointer-events:none;
-    background:url("image/wanted.jpg") center/100% 100% no-repeat;
+    background:url("image/wanted.png") center/100% 100% no-repeat;
 }
 
 /* "WANTED" is already printed on the frame */
