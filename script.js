@@ -2023,8 +2023,8 @@ document.addEventListener(
 // pos = which part of the picture stays visible on narrow (phone) screens.
 // 0% = left edge, 50% = center, 100% = right edge
 const opBgImages = [
-    { src: "images/sunny.png",      mobilePos: "center" },
-    { src: "images/goingmerry.png", mobilePos: "80% center" }
+    { src: "image/sunny.png",      mobilePos: "center" },
+    { src: "image/goingmerry.png", mobilePos: "80% center" }
 ];
 
 let opBgIndex = 0;
