@@ -3084,6 +3084,7 @@ function startPosterSlideshow(boxId, photos, alt, delay) {
 
         load(photos[idx], src => {
             back.src = src;
+            box.style.setProperty("--poster-bg", `url("${src}")`);
             back.classList.add("active");
             front.classList.remove("active");
             [front, back] = [back, front];
