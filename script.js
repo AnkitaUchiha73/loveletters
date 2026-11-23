@@ -3059,26 +3059,42 @@ function startPosterSlideshow(boxId, photos, alt, delay) {
         box.appendChild(img);
     });
 
+    // Try the path as given; if .jpg fails, try .jpeg
+    function load(src, ok, fail) {
+        const t = new Image();
+        t.onload = () => ok(src);
+        t.onerror = () => {
+            if (/\.jpg$/i.test(src)) {
+                load(src.replace(/\.jpg$/i, ".jpeg"), ok, fail);
+            } else {
+                fail();
+            }
+        };
+        t.src = src;
+    }
+
     let i = 0;
-    front.src = photos[0];
-    front.classList.add("active");
 
-    if (photos.length < 2) return;
+    function showNext(attempts = 0) {
 
-    setInterval(() => {
+        if (attempts >= photos.length) return;   // nothing loadable
 
+        const idx = i;
         i = (i + 1) % photos.length;
 
-        back.onload = () => {
+        load(photos[idx], src => {
+            back.src = src;
             back.classList.add("active");
             front.classList.remove("active");
             [front, back] = [back, front];
-        };
+        }, () => {
+            console.warn("Poster photo failed:", photos[idx]);
+            showNext(attempts + 1);
+        });
+    }
 
-        back.onerror = () => console.warn("Poster photo failed:", photos[i]);
-        back.src = photos[i];
-
-    }, delay);
+    showNext();
+    if (photos.length > 1) setInterval(showNext, delay);
 }
 
 startPosterSlideshow("aryanWantedPhoto",  memories.aryanAbout.photos, "Aryan Goyal", 3000);
