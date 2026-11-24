@@ -2658,7 +2658,8 @@ playOpSong(randomIndex);
 
     icon: "🌸",
 
-    title: "About Ankita",
+    title: "Ankita",
+    showCount: 50,
 
     text:
         "The girl behind the letters, the poems, and the quiet chaos in between. Here's a little piece of who she is.",
@@ -2782,6 +2783,7 @@ playOpSong(randomIndex);
                 icon: "🎮",
 
                 title: "Where It All Began",
+                showCount: 50,
                 song: "music/Raftaarein.mp3",
 
                 text:
@@ -2813,6 +2815,7 @@ playOpSong(randomIndex);
 
                 icon: "📞",
                 song:"music/TumHiHo.mp3",
+                showCount: 50,
 
                 title: "Across The Distance",
 
@@ -2846,6 +2849,7 @@ playOpSong(randomIndex);
                 icon: "🏰✨",
 
                 title: "Mysore",
+                showCount: 50,
                 song: "music/GehraHua.mp3",
 
                 text:
@@ -2892,6 +2896,7 @@ playOpSong(randomIndex);
 
                 icon: "🏰",
                 song: "music/BlindingLights.mp3",
+                showCount: 50,
 
             
 
@@ -2929,6 +2934,7 @@ playOpSong(randomIndex);
             
 
                 title: "Mumbai",
+                showCount: 50,
                 song : "music/Perfect.mp3",
 
                 text:
@@ -2959,7 +2965,8 @@ playOpSong(randomIndex);
     icon: "⚓",
 
 
-    title: "About Aryan",
+    title: "Aryan",
+    showCount: 50,
 
     text:
         "The boy who never gave up, even when the distance tried its hardest. This one's for him.",
@@ -3007,6 +3014,7 @@ playOpSong(randomIndex);
                 icon: "🔮",
 
                 title: "Our Future",
+                showCount: 50,
 
                 text:
                     "This island isn't on any map yet. It's the one we're sailing toward together, and every day we get a little closer.",
@@ -3165,6 +3173,35 @@ startPosterSlideshow("ankitaWantedPhoto", memories.ankita.photos,    "Ankita",  
         let currentPhotoIndex = 0;
 
         let memoryPhotoTimer = null;
+        let activePhotos = [];   // the photos picked for the current visit
+
+function shuffle(arr) {
+    const a = arr.slice();
+    for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+}
+
+// Draws from a shuffled queue, so a photo isn't repeated until the whole pool
+// has been shown. With 100 photos and showCount 50, two visits cover all 100.
+function drawPhotos(memory) {
+    const pool = memory.photos || [];
+    const n = Math.min(memory.showCount || pool.length, pool.length);
+
+    memory._queue = memory._queue || [];
+    const picked = [];
+
+    while (picked.length < n) {
+        if (!memory._queue.length) {
+            memory._queue = shuffle(pool.filter(p => !picked.includes(p)));
+        }
+        picked.push(memory._queue.pop());
+    }
+    return picked;
+}
+        
         // =====================================================
 // ISLAND SONGS
 // =====================================================
@@ -3226,9 +3263,8 @@ function stopIslandSong() {
             }
 
 
-            const photos =
-                currentMemory.photos || [];
-
+            const photos =activePhotos;
+                
 
             if (!photos.length) {
                 return;
@@ -3356,12 +3392,7 @@ function stopIslandSong() {
             }
 
 
-            if (
-                !currentMemory.photos ||
-                currentMemory.photos.length <= 1
-            ) {
-                return;
-            }
+            if (activePhotos.length <= 1) { return; }
 
 
             memoryPhotoTimer =
@@ -3399,6 +3430,7 @@ function stopIslandSong() {
 
             currentMemory =
                 memory;
+            activePhotos = drawPhotos(memory);
 
 
             currentPhotoIndex =
@@ -3416,7 +3448,7 @@ function stopIslandSong() {
             if (memoryChapter) {
 
                 memoryChapter.textContent =
-                    memory.chapter;
+                    memory.chapter || "";
 
             }
 
@@ -3476,6 +3508,7 @@ function stopIslandSong() {
 
             currentMemory =
                 null;
+            activePhotos = [];
 
 
             currentPhotoIndex =
