@@ -2658,8 +2658,6 @@ playOpSong(randomIndex);
 
     icon: "🌸",
 
-    chapter: "CHAPTER 0",
-
     title: "About Ankita",
 
     text:
@@ -2783,8 +2781,6 @@ playOpSong(randomIndex);
 
                 icon: "🎮",
 
-                chapter: "CHAPTER I",
-
                 title: "Where It All Began",
                 song: "music/Raftaarein.mp3",
 
@@ -2816,8 +2812,6 @@ playOpSong(randomIndex);
             videocall: {
 
                 icon: "📞",
-
-                chapter: "CHAPTER II",
                 song:"music/TumHiHo.mp3",
 
                 title: "Across The Distance",
@@ -2850,8 +2844,6 @@ playOpSong(randomIndex);
             Mysore: {
 
                 icon: "🏰✨",
-
-                chapter: "CHAPTER III",
 
                 title: "Mysore",
                 song: "music/GehraHua.mp3",
@@ -2901,7 +2893,7 @@ playOpSong(randomIndex);
                 icon: "🏰",
                 song: "music/BlindingLights.mp3",
 
-                chapter: "CHAPTER IV",
+            
 
                 title: "Bengaluru",
 
@@ -2934,7 +2926,7 @@ playOpSong(randomIndex);
 
                 icon: "🌊",
 
-                chapter: "CHAPTER V",
+            
 
                 title: "Mumbai",
                 song : "music/Perfect.mp3",
@@ -2966,7 +2958,6 @@ playOpSong(randomIndex);
 
     icon: "⚓",
 
-    chapter: "CHAPTER VI",
 
     title: "About Aryan",
 
@@ -3014,8 +3005,6 @@ playOpSong(randomIndex);
             future: {
 
                 icon: "🔮",
-
-                chapter: "CHAPTER VII",
 
                 title: "Our Future",
 
