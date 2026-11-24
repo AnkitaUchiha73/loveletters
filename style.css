@@ -1660,3 +1660,36 @@ body.one-piece-active #musicBoxAryan{display:none!important;visibility:hidden!im
     text-align:left !important;
     white-space:nowrap !important;
 }
+#journeyTitle,
+#loveCounter{
+    position:absolute;
+    left:50%; top:50%;
+    transform:translate(-50%,-50%);
+    width:min(92vw,820px);
+    margin:0;
+    text-align:center;
+}
+#counter{font-variant-numeric:tabular-nums}   /* stops the digits jittering */
+
+@media(max-width:600px){
+    #journeyTitle{font-size:2rem}
+    #loveCounter h1{font-size:2rem}
+    #counter{font-size:1.5rem}
+}
+.one-piece-page .wanted-poster .bounty{
+    position:absolute !important;
+    left:20% !important; right:7% !important;
+    top:83% !important;
+    margin:0 !important;
+    display:flex; align-items:center; justify-content:flex-start; gap:.3em;
+    font-size:7.5cqw !important;
+    line-height:1 !important;
+    font-weight:normal !important;
+    white-space:nowrap !important;
+    color:#3a2412;
+}
+.one-piece-page .bounty .inf{
+    font-family:Georgia,"Times New Roman",serif !important;
+    font-size:1.3em;
+    line-height:1;
+}
